@@ -56,11 +56,13 @@ class BuildType(object):
         """
         self.build_type = buildType
         self._compiler_type = 'unknown'
-        self._cc_flags = ['-Wall', '-Werror']
+        self._cc_flags = [
+            '-Wall', '-Werror', '-Wuninitialized', '-Wpedantic',
+            '-Wno-deprecated', '-std=c++11', '-DBOOST_NO_CXX11_SCOPED_ENUMS',]
         self._link_flags = []
         self.rdynamic_link_flag = '-rdynamic'
         self._include_flag = ['-isystem']
-        self._test_packs = ['Continuous']
+        self._test_packs = []
         self._revision = ''
         self.build_dir = 'default'
         self._num_processes = 1
@@ -789,7 +791,7 @@ class MemoryTesting(GccDebug):
 
         # Regexps to check for
         import re
-        invalid = re.compile(r'==\d+== (Invalid|Mismatched) ')
+        invalid = re.compile(r'==\d+== Invalid ')
         glibc = re.compile(r'__libc_freeres')
         leaks = re.compile(r'==\d+== LEAK SUMMARY:')
         lost = re.compile(r'==\d+==\s+(definitely|indirectly|possibly) lost: ([0-9,]+) bytes in ([0-9,]+) blocks')
@@ -926,7 +928,7 @@ class GccOpt(Gcc):
     """
     def __init__(self, *args, **kwargs):
         Gcc.__init__(self, *args, **kwargs)
-        self._cc_flags = ['-O3']
+        self._cc_flags = ['-O3', '-std=c++11', '-DBOOST_NO_CXX11_SCOPED_ENUMS']
         self.build_dir = 'optimised'
         self.is_optimised = True
 

@@ -52,10 +52,7 @@ if ubuntu_ver == 'Trusty':
 else:
     ubuntu_ver = map(int, ubuntu_ver.split('.')[0:2])
 
-if ubuntu_ver >= [16,04]:
-    petsc_ver = 3.6
-    petsc_path = '/usr/lib/petscdir/3.6.2/'
-elif ubuntu_ver >= [14,04]:
+if ubuntu_ver >= [14,04]:
     petsc_ver = 3.4
     petsc_path = '/usr/lib/petscdir/3.4.2/'
 elif ubuntu_ver >= [12,10]:
@@ -72,22 +69,18 @@ else:
     petsc_2_3_path = '/usr/lib/petscdir/2.3.3/'
 
 petsc_2_2_path = ''
-if ubuntu_ver >= [16,04]:
-    petsc_build_name_optimized = os.path.basename(glob.glob(os.path.join(petsc_path, '*-real'))[0])
-    _dbg = glob.glob(os.path.join(petsc_path, '*-real-debug'))
-    if _dbg:
-        petsc_build_name = os.path.basename(_dbg[0])
-    else:
-        petsc_build_name = petsc_build_name_optimized
-else:
-    petsc_build_name = 'linux-gnu-c-debug'
-    petsc_build_name_optimized = 'linux-gnu-c-opt'
+petsc_build_name = 'linux-gnu-c-debug'
 petsc_build_name_profile = petsc_build_name
+petsc_build_name_optimized = 'linux-gnu-c-opt'
 
 dealii_path = None
 
-other_includepaths = ['/usr/include/metis/']
-other_libpaths = []
+chaste_dir = os.path.dirname(os.path.dirname(os.path.dirname(
+    os.path.realpath(__file__))))
+unfit_include_path = os.path.join(chaste_dir, "unfit", "include")
+unfit_lib_path = os.path.join(chaste_dir, "unfit", "lib")
+other_includepaths = ['/usr/include/metis/', unfit_include_path]
+other_libpaths = [unfit_lib_path]
 
 # Figure out if Intel compilers are available, here we assume they are installed under the 
 # default location of /opt/intel, if not you will need to change some hardcoded paths below.
@@ -130,7 +123,8 @@ else:
 if petsc_ver >= 3.1:
     libs_for_petsc.remove('petsccontrib')
 
-boost_libs = ['boost_serialization', 'boost_filesystem']
+boost_libs = ['boost_serialization', 'boost_filesystem', 'boost_iostreams',
+              'boost_regex']
 if ubuntu_ver >= [10,10]:
     boost_libs.append('boost_system')
 if ubuntu_ver >= [9,10] and ubuntu_ver <= [12,10]:
@@ -149,9 +143,8 @@ else:
     xerces_lib = 'xerces-c'
 
 other_libraries = libs_for_petsc + boost_libs + \
-                  [xerces_lib,
-                   hdf5_lib, 'z',
-                   'parmetis', 'metis']
+                  [xerces_lib, hdf5_lib, 'z', 'parmetis', 'metis', 'bz2',
+                   'Unfit', 'sqlite3']
 
 # Figure out which lapack/blas packages are actually installed!
 if os.path.exists('/usr/lib/liblapack-3.so'):
@@ -179,33 +172,15 @@ def Configure(prefs, build):
         tools['mpicxx'] = 'OMPI_CXX=icpc ' + tools['mpicxx']
 
     # Extra libraries for VTK output
-    vtk_base = '/usr/include/vtk-'
-    vtk5_include_path = filter(os.path.isdir, glob.glob(vtk_base + '5*'))
-    vtk6_include_path = filter(os.path.isdir, glob.glob(vtk_base + '6*'))
-    if vtk5_include_path:
-        vtk_include_path = vtk5_include_path[0]
-    elif vtk6_include_path:
-        vtk_include_path = vtk6_include_path[0]
-    else:
-        vtk_include_path = ''
+    vtk_include_path = filter(os.path.isdir, glob.glob('/usr/include/vtk-5*'))
     use_vtk = int(prefs.get('use-vtk', True))
     use_vtk = use_vtk and bool(vtk_include_path)
     if use_vtk:
-        # Note: 10.10 uses VTK 5.4, 10.04 uses 5.2, and early use 5.0.
-        # Some systems may have VTK6 but not VTK5.
-        vtk_version = vtk_include_path[len(vtk_base):]
-        other_includepaths.append(vtk_include_path)
-        if vtk_version[0] == '6':
-            vtk_libs = ['CommonCore','CommonDataModel','IOXML','IOGeometry','CommonExecutionModel','FiltersCore','FiltersGeometry','FiltersModeling','FiltersSources']
-            vtk_ver = map(int, vtk_version.split('.')[:2])
-            if vtk_ver >= [6,2]:
-                vtk_libs[2:2] = ['IOParallelXML']
-            vtk_libs = map(lambda l: 'vtk' + l + '-' + vtk_version, vtk_libs)
-            other_libraries.extend(vtk_libs)
-        else:
-            other_libraries.extend(['vtkIO', 'vtkCommon', 'vtkGraphics', 'z'])
-            if ubuntu_ver >= [11,10]: # 11.10 uses VTK 5.6
-                other_libraries.extend(['vtkFiltering'])
+        # Note: 10.10 uses VTK 5.4, 10.04 uses 5.2, and early use 5.0
+        other_includepaths.extend(vtk_include_path)
+        other_libraries.extend(['vtkIO', 'vtkCommon', 'vtkGraphics', 'z'])
+        if ubuntu_ver >= [11,10]: # 11.10 uses VTK 5.6
+            other_libraries.extend(['vtkFiltering'])
 
     # Is CVODE installed?
     use_cvode = int(prefs.get('use-cvode', True))

@@ -81,7 +81,7 @@ def GetTestsInTestPacks(testRootDir, packNames=[], returnFoundPacks=False, subfo
     found_packs = set()
     for dirpath, dirnames, filenames in os.walk(testRootDir):
         for dirname in dirnames[:]:
-            if dirname in ['.svn', 'data']:
+            if dirname in ['.svn', 'data', 'plot', 'testouput']:
                 dirnames.remove(dirname)
         for filename in filenames:
             if filename.endswith(pack_suffix):

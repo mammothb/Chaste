@@ -55,7 +55,6 @@ import BuildTypes
 #  -l  Create long file names for included source files.
 #  -p  Preserve complete path information in the names of generated .gcov files.
 gcov_flags = ' -lp '
-
 # Get output dir and build type object
 if len(sys.argv) < 2:
     print "Syntax error."
@@ -70,22 +69,30 @@ else:
     projects = []
 build = BuildTypes.GetBuildType(build_type)
 
+# Add user project directory if it's not already inside
+user_project_directory = [
+    'projects/compbiolab_chaste',
+]
+for project_directory in user_project_directory:
+    if project_directory not in projects:
+        projects.append(project_directory)
 # Remove any old output files/test results from output_dir
 for filename in os.listdir(output_dir):
     os.remove(os.path.join(output_dir, filename))
 
 # Find .gcda files to determine which source files to run gcov on
 # First, find appropriate build directories
-build_dirs = glob.glob('*/build/' + build.build_dir)
-build_dirs.extend(map(lambda p: os.path.join(p, 'build', build.build_dir), projects))
+# build_dirs = glob.glob('*/build/' + build.build_dir)
+# build_dirs.extend(map(lambda p: os.path.join(p, 'build', build.build_dir), projects))
+# Only find .gcda files in the user project directory
+build_dirs = map(lambda p: os.path.join(p, 'build', build.build_dir), projects)
 # Now find .gcda files within there
 gcda_files = []
 for build_dir in build_dirs:
     for dirpath, dirnames, filenames in os.walk(build_dir):
-       for filename in filenames:
-           if filename[-5:] == '.gcda':
-               gcda_files.append({'dir': dirpath, 'file': filename})
-
+        for filename in filenames:
+            if filename[-5:] == '.gcda':
+                gcda_files.append({'dir': dirpath, 'file': filename})
 # Run gcov on all the .cpp files which have .gcda files.
 for gcda_file in gcda_files:
     # For added interest, the source file to process is in different locations
@@ -112,26 +119,27 @@ for gcda_file in gcda_files:
         # Run gcov
         os.system('gcov -o ' + gcda_file['dir'] + gcov_flags +
                   os.path.join(toplevel, rest, gcda_file['file'][:-4] + 'cpp'))
-
 # Now find all our source files
-src_dirs = glob.glob('*/src')
-src_dirs.remove('apps/src')
-src_dirs.extend(map(lambda p: os.path.join(p, 'src'), projects))
+# src_dirs = glob.glob('*/src')
+# src_dirs.remove('apps/src')
+# src_dirs.extend(map(lambda p: os.path.join(p, 'src'), projects))
+# Only find source files in the user project directory
+src_dirs = map(lambda p: os.path.join(p, 'src'), projects)
 src_files = []
 for src_dir in src_dirs:
     for dirpath, dirnames, filenames in os.walk(src_dir):
-       for filename in filenames:
-           if filename[-4:] in ['.cpp', '.hpp']:
-               src_files.append({'dir': dirpath, 'file': filename})
+        for filename in filenames:
+            if filename[-4:] in ['.cpp', '.hpp']:
+                src_files.append({'dir': dirpath, 'file': filename})
 
 def coverage_ignore(src_file):
     """Whether to ignore the fact that a source file is not used.
-    
-    If a file contains only typedefs, for example, this is not an error. 
+
+    If a file contains only typedefs, for example, this is not an error.
     For .hpp files we check this by looking for the presence of either
     'template' or 'class' at the start of a line.  If neither are found,
     we assume the file contains no real code.
-    
+
     This will only work if header files don't contain non-template function
     definitions, which should be the case if we're being good programmers.
     Unfortunately the boost serialization tweaking file "SerializationExportWrapper.hpp"
@@ -140,7 +148,11 @@ def coverage_ignore(src_file):
     by COVERAGE_IGNORE.
     """
     ignore = False
-    if src_file['dir'].endswith('fortests'):
+    if (src_file['dir'].endswith('fortests') or
+            src_file['dir'].endswith('task3') or
+            src_file['dir'].endswith('tutorial_core') or
+            src_file['dir'].endswith('tutorial_heart') or
+            src_file['dir'].endswith('unused')):
         # 'Source' code that is only used for tests, and hence coverage doesn't
         # matter.
         ignore = True
@@ -273,7 +285,7 @@ for src_file in src_files:
     if coverage_ignore(src_file):
         # All special case ignorable files (not just ones with partial coverage)
         status = ''
-    
+
     # Close all files
     [fp.close() for fp in gcov_fps]
     out_file.close()
