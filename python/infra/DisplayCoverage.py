@@ -149,9 +149,8 @@ def coverage_ignore(src_file):
     """
     ignore = False
     if (src_file['dir'].endswith('fortests') or
-            src_file['dir'].endswith('task3') or
-            src_file['dir'].endswith('tutorial_core') or
-            src_file['dir'].endswith('tutorial_heart') or
+            src_file['dir'].endswith('bn6402') or
+            src_file['dir'].endswith('tutorial') or
             src_file['dir'].endswith('unused')):
         # 'Source' code that is only used for tests, and hence coverage doesn't
         # matter.
