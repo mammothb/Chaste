@@ -43,6 +43,7 @@ _local/
 /doxygen
 /.externalToolBuilders
 /testoutput
+/.vscode
 
 # Misc in /anim/
 /anim/*.mpeg

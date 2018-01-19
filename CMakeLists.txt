@@ -138,7 +138,7 @@ option(Chaste_UPDATE_PROVENANCE "Update build timestamp. Disable to prevent re-l
 
 option(RUN_TESTS "This option simply runs Chaste tests. You should also set the test family." OFF)
 set(TEST_FAMILY "Continuous" CACHE STRING "The name of the test family, e.g, Continuous, Failing, Nightly, Parallel etc.")
-set(TestPackTypes "Continuous;Failing;Nightly;Parallel;Production;Weekly;Profile;ProfileAssembly;ExtraSimulations")
+set(TestPackTypes "Continuous;Failing;Nightly;Parallel;Production;Weekly;Profile;ProfileAssembly;ExtraSimulations;SipContinuous;SipParallel")
 
 if(RUN_TESTS)
 	list(FIND TestPackTypes ${TEST_FAMILY} found)
@@ -332,7 +332,7 @@ if(BUILD_SHARED_LIBS)
 else()
 	set( Boost_USE_STATIC_LIBS ON)
 endif()
-find_package(Boost COMPONENTS filesystem system serialization program_options REQUIRED)
+find_package(Boost COMPONENTS filesystem system serialization program_options iostreams regex REQUIRED)
 list(APPEND Chaste_INCLUDES "${Boost_INCLUDE_DIR}")
 list(APPEND Chaste_LINK_LIBRARIES "${Boost_LIBRARIES}")
 
@@ -342,6 +342,20 @@ list(APPEND Chaste_LINK_LIBRARIES "${Boost_LIBRARIES}")
 ################################
 find_package(PETSc REQUIRED)
 list(APPEND Chaste_LINK_LIBRARIES "${PETSC_LIBRARIES}")
+
+
+################################
+####  Find BZip2
+################################
+find_package(BZip2 REQUIRED)
+list(APPEND Chaste_LINK_LIBRARIES "${BZIP2_LIBRARIES}")
+
+
+################################
+####  Find Unfit
+################################
+list(APPEND Chaste_INCLUDES "${Chaste_SOURCE_DIR}/unfit/include")
+list(APPEND Chaste_LINK_LIBRARIES "${Chaste_SOURCE_DIR}/unfit/libUnfit.a")
 
 
 ################################
@@ -797,7 +811,7 @@ if (Chaste_COVERAGE)
 		# Cleanup lcov
 		${LCOV_PATH} --directory . --zerocounters
 
-		# Run tests
+    # Run tests
         COMMAND ${NICE_COMMAND} ${NICENESS} ${CTEST_COMMAND} "-j${Chaste_COVERAGE_CPUS}" "-L" "Continuous" "--output-on-failure"
         COMMAND ${NICE_COMMAND} ${NICENESS} ${CTEST_COMMAND} "-L" "Parallel" "--output-on-failure"
 
@@ -810,6 +824,29 @@ if (Chaste_COVERAGE)
         COMMAND ${PYTHON_EXECUTABLE} "${Chaste_SOURCE_DIR}/cmake/process_coverage_output.py" "${_outputname}"
 
         DEPENDS Continuous Parallel
+        WORKING_DIRECTORY ${Chaste_BINARY_DIR}
+		COMMENT "Resetting code coverage counters to zero.\nProcessing code coverage counters and generating report."
+        VERBATIM
+  )
+  
+  ADD_CUSTOM_TARGET(sip_coverage
+
+		# Cleanup lcov
+		${LCOV_PATH} --directory . --zerocounters
+
+    # Run tests
+        COMMAND ${NICE_COMMAND} ${NICENESS} ${CTEST_COMMAND} "-j${Chaste_COVERAGE_CPUS}" "-L" "SipContinuous" "--output-on-failure"
+        COMMAND ${NICE_COMMAND} ${NICENESS} ${CTEST_COMMAND} "-L" "SipParallel" "--output-on-failure"
+
+        # Capturing lcov counters and generating report
+        COMMAND ${LCOV_PATH} --config-file ${Chaste_SOURCE_DIR}/cmake/Config/lcovrc --directory . --capture --output-file ${_outputname}.info
+        COMMAND ${LCOV_PATH} --config-file ${Chaste_SOURCE_DIR}/cmake/Config/lcovrc --remove ${_outputname}.info /home/bob/petsc* /usr/* */fortests/* */test/* */3rdparty/* */global/src/random/* Debug/* cxxtest/* --output-file ${_outputname}.info.cleaned
+        set(_page_title "\"Chaste Coverage Results for commit ${Chaste_REVISION}\"")
+        COMMAND ${GENHTML_PATH} --title "${_page_title}" --config-file ${Chaste_SOURCE_DIR}/cmake/Config/lcovrc --no-function-coverage -o ${_outputname} ${_outputname}.info.cleaned
+        COMMAND ${CMAKE_COMMAND} -E remove ${_outputname}.info ${_outputname}.info.cleaned
+        COMMAND ${PYTHON_EXECUTABLE} "${Chaste_SOURCE_DIR}/cmake/process_coverage_output.py" "${_outputname}"
+
+        DEPENDS SipContinuous SipParallel
         WORKING_DIRECTORY ${Chaste_BINARY_DIR}
 		COMMENT "Resetting code coverage counters to zero.\nProcessing code coverage counters and generating report."
         VERBATIM
