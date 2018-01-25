@@ -34,6 +34,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
 #include <cassert>
+#include <iostream>
 
 #include "ProgressReporter.hpp"
 #include "Exception.hpp"
@@ -62,6 +63,7 @@ ProgressReporter::~ProgressReporter()
     {
         if (mLastPercentage!=100)
         {
+            std::cout << "100% completed" << std::endl;
             *mpFile << "100% completed" << std::endl;
         }
         *mpFile << "..done!" << std::endl;
@@ -76,6 +78,7 @@ void ProgressReporter::Update(double currentTime)
     {
         if (PetscTools::AmMaster())
         {
+            std::cout << percentage << "% completed" << std::endl;
             *mpFile << percentage << "% completed" << std::endl;
         }
         mLastPercentage = percentage;
@@ -86,6 +89,7 @@ void ProgressReporter::PrintFinalising()
 {
     if (PetscTools::AmMaster())
     {
+        std::cout << "Finalising.." << std::endl;
         *mpFile << "Finalising.." << std::endl;
     }
 }
@@ -94,6 +98,7 @@ void ProgressReporter::PrintInitialising()
 {
     if (PetscTools::AmMaster())
     {
+        std::cout << "Initialising.." << std::endl;
         *mpFile << "Initialising.." << std::endl;
     }
 }
