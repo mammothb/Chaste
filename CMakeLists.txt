@@ -828,7 +828,14 @@ if (Chaste_COVERAGE)
 		COMMENT "Resetting code coverage counters to zero.\nProcessing code coverage counters and generating report."
         VERBATIM
   )
-  
+
+  # Show info where to find the report
+	ADD_CUSTOM_COMMAND(TARGET coverage POST_BUILD
+		COMMAND ;
+		COMMENT "Open ./${_outputname}/index.html in your browser to view the coverage report."
+  )
+
+    set(_outputname sip_coverage)
   ADD_CUSTOM_TARGET(sip_coverage
 
 		# Cleanup lcov
@@ -853,7 +860,7 @@ if (Chaste_COVERAGE)
 	)
 
 	# Show info where to find the report
-	ADD_CUSTOM_COMMAND(TARGET coverage POST_BUILD
+  ADD_CUSTOM_COMMAND(TARGET sip_coverage POST_BUILD
 		COMMAND ;
 		COMMENT "Open ./${_outputname}/index.html in your browser to view the coverage report."
 	)

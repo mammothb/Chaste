@@ -69,6 +69,7 @@ class ElectrodesStimulusFactory : public AbstractStimulusFactory<DIM>
 protected:
 
     friend class TestStimulusFactory;//for testing
+    friend class TestStimulusFactoryModified;//for testing
 
     /**
      * Vector of pairs, each pair representing a pair of electrodes.
