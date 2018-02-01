@@ -351,9 +351,9 @@ find_package(BZip2 REQUIRED)
 list(APPEND Chaste_LINK_LIBRARIES "${BZIP2_LIBRARIES}")
 
 
-################################
-####  Find Unfit
-################################
+###############################
+###  Find Unfit
+###############################
 list(APPEND Chaste_INCLUDES "${Chaste_SOURCE_DIR}/unfit/include")
 list(APPEND Chaste_LINK_LIBRARIES "${Chaste_SOURCE_DIR}/unfit/libUnfit.a")
 
