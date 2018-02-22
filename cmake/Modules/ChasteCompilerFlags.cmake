@@ -35,7 +35,6 @@ if (Chaste_PROFILE_GPROF)
     set(default_exe_linker_flags "${default_exe_linker_flags} -pg")
 endif()
 
-
 if (Chaste_PROFILE_GPERFTOOLS)
     message(STATUS "adding -O3 to CXX flags for Gperftools profiling")
     set(default_flags "${default_flags} -O3")
@@ -48,6 +47,9 @@ if (${CMAKE_CXX_COMPILER_ID} STREQUAL "Cray")
     set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} ${default_shared_link_flags}")
 elseif (${CMAKE_CXX_COMPILER_ID} STREQUAL "GNU")
     message(STATUS "\t...for GNU compiler, version ${CMAKE_CXX_COMPILER_VERSION}")
+    if (CMAKE_BUILD_TYPE STREQUAL "Release")
+        set(default_flags "${default_flags} -O3")
+    endif()
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${default_flags} -Wnon-virtual-dtor -Woverloaded-virtual -Wextra -Wno-unused-parameter -Wvla")
     if(NOT (CMAKE_CXX_COMPILER_VERSION VERSION_LESS 7))
         set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wimplicit-fallthrough=0")  # See #2933

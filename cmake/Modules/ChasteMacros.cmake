@@ -354,7 +354,6 @@ macro(Chaste_DO_COMMON component)
             target_link_libraries(chaste_${component} LINK_PUBLIC ${Chaste_THIRD_PARTY_LIBRARIES})
         endif()
 
-
         if(NOT(${component} MATCHES "^project"))
             # install component library
             install(TARGETS chaste_${component}
@@ -598,15 +597,14 @@ macro(Chaste_DO_TEST_COMMON component)
 
                     if (filename MATCHES ".hpp$")
                         if (CBL_USE_UNFIT)
-                            target_link_libraries(${exeTargetName} LINK_PUBLIC ${COMPONENT_LIBRARIES} ${Chaste_LIBRARIES} ${Chaste_THIRD_PARTY_LIBRARIES} )
+                            target_link_libraries(${exeTargetName} LINK_PUBLIC ${COMPONENT_LIBRARIES} ${Chaste_LIBRARIES} ${Chaste_THIRD_PARTY_LIBRARIES})
                         elseif (BUILD_SHARED_LIBS)
                             target_link_libraries(${exeTargetName} LINK_PUBLIC ${COMPONENT_LIBRARIES})
                         else()
-                            target_link_libraries(${exeTargetName} LINK_PUBLIC ${COMPONENT_LIBRARIES} ${Chaste_LIBRARIES} ${Chaste_THIRD_PARTY_LIBRARIES} )
+                            target_link_libraries(${exeTargetName} LINK_PUBLIC ${COMPONENT_LIBRARIES} ${Chaste_LIBRARIES} ${Chaste_THIRD_PARTY_LIBRARIES})
                         endif()
                         set_target_properties(${exeTargetName} PROPERTIES LINK_FLAGS "${LINKER_FLAGS}")
                     endif()
-
 
                     set_property(TEST ${testTargetName} PROPERTY LABELS ${type}_${component})
 
