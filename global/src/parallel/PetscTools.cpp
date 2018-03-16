@@ -48,7 +48,7 @@ bool PetscTools::mIsolateProcesses = false;
 
 #ifndef NDEBUG
 // Uncomment this to trace calls to PetscTools::Barrier
-//#define DEBUG_BARRIERS
+// #define DEBUG_BARRIERS
 #endif
 
 #ifdef DEBUG_BARRIERS

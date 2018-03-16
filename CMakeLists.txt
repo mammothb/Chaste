@@ -138,7 +138,7 @@ option(Chaste_UPDATE_PROVENANCE "Update build timestamp. Disable to prevent re-l
 
 option(RUN_TESTS "This option simply runs Chaste tests. You should also set the test family." OFF)
 set(TEST_FAMILY "Continuous" CACHE STRING "The name of the test family, e.g, Continuous, Failing, Nightly, Parallel etc.")
-set(TestPackTypes "Continuous;Failing;Nightly;Parallel;Production;Weekly;Profile;ProfileAssembly;ExtraSimulations;SipContinuous;SipParallel")
+set(TestPackTypes "Continuous;Failing;Nightly;Parallel;Production;Weekly;Profile;ProfileAssembly;ExtraSimulations;Simulation;SipContinuous;SipParallel")
 
 if(RUN_TESTS)
 	list(FIND TestPackTypes ${TEST_FAMILY} found)
@@ -953,6 +953,12 @@ if (Chaste_MEMORY_TESTING)
         COMMAND ${NICE_COMMAND} ${NICENESS} ${CTEST_COMMAND} "-j${Chaste_MEMORY_TESTING_CPUS}" "-L" Continuous "--output-on-failure"
         COMMAND ${PYTHON_EXECUTABLE} "${Chaste_SOURCE_DIR}/cmake/process_valgrind_output.py" "${Chaste_MEMORY_TESTING_OUTPUT_DIR}"
         DEPENDS Continuous
+        WORKING_DIRECTORY ${Chaste_BINARY_DIR}
+        VERBATIM)
+    add_custom_target(sip_memtest
+        COMMAND ${NICE_COMMAND} ${NICENESS} ${CTEST_COMMAND} "-j${Chaste_MEMORY_TESTING_CPUS}" "-L" SipContinuous "--output-on-failure"
+        COMMAND ${PYTHON_EXECUTABLE} "${Chaste_SOURCE_DIR}/cmake/process_valgrind_output.py" "${Chaste_MEMORY_TESTING_OUTPUT_DIR}"
+        DEPENDS SipContinuous
         WORKING_DIRECTORY ${Chaste_BINARY_DIR}
         VERBATIM)
 endif()
