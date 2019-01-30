@@ -41,6 +41,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "Hdf5DataReader.hpp"
 #include "PetscTools.hpp"
 #include "Hdf5DataWriter.hpp"
+#include "Hdf5ToVtkConverter.hpp"
 
 template<unsigned DIM>
 VoltageInterpolaterOntoMechanicsMesh<DIM>::VoltageInterpolaterOntoMechanicsMesh(
@@ -141,6 +142,12 @@ VoltageInterpolaterOntoMechanicsMesh<DIM>::VoltageInterpolaterOntoMechanicsMesh(
                                             "voltage_mechanics_mesh",
                                             &rMechanicsMesh,
                                             false);
+    Hdf5ToVtkConverter<DIM, DIM> vtk_converter(
+        FileFinder(directory, RelativeTo::ChasteTestOutput),
+        "voltage_mechanics_mesh",
+        &rMechanicsMesh,
+        false,
+        HeartConfig::Instance()->GetOutputUsingOriginalNodeOrdering());
     HeartConfig::Instance()->SetOutputDirectory(config_directory);
 }
 
