@@ -52,7 +52,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  * c(x) du/dt = Grad.(DiffusionTerm(x)*Grad(u))+LinearSourceTerm(x)+NonlinearSourceTerm(x, u)
  *
  */
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM = ELEMENT_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM = ELEMENT_DIM>
 class AbstractLinearParabolicPde : public AbstractLinearPde<ELEMENT_DIM, SPACE_DIM>
 {
 private:
@@ -65,7 +65,7 @@ private:
      * @param archive the archive
      * @param version the current version of this class
      */
-    template<class Archive>
+    template <class Archive>
     void serialize(Archive & archive, const unsigned int version)
     {
         archive & boost::serialization::base_object<AbstractLinearPde<ELEMENT_DIM, SPACE_DIM> >(*this);
@@ -125,7 +125,7 @@ public:
                                                                         Element<ELEMENT_DIM,SPACE_DIM>* pElement=NULL)=0;
 };
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 double AbstractLinearParabolicPde<ELEMENT_DIM, SPACE_DIM>::ComputeSourceTermAtNode(const Node<SPACE_DIM>& rNode,
                                                                                    double u)
 {

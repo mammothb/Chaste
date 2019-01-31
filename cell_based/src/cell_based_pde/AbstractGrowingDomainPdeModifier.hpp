@@ -46,7 +46,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  * and ParabolicGrowingDomainPdeModifier, which both solve a linear elliptic or parabolic PDE
  * coupled to a cell-based simulation on an evolving domain defined by the cell population.
  */
-template<unsigned DIM>
+template <unsigned DIM>
 class AbstractGrowingDomainPdeModifier : public AbstractPdeModifier<DIM>
 {
     friend class TestEllipticGrowingDomainPdeModifier;
@@ -63,7 +63,7 @@ private:
      * @param archive  The boost archive.
      * @param version  The current version of this class.
      */
-    template<class Archive>
+    template <class Archive>
     void serialize(Archive & archive, const unsigned int version)
     {
         archive & boost::serialization::base_object<AbstractPdeModifier<DIM> >(*this);

@@ -57,7 +57,7 @@ class TestMaterialLaws : public CxxTest::TestSuite
 private:
 
     // Helper method for testing T=0 when C=I and p=p_zero_strain (incompressible case)
-    template<unsigned DIM>
+    template <unsigned DIM>
     void CheckZeroStressWhenNoDeformation(AbstractIncompressibleMaterialLaw<DIM>* pLaw)
     {
         c_matrix<double,DIM,DIM> C = identity_matrix<double>(DIM);
@@ -80,7 +80,7 @@ private:
     }
 
     // Helper method for testing T=0 when C=I (compressible case)
-    template<unsigned DIM>
+    template <unsigned DIM>
     void CheckZeroStressWhenNoDeformation(AbstractCompressibleMaterialLaw<DIM>* pLaw)
     {
         c_matrix<double,DIM,DIM> C = identity_matrix<double>(DIM);
@@ -104,7 +104,7 @@ private:
     // computing a numerical derivative of T
     //
     // Compressible version
-    template<unsigned DIM>
+    template <unsigned DIM>
     void CheckDTdEComputation(AbstractCompressibleMaterialLaw<DIM>* pLaw)
     {
         c_matrix<double,DIM,DIM> C;
@@ -157,7 +157,7 @@ private:
     // computing a numerical derivative of T
     //
     // Incompressible version
-    template<unsigned DIM>
+    template <unsigned DIM>
     void CheckDTdEComputation(AbstractIncompressibleMaterialLaw<DIM>* pLaw)
     {
         c_matrix<double,DIM,DIM> C;

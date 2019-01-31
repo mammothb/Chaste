@@ -14,7 +14,7 @@
 #define __CXXTEST_MOCK__TRAITS \
     namespace CXXTEST_MOCK_NAMESPACE \
     { \
-        template<class T> \
+        template <class T> \
         class MockTraits \
         { \
         public: \
@@ -339,7 +339,7 @@ __CXXTEST_MOCK__TRAITS;
 #define CXXTEST_MOCK_DEFAULT_VALUE( TYPE, VALUE ) \
     namespace CXXTEST_MOCK_NAMESPACE \
     { \
-        template<> \
+        template <> \
         class MockTraits<TYPE> \
         { \
         public: \

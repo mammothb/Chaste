@@ -36,7 +36,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "FibreWriter.hpp"
 #include "Version.hpp"
 
-template<unsigned DIM>
+template <unsigned DIM>
 FibreWriter<DIM>::FibreWriter(const std::string& rDirectory,
                               const std::string& rBaseName,
                               const bool clearOutputDir)
@@ -46,13 +46,13 @@ FibreWriter<DIM>::FibreWriter(const std::string& rDirectory,
     mpOutputFileHandler = new OutputFileHandler(rDirectory, clearOutputDir);
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 FibreWriter<DIM>::~FibreWriter()
 {
     delete mpOutputFileHandler;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void FibreWriter<DIM>::WriteAllAxi(const std::vector< c_vector<double, DIM> >& fibres)
 {
     // Write axi file
@@ -78,7 +78,7 @@ void FibreWriter<DIM>::WriteAllAxi(const std::vector< c_vector<double, DIM> >& f
     p_axi_file->close();
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void FibreWriter<DIM>::WriteAllOrtho(const std::vector< c_vector<double, DIM> >& fibres,
                                      const std::vector< c_vector<double, DIM> >& second,
                                      const std::vector< c_vector<double, DIM> >& third)
@@ -120,7 +120,7 @@ void FibreWriter<DIM>::WriteAllOrtho(const std::vector< c_vector<double, DIM> >&
     p_file->close();
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 out_stream FibreWriter<DIM>::OpenFileAndWriteHeader(const std::string& rFileName, unsigned numItems)
 {
     out_stream p_fibre_file = this->mpOutputFileHandler->OpenOutputFile(rFileName);
@@ -139,7 +139,7 @@ out_stream FibreWriter<DIM>::OpenFileAndWriteHeader(const std::string& rFileName
     return p_fibre_file;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void FibreWriter<DIM>::SetWriteFileAsBinary()
 {
     mFileIsBinary = true;

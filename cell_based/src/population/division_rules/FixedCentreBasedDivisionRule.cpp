@@ -35,19 +35,19 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include "FixedCentreBasedDivisionRule.hpp"
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 FixedCentreBasedDivisionRule<ELEMENT_DIM, SPACE_DIM>::FixedCentreBasedDivisionRule(c_vector<double, SPACE_DIM>& rDaughterLocation)
 {
     mDaughterLocation = rDaughterLocation;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 const c_vector<double, SPACE_DIM>& FixedCentreBasedDivisionRule<ELEMENT_DIM,SPACE_DIM>::rGetDaughterLocation() const
 {
     return mDaughterLocation;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 std::pair<c_vector<double, SPACE_DIM>, c_vector<double, SPACE_DIM> > FixedCentreBasedDivisionRule<ELEMENT_DIM, SPACE_DIM>::CalculateCellDivisionVector(
     CellPtr pParentCell,
     AbstractCentreBasedCellPopulation<ELEMENT_DIM, SPACE_DIM>& rCellPopulation)

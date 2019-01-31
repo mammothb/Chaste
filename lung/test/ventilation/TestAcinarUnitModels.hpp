@@ -83,7 +83,7 @@ public:
     double mRaw, mA, mB, mC, mD;
 };
 
-template<>
+template <>
 void OdeSystemInformation<MySigmoidalOde>::Initialise()
 {
     this->mVariableNames.push_back("V");
@@ -123,7 +123,7 @@ public:
     double mRaw, mA, mB, mXi;
 };
 
-template<>
+template <>
 void OdeSystemInformation<MySwanOde>::Initialise()
 {
     this->mVariableNames.push_back("V");

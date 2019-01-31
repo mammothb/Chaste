@@ -48,7 +48,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "RandomNumberGenerator.hpp"
 
 // Forward declaration prevents circular include chain
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM> class AbstractCellPopulation;
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM> class AbstractCellPopulation;
 
 /**
  * An abstract cell-based simulation class. This class contains common functionality
@@ -64,7 +64,7 @@ template<unsigned ELEMENT_DIM, unsigned SPACE_DIM> class AbstractCellPopulation;
  * Subclasses use one or more Force laws or update rules (Which are passed
  * to the child class object) to define the mechanical properties of the CellPopulation.
  */
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM=ELEMENT_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM=ELEMENT_DIM>
 class AbstractCellBasedSimulation : public Identifiable
 {
     // Allow tests to access private members, in order to test computation of private functions e.g. DoCellBirth()
@@ -83,7 +83,7 @@ private:
      * @param archive the archive
      * @param version the current version of this class
      */
-    template<class Archive>
+    template <class Archive>
     void serialize(Archive & archive, const unsigned int version)
     {
         SerializableSingleton<SimulationTime>* p_time_wrapper = SimulationTime::Instance()->GetSerializationWrapper();

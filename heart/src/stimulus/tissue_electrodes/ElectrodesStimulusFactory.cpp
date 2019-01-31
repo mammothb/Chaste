@@ -40,7 +40,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "GaussianQuadratureRule.hpp"
 #include "RegularStimulus.hpp"
 
-template<unsigned DIM>
+template <unsigned DIM>
 ElectrodesStimulusFactory<DIM>::ElectrodesStimulusFactory(std::vector<std::pair<AbstractChasteRegion<DIM>*, AbstractChasteRegion<DIM>*> >& rElectrodePairs,
                                                           std::vector<double>& rStimulusMagnitudes,
                                                           std::vector<double>& rDurations,
@@ -68,12 +68,12 @@ ElectrodesStimulusFactory<DIM>::ElectrodesStimulusFactory(std::vector<std::pair<
     mMagnitudesElectrode2 = mrMagnitudes;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 ElectrodesStimulusFactory<DIM>::~ElectrodesStimulusFactory()
 {
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void ElectrodesStimulusFactory<DIM>::CheckForElectrodesIntersection()
 {
     std::vector<unsigned> nodes_in_all_electrodes;
@@ -112,13 +112,13 @@ void ElectrodesStimulusFactory<DIM>::CheckForElectrodesIntersection()
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void ElectrodesStimulusFactory<DIM>::GroundSecondElectrode(bool grounded)
 {
     mGroundSecondElectrode = grounded;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void ElectrodesStimulusFactory<DIM>::SetCompatibleExtracellularStimulus()
 {
     assert(this->mpMesh!=NULL);
@@ -157,7 +157,7 @@ void ElectrodesStimulusFactory<DIM>::SetCompatibleExtracellularStimulus()
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 boost::shared_ptr<AbstractStimulusFunction> ElectrodesStimulusFactory<DIM>::CreateStimulusForNode(Node<DIM>* pNode)
 {
     boost::shared_ptr<RegularStimulus> p_stimulus;
@@ -181,7 +181,7 @@ boost::shared_ptr<AbstractStimulusFunction> ElectrodesStimulusFactory<DIM>::Crea
     return p_stimulus;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 double ElectrodesStimulusFactory<DIM>::ComputeElectrodeTotalFlux(AbstractChasteRegion<DIM>* pRegion, double stimulusMagnitude)
 {
     GaussianQuadratureRule<DIM>* pQuadRule = new GaussianQuadratureRule<DIM>(2);

@@ -150,7 +150,7 @@ namespace CxxTest
         enum { GREEN_BAR, YELLOW_BAR, RED_BAR } _state;
     };
 
-    template<class GuiT, class TuiT>
+    template <class GuiT, class TuiT>
     class GuiTuiRunner : public TeeListener
     {
         int &_argc;

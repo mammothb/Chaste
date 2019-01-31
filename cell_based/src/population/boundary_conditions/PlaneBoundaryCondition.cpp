@@ -37,7 +37,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "AbstractCentreBasedCellPopulation.hpp"
 #include "VertexBasedCellPopulation.hpp"
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 PlaneBoundaryCondition<ELEMENT_DIM,SPACE_DIM>::PlaneBoundaryCondition(AbstractCellPopulation<ELEMENT_DIM,SPACE_DIM>* pCellPopulation,
                                                     c_vector<double, SPACE_DIM> point,
                                                     c_vector<double, SPACE_DIM> normal)
@@ -49,32 +49,32 @@ PlaneBoundaryCondition<ELEMENT_DIM,SPACE_DIM>::PlaneBoundaryCondition(AbstractCe
     mNormalToPlane = normal/norm_2(normal);
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 const c_vector<double, SPACE_DIM>& PlaneBoundaryCondition<ELEMENT_DIM,SPACE_DIM>::rGetPointOnPlane() const
 {
     return mPointOnPlane;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 const c_vector<double, SPACE_DIM>& PlaneBoundaryCondition<ELEMENT_DIM,SPACE_DIM>::rGetNormalToPlane() const
 {
     return mNormalToPlane;
 }
 
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void PlaneBoundaryCondition<ELEMENT_DIM,SPACE_DIM>::SetUseJiggledNodesOnPlane(bool useJiggledNodesOnPlane)
 {
     mUseJiggledNodesOnPlane = useJiggledNodesOnPlane;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 bool PlaneBoundaryCondition<ELEMENT_DIM,SPACE_DIM>::GetUseJiggledNodesOnPlane()
 {
     return mUseJiggledNodesOnPlane;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void PlaneBoundaryCondition<ELEMENT_DIM,SPACE_DIM>::ImposeBoundaryCondition(const std::map<Node<SPACE_DIM>*, c_vector<double, SPACE_DIM> >& rOldLocations)
 {
     ///\todo Move this to constructor. If this is in the constructor then Exception always throws.
@@ -157,7 +157,7 @@ void PlaneBoundaryCondition<ELEMENT_DIM,SPACE_DIM>::ImposeBoundaryCondition(cons
     }
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 bool PlaneBoundaryCondition<ELEMENT_DIM,SPACE_DIM>::VerifyBoundaryCondition()
 {
     bool condition_satisfied = true;
@@ -185,7 +185,7 @@ bool PlaneBoundaryCondition<ELEMENT_DIM,SPACE_DIM>::VerifyBoundaryCondition()
     return condition_satisfied;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void PlaneBoundaryCondition<ELEMENT_DIM,SPACE_DIM>::OutputCellPopulationBoundaryConditionParameters(out_stream& rParamsFile)
 {
     *rParamsFile << "\t\t\t<PointOnPlane>";

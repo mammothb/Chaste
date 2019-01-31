@@ -46,7 +46,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  * A small class for a nD 'box' defined by its min/max x/y/z values which
  * can contains a list of nodes and elements located in that box
  */
-template<unsigned DIM>
+template <unsigned DIM>
 class Box
 {
 private:

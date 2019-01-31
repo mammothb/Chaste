@@ -35,7 +35,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include "AbstractOnLatticeCellPopulation.hpp"
 
-template<unsigned DIM>
+template <unsigned DIM>
 AbstractOnLatticeCellPopulation<DIM>::AbstractOnLatticeCellPopulation(AbstractMesh<DIM, DIM>& rMesh,
                                                                     std::vector<CellPtr>& rCells,
                                                                   const std::vector<unsigned> locationIndices,
@@ -53,7 +53,7 @@ AbstractOnLatticeCellPopulation<DIM>::AbstractOnLatticeCellPopulation(AbstractMe
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 AbstractOnLatticeCellPopulation<DIM>::AbstractOnLatticeCellPopulation(AbstractMesh<DIM, DIM>& rMesh)
     : AbstractCellPopulation<DIM>(rMesh),
       mDeleteMesh(true),
@@ -62,42 +62,42 @@ AbstractOnLatticeCellPopulation<DIM>::AbstractOnLatticeCellPopulation(AbstractMe
 {
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 AbstractOnLatticeCellPopulation<DIM>::~AbstractOnLatticeCellPopulation()
 {
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 bool AbstractOnLatticeCellPopulation<DIM>::GetUpdateNodesInRandomOrder()
 {
     return mUpdateNodesInRandomOrder;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void AbstractOnLatticeCellPopulation<DIM>::SetUpdateNodesInRandomOrder(bool updateNodesInRandomOrder)
 {
     mUpdateNodesInRandomOrder = updateNodesInRandomOrder;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void AbstractOnLatticeCellPopulation<DIM>::SetIterateRandomlyOverUpdateRuleCollection(bool iterateRandomly)
 {
     mIterateRandomlyOverUpdateRuleCollection = iterateRandomly;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 bool AbstractOnLatticeCellPopulation<DIM>::GetIterateRandomlyOverUpdateRuleCollection()
 {
     return mIterateRandomlyOverUpdateRuleCollection;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void AbstractOnLatticeCellPopulation<DIM>::SetNode(unsigned nodeIndex, ChastePoint<DIM>& rNewLocation)
 {
     EXCEPTION("SetNode() cannot be called on a subclass of AbstractOnLatticeCellPopulation.");
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 std::set<unsigned> AbstractOnLatticeCellPopulation<DIM>::GetNeighbouringNodeIndices(unsigned index)
 {
     EXCEPTION("Cannot call GetNeighbouringNodeIndices() on a subclass of AbstractOnLatticeCellPopulation, need to go through the PottsMesh instead");
@@ -105,7 +105,7 @@ std::set<unsigned> AbstractOnLatticeCellPopulation<DIM>::GetNeighbouringNodeIndi
     return neighbouring_node_indices;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void AbstractOnLatticeCellPopulation<DIM>::OutputCellPopulationParameters(out_stream& rParamsFile)
 {
     *rParamsFile << "\t\t<UpdateNodesInRandomOrder>" << mUpdateNodesInRandomOrder << "</UpdateNodesInRandomOrder>\n";
@@ -115,19 +115,19 @@ void AbstractOnLatticeCellPopulation<DIM>::OutputCellPopulationParameters(out_st
     AbstractCellPopulation<DIM>::OutputCellPopulationParameters(rParamsFile);
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 double AbstractOnLatticeCellPopulation<DIM>::GetDefaultTimeStep()
 {
     return 0.1;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 const std::vector<boost::shared_ptr<AbstractUpdateRule<DIM> > > AbstractOnLatticeCellPopulation<DIM>::GetUpdateRuleCollection() const
 {
     return mUpdateRuleCollection;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void AbstractOnLatticeCellPopulation<DIM>::RemoveAllUpdateRules()
 {
     mUpdateRuleCollection.clear();

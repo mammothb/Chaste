@@ -41,7 +41,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "MonodomainPurkinjeVolumeAssembler.hpp"
 #include "PdeSimulationTime.hpp"
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 c_matrix<double,2*(ELEMENT_DIM+1),2*(ELEMENT_DIM+1)> MonodomainPurkinjeVolumeAssembler<ELEMENT_DIM,SPACE_DIM>::ComputeMatrixTerm(
                 c_vector<double, ELEMENT_DIM+1> &rPhi,
                 c_matrix<double, SPACE_DIM, ELEMENT_DIM+1> &rGradPhi,
@@ -68,7 +68,7 @@ c_matrix<double,2*(ELEMENT_DIM+1),2*(ELEMENT_DIM+1)> MonodomainPurkinjeVolumeAss
 }
 
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 MonodomainPurkinjeVolumeAssembler<ELEMENT_DIM,SPACE_DIM>::MonodomainPurkinjeVolumeAssembler(
                         AbstractTetrahedralMesh<ELEMENT_DIM,SPACE_DIM>* pMesh,
                         MonodomainTissue<ELEMENT_DIM,SPACE_DIM>* pTissue)

@@ -615,7 +615,7 @@ void CML_noble_varghese_kohl_noble_1998_basic_with_sac::EvaluateYDerivatives (
 }
 
 
-template<>
+template <>
 void OdeSystemInformation<CML_noble_varghese_kohl_noble_1998_basic_with_sac>::Initialise(void)
 {
     // Time units: second

@@ -36,7 +36,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "CellDataItemWriter.hpp"
 #include "AbstractCellPopulation.hpp"
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 CellDataItemWriter<ELEMENT_DIM, SPACE_DIM>::CellDataItemWriter(std::string cellDataVariableName)
     : AbstractCellWriter<ELEMENT_DIM, SPACE_DIM>("celldata_"+cellDataVariableName+".dat"),
       mCellDataVariableName(cellDataVariableName)
@@ -44,14 +44,14 @@ CellDataItemWriter<ELEMENT_DIM, SPACE_DIM>::CellDataItemWriter(std::string cellD
     this->mVtkCellDataName = "CellData " + mCellDataVariableName;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 double CellDataItemWriter<ELEMENT_DIM, SPACE_DIM>::GetCellDataForVtkOutput(CellPtr pCell, AbstractCellPopulation<ELEMENT_DIM, SPACE_DIM>* pCellPopulation)
 {
     double value = pCell->GetCellData()->GetItem(mCellDataVariableName);
     return value;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void CellDataItemWriter<ELEMENT_DIM, SPACE_DIM>::VisitCell(CellPtr pCell, AbstractCellPopulation<ELEMENT_DIM, SPACE_DIM>* pCellPopulation)
 {
     // Output the location index corresponding to this cell
@@ -74,7 +74,7 @@ void CellDataItemWriter<ELEMENT_DIM, SPACE_DIM>::VisitCell(CellPtr pCell, Abstra
     *this->mpOutStream << value << " ";
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 std::string CellDataItemWriter<ELEMENT_DIM, SPACE_DIM>::GetCellDataVariableName() const
 {
    return mCellDataVariableName;

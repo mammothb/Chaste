@@ -36,7 +36,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "ParabolicBoxDomainPdeModifier.hpp"
 #include "SimpleLinearParabolicSolver.hpp"
 
-template<unsigned DIM>
+template <unsigned DIM>
 ParabolicBoxDomainPdeModifier<DIM>::ParabolicBoxDomainPdeModifier(boost::shared_ptr<AbstractLinearPde<DIM,DIM> > pPde,
                                                                   boost::shared_ptr<AbstractBoundaryCondition<DIM> > pBoundaryCondition,
                                                                   bool isNeumannBoundaryCondition,
@@ -52,12 +52,12 @@ ParabolicBoxDomainPdeModifier<DIM>::ParabolicBoxDomainPdeModifier(boost::shared_
 {
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 ParabolicBoxDomainPdeModifier<DIM>::~ParabolicBoxDomainPdeModifier()
 {
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void ParabolicBoxDomainPdeModifier<DIM>::UpdateAtEndOfTimeStep(AbstractCellPopulation<DIM,DIM>& rCellPopulation)
 {
     // Set up boundary conditions
@@ -92,7 +92,7 @@ void ParabolicBoxDomainPdeModifier<DIM>::UpdateAtEndOfTimeStep(AbstractCellPopul
     this->UpdateCellData(rCellPopulation);
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void ParabolicBoxDomainPdeModifier<DIM>::SetupSolve(AbstractCellPopulation<DIM,DIM>& rCellPopulation, std::string outputDirectory)
 {
     AbstractBoxDomainPdeModifier<DIM>::SetupSolve(rCellPopulation,outputDirectory);
@@ -104,7 +104,7 @@ void ParabolicBoxDomainPdeModifier<DIM>::SetupSolve(AbstractCellPopulation<DIM,D
     this->UpdateAtEndOfOutputTimeStep(rCellPopulation);
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 std::shared_ptr<BoundaryConditionsContainer<DIM,DIM,1> > ParabolicBoxDomainPdeModifier<DIM>::ConstructBoundaryConditionsContainer(AbstractCellPopulation<DIM,DIM>& rCellPopulation)
 {
     std::shared_ptr<BoundaryConditionsContainer<DIM,DIM,1> > p_bcc(new BoundaryConditionsContainer<DIM,DIM,1>(false));
@@ -140,7 +140,7 @@ std::shared_ptr<BoundaryConditionsContainer<DIM,DIM,1> > ParabolicBoxDomainPdeMo
     return p_bcc;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void ParabolicBoxDomainPdeModifier<DIM>::SetupInitialSolutionVector(AbstractCellPopulation<DIM,DIM>& rCellPopulation)
 {
     // Specify homogeneous initial conditions based upon the values stored in CellData.
@@ -161,7 +161,7 @@ void ParabolicBoxDomainPdeModifier<DIM>::SetupInitialSolutionVector(AbstractCell
     this->mSolution = PetscTools::CreateAndSetVec(this->mpFeMesh->GetNumNodes(), initial_condition);
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void ParabolicBoxDomainPdeModifier<DIM>::OutputSimulationModifierParameters(out_stream& rParamsFile)
 {
     // No parameters to output, so just call method on direct parent class

@@ -36,7 +36,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "DistanceMapCalculator.hpp"
 #include "DistributedTetrahedralMesh.hpp" // For dynamic cast
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 DistanceMapCalculator<ELEMENT_DIM, SPACE_DIM>::DistanceMapCalculator(
             AbstractTetrahedralMesh<ELEMENT_DIM,SPACE_DIM>& rMesh)
     : mrMesh(rMesh),
@@ -73,7 +73,7 @@ DistanceMapCalculator<ELEMENT_DIM, SPACE_DIM>::DistanceMapCalculator(
     }
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void DistanceMapCalculator<ELEMENT_DIM, SPACE_DIM>::ComputeDistanceMap(
         const std::vector<unsigned>& rSourceNodeIndices,
         std::vector<double>& rNodeDistances)
@@ -140,7 +140,7 @@ void DistanceMapCalculator<ELEMENT_DIM, SPACE_DIM>::ComputeDistanceMap(
     }
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 bool DistanceMapCalculator<ELEMENT_DIM, SPACE_DIM>::UpdateQueueFromRemote(std::vector<double>& rNodeDistances)
 {
     if (mWorkOnEntireMesh)
@@ -195,7 +195,7 @@ bool DistanceMapCalculator<ELEMENT_DIM, SPACE_DIM>::UpdateQueueFromRemote(std::v
     return(non_empty_queue);
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 bool DistanceMapCalculator<ELEMENT_DIM, SPACE_DIM>::WorkOnLocalQueue(std::vector<double>& rNodeDistances)
 {
     unsigned pop_stop = mNumNodes/(PetscTools::GetNumProcs()*20);
@@ -273,7 +273,7 @@ bool DistanceMapCalculator<ELEMENT_DIM, SPACE_DIM>::WorkOnLocalQueue(std::vector
      return false;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 double DistanceMapCalculator<ELEMENT_DIM, SPACE_DIM>::SingleDistance(unsigned sourceNodeIndex, unsigned targetNodeIndex)
 {
     std::vector<unsigned> source_node_index_vector;

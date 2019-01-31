@@ -51,7 +51,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  * This class specifically calculates the compression force which forms part of equation (A6) in the Buske paper.
  */
-template<unsigned DIM>
+template <unsigned DIM>
 class BuskeCompressionForce : public AbstractForce<DIM>
 {
     friend class TestForcesNotForRelease;
@@ -65,7 +65,7 @@ private:
      * @param archive  The boost archive.
      * @param version  The current version of this class.
      */
-    template<class Archive>
+    template <class Archive>
     void serialize(Archive & archive, const unsigned int version)
     {
         archive & boost::serialization::base_object<AbstractForce<DIM> >(*this);

@@ -42,7 +42,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "ClassIsAbstract.hpp"
 
 // Forward declaration prevents circular include chain
-template<unsigned SPACE_DIM> class CaBasedCellPopulation;
+template <unsigned SPACE_DIM> class CaBasedCellPopulation;
 
 /**
  * An abstract cell division rule for use in CA-based simulations.
@@ -51,7 +51,7 @@ template<unsigned SPACE_DIM> class CaBasedCellPopulation;
  *
  * i.e it allows you to move cells out of the way if necessary
  */
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 class AbstractCaBasedDivisionRule : public Identifiable
 {
 private:
@@ -63,7 +63,7 @@ private:
      * @param archive the archive
      * @param version the current version of this class
      */
-    template<class Archive>
+    template <class Archive>
     void serialize(Archive & archive, const unsigned int version)
     {
     }

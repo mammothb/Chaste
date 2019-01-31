@@ -35,18 +35,18 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include "AbstractCaUpdateRule.hpp"
 
-template<unsigned DIM>
+template <unsigned DIM>
 AbstractCaUpdateRule<DIM>::AbstractCaUpdateRule()
     : AbstractUpdateRule<DIM>()
 {
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 AbstractCaUpdateRule<DIM>::~AbstractCaUpdateRule()
 {
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void AbstractCaUpdateRule<DIM>::OutputUpdateRuleParameters(out_stream& rParamsFile)
 {
     // Call method on direct parent class

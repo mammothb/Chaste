@@ -127,7 +127,7 @@ private:
      * using the serialization code defined in the base class
      * {{{AbstractOdeSystem}}}.
      */
-    template<class Archive>
+    template <class Archive>
     void serialize(Archive & archive, const unsigned int version)
     {
         archive & boost::serialization::base_object<AbstractOdeSystem>(*this);
@@ -154,7 +154,7 @@ public:
 
 /* As in the ODE tutorials we need to define the ODE system information.
  */
-template<>
+template <>
 void OdeSystemInformation<MyOdeSystem>::Initialise()
 {
     this->mVariableNames.push_back("x");
@@ -180,7 +180,7 @@ private:
      * {{{AbstractOdeSrnModel}}}.
      */
     friend class boost::serialization::access;
-    template<class Archive>
+    template <class Archive>
     void serialize(Archive & archive, const unsigned int version)
     {
         archive & boost::serialization::base_object<AbstractOdeSrnModel>(*this);

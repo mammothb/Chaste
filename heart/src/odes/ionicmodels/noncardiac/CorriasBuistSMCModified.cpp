@@ -326,7 +326,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
         rDY[13] = (-(ICaL+ILVA)*Asurf/(2.0*F*VolCell)-JCaExt); /* intracellular calcium *1000 M-> mM; /1000 F units*/
     }
 
-template<>
+template <>
 void OdeSystemInformation<CorriasBuistSMCModified>::Initialise(void)
 {
     // Time units: time_units

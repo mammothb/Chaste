@@ -35,18 +35,18 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include "ChemotaxisPottsUpdateRule.hpp"
 
-template<unsigned DIM>
+template <unsigned DIM>
 ChemotaxisPottsUpdateRule<DIM>::ChemotaxisPottsUpdateRule()
     : AbstractPottsUpdateRule<DIM>()
 {
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 ChemotaxisPottsUpdateRule<DIM>::~ChemotaxisPottsUpdateRule()
 {
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 double ChemotaxisPottsUpdateRule<DIM>::EvaluateHamiltonianContribution(unsigned currentNodeIndex,
                                                                         unsigned targetNodeIndex,
                                                                         PottsBasedCellPopulation<DIM>& rCellPopulation)
@@ -74,7 +74,7 @@ double ChemotaxisPottsUpdateRule<DIM>::EvaluateHamiltonianContribution(unsigned 
     return delta_H;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void ChemotaxisPottsUpdateRule<DIM>::OutputUpdateRuleParameters(out_stream& rParamsFile)
 {
     // Call method on direct parent class

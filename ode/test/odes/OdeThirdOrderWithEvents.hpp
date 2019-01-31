@@ -65,7 +65,7 @@ public:
     }
 };
 
-template<>
+template <>
 void OdeSystemInformation<OdeThirdOrderWithEvents>::Initialise()
 {
     this->mVariableNames.push_back("Variable_1");

@@ -63,7 +63,7 @@ namespace serialization
 /**
  * Serialize information required to construct a OffLatticeSimulationWithMyStoppingEvent.
  */
-template<class Archive>
+template <class Archive>
 inline void save_construct_data(
     Archive & ar, const OffLatticeSimulationWithMyStoppingEvent * t, const unsigned int file_version)
 {
@@ -75,7 +75,7 @@ inline void save_construct_data(
 /**
  * De-serialize constructor parameters and initialise a OffLatticeSimulationWithMyStoppingEvent.
  */
-template<class Archive>
+template <class Archive>
 inline void load_construct_data(
     Archive & ar, OffLatticeSimulationWithMyStoppingEvent * t, const unsigned int file_version)
 {

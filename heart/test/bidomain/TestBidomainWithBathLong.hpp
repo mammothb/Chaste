@@ -47,7 +47,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "TrianglesMeshReader.hpp"
 #include "SimpleStimulus.hpp"
 
-template<unsigned DIM>
+template <unsigned DIM>
 class BathCellFactory : public AbstractCardiacCellFactory<DIM>
 {
 private:

@@ -100,7 +100,7 @@ class MyCellKiller : public AbstractCellKiller<2>
 private:
 
     friend class boost::serialization::access;
-    template<class Archive>
+    template <class Archive>
     void serialize(Archive & archive, const unsigned int version)
     {
         archive & boost::serialization::base_object<AbstractCellKiller<2> >(*this);
@@ -163,7 +163,7 @@ namespace boost
 {
     namespace serialization
     {
-        template<class Archive>
+        template <class Archive>
         inline void save_construct_data(
             Archive & ar, const MyCellKiller * t, const unsigned int file_version)
         {
@@ -171,7 +171,7 @@ namespace boost
             ar << p_cell_population;
         }
 
-        template<class Archive>
+        template <class Archive>
         inline void load_construct_data(
             Archive & ar, MyCellKiller * t, const unsigned int file_version)
         {

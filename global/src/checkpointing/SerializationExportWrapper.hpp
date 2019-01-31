@@ -184,14 +184,14 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #endif // BOOST_VERSION >= 103600 && BOOST_VERSION < 103800
 
-template<class> struct pack;
+template <class> struct pack;
 /**
  * Argument pack for macros.  Used to give a type for templated classes when exporting.
  * See http://lists.boost.org/Archives/boost/2004/08/70149.php for more.
  *
  * \todo Check if we need this on Boost>=1.38.  Even if it's not needed there, we might still need it to load earlier archives.
  */
-template<class T> struct pack<void (T)> {
+template <class T> struct pack<void (T)> {
     typedef T type; /**< Type definition. */
 };
 

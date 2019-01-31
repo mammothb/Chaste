@@ -35,7 +35,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include "CellBasedEllipticPdeSolver.hpp"
 
-template<unsigned DIM>
+template <unsigned DIM>
 CellBasedEllipticPdeSolver<DIM>::CellBasedEllipticPdeSolver(TetrahedralMesh<DIM,DIM>* pMesh,
                               AbstractLinearEllipticPde<DIM,DIM>* pPde,
                               BoundaryConditionsContainer<DIM,DIM,1>* pBoundaryConditions)
@@ -43,12 +43,12 @@ CellBasedEllipticPdeSolver<DIM>::CellBasedEllipticPdeSolver(TetrahedralMesh<DIM,
 {
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 CellBasedEllipticPdeSolver<DIM>::~CellBasedEllipticPdeSolver()
 {
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 c_vector<double, 1*(DIM+1)> CellBasedEllipticPdeSolver<DIM>::ComputeVectorTerm(
         c_vector<double, DIM+1>& rPhi,
         c_matrix<double, DIM, DIM+1>& rGradPhi,
@@ -60,7 +60,7 @@ c_vector<double, 1*(DIM+1)> CellBasedEllipticPdeSolver<DIM>::ComputeVectorTerm(
     return mConstantInUSourceTerm * rPhi;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 c_matrix<double, 1*(DIM+1), 1*(DIM+1)> CellBasedEllipticPdeSolver<DIM>::ComputeMatrixTerm(
         c_vector<double, DIM+1>& rPhi,
         c_matrix<double, DIM, DIM+1>& rGradPhi,
@@ -83,21 +83,21 @@ c_matrix<double, 1*(DIM+1), 1*(DIM+1)> CellBasedEllipticPdeSolver<DIM>::ComputeM
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void CellBasedEllipticPdeSolver<DIM>::ResetInterpolatedQuantities()
 {
     mConstantInUSourceTerm = 0;
     mLinearInUCoeffInSourceTerm = 0;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void CellBasedEllipticPdeSolver<DIM>::IncrementInterpolatedQuantities(double phiI, const Node<DIM>* pNode)
 {
     mConstantInUSourceTerm += phiI * this->mpEllipticPde->ComputeConstantInUSourceTermAtNode(*pNode);
     mLinearInUCoeffInSourceTerm += phiI * this->mpEllipticPde->ComputeLinearInUCoeffInSourceTermAtNode(*pNode);
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void CellBasedEllipticPdeSolver<DIM>::InitialiseForSolve(Vec initialSolution)
 {
     // Linear system created here

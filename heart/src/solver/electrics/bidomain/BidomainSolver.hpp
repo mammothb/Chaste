@@ -76,7 +76,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *  used to create the c_correction.
  *
  */
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 class BidomainSolver : public AbstractBidomainSolver<ELEMENT_DIM,SPACE_DIM>
 {
 private:

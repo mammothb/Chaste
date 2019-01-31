@@ -48,7 +48,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  * This is to be merged with DistributedBoxCollection.
  */
-template<unsigned DIM>
+template <unsigned DIM>
 class ObsoleteBoxCollection
 {
 private:

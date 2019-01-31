@@ -35,7 +35,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include "AbstractTwoBodyInteractionForce.hpp"
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 AbstractTwoBodyInteractionForce<ELEMENT_DIM,SPACE_DIM>::AbstractTwoBodyInteractionForce()
    : AbstractForce<ELEMENT_DIM,SPACE_DIM>(),
      mUseCutOffLength(false),
@@ -43,13 +43,13 @@ AbstractTwoBodyInteractionForce<ELEMENT_DIM,SPACE_DIM>::AbstractTwoBodyInteracti
 {
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 bool AbstractTwoBodyInteractionForce<ELEMENT_DIM,SPACE_DIM>::GetUseCutOffLength()
 {
     return mUseCutOffLength;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void AbstractTwoBodyInteractionForce<ELEMENT_DIM,SPACE_DIM>::SetCutOffLength(double cutOffLength)
 {
     assert(cutOffLength > 0.0);
@@ -57,13 +57,13 @@ void AbstractTwoBodyInteractionForce<ELEMENT_DIM,SPACE_DIM>::SetCutOffLength(dou
     mMechanicsCutOffLength = cutOffLength;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 double AbstractTwoBodyInteractionForce<ELEMENT_DIM,SPACE_DIM>::GetCutOffLength()
 {
     return mMechanicsCutOffLength;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void AbstractTwoBodyInteractionForce<ELEMENT_DIM,SPACE_DIM>::AddForceContribution(AbstractCellPopulation<ELEMENT_DIM,SPACE_DIM>& rCellPopulation)
 {
     // Throw an exception message if not using a subclass of AbstractCentreBasedCellPopulation
@@ -124,7 +124,7 @@ void AbstractTwoBodyInteractionForce<ELEMENT_DIM,SPACE_DIM>::AddForceContributio
     }
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void AbstractTwoBodyInteractionForce<ELEMENT_DIM,SPACE_DIM>::OutputForceParameters(out_stream& rParamsFile)
 {
     *rParamsFile << "\t\t\t<UseCutOffLength>" << mUseCutOffLength << "</UseCutOffLength>\n";
@@ -134,7 +134,7 @@ void AbstractTwoBodyInteractionForce<ELEMENT_DIM,SPACE_DIM>::OutputForceParamete
     AbstractForce<ELEMENT_DIM,SPACE_DIM>::OutputForceParameters(rParamsFile);
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void AbstractTwoBodyInteractionForce<ELEMENT_DIM,SPACE_DIM>::WriteDataToVisualizerSetupFile(out_stream& pVizSetupFile)
 {
     *pVizSetupFile << "Cutoff\t" << mMechanicsCutOffLength << "\n";

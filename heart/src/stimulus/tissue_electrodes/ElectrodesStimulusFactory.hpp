@@ -63,7 +63,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  * boundary conditions accordingly).
  *
  */
-template<unsigned DIM>
+template <unsigned DIM>
 class ElectrodesStimulusFactory : public AbstractStimulusFactory<DIM>
 {
 protected:

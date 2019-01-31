@@ -48,7 +48,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  * Length is scaled by natural length. \todo does this mean natural radius of a cell? If so at what age? (#1764)
  * Time is in hours.
  */
-template<unsigned DIM>
+template <unsigned DIM>
 class BuskeElasticForce : public AbstractTwoBodyInteractionForce<DIM>
 {
     friend class TestForcesNotForRelease;
@@ -62,7 +62,7 @@ private:
      * @param archive the archive
      * @param version the current version of this class
      */
-    template<class Archive>
+    template <class Archive>
     void serialize(Archive & archive, const unsigned int version)
     {
         archive & boost::serialization::base_object<AbstractTwoBodyInteractionForce<DIM> >(*this);

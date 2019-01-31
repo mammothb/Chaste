@@ -36,14 +36,14 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "CellRadiusWriter.hpp"
 #include "NodeBasedCellPopulation.hpp"
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 CellRadiusWriter<ELEMENT_DIM, SPACE_DIM>::CellRadiusWriter()
     : AbstractCellWriter<ELEMENT_DIM, SPACE_DIM>("cellradii.dat")
 {
     this->mVtkCellDataName = "Cell radii";
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 double CellRadiusWriter<ELEMENT_DIM, SPACE_DIM>::GetCellDataForVtkOutput(CellPtr pCell, AbstractCellPopulation<ELEMENT_DIM, SPACE_DIM>* pCellPopulation)
 {
     double cell_radius = 0.0;
@@ -55,7 +55,7 @@ double CellRadiusWriter<ELEMENT_DIM, SPACE_DIM>::GetCellDataForVtkOutput(CellPtr
     return cell_radius;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void CellRadiusWriter<ELEMENT_DIM, SPACE_DIM>::VisitCell(CellPtr pCell, AbstractCellPopulation<ELEMENT_DIM, SPACE_DIM>* pCellPopulation)
 {
     unsigned location_index = pCellPopulation->GetLocationIndexUsingCell(pCell);

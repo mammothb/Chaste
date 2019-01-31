@@ -52,7 +52,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  * @param rFileNameBase
  * @param procId
  */
-template<>
+template <>
 ArchiveOpener<boost::archive::text_iarchive, std::ifstream>::ArchiveOpener(
         const FileFinder& rDirectory,
         const std::string& rFileNameBase,
@@ -109,7 +109,7 @@ ArchiveOpener<boost::archive::text_iarchive, std::ifstream>::ArchiveOpener(
     ProcessSpecificArchive<boost::archive::text_iarchive>::Set(mpPrivateArchive);
 }
 
-template<>
+template <>
 ArchiveOpener<boost::archive::text_iarchive, std::ifstream>::~ArchiveOpener()
 {
     ProcessSpecificArchive<boost::archive::text_iarchive>::Set(nullptr);
@@ -125,7 +125,7 @@ ArchiveOpener<boost::archive::text_iarchive, std::ifstream>::~ArchiveOpener()
  * @param rFileNameBase
  * @param procId
  */
-template<>
+template <>
 ArchiveOpener<boost::archive::text_oarchive, std::ofstream>::ArchiveOpener(
         const FileFinder& rDirectory,
         const std::string& rFileNameBase,
@@ -193,7 +193,7 @@ ArchiveOpener<boost::archive::text_oarchive, std::ofstream>::ArchiveOpener(
     ProcessSpecificArchive<boost::archive::text_oarchive>::Set(mpPrivateArchive);
 }
 
-template<>
+template <>
 ArchiveOpener<boost::archive::text_oarchive, std::ofstream>::~ArchiveOpener()
 {
     ProcessSpecificArchive<boost::archive::text_oarchive>::Set(nullptr);

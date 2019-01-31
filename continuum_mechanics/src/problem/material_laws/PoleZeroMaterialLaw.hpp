@@ -59,7 +59,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *  the matrix P = [fibre_vec, sheet_vec, normal_vec] if this is not the case.
  *
  */
-template<unsigned DIM>
+template <unsigned DIM>
 class PoleZeroMaterialLaw : public AbstractIncompressibleMaterialLaw<DIM>
 {
 friend class TestMaterialLaws;

@@ -50,7 +50,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "QuadraticBasisFunction.hpp"
 #include <algorithm>
 
-template<size_t DIM>
+template <size_t DIM>
 void CompressibleNonlinearElasticitySolver<DIM>::AssembleSystem(bool assembleResidual,
                                                                 bool assembleJacobian)
 {
@@ -171,7 +171,7 @@ void CompressibleNonlinearElasticitySolver<DIM>::AssembleSystem(bool assembleRes
     this->FinishAssembleSystem(assembleResidual, assembleJacobian);
 }
 
-template<size_t DIM>
+template <size_t DIM>
 void CompressibleNonlinearElasticitySolver<DIM>::AssembleOnElement(
             Element<DIM, DIM>& rElement,
             c_matrix<double, STENCIL_SIZE, STENCIL_SIZE >& rAElem,
@@ -454,7 +454,7 @@ void CompressibleNonlinearElasticitySolver<DIM>::AssembleOnElement(
     }
 }
 
-template<size_t DIM>
+template <size_t DIM>
 CompressibleNonlinearElasticitySolver<DIM>::CompressibleNonlinearElasticitySolver(AbstractTetrahedralMesh<DIM,DIM>& rQuadMesh,
                                                                                   SolidMechanicsProblemDefinition<DIM>& rProblemDefinition,
                                                                                   std::string outputDirectory)
@@ -469,7 +469,7 @@ CompressibleNonlinearElasticitySolver<DIM>::CompressibleNonlinearElasticitySolve
     }
 }
 
-template<size_t DIM>
+template <size_t DIM>
 CompressibleNonlinearElasticitySolver<DIM>::~CompressibleNonlinearElasticitySolver()
 {
 }

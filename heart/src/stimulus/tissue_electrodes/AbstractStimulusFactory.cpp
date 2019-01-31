@@ -37,7 +37,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "ZeroStimulus.hpp"
 
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 boost::shared_ptr<AbstractStimulusFunction>  AbstractStimulusFactory<ELEMENT_DIM,SPACE_DIM>::CreateStimulusForNode(Node<SPACE_DIM>* pNode)
 {
     //this is the default implementation
@@ -45,38 +45,38 @@ boost::shared_ptr<AbstractStimulusFunction>  AbstractStimulusFactory<ELEMENT_DIM
     return p_stim;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 unsigned AbstractStimulusFactory<ELEMENT_DIM,SPACE_DIM>::GetNumberOfCells()
 {
     assert(mpMesh != NULL);
     return mpMesh->GetNumNodes();
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 AbstractStimulusFactory<ELEMENT_DIM,SPACE_DIM>::AbstractStimulusFactory()
     : mpMesh(NULL)
 {
 
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 AbstractStimulusFactory<ELEMENT_DIM,SPACE_DIM>::~AbstractStimulusFactory()
 {
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void AbstractStimulusFactory<ELEMENT_DIM,SPACE_DIM>::SetMesh(AbstractTetrahedralMesh<ELEMENT_DIM,SPACE_DIM>* pMesh)
 {
     mpMesh = pMesh;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void AbstractStimulusFactory<ELEMENT_DIM,SPACE_DIM>::SetCompatibleExtracellularStimulus()
 {
     //empty in the default case (zero stimulus -> no need to do anything)
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 AbstractTetrahedralMesh<ELEMENT_DIM,SPACE_DIM>* AbstractStimulusFactory<ELEMENT_DIM,SPACE_DIM>::GetMesh()
 {
     if (mpMesh == NULL)
@@ -86,13 +86,13 @@ AbstractTetrahedralMesh<ELEMENT_DIM,SPACE_DIM>* AbstractStimulusFactory<ELEMENT_
     return mpMesh;
 }
 
-//template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+//template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 //void AbstractStimulusFactory<ELEMENT_DIM,SPACE_DIM>::SetRegionToBeGrounded(AbstractChasteRegion<SPACE_DIM>* pRegion)
 //{
 //    mGroundedRegion = pRegion;
 //}
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 std::vector<AbstractChasteRegion<SPACE_DIM>* > AbstractStimulusFactory<ELEMENT_DIM,SPACE_DIM>::GetRegionsToBeGrounded()
 {
     return mGroundedRegions;

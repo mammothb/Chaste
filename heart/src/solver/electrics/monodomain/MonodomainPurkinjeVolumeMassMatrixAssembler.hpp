@@ -51,7 +51,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  * M_{i,j}= 0, if i>=N or j>=N;
  */
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 class MonodomainPurkinjeVolumeMassMatrixAssembler
     : public AbstractFeVolumeIntegralAssembler<ELEMENT_DIM, SPACE_DIM, 2, false /*no vectors*/, true/*assembles matrices*/, NORMAL>
 {

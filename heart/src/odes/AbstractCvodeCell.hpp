@@ -86,7 +86,7 @@ private:
      * @param archive
      * @param version
      */
-    template<class Archive>
+    template <class Archive>
     void serialize(Archive & archive, const unsigned int version)
     {
         // This calls serialize on the base classes.

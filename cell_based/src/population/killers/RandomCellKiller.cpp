@@ -35,7 +35,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include "RandomCellKiller.hpp"
 
-template<unsigned DIM>
+template <unsigned DIM>
 RandomCellKiller<DIM>::RandomCellKiller(AbstractCellPopulation<DIM>* pCellPopulation, double probabilityOfDeathInAnHour)
         : AbstractCellKiller<DIM>(pCellPopulation),
           mProbabilityOfDeathInAnHour(probabilityOfDeathInAnHour)
@@ -46,13 +46,13 @@ RandomCellKiller<DIM>::RandomCellKiller(AbstractCellPopulation<DIM>* pCellPopula
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 double RandomCellKiller<DIM>::GetDeathProbabilityInAnHour() const
 {
     return mProbabilityOfDeathInAnHour;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void RandomCellKiller<DIM>::CheckAndLabelSingleCellForApoptosis(CellPtr pCell)
 {
     /*
@@ -77,7 +77,7 @@ void RandomCellKiller<DIM>::CheckAndLabelSingleCellForApoptosis(CellPtr pCell)
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void RandomCellKiller<DIM>::CheckAndLabelCellsForApoptosisOrDeath()
 {
     for (typename AbstractCellPopulation<DIM>::Iterator cell_iter = this->mpCellPopulation->Begin();
@@ -88,7 +88,7 @@ void RandomCellKiller<DIM>::CheckAndLabelCellsForApoptosisOrDeath()
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void RandomCellKiller<DIM>::OutputCellKillerParameters(out_stream& rParamsFile)
 {
     *rParamsFile << "\t\t\t<ProbabilityOfDeathInAnHour>" << mProbabilityOfDeathInAnHour << "</ProbabilityOfDeathInAnHour>\n";

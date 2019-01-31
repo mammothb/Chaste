@@ -41,10 +41,10 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 /////////////////////////////////////////////////////////////////////////////
 
 // Static member for "fudge factor" is instantiated here
-template<unsigned DIM>
+template <unsigned DIM>
 const double ObsoleteBoxCollection<DIM>::msFudge = 5e-14;
 
-template<unsigned DIM>
+template <unsigned DIM>
 ObsoleteBoxCollection<DIM>::ObsoleteBoxCollection(double boxWidth, c_vector<double, 2 * DIM> domainSize, bool isPeriodicInX,
                                                   bool isPeriodicInY, bool isPeriodicInZ)
                                                   : mDomainSize(domainSize),
@@ -91,7 +91,7 @@ ObsoleteBoxCollection<DIM>::ObsoleteBoxCollection(double boxWidth, c_vector<doub
     mBoxes.resize(num_boxes);
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void ObsoleteBoxCollection<DIM>::EmptyBoxes()
 {
     for (unsigned i = 0; i < mBoxes.size(); i++)
@@ -100,7 +100,7 @@ void ObsoleteBoxCollection<DIM>::EmptyBoxes()
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 unsigned ObsoleteBoxCollection<DIM>::CalculateContainingBox(Node<DIM>* pNode)
 {
     // Get the location of the node
@@ -108,7 +108,7 @@ unsigned ObsoleteBoxCollection<DIM>::CalculateContainingBox(Node<DIM>* pNode)
     return CalculateContainingBox(location);
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 unsigned ObsoleteBoxCollection<DIM>::CalculateContainingBox(c_vector<double, DIM>& rLocation)
 {
     // Confirm that the location is in the domain
@@ -134,20 +134,20 @@ unsigned ObsoleteBoxCollection<DIM>::CalculateContainingBox(c_vector<double, DIM
     return GetLinearIndex(containing_box_indices);
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 Box<DIM>& ObsoleteBoxCollection<DIM>::rGetBox(unsigned boxIndex)
 {
     assert(boxIndex < mBoxes.size());
     return mBoxes[boxIndex];
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 unsigned ObsoleteBoxCollection<DIM>::GetNumBoxes()
 {
     return mBoxes.size();
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 unsigned ObsoleteBoxCollection<DIM>::GetLinearIndex(c_vector<int, DIM> gridIndices)
 {
     /*
@@ -207,7 +207,7 @@ unsigned ObsoleteBoxCollection<DIM>::GetLinearIndex(c_vector<int, DIM> gridIndic
     return linear_index;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 c_vector<unsigned, DIM> ObsoleteBoxCollection<DIM>::GetGridIndices(unsigned linearIndex)
 {
     c_vector<unsigned, DIM> grid_indices;
@@ -244,7 +244,7 @@ c_vector<unsigned, DIM> ObsoleteBoxCollection<DIM>::GetGridIndices(unsigned line
     return grid_indices;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 bool ObsoleteBoxCollection<DIM>::IsBoxInDomain(c_vector<unsigned, DIM> gridIndices)
 {
     /*
@@ -272,7 +272,7 @@ bool ObsoleteBoxCollection<DIM>::IsBoxInDomain(c_vector<unsigned, DIM> gridIndic
     return is_in_domain;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 c_vector<bool,DIM> ObsoleteBoxCollection<DIM>::IsIndexPenultimate(c_vector<unsigned, DIM> gridIndices)
 {
     c_vector<bool,DIM> is_penultimate;
@@ -285,7 +285,7 @@ c_vector<bool,DIM> ObsoleteBoxCollection<DIM>::IsIndexPenultimate(c_vector<unsig
     return is_penultimate;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void ObsoleteBoxCollection<DIM>::SetupLocalBoxesHalfOnly()
 {
     // Populate a list of half the neighbours in this number of dimensions
@@ -380,7 +380,7 @@ void ObsoleteBoxCollection<DIM>::SetupLocalBoxesHalfOnly()
     SetupLocalBoxes(neighbours);
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void ObsoleteBoxCollection<DIM>::SetupAllLocalBoxes()
 {
     // Populate a list of all neighbours in this number of dimensions
@@ -455,7 +455,7 @@ void ObsoleteBoxCollection<DIM>::SetupAllLocalBoxes()
     SetupLocalBoxes(neighbours);
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void ObsoleteBoxCollection<DIM>::SetupLocalBoxes(const std::vector<c_vector<int, DIM> >& rNeighbours)
 {
     mLocalBoxes.clear();
@@ -617,20 +617,20 @@ void ObsoleteBoxCollection<DIM>::SetupLocalBoxes(const std::vector<c_vector<int,
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 std::set<unsigned>& ObsoleteBoxCollection<DIM>::rGetLocalBoxes(unsigned boxIndex)
 {
     assert(boxIndex < mLocalBoxes.size());
     return mLocalBoxes[boxIndex];
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 const c_vector<double, 2 * DIM>& ObsoleteBoxCollection<DIM>::rGetDomainSize() const
 {
     return mDomainSize;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void ObsoleteBoxCollection<DIM>::CalculateNodePairs(std::vector<Node<DIM>*>& rNodes,
                                             std::vector<std::pair<Node<DIM>*, Node<DIM>*> >& rNodePairs)
 {

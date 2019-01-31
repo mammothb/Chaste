@@ -46,7 +46,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  * with appropriate numbers of Gauss points.  Weights sum to 1 and are non-negative.
  * The values are computed when an object is instantiated.
  */
-template<unsigned ELEMENT_DIM>
+template <unsigned ELEMENT_DIM>
 class GaussianQuadratureRule
 {
     /** The total number of Gauss points. */

@@ -43,7 +43,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "Hdf5DataWriter.hpp"
 #include "Hdf5ToVtkConverter.hpp"
 
-template<unsigned DIM>
+template <unsigned DIM>
 VoltageInterpolaterOntoMechanicsMesh<DIM>::VoltageInterpolaterOntoMechanicsMesh(
                                      TetrahedralMesh<DIM,DIM>& rElectricsMesh,
                                      QuadraticMesh<DIM>& rMechanicsMesh,

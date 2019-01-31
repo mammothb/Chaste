@@ -36,13 +36,13 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "CellwiseDataGradient.hpp"
 #include "LinearBasisFunction.hpp"
 
-template<unsigned DIM>
+template <unsigned DIM>
 c_vector<double, DIM>& CellwiseDataGradient<DIM>::rGetGradient(unsigned nodeIndex)
 {
     return mGradients[nodeIndex];
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void CellwiseDataGradient<DIM>::SetupGradients(AbstractCellPopulation<DIM>& rCellPopulation, const std::string& rItemName)
 {
     MeshBasedCellPopulation<DIM>* pCellPopulation = static_cast<MeshBasedCellPopulation<DIM>*>(&(rCellPopulation));

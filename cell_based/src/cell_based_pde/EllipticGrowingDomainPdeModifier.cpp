@@ -37,7 +37,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "CellBasedEllipticPdeSolver.hpp"
 #include "AveragedSourceEllipticPde.hpp"
 
-template<unsigned DIM>
+template <unsigned DIM>
 EllipticGrowingDomainPdeModifier<DIM>::EllipticGrowingDomainPdeModifier(boost::shared_ptr<AbstractLinearPde<DIM,DIM> > pPde,
                                                                         boost::shared_ptr<AbstractBoundaryCondition<DIM> > pBoundaryCondition,
                                                                         bool isNeumannBoundaryCondition,
@@ -49,12 +49,12 @@ EllipticGrowingDomainPdeModifier<DIM>::EllipticGrowingDomainPdeModifier(boost::s
 {
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 EllipticGrowingDomainPdeModifier<DIM>::~EllipticGrowingDomainPdeModifier()
 {
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void EllipticGrowingDomainPdeModifier<DIM>::UpdateAtEndOfTimeStep(AbstractCellPopulation<DIM,DIM>& rCellPopulation)
 {
     this->GenerateFeMesh(rCellPopulation);
@@ -110,7 +110,7 @@ void EllipticGrowingDomainPdeModifier<DIM>::UpdateAtEndOfTimeStep(AbstractCellPo
     this->UpdateCellData(rCellPopulation);
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void EllipticGrowingDomainPdeModifier<DIM>::SetupSolve(AbstractCellPopulation<DIM,DIM>& rCellPopulation, std::string outputDirectory)
 {
     if (boost::dynamic_pointer_cast<AveragedSourceEllipticPde<DIM> >(this->GetPde()))
@@ -125,7 +125,7 @@ void EllipticGrowingDomainPdeModifier<DIM>::SetupSolve(AbstractCellPopulation<DI
     this->UpdateAtEndOfOutputTimeStep(rCellPopulation);
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 std::shared_ptr<BoundaryConditionsContainer<DIM,DIM,1> > EllipticGrowingDomainPdeModifier<DIM>::ConstructBoundaryConditionsContainer()
 {
     std::shared_ptr<BoundaryConditionsContainer<DIM,DIM,1> > p_bcc(new BoundaryConditionsContainer<DIM,DIM,1>(false));
@@ -142,7 +142,7 @@ std::shared_ptr<BoundaryConditionsContainer<DIM,DIM,1> > EllipticGrowingDomainPd
     return p_bcc;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void EllipticGrowingDomainPdeModifier<DIM>::OutputSimulationModifierParameters(out_stream& rParamsFile)
 {
     // No parameters to output, so just call method on direct parent class

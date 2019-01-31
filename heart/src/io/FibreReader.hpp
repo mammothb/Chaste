@@ -57,7 +57,7 @@ typedef enum FibreFileType_
  * for each element) and .ortho files (files which define the fibre, sheet
  * and normal directions for each element.
  */
-template<unsigned DIM>
+template <unsigned DIM>
 class FibreReader
 {
 private:

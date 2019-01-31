@@ -40,7 +40,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // Implementation
 ///////////////////////////////////////////////////////////////////////////////////
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 AbstractMesh<ELEMENT_DIM, SPACE_DIM>::AbstractMesh()
     : mpDistributedVectorFactory(nullptr),
       mMeshFileBaseName(""),
@@ -48,7 +48,7 @@ AbstractMesh<ELEMENT_DIM, SPACE_DIM>::AbstractMesh()
 {
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 AbstractMesh<ELEMENT_DIM, SPACE_DIM>::~AbstractMesh()
 {
     // Iterate over nodes and free the memory
@@ -62,25 +62,25 @@ AbstractMesh<ELEMENT_DIM, SPACE_DIM>::~AbstractMesh()
     }
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 unsigned AbstractMesh<ELEMENT_DIM, SPACE_DIM>::GetNumNodes() const
 {
     return mNodes.size();
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 unsigned AbstractMesh<ELEMENT_DIM, SPACE_DIM>::GetNumBoundaryNodes() const
 {
     return mBoundaryNodes.size();
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 unsigned AbstractMesh<ELEMENT_DIM, SPACE_DIM>::GetNumAllNodes() const
 {
     return mNodes.size();
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 unsigned AbstractMesh<ELEMENT_DIM, SPACE_DIM>::GetNumNodeAttributes() const
 {
     /* Note, this implementation assumes that all nodes have the same number of attributes
@@ -89,7 +89,7 @@ unsigned AbstractMesh<ELEMENT_DIM, SPACE_DIM>::GetNumNodeAttributes() const
     return mNodes[0]->GetNumNodeAttributes();
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 Node<SPACE_DIM>* AbstractMesh<ELEMENT_DIM, SPACE_DIM>::GetNode(unsigned index) const
 {
     unsigned local_index = SolveNodeMapping(index);
@@ -102,7 +102,7 @@ Node<SPACE_DIM>* AbstractMesh<ELEMENT_DIM, SPACE_DIM>::GetNodeOrHaloNode(unsigne
     return GetNode(index);
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 Node<SPACE_DIM>* AbstractMesh<ELEMENT_DIM, SPACE_DIM>::GetNodeFromPrePermutationIndex(unsigned index) const
 {
     if (mNodePermutation.empty())
@@ -116,7 +116,7 @@ Node<SPACE_DIM>* AbstractMesh<ELEMENT_DIM, SPACE_DIM>::GetNodeFromPrePermutation
 }
 
 // LCOV_EXCL_START
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void AbstractMesh<ELEMENT_DIM, SPACE_DIM>::ReadNodesPerProcessorFile(const std::string& rNodesPerProcessorFile)
 {
     NEVER_REACHED;
@@ -129,7 +129,7 @@ void AbstractMesh<ELEMENT_DIM, SPACE_DIM>::SetElementOwnerships()
     // Does nothing, since an AbstractMesh has no elements
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 DistributedVectorFactory* AbstractMesh<ELEMENT_DIM, SPACE_DIM>::GetDistributedVectorFactory()
 {
     if (mpDistributedVectorFactory == nullptr)
@@ -143,7 +143,7 @@ DistributedVectorFactory* AbstractMesh<ELEMENT_DIM, SPACE_DIM>::GetDistributedVe
     return mpDistributedVectorFactory;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void AbstractMesh<ELEMENT_DIM, SPACE_DIM>::SetDistributedVectorFactory(DistributedVectorFactory *pFactory)
 {
     if (mpDistributedVectorFactory)
@@ -362,7 +362,7 @@ void AbstractMesh<ELEMENT_DIM, SPACE_DIM>::Translate(
     Translate(displacement);
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void AbstractMesh<ELEMENT_DIM, SPACE_DIM>::Translate(const c_vector<double, SPACE_DIM>& rDisplacement)
 {
     unsigned num_nodes = this->mNodes.size();
@@ -390,7 +390,7 @@ void AbstractMesh<ELEMENT_DIM, SPACE_DIM>::Rotate(c_matrix<double , SPACE_DIM, S
     RefreshMesh();
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void AbstractMesh<ELEMENT_DIM, SPACE_DIM>::Rotate(c_vector<double,3> axis, double angle)
 {
     assert(SPACE_DIM == 3); // LCOV_EXCL_LINE
@@ -499,7 +499,7 @@ unsigned AbstractMesh<ELEMENT_DIM, SPACE_DIM>::CalculateMaximumContainingElement
     return max_num;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void AbstractMesh<ELEMENT_DIM, SPACE_DIM>::SetMeshHasChangedSinceLoading()
 {
     // We just forget what the original file was, which has the desired effect

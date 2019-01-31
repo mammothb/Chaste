@@ -37,7 +37,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "CellBasedParabolicPdeSolver.hpp"
 #include "AveragedSourceParabolicPde.hpp"
 
-template<unsigned DIM>
+template <unsigned DIM>
 ParabolicGrowingDomainPdeModifier<DIM>::ParabolicGrowingDomainPdeModifier(boost::shared_ptr<AbstractLinearPde<DIM,DIM> > pPde,
                                                                           boost::shared_ptr<AbstractBoundaryCondition<DIM> > pBoundaryCondition,
                                                                           bool isNeumannBoundaryCondition,
@@ -49,12 +49,12 @@ ParabolicGrowingDomainPdeModifier<DIM>::ParabolicGrowingDomainPdeModifier(boost:
 {
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 ParabolicGrowingDomainPdeModifier<DIM>::~ParabolicGrowingDomainPdeModifier()
 {
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void ParabolicGrowingDomainPdeModifier<DIM>::UpdateAtEndOfTimeStep(AbstractCellPopulation<DIM,DIM>& rCellPopulation)
 {
     this->GenerateFeMesh(rCellPopulation);
@@ -88,7 +88,7 @@ void ParabolicGrowingDomainPdeModifier<DIM>::UpdateAtEndOfTimeStep(AbstractCellP
     this->UpdateCellData(rCellPopulation);
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void ParabolicGrowingDomainPdeModifier<DIM>::SetupSolve(AbstractCellPopulation<DIM,DIM>& rCellPopulation, std::string outputDirectory)
 {
     AbstractGrowingDomainPdeModifier<DIM>::SetupSolve(rCellPopulation, outputDirectory);
@@ -108,7 +108,7 @@ void ParabolicGrowingDomainPdeModifier<DIM>::SetupSolve(AbstractCellPopulation<D
     this->UpdateAtEndOfOutputTimeStep(rCellPopulation);
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 std::shared_ptr<BoundaryConditionsContainer<DIM,DIM,1> > ParabolicGrowingDomainPdeModifier<DIM>::ConstructBoundaryConditionsContainer()
 {
     std::shared_ptr<BoundaryConditionsContainer<DIM,DIM,1> > p_bcc(new BoundaryConditionsContainer<DIM,DIM,1>(false));
@@ -137,7 +137,7 @@ std::shared_ptr<BoundaryConditionsContainer<DIM,DIM,1> > ParabolicGrowingDomainP
     return p_bcc;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void ParabolicGrowingDomainPdeModifier<DIM>::UpdateSolutionVector(AbstractCellPopulation<DIM,DIM>& rCellPopulation)
 {
     // Clear (if it's not the first time) and resize the solution vector
@@ -169,7 +169,7 @@ void ParabolicGrowingDomainPdeModifier<DIM>::UpdateSolutionVector(AbstractCellPo
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void ParabolicGrowingDomainPdeModifier<DIM>::OutputSimulationModifierParameters(out_stream& rParamsFile)
 {
     // No parameters to output, so just call method on direct parent class

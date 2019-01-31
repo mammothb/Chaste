@@ -37,14 +37,14 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "AbstractCellPopulation.hpp"
 #include "CellCycleModelOdeHandler.hpp"
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 CellCycleModelProteinConcentrationsWriter<ELEMENT_DIM, SPACE_DIM>::CellCycleModelProteinConcentrationsWriter()
     : AbstractCellWriter<ELEMENT_DIM, SPACE_DIM>("proteinconcentrations.dat")
 {
     this->mVtkCellDataName = "Protein concentrations";
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 double CellCycleModelProteinConcentrationsWriter<ELEMENT_DIM, SPACE_DIM>::GetCellDataForVtkOutput(CellPtr pCell, AbstractCellPopulation<ELEMENT_DIM, SPACE_DIM>* pCellPopulation)
 {
     /*
@@ -56,7 +56,7 @@ double CellCycleModelProteinConcentrationsWriter<ELEMENT_DIM, SPACE_DIM>::GetCel
     return 0.0;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void CellCycleModelProteinConcentrationsWriter<ELEMENT_DIM, SPACE_DIM>::VisitCell(CellPtr pCell, AbstractCellPopulation<ELEMENT_DIM, SPACE_DIM>* pCellPopulation)
 {
     CellCycleModelOdeHandler* p_model = dynamic_cast<CellCycleModelOdeHandler*>(pCell->GetCellCycleModel());

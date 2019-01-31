@@ -47,7 +47,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  * in the absence of a Wnt stimulus, and optionally prevents cells moving below the
  * y=0 boundary via random jiggling.
  */
-template<unsigned DIM>
+template <unsigned DIM>
 class CryptSimulationBoundaryCondition : public AbstractCellPopulationBoundaryCondition<DIM>
 {
 private:
@@ -66,7 +66,7 @@ private:
      * @param archive the archive
      * @param version the current version of this class
      */
-    template<class Archive>
+    template <class Archive>
     void serialize(Archive & archive, const unsigned int version)
     {
         archive & boost::serialization::base_object<AbstractCellPopulationBoundaryCondition<DIM> >(*this);
@@ -129,7 +129,7 @@ namespace serialization
 /**
  * Serialize information required to construct a CryptSimulationBoundaryCondition.
  */
-template<class Archive, unsigned DIM>
+template <class Archive, unsigned DIM>
 inline void save_construct_data(
     Archive & ar, const CryptSimulationBoundaryCondition<DIM> * t, const unsigned int file_version)
 {
@@ -141,7 +141,7 @@ inline void save_construct_data(
 /**
  * De-serialize constructor parameters and initialize a CryptSimulationBoundaryCondition.
  */
-template<class Archive, unsigned DIM>
+template <class Archive, unsigned DIM>
 inline void load_construct_data(
     Archive & ar, CryptSimulationBoundaryCondition<DIM> * t, const unsigned int file_version)
 {

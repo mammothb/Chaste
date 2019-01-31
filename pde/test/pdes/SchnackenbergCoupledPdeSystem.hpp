@@ -46,7 +46,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  * u_t = D1*del^2 u + kappa1 - kappa_1*u + kappa3*u^2*v,
  * v_t = D2*del^2 u + kappa2 - kappa3*u^2*v.
  */
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 class SchnackenbergCoupledPdeSystem : public AbstractLinearParabolicPdeSystemForCoupledOdeSystem<SPACE_DIM, SPACE_DIM, 2>
 {
 private:

@@ -109,7 +109,7 @@ public:
  * and this is the preferred method for non-executable users.
  * See tutorials for usage.
  */
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM, unsigned PROBLEM_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM, unsigned PROBLEM_DIM>
 class AbstractCardiacProblem : public AbstractUntemplatedCardiacProblem
 {
     friend class TestBidomainWithBath;
@@ -130,7 +130,7 @@ private:
      * @param archive
      * @param version
      */
-    template<class Archive>
+    template <class Archive>
     void save(Archive & archive, const unsigned int version) const
     {
         if (version >= 1)
@@ -220,7 +220,7 @@ private:
      * @param archive
      * @param version
      */
-    template<class Archive>
+    template <class Archive>
     void load(Archive & archive, const unsigned int version)
     {
         if (version >= 1)
@@ -348,7 +348,7 @@ private:
      * @param pMesh  the mesh boundary conditions are defined on
      * @param pBcc  the container to save
      */
-    template<class Archive>
+    template <class Archive>
     void SaveBoundaryConditions(Archive & archive,
                                 AbstractTetrahedralMesh<ELEMENT_DIM,SPACE_DIM>* pMesh,
                                 BccType pBcc) const
@@ -363,7 +363,7 @@ private:
      * @param pMesh  the mesh boundary conditions are to be defined on
      * @return  the loaded container
      */
-    template<class Archive>
+    template <class Archive>
     BccType LoadBoundaryConditions(
             Archive & archive,
             AbstractTetrahedralMesh<ELEMENT_DIM,SPACE_DIM>* pMesh)
@@ -463,7 +463,7 @@ protected:
     /**
      * CardiacElectroMechanicsProblem needs access to #mpWriter.
      */
-    template<unsigned DIM, unsigned ELEC_PROB_DIM>
+    template <unsigned DIM, unsigned ELEC_PROB_DIM>
     friend class CardiacElectroMechanicsProblem;
 
     /**
@@ -777,7 +777,7 @@ public:
      *  -# #mpDefaultBoundaryConditionsContainer
      *  -# (if we're a BidomainProblem) stuff in BidomainProblem::LoadExtraArchiveForBidomain
      */
-    template<class Archive>
+    template <class Archive>
     void LoadExtraArchive(Archive & archive, unsigned version);
 
     /**
@@ -805,11 +805,11 @@ public:
 TEMPLATED_CLASS_IS_ABSTRACT_3_UNSIGNED(AbstractCardiacProblem)
 
 
-template<unsigned DIM>
+template <unsigned DIM>
 class BidomainProblem;
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM, unsigned PROBLEM_DIM>
-template<class Archive>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM, unsigned PROBLEM_DIM>
+template <class Archive>
 void AbstractCardiacProblem<ELEMENT_DIM,SPACE_DIM,PROBLEM_DIM>::LoadExtraArchive(Archive & archive, unsigned version)
 {
     // The vector factory must be loaded, but isn't needed for anything.

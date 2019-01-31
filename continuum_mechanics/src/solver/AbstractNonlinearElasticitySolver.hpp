@@ -83,7 +83,7 @@ extern PetscErrorCode KSPInitialResidual(KSP,Vec,Vec,Vec,Vec,Vec);
  *  @param pContext this pointer can be converted to a ptr to the original caller, ie the
  *  AbstractNonlinearElasticitySolver class
  */
-template<unsigned DIM>
+template <unsigned DIM>
 PetscErrorCode AbstractNonlinearElasticitySolver_ComputeResidual(SNES snes,
                                                                  Vec currentGuess,
                                                                  Vec residualVector,
@@ -102,7 +102,7 @@ PetscErrorCode AbstractNonlinearElasticitySolver_ComputeResidual(SNES snes,
      *  @param pContext this pointer can be converted to a ptr to the original caller, ie the
      *  AbstractNonlinearElasticitySolver class
      */
-    template<unsigned DIM>
+    template <unsigned DIM>
     PetscErrorCode AbstractNonlinearElasticitySolver_ComputeJacobian(SNES snes,
                                                                      Vec currentGuess,
                                                                      Mat globalJacobian,
@@ -120,7 +120,7 @@ PetscErrorCode AbstractNonlinearElasticitySolver_ComputeResidual(SNES snes,
  *  @param pContext this pointer can be converted to a ptr to the original caller, ie the
  *  AbstractNonlinearElasticitySolver class
  */
-template<unsigned DIM>
+template <unsigned DIM>
 PetscErrorCode AbstractNonlinearElasticitySolver_ComputeJacobian(SNES snes,
                                                                  Vec currentGuess,
                                                                  Mat* pGlobalJacobian,
@@ -138,7 +138,7 @@ class  AbstractNonlinearElasticitySolver; //Forward declaration
  * Currently located here so that it's easy to feed a pointer to the main
  * class AbstractNonlinearElasticitySolver
  */
-template<unsigned DIM>
+template <unsigned DIM>
 class StressPerElementWriter : public AbstractPerElementWriter<DIM, DIM, DIM*DIM>
 {
 private:
@@ -192,7 +192,7 @@ public:
  * stress-derivative need to be computed at the AssembleOnElement level, things like
  * pressure-on-deformed-surface are deformation dependent boundary conditions, etc. *
  */
-template<unsigned DIM>
+template <unsigned DIM>
 class AbstractNonlinearElasticitySolver : public AbstractContinuumMechanicsSolver<DIM>
 {
     friend class StressRecoveror<DIM>;
@@ -808,7 +808,7 @@ public:
 // Implementation: first, the non-nonlinear-solve methods
 ///////////////////////////////////////////////////////////////////////////////////
 
-template<unsigned DIM>
+template <unsigned DIM>
 AbstractNonlinearElasticitySolver<DIM>::AbstractNonlinearElasticitySolver(AbstractTetrahedralMesh<DIM,DIM>& rQuadMesh,
                                                                           SolidMechanicsProblemDefinition<DIM>& rProblemDefinition,
                                                                           std::string outputDirectory,
@@ -834,12 +834,12 @@ AbstractNonlinearElasticitySolver<DIM>::AbstractNonlinearElasticitySolver(Abstra
     mPetscDirectSolve = CommandLineArguments::Instance()->OptionExists("-mech_petsc_direct_solve");
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 AbstractNonlinearElasticitySolver<DIM>::~AbstractNonlinearElasticitySolver()
 {
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void AbstractNonlinearElasticitySolver<DIM>::FinishAssembleSystem(bool assembleResidual, bool assembleJacobian)
 {
     PetscVecTools::Finalise(this->mResidualVector);
@@ -874,7 +874,7 @@ void AbstractNonlinearElasticitySolver<DIM>::FinishAssembleSystem(bool assembleR
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 std::vector<c_vector<double,DIM> >& AbstractNonlinearElasticitySolver<DIM>::rGetSpatialSolution()
 {
     this->mSpatialSolution.clear();
@@ -889,13 +889,13 @@ std::vector<c_vector<double,DIM> >& AbstractNonlinearElasticitySolver<DIM>::rGet
     return this->mSpatialSolution;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 std::vector<c_vector<double,DIM> >& AbstractNonlinearElasticitySolver<DIM>::rGetDeformedPosition()
 {
     return rGetSpatialSolution();
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void AbstractNonlinearElasticitySolver<DIM>::WriteCurrentStrains(StrainType strainType, std::string fileName, int counterToAppend)
 {
     if (!this->mWriteOutput)
@@ -932,7 +932,7 @@ void AbstractNonlinearElasticitySolver<DIM>::WriteCurrentStrains(StrainType stra
     p_file->close();
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void AbstractNonlinearElasticitySolver<DIM>::WriteCurrentAverageElementStresses(std::string fileName, int counterToAppend)
 {
     if (!this->mWriteOutput)
@@ -958,7 +958,7 @@ void AbstractNonlinearElasticitySolver<DIM>::WriteCurrentAverageElementStresses(
     stress_writer.WriteData(*(this->mpOutputFileHandler), file_name.str());
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void AbstractNonlinearElasticitySolver<DIM>::CreateCmguiOutput()
 {
     if (this->mOutputDirectory == "")
@@ -977,7 +977,7 @@ void AbstractNonlinearElasticitySolver<DIM>::CreateCmguiOutput()
     writer.WriteCmguiScript(); // writes LoadSolutions.com
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void AbstractNonlinearElasticitySolver<DIM>::SetComputeAverageStressPerElementDuringSolve(bool setComputeAverageStressPerElement)
 {
     mSetComputeAverageStressPerElement = setComputeAverageStressPerElement;
@@ -987,7 +987,7 @@ void AbstractNonlinearElasticitySolver<DIM>::SetComputeAverageStressPerElementDu
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void AbstractNonlinearElasticitySolver<DIM>::AddStressToAverageStressPerElement(c_matrix<double,DIM,DIM>& rT, unsigned elemIndex)
 {
     assert(mSetComputeAverageStressPerElement);
@@ -1020,7 +1020,7 @@ void AbstractNonlinearElasticitySolver<DIM>::AddStressToAverageStressPerElement(
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 c_matrix<double,DIM,DIM> AbstractNonlinearElasticitySolver<DIM>::GetAverageStressPerElement(unsigned elementIndex)
 {
     if (!mSetComputeAverageStressPerElement)
@@ -1062,7 +1062,7 @@ c_matrix<double,DIM,DIM> AbstractNonlinearElasticitySolver<DIM>::GetAverageStres
 // Methods at the 'element level'.
 ///////////////////////////////////////////////////////////////////////////////////
 
-template<unsigned DIM>
+template <unsigned DIM>
 void AbstractNonlinearElasticitySolver<DIM>::GetElementCentroidStrain(StrainType strainType,
                                                                       Element<DIM,DIM>& rElement,
                                                                       c_matrix<double,DIM,DIM>& rStrain)
@@ -1160,7 +1160,7 @@ void AbstractNonlinearElasticitySolver<DIM>::GetElementCentroidStrain(StrainType
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void AbstractNonlinearElasticitySolver<DIM>::AssembleOnBoundaryElement(
             BoundaryElement<DIM-1,DIM>& rBoundaryElement,
             c_matrix<double,BOUNDARY_STENCIL_SIZE,BOUNDARY_STENCIL_SIZE>& rAelem,
@@ -1239,7 +1239,7 @@ void AbstractNonlinearElasticitySolver<DIM>::AssembleOnBoundaryElement(
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 bool AbstractNonlinearElasticitySolver<DIM>::ShouldAssembleMatrixTermForPressureOnDeformedBc()
 {
     if (mUseSnesSolver)
@@ -1261,7 +1261,7 @@ bool AbstractNonlinearElasticitySolver<DIM>::ShouldAssembleMatrixTermForPressure
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void AbstractNonlinearElasticitySolver<DIM>::AssembleOnBoundaryElementForPressureOnDeformedBc(
             BoundaryElement<DIM-1,DIM>& rBoundaryElement,
             c_matrix<double,BOUNDARY_STENCIL_SIZE,BOUNDARY_STENCIL_SIZE>& rAelem,
@@ -1518,7 +1518,7 @@ void AbstractNonlinearElasticitySolver<DIM>::AssembleOnBoundaryElementForPressur
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void AbstractNonlinearElasticitySolver<DIM>::Solve(double tol)
 {
     // Check the problem definition is set up correctly (and fully).
@@ -1562,7 +1562,7 @@ void AbstractNonlinearElasticitySolver<DIM>::Solve(double tol)
 ///////////////////////////////////////
 ///\todo #2057 Make better choices..
 ///////////////////////////////////////
-template<unsigned DIM>
+template <unsigned DIM>
 void AbstractNonlinearElasticitySolver<DIM>::SetKspSolverAndPcType(KSP solver)
 {
     // Four alternatives
@@ -1648,7 +1648,7 @@ void AbstractNonlinearElasticitySolver<DIM>::SetKspSolverAndPcType(KSP solver)
 //  as SNES solver appears better
 ////////////////////////////////////////////////////////////////////
 
-template<unsigned DIM>
+template <unsigned DIM>
 double AbstractNonlinearElasticitySolver<DIM>::ComputeResidualAndGetNorm(bool allowException)
 {
     if (!allowException)
@@ -1674,7 +1674,7 @@ double AbstractNonlinearElasticitySolver<DIM>::ComputeResidualAndGetNorm(bool al
     return CalculateResidualNorm();
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 double AbstractNonlinearElasticitySolver<DIM>::CalculateResidualNorm()
 {
     double norm;
@@ -1684,7 +1684,7 @@ double AbstractNonlinearElasticitySolver<DIM>::CalculateResidualNorm()
     return norm/this->mNumDofs;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void AbstractNonlinearElasticitySolver<DIM>::VectorSum(std::vector<double>& rX,
                                                        ReplicatableVector& rY,
                                                        double a,
@@ -1698,7 +1698,7 @@ void AbstractNonlinearElasticitySolver<DIM>::VectorSum(std::vector<double>& rX,
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 double AbstractNonlinearElasticitySolver<DIM>::TakeNewtonStep()
 {
     if (this->mVerbose)
@@ -1875,7 +1875,7 @@ double AbstractNonlinearElasticitySolver<DIM>::TakeNewtonStep()
     return new_norm_resid;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void AbstractNonlinearElasticitySolver<DIM>::PrintLineSearchResult(double s, double residNorm)
 {
     if (this->mVerbose)
@@ -1884,7 +1884,7 @@ void AbstractNonlinearElasticitySolver<DIM>::PrintLineSearchResult(double s, dou
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 double AbstractNonlinearElasticitySolver<DIM>::UpdateSolutionUsingLineSearch(Vec solution)
 {
     double initial_norm_resid = CalculateResidualNorm();
@@ -2023,12 +2023,12 @@ double AbstractNonlinearElasticitySolver<DIM>::UpdateSolutionUsingLineSearch(Vec
     return current_resid_norm;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void AbstractNonlinearElasticitySolver<DIM>::PostNewtonStep(unsigned counter, double normResidual)
 {
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void AbstractNonlinearElasticitySolver<DIM>::SolveNonSnes(double tol)
 {
     mLastDampingValue = 0;
@@ -2113,7 +2113,7 @@ void AbstractNonlinearElasticitySolver<DIM>::SolveNonSnes(double tol)
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 unsigned AbstractNonlinearElasticitySolver<DIM>::GetNumNewtonIterations()
 {
     return mNumNewtonIterations;
@@ -2123,7 +2123,7 @@ unsigned AbstractNonlinearElasticitySolver<DIM>::GetNumNewtonIterations()
 //  SNES version of the nonlinear solver
 //////////////////////////////////////////////////////////////
 
-template<unsigned DIM>
+template <unsigned DIM>
 void AbstractNonlinearElasticitySolver<DIM>::SolveSnes()
 {
     // Set up solution guess for residuals
@@ -2224,7 +2224,7 @@ void AbstractNonlinearElasticitySolver<DIM>::SolveSnes()
     SNESDestroy(PETSC_DESTROY_PARAM(snes));
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void AbstractNonlinearElasticitySolver<DIM>::ComputeResidual(Vec currentGuess, Vec residualVector)
 {
     // Note: AssembleSystem() assumes the current solution is in this->mCurrentSolution and assembles
@@ -2240,7 +2240,7 @@ void AbstractNonlinearElasticitySolver<DIM>::ComputeResidual(Vec currentGuess, V
     VecCopy(this->mResidualVector, residualVector);
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void AbstractNonlinearElasticitySolver<DIM>::ComputeJacobian(Vec currentGuess, Mat* pJacobian, Mat* pPreconditioner)
 {
     // Note: AssembleSystem() assumes the current solution is in this->mCurrentSolution and assembles
@@ -2264,7 +2264,7 @@ void AbstractNonlinearElasticitySolver<DIM>::ComputeJacobian(Vec currentGuess, M
     MechanicsEventHandler::EndEvent(MechanicsEventHandler::ASSEMBLE);
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 PetscErrorCode AbstractNonlinearElasticitySolver_ComputeResidual(SNES snes,
                                                                  Vec currentGuess,
                                                                  Vec residualVector,
@@ -2276,7 +2276,7 @@ PetscErrorCode AbstractNonlinearElasticitySolver_ComputeResidual(SNES snes,
     return 0;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 #if ((PETSC_VERSION_MAJOR==3) && (PETSC_VERSION_MINOR>=5))
     PetscErrorCode AbstractNonlinearElasticitySolver_ComputeJacobian(SNES snes,
                                                                      Vec currentGuess,
@@ -2307,13 +2307,13 @@ template<unsigned DIM>
 
 // Constant setting definitions
 
-template<unsigned DIM>
+template <unsigned DIM>
 double AbstractNonlinearElasticitySolver<DIM>::MAX_NEWTON_ABS_TOL = 1e-7;
 
-template<unsigned DIM>
+template <unsigned DIM>
 double AbstractNonlinearElasticitySolver<DIM>::MIN_NEWTON_ABS_TOL = 1e-10;
 
-template<unsigned DIM>
+template <unsigned DIM>
 double AbstractNonlinearElasticitySolver<DIM>::NEWTON_REL_TOL = 1e-4;
 
 #endif /*ABSTRACTNONLINEARELASTICITYSOLVER_HPP_*/

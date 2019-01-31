@@ -51,7 +51,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  * where V_j is the voltage at node j and phi_j is the
  * extracellular potential at node j.
  */
-template<unsigned DIM>
+template <unsigned DIM>
 class BidomainWithBathProblem : public BidomainProblem<DIM>
 {
     /** Needed for serialization. */
@@ -62,7 +62,7 @@ class BidomainWithBathProblem : public BidomainProblem<DIM>
      * @param archive the archive
      * @param version the current version of this class
      */
-    template<class Archive>
+    template <class Archive>
     void serialize(Archive & archive, const unsigned int version)
     {
         archive & boost::serialization::base_object< BidomainProblem<DIM> >(*this);

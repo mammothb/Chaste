@@ -66,7 +66,7 @@ private:
      * @param archive the archive
      * @param version the current version of this class
      */
-    template<class Archive>
+    template <class Archive>
     void serialize(Archive & archive, const unsigned int version)
     {
         // This calls serialize on the base class - all member variables instantiated on construction or temporary.

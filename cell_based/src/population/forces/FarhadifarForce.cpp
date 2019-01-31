@@ -35,7 +35,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include "FarhadifarForce.hpp"
 
-template<unsigned DIM>
+template <unsigned DIM>
 FarhadifarForce<DIM>::FarhadifarForce()
    : AbstractForce<DIM>(),
      mAreaElasticityParameter(1.0), // These parameters are Case I in Farhadifar's paper
@@ -45,12 +45,12 @@ FarhadifarForce<DIM>::FarhadifarForce()
 {
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 FarhadifarForce<DIM>::~FarhadifarForce()
 {
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void FarhadifarForce<DIM>::AddForceContribution(AbstractCellPopulation<DIM>& rCellPopulation)
 {
     // Throw an exception message if not using a VertexBasedCellPopulation
@@ -165,7 +165,7 @@ void FarhadifarForce<DIM>::AddForceContribution(AbstractCellPopulation<DIM>& rCe
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 double FarhadifarForce<DIM>::GetLineTensionParameter(Node<DIM>* pNodeA, Node<DIM>* pNodeB, VertexBasedCellPopulation<DIM>& rVertexCellPopulation)
 {
     // Find the indices of the elements owned by each node
@@ -196,55 +196,55 @@ double FarhadifarForce<DIM>::GetLineTensionParameter(Node<DIM>* pNodeA, Node<DIM
     return line_tension_parameter_in_calculation;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 double FarhadifarForce<DIM>::GetAreaElasticityParameter()
 {
     return mAreaElasticityParameter;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 double FarhadifarForce<DIM>::GetPerimeterContractilityParameter()
 {
     return mPerimeterContractilityParameter;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 double FarhadifarForce<DIM>::GetLineTensionParameter()
 {
     return mLineTensionParameter;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 double FarhadifarForce<DIM>::GetBoundaryLineTensionParameter()
 {
     return mBoundaryLineTensionParameter;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void FarhadifarForce<DIM>::SetAreaElasticityParameter(double areaElasticityParameter)
 {
     mAreaElasticityParameter = areaElasticityParameter;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void FarhadifarForce<DIM>::SetPerimeterContractilityParameter(double perimeterContractilityParameter)
 {
     mPerimeterContractilityParameter = perimeterContractilityParameter;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void FarhadifarForce<DIM>::SetLineTensionParameter(double lineTensionParameter)
 {
     mLineTensionParameter = lineTensionParameter;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void FarhadifarForce<DIM>::SetBoundaryLineTensionParameter(double boundaryLineTensionParameter)
 {
     mBoundaryLineTensionParameter = boundaryLineTensionParameter;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void FarhadifarForce<DIM>::OutputForceParameters(out_stream& rParamsFile)
 {
     *rParamsFile << "\t\t\t<AreaElasticityParameter>" << mAreaElasticityParameter << "</AreaElasticityParameter>\n";

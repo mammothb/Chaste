@@ -62,7 +62,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *  where the ordering is Vtissue, Vbath, phi_tissue, phi_bath
  *
  */
-template<unsigned DIM>
+template <unsigned DIM>
 class BidomainMassMatrixAssembler : public AbstractFeVolumeIntegralAssembler<DIM,DIM,2,false,true,CARDIAC>
 {
 protected:

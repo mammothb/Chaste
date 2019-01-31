@@ -35,13 +35,13 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include "ConstBoundaryCondition.hpp"
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 ConstBoundaryCondition<SPACE_DIM>::ConstBoundaryCondition(const double value)
     : mValue(value)
 {
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 double ConstBoundaryCondition<SPACE_DIM>::GetValue(const ChastePoint<SPACE_DIM>& rX) const
 {
     return mValue;

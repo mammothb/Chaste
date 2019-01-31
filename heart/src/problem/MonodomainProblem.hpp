@@ -50,7 +50,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 /**
  * Class which specifies and solves a monodomain problem.
  */
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM = ELEMENT_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM = ELEMENT_DIM>
 class MonodomainProblem : public AbstractCardiacProblem<ELEMENT_DIM, SPACE_DIM, 1>
 {
 private:
@@ -62,7 +62,7 @@ private:
      * @param archive
      * @param version
      */
-    template<class Archive>
+    template <class Archive>
     void serialize(Archive & archive, const unsigned int version)
     {
         archive & boost::serialization::base_object<AbstractCardiacProblem<ELEMENT_DIM, SPACE_DIM, 1> >(*this);

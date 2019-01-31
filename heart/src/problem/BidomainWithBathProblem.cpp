@@ -36,20 +36,20 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include "BidomainWithBathProblem.hpp"
 
-template<unsigned DIM>
+template <unsigned DIM>
 BidomainWithBathProblem<DIM>::BidomainWithBathProblem(
             AbstractCardiacCellFactory<DIM>* pCellFactory)
     : BidomainProblem<DIM>(pCellFactory, true)
 {
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 BidomainWithBathProblem<DIM>::BidomainWithBathProblem()
     : BidomainProblem<DIM>()
 {
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 BidomainWithBathProblem<DIM>::~BidomainWithBathProblem()
 {
 }

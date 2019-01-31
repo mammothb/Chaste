@@ -38,25 +38,25 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "CellwiseDataGradient.hpp"
 #include "CellLabel.hpp"
 
-template<unsigned DIM>
+template <unsigned DIM>
 ChemotacticForce<DIM>::ChemotacticForce()
     : AbstractForce<DIM>()
 {
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 ChemotacticForce<DIM>::~ChemotacticForce()
 {
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 double ChemotacticForce<DIM>::GetChemotacticForceMagnitude(const double concentration, const double concentrationGradientMagnitude)
 {
     return concentration; // temporary force law - can be changed to something realistic
                           // without tests failing
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void ChemotacticForce<DIM>::AddForceContribution(AbstractCellPopulation<DIM>& rCellPopulation)
 {
     CellwiseDataGradient<DIM> gradients;
@@ -88,7 +88,7 @@ void ChemotacticForce<DIM>::AddForceContribution(AbstractCellPopulation<DIM>& rC
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void ChemotacticForce<DIM>::OutputForceParameters(out_stream& rParamsFile)
 {
     // No parameters to include

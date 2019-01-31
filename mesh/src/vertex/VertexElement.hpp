@@ -47,7 +47,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  * VertexElement can have a variable number of nodes associated
  * with it.
  */
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 class VertexElement : public MutableElement<ELEMENT_DIM, SPACE_DIM>
 {
 private:
@@ -82,7 +82,7 @@ private:
      * @param archive the archive
      * @param version the current version of this class
      */
-    template<class Archive>
+    template <class Archive>
     void serialize(Archive & archive, const unsigned int version)
     {
         // This needs to be first so that MeshBasedCellPopulation::Validate() doesn't go mental.
@@ -182,7 +182,7 @@ public:
  * Specialization for 1d elements so we don't get errors from Boost on some
  * compilers.
  */
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 class VertexElement<1, SPACE_DIM> : public MutableElement<1,SPACE_DIM>
 {
 public:

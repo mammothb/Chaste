@@ -100,7 +100,7 @@ private:
         TS_ASSERT(lines_from_file_1 == lines_from_file_2);
     }
 
-    template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+    template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
     void CompareMeshes( DistributedTetrahedralMesh<ELEMENT_DIM,SPACE_DIM>& rMesh1,
                         DistributedTetrahedralMesh<ELEMENT_DIM,SPACE_DIM>& rMesh2 )
     {
@@ -132,7 +132,7 @@ private:
         }
     }
 
-    template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+    template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
     void CheckEverythingIsAssigned(DistributedTetrahedralMesh<ELEMENT_DIM,SPACE_DIM>& rMesh)
     {
         /*

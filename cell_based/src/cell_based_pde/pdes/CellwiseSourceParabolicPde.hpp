@@ -59,7 +59,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  * zero otherwise. Here, 'associated with' takes a different meaning for each
  * cell population class, and is encoded in the method IsPdeNodeAssociatedWithNonApoptoticCell().
  */
-template<unsigned DIM>
+template <unsigned DIM>
 class CellwiseSourceParabolicPde : public AbstractLinearParabolicPde<DIM,DIM>
 {
     friend class TestCellBasedParabolicPdes;
@@ -74,7 +74,7 @@ private:
      * @param archive the archive
      * @param version the current version of this class
      */
-    template<class Archive>
+    template <class Archive>
     void serialize(Archive & archive, const unsigned int version)
     {
        archive & boost::serialization::base_object<AbstractLinearParabolicPde<DIM, DIM> >(*this);
@@ -173,7 +173,7 @@ namespace serialization
 /**
  * Serialize information required to construct a CellwiseSourceParabolicPde.
  */
-template<class Archive, unsigned DIM>
+template <class Archive, unsigned DIM>
 inline void save_construct_data(
     Archive & ar, const CellwiseSourceParabolicPde<DIM>* t, const unsigned int file_version)
 {
@@ -185,7 +185,7 @@ inline void save_construct_data(
 /**
  * De-serialize constructor parameters and initialise a CellwiseSourceParabolicPde.
  */
-template<class Archive, unsigned DIM>
+template <class Archive, unsigned DIM>
 inline void load_construct_data(
     Archive & ar, CellwiseSourceParabolicPde<DIM>* t, const unsigned int file_version)
 {

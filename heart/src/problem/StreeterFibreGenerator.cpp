@@ -58,7 +58,7 @@ const char StreeterCitation[] = "@article{streeter1969fiber,\n"
 "  publisher={Am Heart Assoc}\n"
 "}\n";
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 double StreeterFibreGenerator<SPACE_DIM>::GetAveragedThicknessLocalNode(
         const unsigned nodeIndex, const std::vector<double>& wallThickness) const
 {
@@ -107,7 +107,7 @@ double StreeterFibreGenerator<SPACE_DIM>::GetAveragedThicknessLocalNode(
     return average/nodes_visited;
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 double StreeterFibreGenerator<SPACE_DIM>::GetFibreMaxAngle(
         const c_vector<HeartRegionType, SPACE_DIM+1>& nodesRegionsForElement) const
 {
@@ -145,7 +145,7 @@ double StreeterFibreGenerator<SPACE_DIM>::GetFibreMaxAngle(
     return M_PI/3.0;
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 StreeterFibreGenerator<SPACE_DIM>::StreeterFibreGenerator(AbstractTetrahedralMesh<SPACE_DIM,SPACE_DIM>& rMesh)
     : AbstractPerElementWriter<SPACE_DIM,SPACE_DIM,SPACE_DIM*SPACE_DIM>(&rMesh),
       mpGeometryInfo(NULL),
@@ -159,13 +159,13 @@ StreeterFibreGenerator<SPACE_DIM>::StreeterFibreGenerator(AbstractTetrahedralMes
     mAveragedWallThickness.resize(rMesh.GetNumNodes());
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 StreeterFibreGenerator<SPACE_DIM>::~StreeterFibreGenerator()
 {
     delete mpGeometryInfo;
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 void StreeterFibreGenerator<SPACE_DIM>::SetSurfaceFiles(
             const std::string& rEpicardiumFile,
             const std::string& rRightVentricleFile,
@@ -176,14 +176,14 @@ void StreeterFibreGenerator<SPACE_DIM>::SetSurfaceFiles(
      mpGeometryInfo = new HeartGeometryInformation<SPACE_DIM>(*(this->mpMesh), rEpicardiumFile, rLeftVentricleFile, rRightVentricleFile, indexFromZero);
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 void StreeterFibreGenerator<SPACE_DIM>::WriteHeaderOnMaster()
 {
     *(this->mpMasterFile) << this->mpMesh->GetNumElements();
     *(this->mpMasterFile) << std::setprecision(16);
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 void StreeterFibreGenerator<SPACE_DIM>::PreWriteCalculations(OutputFileHandler& rOutputDirectory)
 {
     assert(SPACE_DIM == 3);
@@ -310,7 +310,7 @@ void StreeterFibreGenerator<SPACE_DIM>::PreWriteCalculations(OutputFileHandler& 
     }
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 void StreeterFibreGenerator<SPACE_DIM>::Visit(Element<SPACE_DIM, SPACE_DIM>* pElement,
                                               unsigned localElementIndex,
                                               c_vector<double, SPACE_DIM*SPACE_DIM>& rData)
@@ -443,7 +443,7 @@ void StreeterFibreGenerator<SPACE_DIM>::Visit(Element<SPACE_DIM, SPACE_DIM>* pEl
     rData[8] = rotated_longitude_direction[2];
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 void StreeterFibreGenerator<SPACE_DIM>::SetApexToBase(const c_vector<double, SPACE_DIM>& apexToBase)
 {
     double norm = norm_2(apexToBase);
@@ -454,7 +454,7 @@ void StreeterFibreGenerator<SPACE_DIM>::SetApexToBase(const c_vector<double, SPA
     mApexToBase = apexToBase / norm;
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 void StreeterFibreGenerator<SPACE_DIM>::SetApexToBase(unsigned axis)
 {
     if (axis >= SPACE_DIM)
@@ -465,7 +465,7 @@ void StreeterFibreGenerator<SPACE_DIM>::SetApexToBase(unsigned axis)
     mApexToBase[axis] = 1.0;
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 void StreeterFibreGenerator<SPACE_DIM>::SetLogInfo(bool logInfo)
 {
     mLogInfo = logInfo;

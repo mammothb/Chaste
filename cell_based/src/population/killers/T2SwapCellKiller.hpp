@@ -50,7 +50,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  * from happening in a simulation the user needs to set the threshold for T2 swaps in
  * the MutableVertexMesh to 0, using the method SetT2Threshold().
  */
-template<unsigned DIM>
+template <unsigned DIM>
 class T2SwapCellKiller : public AbstractCellKiller<DIM>
 {
     // The test will want to clean up the private member variable mpCellPopulation
@@ -66,7 +66,7 @@ private:
      * @param archive the archive
      * @param version the current version of this class
      */
-    template<class Archive>
+    template <class Archive>
     void serialize(Archive & archive, const unsigned int version)
     {
         archive & boost::serialization::base_object<AbstractCellKiller<DIM> >(*this);
@@ -106,7 +106,7 @@ namespace serialization
 /**
  * Serialize information required to construct a T2SwapCellKiller.
  */
-template<class Archive, unsigned DIM>
+template <class Archive, unsigned DIM>
 inline void save_construct_data(
     Archive & ar, const T2SwapCellKiller<DIM> * t, const unsigned int file_version)
 {
@@ -118,7 +118,7 @@ inline void save_construct_data(
 /**
  * De-serialize constructor parameters and initialise a T2SwapCellKiller.
  */
-template<class Archive, unsigned DIM>
+template <class Archive, unsigned DIM>
 inline void load_construct_data(
     Archive & ar, T2SwapCellKiller<DIM> * t, const unsigned int file_version)
 {

@@ -56,7 +56,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  * The code currently requires the PottsMesh object to be fixed,
  * in the sense that no new nodes or elements can be added.
  */
-template<unsigned DIM>
+template <unsigned DIM>
 class PottsBasedCellPopulation : public AbstractOnLatticeCellPopulation<DIM>
 {
     friend class TestPottsBasedCellPopulation;
@@ -103,7 +103,7 @@ private:
      * @param archive the archive
      * @param version the current version of this class
      */
-    template<class Archive>
+    template <class Archive>
     void serialize(Archive & archive, const unsigned int version)
     {
         archive & boost::serialization::base_object<AbstractOnLatticeCellPopulation<DIM> >(*this);
@@ -444,7 +444,7 @@ namespace serialization
 /**
  * Serialize information required to construct a PottsBasedCellPopulation.
  */
-template<class Archive, unsigned DIM>
+template <class Archive, unsigned DIM>
 inline void save_construct_data(
     Archive & ar, const PottsBasedCellPopulation<DIM> * t, const unsigned int file_version)
 {
@@ -457,7 +457,7 @@ inline void save_construct_data(
  * De-serialize constructor parameters and initialise a PottsBasedCellPopulation.
  * Loads the mesh from separate files.
  */
-template<class Archive, unsigned DIM>
+template <class Archive, unsigned DIM>
 inline void load_construct_data(
     Archive & ar, PottsBasedCellPopulation<DIM> * t, const unsigned int file_version)
 {

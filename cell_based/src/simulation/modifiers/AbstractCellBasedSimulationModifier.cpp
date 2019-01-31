@@ -35,17 +35,17 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include "AbstractCellBasedSimulationModifier.hpp"
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 AbstractCellBasedSimulationModifier<ELEMENT_DIM, SPACE_DIM>::AbstractCellBasedSimulationModifier()
 {
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 AbstractCellBasedSimulationModifier<ELEMENT_DIM, SPACE_DIM>::~AbstractCellBasedSimulationModifier()
 {
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void AbstractCellBasedSimulationModifier<ELEMENT_DIM, SPACE_DIM>::OutputSimulationModifierInfo(out_stream& rParamsFile)
 {
     std::string modifier_type = GetIdentifier();
@@ -54,7 +54,7 @@ void AbstractCellBasedSimulationModifier<ELEMENT_DIM, SPACE_DIM>::OutputSimulati
     *rParamsFile << "\t\t</" << modifier_type << ">\n";
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void AbstractCellBasedSimulationModifier<ELEMENT_DIM,SPACE_DIM>::OutputSimulationModifierParameters(out_stream& rParamsFile)
 {
     // No parameters to output

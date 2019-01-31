@@ -35,7 +35,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include "FineCoarseMeshPair.hpp"
 
-template<unsigned DIM>
+template <unsigned DIM>
 FineCoarseMeshPair<DIM>::FineCoarseMeshPair(AbstractTetrahedralMesh<DIM,DIM>& rFineMesh, AbstractTetrahedralMesh<DIM,DIM>& rCoarseMesh)
     : mrFineMesh(rFineMesh),
       mrCoarseMesh(rCoarseMesh),
@@ -45,26 +45,26 @@ FineCoarseMeshPair<DIM>::FineCoarseMeshPair(AbstractTetrahedralMesh<DIM,DIM>& rF
     ResetStatisticsVariables();
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 const AbstractTetrahedralMesh<DIM,DIM>& FineCoarseMeshPair<DIM>::GetFineMesh() const
 {
     return  mrFineMesh;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 const AbstractTetrahedralMesh<DIM,DIM>& FineCoarseMeshPair<DIM>::GetCoarseMesh() const
 {
     return  mrCoarseMesh;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 FineCoarseMeshPair<DIM>::~FineCoarseMeshPair()
 {
     DeleteFineBoxCollection();
     DeleteCoarseBoxCollection();
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void FineCoarseMeshPair<DIM>::DeleteFineBoxCollection()
 {
     if (mpFineMeshBoxCollection != nullptr)
@@ -74,7 +74,7 @@ void FineCoarseMeshPair<DIM>::DeleteFineBoxCollection()
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void FineCoarseMeshPair<DIM>::DeleteCoarseBoxCollection()
 {
     if (mpCoarseMeshBoxCollection != nullptr)
@@ -88,19 +88,19 @@ void FineCoarseMeshPair<DIM>::DeleteCoarseBoxCollection()
 //   Setting up boxes methods
 ////////////////////////////////////////////////////////////////////////////////////
 
-template<unsigned DIM>
+template <unsigned DIM>
 void FineCoarseMeshPair<DIM>::SetUpBoxesOnFineMesh(double boxWidth)
 {
     SetUpBoxes(mrFineMesh, boxWidth, mpFineMeshBoxCollection);
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void FineCoarseMeshPair<DIM>::SetUpBoxesOnCoarseMesh(double boxWidth)
 {
     SetUpBoxes(mrCoarseMesh, boxWidth, mpCoarseMeshBoxCollection);
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void FineCoarseMeshPair<DIM>::SetUpBoxes(AbstractTetrahedralMesh<DIM, DIM>& rMesh,
                                          double boxWidth,
                                          DistributedBoxCollection<DIM>*& rpBoxCollection)
@@ -184,7 +184,7 @@ void FineCoarseMeshPair<DIM>::SetUpBoxes(AbstractTetrahedralMesh<DIM, DIM>& rMes
 // common method
 ////////////////////////////////////////////////////////////////////////////////////
 
-template<unsigned DIM>
+template <unsigned DIM>
 void FineCoarseMeshPair<DIM>::ComputeFineElementsAndWeightsForCoarseQuadPoints(GaussianQuadratureRule<DIM>& rQuadRule,
                                                                                bool safeMode)
 {
@@ -246,7 +246,7 @@ void FineCoarseMeshPair<DIM>::ComputeFineElementsAndWeightsForCoarseQuadPoints(G
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void FineCoarseMeshPair<DIM>::ComputeFineElementsAndWeightsForCoarseNodes(bool safeMode)
 {
     if (mpFineMeshBoxCollection==nullptr)
@@ -302,7 +302,7 @@ void FineCoarseMeshPair<DIM>::ComputeFineElementsAndWeightsForCoarseNodes(bool s
  * the element and weight in the vec), rather than returning the element, and this method
  * saves information in mStatisticsCounters.
  */
-template<unsigned DIM>
+template <unsigned DIM>
 void FineCoarseMeshPair<DIM>::ComputeFineElementAndWeightForGivenPoint(ChastePoint<DIM>& rPoint,
                                                                        bool safeMode,
                                                                        unsigned boxForThisPoint,
@@ -400,7 +400,7 @@ void FineCoarseMeshPair<DIM>::ComputeFineElementAndWeightForGivenPoint(ChastePoi
 // common method
 ////////////////////////////////////////////////////////////////////////////////////
 
-template<unsigned DIM>
+template <unsigned DIM>
 void FineCoarseMeshPair<DIM>::ComputeCoarseElementsForFineNodes(bool safeMode)
 {
     if (mpCoarseMeshBoxCollection==nullptr)
@@ -439,7 +439,7 @@ void FineCoarseMeshPair<DIM>::ComputeCoarseElementsForFineNodes(bool safeMode)
     ShareCoarseElementData();
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void FineCoarseMeshPair<DIM>::ComputeCoarseElementsForFineElementCentroids(bool safeMode)
 {
     if (mpCoarseMeshBoxCollection==nullptr)
@@ -481,7 +481,7 @@ void FineCoarseMeshPair<DIM>::ComputeCoarseElementsForFineElementCentroids(bool 
     ShareCoarseElementData();
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 unsigned FineCoarseMeshPair<DIM>::ComputeCoarseElementForGivenPoint(ChastePoint<DIM>& rPoint,
                                                                     bool safeMode,
                                                                     unsigned boxForThisPoint)
@@ -557,7 +557,7 @@ unsigned FineCoarseMeshPair<DIM>::ComputeCoarseElementForGivenPoint(ChastePoint<
 // Helper methods for code
 ////////////////////////////////////////////////////////////////////////////////////
 
-template<unsigned DIM>
+template <unsigned DIM>
 void FineCoarseMeshPair<DIM>::CollectElementsInContainingBox(DistributedBoxCollection<DIM>*& rpBoxCollection,
                                                              unsigned boxIndex,
                                                              std::set<unsigned>& rElementIndices)
@@ -570,7 +570,7 @@ void FineCoarseMeshPair<DIM>::CollectElementsInContainingBox(DistributedBoxColle
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void FineCoarseMeshPair<DIM>::CollectElementsInLocalBoxes(DistributedBoxCollection<DIM>*& rpBoxCollection,
                                                           unsigned boxIndex,
                                                           std::set<unsigned>& rElementIndices)
@@ -593,7 +593,7 @@ void FineCoarseMeshPair<DIM>::CollectElementsInLocalBoxes(DistributedBoxCollecti
 // Statistics related methods
 ////////////////////////////////////////////////////////////////////////////////////
 
-template<unsigned DIM>
+template <unsigned DIM>
 void FineCoarseMeshPair<DIM>::ResetStatisticsVariables()
 {
     mNotInMesh.clear();
@@ -601,7 +601,7 @@ void FineCoarseMeshPair<DIM>::ResetStatisticsVariables()
     mStatisticsCounters.resize(2, 0u);
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void FineCoarseMeshPair<DIM>::ShareFineElementData()
 {
     if (PetscTools::IsSequential())
@@ -646,7 +646,7 @@ void FineCoarseMeshPair<DIM>::ShareFineElementData()
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void FineCoarseMeshPair<DIM>::ShareCoarseElementData()
 {
     if (PetscTools::IsSequential())
@@ -672,7 +672,7 @@ void FineCoarseMeshPair<DIM>::ShareCoarseElementData()
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void FineCoarseMeshPair<DIM>::PrintStatistics()
 {
     std::cout << "\nFineCoarseMeshPair statistics for the last-called method:\n";

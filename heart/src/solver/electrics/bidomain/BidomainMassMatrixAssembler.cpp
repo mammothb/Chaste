@@ -36,7 +36,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "BidomainMassMatrixAssembler.hpp"
 #include "HeartRegionCodes.hpp"
 
-template<unsigned DIM>
+template <unsigned DIM>
 c_matrix<double,2*(DIM+1),2*(DIM+1)> BidomainMassMatrixAssembler<DIM>::ComputeMatrixTerm(
         c_vector<double, DIM+1> &rPhi,
         c_matrix<double, DIM, DIM+1> &rGradPhi,

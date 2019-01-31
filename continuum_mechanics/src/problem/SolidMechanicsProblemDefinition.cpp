@@ -38,14 +38,14 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "AbstractIncompressibleMaterialLaw.hpp"
 #include "AbstractCompressibleMaterialLaw.hpp"
 
-template<unsigned DIM>
+template <unsigned DIM>
 SolidMechanicsProblemDefinition<DIM>::SolidMechanicsProblemDefinition(AbstractTetrahedralMesh<DIM,DIM>& rMesh)
     : ContinuumMechanicsProblemDefinition<DIM>(rMesh),
       mSolveUsingSnes(false)
 {
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void SolidMechanicsProblemDefinition<DIM>::SetFixedNodes(std::vector<unsigned>& rFixedNodes, std::vector<c_vector<double,DIM> >& rFixedNodeLocations)
 {
     assert(rFixedNodes.size()==rFixedNodeLocations.size());
@@ -74,7 +74,7 @@ void SolidMechanicsProblemDefinition<DIM>::SetFixedNodes(std::vector<unsigned>& 
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void SolidMechanicsProblemDefinition<DIM>::SetMaterialLaw(CompressibilityType compressibilityType,
                                                           AbstractMaterialLaw<DIM>* pMaterialLaw)
 {
@@ -100,7 +100,7 @@ void SolidMechanicsProblemDefinition<DIM>::SetMaterialLaw(CompressibilityType co
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void SolidMechanicsProblemDefinition<DIM>::SetMaterialLaw(CompressibilityType compressibilityType,
                                                           std::vector<AbstractMaterialLaw<DIM>*>& rMaterialLaws)
 {
@@ -134,7 +134,7 @@ void SolidMechanicsProblemDefinition<DIM>::SetMaterialLaw(CompressibilityType co
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 bool SolidMechanicsProblemDefinition<DIM>::IsHomogeneousMaterial()
 {
     // If this fails, SetMaterialLaw() hasn't been called
@@ -142,7 +142,7 @@ bool SolidMechanicsProblemDefinition<DIM>::IsHomogeneousMaterial()
     return mIsHomogeneousMaterial;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 CompressibilityType SolidMechanicsProblemDefinition<DIM>::GetCompressibilityType()
 {
     // If this fails, SetMaterialLaw() hasn't been called
@@ -150,7 +150,7 @@ CompressibilityType SolidMechanicsProblemDefinition<DIM>::GetCompressibilityType
     return mCompressibilityType;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 AbstractIncompressibleMaterialLaw<DIM>* SolidMechanicsProblemDefinition<DIM>::GetIncompressibleMaterialLaw(unsigned elementIndex)
 {
     assert(mCompressibilityType==INCOMPRESSIBLE);
@@ -168,7 +168,7 @@ AbstractIncompressibleMaterialLaw<DIM>* SolidMechanicsProblemDefinition<DIM>::Ge
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 AbstractCompressibleMaterialLaw<DIM>* SolidMechanicsProblemDefinition<DIM>::GetCompressibleMaterialLaw(unsigned elementIndex)
 {
     assert(mCompressibilityType == COMPRESSIBLE);
@@ -186,7 +186,7 @@ AbstractCompressibleMaterialLaw<DIM>* SolidMechanicsProblemDefinition<DIM>::GetC
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void SolidMechanicsProblemDefinition<DIM>::CheckCastSuccess(CompressibilityType compressibilityType,
                                                             AbstractMaterialLaw<DIM>* pMaterialLaw)
 {
@@ -203,7 +203,7 @@ void SolidMechanicsProblemDefinition<DIM>::CheckCastSuccess(CompressibilityType 
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void SolidMechanicsProblemDefinition<DIM>::Validate()
 {
     ContinuumMechanicsProblemDefinition<DIM>::Validate();

@@ -36,7 +36,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "CuboidMeshConstructor.hpp"
 #include "MathsCustomFunctions.hpp"
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void CuboidMeshConstructor<ELEMENT_DIM, SPACE_DIM>::Construct(AbstractTetrahedralMesh<ELEMENT_DIM,SPACE_DIM>& rMesh, unsigned meshRefinementNum, double meshWidth)
 {
     // The class has only been tested for ELEMENT_DIM == SPACE_DIM or ELEMENT_DIM == 1 && SPACE_DIM == 3
@@ -53,19 +53,19 @@ void CuboidMeshConstructor<ELEMENT_DIM, SPACE_DIM>::Construct(AbstractTetrahedra
     mNumNodes = rMesh.GetNumNodes();
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 double CuboidMeshConstructor<ELEMENT_DIM, SPACE_DIM>::GetWidth()
 {
     return mMeshWidth;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 unsigned CuboidMeshConstructor<ELEMENT_DIM, SPACE_DIM>::GetNumElements()
 {
     return mNumElements;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 unsigned CuboidMeshConstructor<ELEMENT_DIM, SPACE_DIM>::GetNumNodes()
 {
     return mNumNodes;

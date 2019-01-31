@@ -54,7 +54,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  * to the OnLatticeSimulation object to specify conditions in which Cells
  * may die.
  */
-template<unsigned DIM>
+template <unsigned DIM>
 class OnLatticeSimulation : public AbstractCellBasedSimulation<DIM>
 {
 private:
@@ -67,7 +67,7 @@ private:
      * @param archive the archive
      * @param version the current version of this class
      */
-    template<class Archive>
+    template <class Archive>
     void serialize(Archive & archive, const unsigned int version)
     {
         archive & boost::serialization::base_object<AbstractCellBasedSimulation<DIM> >(*this);
@@ -144,7 +144,7 @@ namespace serialization
 /**
  * Serialize information required to construct an OnLatticeSimulation.
  */
-template<class Archive, unsigned DIM>
+template <class Archive, unsigned DIM>
 inline void save_construct_data(
     Archive & ar, const OnLatticeSimulation<DIM> * t, const unsigned int file_version)
 {
@@ -156,7 +156,7 @@ inline void save_construct_data(
 /**
  * De-serialize constructor parameters and initialise an OnLatticeSimulation.
  */
-template<class Archive, unsigned DIM>
+template <class Archive, unsigned DIM>
 inline void load_construct_data(
     Archive & ar, OnLatticeSimulation<DIM> * t, const unsigned int file_version)
 {

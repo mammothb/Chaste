@@ -90,7 +90,7 @@ typedef enum ElectricsProblemType_
  *  end
  */
 
-template<unsigned DIM, unsigned ELEC_PROB_DIM=1>
+template <unsigned DIM, unsigned ELEC_PROB_DIM=1>
 class CardiacElectroMechanicsProblem
     : public AbstractConductivityModifier<DIM,DIM> // this only inherits from this class so it can be passed to the tissue to
                                                    // allow deformation-based altering of the conductivity

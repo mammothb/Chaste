@@ -39,14 +39,14 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "RandomNumberGenerator.hpp"
 #include "StemCellProliferativeType.hpp"
 
-template<unsigned DIM>
+template <unsigned DIM>
 CryptSimulationBoundaryCondition<DIM>::CryptSimulationBoundaryCondition(AbstractCellPopulation<DIM>* pCellPopulation)
     : AbstractCellPopulationBoundaryCondition<DIM>(pCellPopulation),
       mUseJiggledBottomCells(false)
 {
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void CryptSimulationBoundaryCondition<DIM>::ImposeBoundaryCondition(const std::map<Node<DIM>*, c_vector<double, DIM> >& rOldLocations)
 {
     // We only allow jiggling of bottom cells in 2D
@@ -154,7 +154,7 @@ void CryptSimulationBoundaryCondition<DIM>::ImposeBoundaryCondition(const std::m
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 bool CryptSimulationBoundaryCondition<DIM>::VerifyBoundaryCondition()
 {
     bool boundary_condition_satisfied = true;
@@ -184,19 +184,19 @@ bool CryptSimulationBoundaryCondition<DIM>::VerifyBoundaryCondition()
     return boundary_condition_satisfied;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void CryptSimulationBoundaryCondition<DIM>::SetUseJiggledBottomCells(bool useJiggledBottomCells)
 {
     mUseJiggledBottomCells = useJiggledBottomCells;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 bool CryptSimulationBoundaryCondition<DIM>::GetUseJiggledBottomCells()
 {
     return mUseJiggledBottomCells;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void CryptSimulationBoundaryCondition<DIM>::OutputCellPopulationBoundaryConditionParameters(out_stream& rParamsFile)
 {
     *rParamsFile << "\t\t<UseJiggledBottomCells>" << mUseJiggledBottomCells << "</UseJiggledBottomCells>\n";

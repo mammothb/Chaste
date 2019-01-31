@@ -56,7 +56,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 /**
  * Abstract base class for all meshes.
  */
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 class AbstractMesh : private boost::noncopyable
 {
     friend class TestDistributedTetrahedralMesh;
@@ -83,7 +83,7 @@ private:
      * @param archive the archive
      * @param version the current version of this class
      */
-    template<class Archive>
+    template <class Archive>
     void serialize(Archive & archive, const unsigned int version)
     {
         archive & mMeshChangesDuringSimulation;
@@ -527,40 +527,40 @@ TEMPLATED_CLASS_IS_ABSTRACT_2_UNSIGNED(AbstractMesh)
 //      NodeIterator class implementation - most methods are inlined        //
 //////////////////////////////////////////////////////////////////////////////
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 typename AbstractMesh<ELEMENT_DIM, SPACE_DIM>::NodeIterator AbstractMesh<ELEMENT_DIM, SPACE_DIM>::GetNodeIteratorBegin(
         bool skipDeletedNodes)
 {
     return NodeIterator(*this, mNodes.begin(), skipDeletedNodes);
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 typename AbstractMesh<ELEMENT_DIM, SPACE_DIM>::NodeIterator AbstractMesh<ELEMENT_DIM, SPACE_DIM>::GetNodeIteratorEnd()
 {
     return NodeIterator(*this, mNodes.end());
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 Node<SPACE_DIM>& AbstractMesh<ELEMENT_DIM, SPACE_DIM>::NodeIterator::operator*()
 {
     assert(!IsAtEnd());
     return **mNodeIter;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 Node<SPACE_DIM>* AbstractMesh<ELEMENT_DIM, SPACE_DIM>::NodeIterator::operator->()
 {
     assert(!IsAtEnd());
     return *mNodeIter;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 bool AbstractMesh<ELEMENT_DIM, SPACE_DIM>::NodeIterator::operator!=(const typename AbstractMesh<ELEMENT_DIM, SPACE_DIM>::NodeIterator& rOther)
 {
     return mNodeIter != rOther.mNodeIter;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 typename AbstractMesh<ELEMENT_DIM, SPACE_DIM>::NodeIterator& AbstractMesh<ELEMENT_DIM, SPACE_DIM>::NodeIterator::operator++()
 {
     do
@@ -572,7 +572,7 @@ typename AbstractMesh<ELEMENT_DIM, SPACE_DIM>::NodeIterator& AbstractMesh<ELEMEN
     return (*this);
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 AbstractMesh<ELEMENT_DIM, SPACE_DIM>::NodeIterator::NodeIterator(
         AbstractMesh<ELEMENT_DIM, SPACE_DIM>& rMesh,
         typename std::vector<Node<SPACE_DIM> *>::iterator nodeIter,
@@ -596,13 +596,13 @@ AbstractMesh<ELEMENT_DIM, SPACE_DIM>::NodeIterator::NodeIterator(
     }
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 bool AbstractMesh<ELEMENT_DIM, SPACE_DIM>::NodeIterator::IsAtEnd()
 {
     return mNodeIter == mrMesh.mNodes.end();
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 bool AbstractMesh<ELEMENT_DIM, SPACE_DIM>::NodeIterator::IsAllowedNode()
 {
     return !(mSkipDeletedNodes && (*this)->IsDeleted());

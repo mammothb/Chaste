@@ -48,7 +48,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  * A NodeBasedCellPopulation is a CellPopulation consisting of only nodes in space with associated cells.
  * There are no elements and no mesh.
  */
-template<unsigned DIM>
+template <unsigned DIM>
 class NodeBasedCellPopulation : public AbstractCentreBasedCellPopulation<DIM>
 {
     friend class TestNodeBasedCellPopulation;
@@ -123,7 +123,7 @@ private:
      * @param archive the archive
      * @param version the current version of this class
      */
-    template<class Archive>
+    template <class Archive>
     void serialize(Archive & archive, const unsigned int version)
     {
         archive & boost::serialization::base_object<AbstractCentreBasedCellPopulation<DIM> >(*this);
@@ -523,7 +523,7 @@ namespace serialization
 /**
  * Serialize information required to construct a NodeBasedCellPopulation.
  */
-template<class Archive, unsigned DIM>
+template <class Archive, unsigned DIM>
 inline void save_construct_data(
     Archive & ar, const NodeBasedCellPopulation<DIM> * t, const unsigned int file_version)
 {
@@ -536,7 +536,7 @@ inline void save_construct_data(
  * De-serialize constructor parameters and initialise a NodeBasedCellPopulation.
  * Loads the mesh from separate files.
  */
-template<class Archive, unsigned DIM>
+template <class Archive, unsigned DIM>
 inline void load_construct_data(
     Archive & ar, NodeBasedCellPopulation<DIM> * t, const unsigned int file_version)
 {

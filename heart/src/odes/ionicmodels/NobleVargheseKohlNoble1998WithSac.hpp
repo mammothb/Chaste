@@ -60,7 +60,7 @@ class CML_noble_varghese_kohl_noble_1998_basic_with_sac : public AbstractCardiac
      * @param archive
      * @param version
      */
-    template<class Archive>
+    template <class Archive>
     void serialize(Archive & archive, const unsigned int version)
     {
         archive & mStretch;
@@ -140,7 +140,7 @@ namespace boost
          * @param t
          * @param fileVersion
          */
-        template<class Archive>
+        template <class Archive>
         inline void save_construct_data(
             Archive & ar, const CML_noble_varghese_kohl_noble_1998_basic_with_sac * t, const unsigned int fileVersion)
         {
@@ -156,7 +156,7 @@ namespace boost
          * @param t
          * @param fileVersion
          */
-        template<class Archive>
+        template <class Archive>
         inline void load_construct_data(
             Archive & ar, CML_noble_varghese_kohl_noble_1998_basic_with_sac * t, const unsigned int fileVersion)
         {

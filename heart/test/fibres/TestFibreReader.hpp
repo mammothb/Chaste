@@ -45,7 +45,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "VtkMeshWriter.hpp"
 
 // simple helper function
-template<unsigned DIM>
+template <unsigned DIM>
 double UblasMatrixInfinityNorm(c_matrix<double,DIM,DIM> mat)
 {
     double ret = fabs(mat(0,0));

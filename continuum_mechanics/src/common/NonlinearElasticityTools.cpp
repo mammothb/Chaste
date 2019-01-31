@@ -35,7 +35,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include "NonlinearElasticityTools.hpp"
 
-template<unsigned DIM>
+template <unsigned DIM>
 std::vector<unsigned> NonlinearElasticityTools<DIM>::GetNodesByComponentValue(TetrahedralMesh<DIM,DIM>& rMesh,
                                                           unsigned component,
                                                           double value)

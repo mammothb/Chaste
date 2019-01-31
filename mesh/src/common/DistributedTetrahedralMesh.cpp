@@ -71,7 +71,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //   IMPLEMENTATION
 /////////////////////////////////////////////////////////////////////////////////////
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 DistributedTetrahedralMesh<ELEMENT_DIM, SPACE_DIM>::DistributedTetrahedralMesh(DistributedTetrahedralMeshPartitionType::type partitioningMethod)
     :
       mTotalNumElements(0u),
@@ -87,7 +87,7 @@ DistributedTetrahedralMesh<ELEMENT_DIM, SPACE_DIM>::DistributedTetrahedralMesh(D
     }
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 DistributedTetrahedralMesh<ELEMENT_DIM, SPACE_DIM>::~DistributedTetrahedralMesh()
 {
     for (unsigned i=0; i<this->mHaloNodes.size(); i++)
@@ -96,14 +96,14 @@ DistributedTetrahedralMesh<ELEMENT_DIM, SPACE_DIM>::~DistributedTetrahedralMesh(
     }
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void DistributedTetrahedralMesh<ELEMENT_DIM, SPACE_DIM>::SetDistributedVectorFactory(DistributedVectorFactory* pFactory)
 {
     AbstractMesh<ELEMENT_DIM,SPACE_DIM>::SetDistributedVectorFactory(pFactory);
     mPartitioning = DistributedTetrahedralMeshPartitionType::DUMB;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void DistributedTetrahedralMesh<ELEMENT_DIM, SPACE_DIM>::ComputeMeshPartitioning(
     AbstractMeshReader<ELEMENT_DIM, SPACE_DIM>& rMeshReader,
     std::set<unsigned>& rNodesOwned,
@@ -228,7 +228,7 @@ void DistributedTetrahedralMesh<ELEMENT_DIM, SPACE_DIM>::ComputeMeshPartitioning
     rMeshReader.Reset();
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void DistributedTetrahedralMesh<ELEMENT_DIM, SPACE_DIM>::ConstructFromMeshReader(
     AbstractMeshReader<ELEMENT_DIM, SPACE_DIM>& rMeshReader)
 {
@@ -462,61 +462,61 @@ void DistributedTetrahedralMesh<ELEMENT_DIM, SPACE_DIM>::ConstructFromMeshReader
     rMeshReader.Reset();
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 unsigned DistributedTetrahedralMesh<ELEMENT_DIM, SPACE_DIM>::GetNumLocalNodes() const
 {
     return this->mNodes.size();
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 unsigned DistributedTetrahedralMesh<ELEMENT_DIM, SPACE_DIM>::GetNumHaloNodes() const
 {
     return this->mHaloNodes.size();
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 unsigned DistributedTetrahedralMesh<ELEMENT_DIM, SPACE_DIM>::GetNumLocalElements() const
 {
     return this->mElements.size();
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 unsigned DistributedTetrahedralMesh<ELEMENT_DIM, SPACE_DIM>::GetNumLocalBoundaryElements() const
 {
     return this->mBoundaryElements.size();
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 unsigned DistributedTetrahedralMesh<ELEMENT_DIM, SPACE_DIM>::GetNumNodes() const
 {
     return mTotalNumNodes;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 unsigned DistributedTetrahedralMesh<ELEMENT_DIM, SPACE_DIM>::GetNumAllNodes() const
 {
     return mTotalNumNodes;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 unsigned DistributedTetrahedralMesh<ELEMENT_DIM, SPACE_DIM>::GetNumElements() const
 {
     return mTotalNumElements;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 DistributedTetrahedralMeshPartitionType::type DistributedTetrahedralMesh<ELEMENT_DIM, SPACE_DIM>::GetPartitionType() const
 {
     return mPartitioning;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 unsigned DistributedTetrahedralMesh<ELEMENT_DIM, SPACE_DIM>::GetNumBoundaryElements() const
 {
     return mTotalNumBoundaryElements;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void DistributedTetrahedralMesh<ELEMENT_DIM, SPACE_DIM>::GetHaloNodeIndices(std::vector<unsigned>& rHaloIndices) const
 {
     //Make sure the output vector is empty
@@ -1692,7 +1692,7 @@ typename DistributedTetrahedralMesh<ELEMENT_DIM, SPACE_DIM>::HaloNodeIterator Di
     return mHaloNodes.begin();
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void DistributedTetrahedralMesh<ELEMENT_DIM, SPACE_DIM>::Rotate(c_matrix<double, SPACE_DIM, SPACE_DIM> rotationMatrix)
 {
     // First do the extras
@@ -1709,7 +1709,7 @@ void DistributedTetrahedralMesh<ELEMENT_DIM, SPACE_DIM>::Rotate(c_matrix<double,
     }
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void DistributedTetrahedralMesh<ELEMENT_DIM, SPACE_DIM>::Translate(const c_vector<double, SPACE_DIM>& rDisplacement)
 {
     // First do the extras

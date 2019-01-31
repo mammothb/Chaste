@@ -60,7 +60,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  * direction of the myofibre, the transverse to it in the plane of
  * the myocyte laminae and the normal to this laminae.
  */
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 class StreeterFibreGenerator : public AbstractPerElementWriter<SPACE_DIM, SPACE_DIM, SPACE_DIM*SPACE_DIM>
 {
 private:

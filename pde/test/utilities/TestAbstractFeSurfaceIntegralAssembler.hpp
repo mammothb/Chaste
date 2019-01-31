@@ -43,7 +43,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "ConstBoundaryCondition.hpp"
 #include "PetscSetupAndFinalize.hpp"
 
-template<unsigned DIM>
+template <unsigned DIM>
 class BasicSurfaceAssembler : public AbstractFeSurfaceIntegralAssembler<DIM,DIM,1>
 {
 private:

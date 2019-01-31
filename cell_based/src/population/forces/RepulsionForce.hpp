@@ -47,7 +47,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  * with a nonlinear separation less than 2. This force does not
  * take a cell's age or cell cycle phase into account.
  */
-template<unsigned DIM>
+template <unsigned DIM>
 class RepulsionForce : public GeneralisedLinearSpringForce<DIM>
 {
 private :
@@ -60,7 +60,7 @@ private :
      * @param archive the archive
      * @param version the current version of this class
      */
-    template<class Archive>
+    template <class Archive>
     void serialize(Archive & archive, const unsigned int version)
     {
         archive & boost::serialization::base_object<GeneralisedLinearSpringForce<DIM> >(*this);

@@ -50,7 +50,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 class TestNodeAttributes : public CxxTest::TestSuite
 {
 private:
-    template<unsigned DIM>
+    template <unsigned DIM>
     void TestConstructNodeAttributes(double tol)
     {
         NodeAttributes<DIM> node_attributes;

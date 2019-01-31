@@ -58,7 +58,7 @@ typedef unsigned HeartRegionType;
  * This class provides a method to calculate the relative position of a node with respect to two (or three)
  * given surfaces.
  */
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 class HeartGeometryInformation
 {
 private:

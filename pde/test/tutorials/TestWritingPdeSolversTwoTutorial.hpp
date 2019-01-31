@@ -107,7 +107,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  * in the template list (as well as the dimension template parameters as normal) - these booleans say
  * whether this class will be assembling a vector or a matrix (or both).
  */
-template<unsigned DIM>
+template <unsigned DIM>
 class RhsMatrixAssembler
     : public AbstractFeVolumeIntegralAssembler<DIM,DIM,1/*problem dim*/,false /*doesn't assemble vectors*/,true/*assembles a matrix*/,NORMAL /*amount of interpolation*/>
 {
@@ -174,7 +174,7 @@ public:
  * up the linear system. In this case, it needs to set the LHS matrix in the linear system to
  * be M, and set the RHS vector to be `rhs_matrix * current_soln`.
  */
-template<unsigned DIM>
+template <unsigned DIM>
 class ExplicitHeatEquationSolver : public AbstractDynamicLinearPdeSolver<DIM,DIM,1>
 {
 private:

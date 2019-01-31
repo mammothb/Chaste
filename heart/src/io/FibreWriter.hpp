@@ -49,7 +49,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  * for each element) and .ortho files (files which define the fibre, sheet
  * and normal directions for each element.
  */
-template<unsigned DIM>
+template <unsigned DIM>
 class FibreWriter
 {
 private:

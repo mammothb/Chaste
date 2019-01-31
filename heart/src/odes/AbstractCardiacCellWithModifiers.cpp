@@ -37,14 +37,14 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "AbstractCvodeCellWithDataClamp.hpp"
 #include "DummyModifier.hpp"
 
-template<class CARDIAC_CELL>
+template <class CARDIAC_CELL>
 void AbstractCardiacCellWithModifiers<CARDIAC_CELL>::AddModifier(std::string modifierName, boost::shared_ptr<AbstractModifier>& pModifier)
 {
     mModifiersMap[modifierName] = &pModifier;
     pModifier = boost::shared_ptr<AbstractModifier>(new DummyModifier()); // This modifier always returns what is passed in.
 }
 
-template<class CARDIAC_CELL>
+template <class CARDIAC_CELL>
 AbstractCardiacCellWithModifiers<CARDIAC_CELL>::AbstractCardiacCellWithModifiers(boost::shared_ptr<AbstractIvpOdeSolver> pOdeSolver,
                                  unsigned numberOfStateVariables,
                                  unsigned voltageIndex,
@@ -54,7 +54,7 @@ AbstractCardiacCellWithModifiers<CARDIAC_CELL>::AbstractCardiacCellWithModifiers
     mModifiersMap.clear();
 }
 
-template<class CARDIAC_CELL>
+template <class CARDIAC_CELL>
 boost::shared_ptr<AbstractModifier> AbstractCardiacCellWithModifiers<CARDIAC_CELL>::GetModifier(const std::string& rModifierName)
 {
     if (mModifiersMap.find(rModifierName) == mModifiersMap.end())
@@ -64,13 +64,13 @@ boost::shared_ptr<AbstractModifier> AbstractCardiacCellWithModifiers<CARDIAC_CEL
     return *(mModifiersMap[rModifierName]);
 }
 
-template<class CARDIAC_CELL>
+template <class CARDIAC_CELL>
 bool AbstractCardiacCellWithModifiers<CARDIAC_CELL>::HasModifier(const std::string& rModifierName) const
 {
     return !(mModifiersMap.find(rModifierName) == mModifiersMap.end());
 }
 
-template<class CARDIAC_CELL>
+template <class CARDIAC_CELL>
 void AbstractCardiacCellWithModifiers<CARDIAC_CELL>::SetModifier(const std::string& rModifierName, boost::shared_ptr<AbstractModifier>& pNewModifier)
 {
     if (mModifiersMap.find(rModifierName) == mModifiersMap.end())

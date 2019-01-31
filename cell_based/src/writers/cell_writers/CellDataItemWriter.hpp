@@ -51,7 +51,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  * Note: if VTK is switched on then everything in CellData will be output as VTK cell
  * data already but this is the best way to output to a .dat file.
  */
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 class CellDataItemWriter : public AbstractCellWriter<ELEMENT_DIM, SPACE_DIM>
 {
 private:
@@ -63,7 +63,7 @@ private:
      * @param archive the archive
      * @param version the current version of this class
      */
-    template<class Archive>
+    template <class Archive>
     void serialize(Archive & archive, const unsigned int version)
     {
         archive & boost::serialization::base_object<AbstractCellWriter<ELEMENT_DIM, SPACE_DIM> >(*this);
@@ -130,7 +130,7 @@ namespace serialization
 /**
  * Serialize information required to construct a CellDataItemWriter.
  */
-template<class Archive, unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <class Archive, unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 inline void save_construct_data(
     Archive & ar, const CellDataItemWriter<ELEMENT_DIM, SPACE_DIM>* t, const unsigned int file_version)
 {
@@ -142,7 +142,7 @@ inline void save_construct_data(
 /**
  * De-serialize constructor parameters and initialise a CellDataItemWriter.
  */
-template<class Archive, unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <class Archive, unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 inline void load_construct_data(
     Archive & ar, CellDataItemWriter<ELEMENT_DIM, SPACE_DIM>* t, const unsigned int file_version)
 {

@@ -35,7 +35,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include "AbstractOffLatticeCellPopulation.hpp"
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 AbstractOffLatticeCellPopulation<ELEMENT_DIM, SPACE_DIM>::AbstractOffLatticeCellPopulation( AbstractMesh<ELEMENT_DIM, SPACE_DIM>& rMesh,
                                                                     std::vector<CellPtr>& rCells,
                                                                     const std::vector<unsigned> locationIndices)
@@ -46,14 +46,14 @@ AbstractOffLatticeCellPopulation<ELEMENT_DIM, SPACE_DIM>::AbstractOffLatticeCell
 {
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 AbstractOffLatticeCellPopulation<ELEMENT_DIM, SPACE_DIM>::AbstractOffLatticeCellPopulation(AbstractMesh<ELEMENT_DIM, SPACE_DIM>& rMesh)
     : AbstractCellPopulation<ELEMENT_DIM, SPACE_DIM>(rMesh)
 {
 }
 
 // LCOV_EXCL_START
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void AbstractOffLatticeCellPopulation<ELEMENT_DIM, SPACE_DIM>::UpdateNodeLocations(double dt)
 {
   // This method is deprecated by the NumericalMethod class hierarchy; the only population that calls this method is the NodeBasedCellPopulationWithBuskeUpdate.
@@ -61,45 +61,45 @@ void AbstractOffLatticeCellPopulation<ELEMENT_DIM, SPACE_DIM>::UpdateNodeLocatio
 }
 // LCOV_EXCL_STOP
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void AbstractOffLatticeCellPopulation<ELEMENT_DIM, SPACE_DIM>::SetDampingConstantNormal(double dampingConstantNormal)
 {
     assert(dampingConstantNormal > 0.0);
     mDampingConstantNormal = dampingConstantNormal;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void AbstractOffLatticeCellPopulation<ELEMENT_DIM, SPACE_DIM>::SetDampingConstantMutant(double dampingConstantMutant)
 {
     assert(dampingConstantMutant > 0.0);
     mDampingConstantMutant = dampingConstantMutant;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void AbstractOffLatticeCellPopulation<ELEMENT_DIM, SPACE_DIM>::SetAbsoluteMovementThreshold(double absoluteMovementThreshold)
 {
     mAbsoluteMovementThreshold = absoluteMovementThreshold;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 double AbstractOffLatticeCellPopulation<ELEMENT_DIM, SPACE_DIM>::GetDampingConstantNormal()
 {
     return mDampingConstantNormal;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 double AbstractOffLatticeCellPopulation<ELEMENT_DIM, SPACE_DIM>::GetDampingConstantMutant()
 {
     return mDampingConstantMutant;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 double AbstractOffLatticeCellPopulation<ELEMENT_DIM, SPACE_DIM>::GetAbsoluteMovementThreshold()
 {
     return mAbsoluteMovementThreshold;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void AbstractOffLatticeCellPopulation<ELEMENT_DIM, SPACE_DIM>::OutputCellPopulationParameters(out_stream& rParamsFile)
 {
     *rParamsFile << "\t\t<DampingConstantNormal>" << mDampingConstantNormal << "</DampingConstantNormal>\n";

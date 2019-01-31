@@ -151,7 +151,7 @@ double Kerchoffs2003ContractionModel::GetNextActiveTension()
     return GetActiveTension(mTemporaryStateVariables[0]);
 }
 
-template<>
+template <>
 void OdeSystemInformation<Kerchoffs2003ContractionModel>::Initialise()
 {
     this->mVariableNames.push_back("lc");

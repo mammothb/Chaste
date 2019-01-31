@@ -56,7 +56,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  * See documentation of ElectrodesStimulusFactory for full functionality.
  *
  */
-template<unsigned DIM>
+template <unsigned DIM>
 class ZeroNetChargeElectrodes : public ElectrodesStimulusFactory<DIM>
 {
 

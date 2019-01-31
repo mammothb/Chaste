@@ -63,7 +63,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  * Various operations are currently very inefficient - there is certainly scope for
  * optimisation here!
  */
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM, unsigned PROBLEM_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM, unsigned PROBLEM_DIM>
 class BoundaryConditionsContainer : public AbstractBoundaryConditionsContainer<ELEMENT_DIM,SPACE_DIM,PROBLEM_DIM>
 {
 public:
@@ -365,7 +365,7 @@ private:
      * @param archive
      * @param version
      */
-    template<class Archive>
+    template <class Archive>
     void save(Archive & archive, const unsigned int version) const;
 
     /**
@@ -385,7 +385,7 @@ private:
      * @param archive
      * @param version
      */
-    template<class Archive>
+    template <class Archive>
     void load(Archive & archive, const unsigned int version)
     {
     }
@@ -393,8 +393,8 @@ private:
     BOOST_SERIALIZATION_SPLIT_MEMBER()
 };
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM, unsigned PROBLEM_DIM>
-template<class Archive>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM, unsigned PROBLEM_DIM>
+template <class Archive>
 void BoundaryConditionsContainer<ELEMENT_DIM,SPACE_DIM,PROBLEM_DIM>::save(
         Archive & archive, const unsigned int version) const
 {
@@ -432,8 +432,8 @@ void BoundaryConditionsContainer<ELEMENT_DIM,SPACE_DIM,PROBLEM_DIM>::save(
     }
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM, unsigned PROBLEM_DIM>
-template<class Archive>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM, unsigned PROBLEM_DIM>
+template <class Archive>
 void BoundaryConditionsContainer<ELEMENT_DIM,SPACE_DIM,PROBLEM_DIM>::MergeFromArchive(
         Archive & archive, AbstractTetrahedralMesh<ELEMENT_DIM,SPACE_DIM>* pMesh)
 {

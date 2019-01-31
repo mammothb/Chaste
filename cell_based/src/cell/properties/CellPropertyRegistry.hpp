@@ -58,7 +58,7 @@ public:
      *    boost::shared_ptr<AbstractCellProperty> p_property(
                 CellPropertyRegistry::Instance()->Get<WildTypeCellMutationState>());
      */
-    template<class SUBCLASS>
+    template <class SUBCLASS>
     boost::shared_ptr<AbstractCellProperty> Get();
 
     /**
@@ -141,7 +141,7 @@ private:
      * @param archive the archive
      * @param version the current version of this class
      */
-    template<class Archive>
+    template <class Archive>
     void serialize(Archive & archive, const unsigned int version)
     {
         archive & mCellProperties;
@@ -149,7 +149,7 @@ private:
     }
 };
 
-template<class SUBCLASS>
+template <class SUBCLASS>
 boost::shared_ptr<AbstractCellProperty> CellPropertyRegistry::Get()
 {
     boost::shared_ptr<AbstractCellProperty> p_property;

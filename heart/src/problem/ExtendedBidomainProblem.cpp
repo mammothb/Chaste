@@ -42,7 +42,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "DistributedVector.hpp"
 #include "ReplicatableVector.hpp"
 
-template<unsigned DIM>
+template <unsigned DIM>
 ExtendedBidomainProblem<DIM>::ExtendedBidomainProblem(
             AbstractCardiacCellFactory<DIM>* pCellFactory, AbstractCardiacCellFactory<DIM>* pSecondCellFactory, bool hasBath)
     : AbstractCardiacProblem<DIM,DIM, 3>(pCellFactory),
@@ -59,7 +59,7 @@ ExtendedBidomainProblem<DIM>::ExtendedBidomainProblem(
     mFixedExtracellularPotentialNodes.resize(0);
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 ExtendedBidomainProblem<DIM>::ExtendedBidomainProblem()
     : AbstractCardiacProblem<DIM,DIM, 3>(),
       mpSecondCellFactory(NULL),
@@ -74,7 +74,7 @@ ExtendedBidomainProblem<DIM>::ExtendedBidomainProblem()
     mFixedExtracellularPotentialNodes.resize(0);
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 Vec ExtendedBidomainProblem<DIM>::CreateInitialCondition()
 {
 
@@ -101,7 +101,7 @@ Vec ExtendedBidomainProblem<DIM>::CreateInitialCondition()
     return initial_condition;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void ExtendedBidomainProblem<DIM>::ProcessExtracellularStimulus()
 {
     if (mpExtracellularStimulusFactory == NULL) // user has not passed in any extracellular stimulus in any form
@@ -137,7 +137,7 @@ void ExtendedBidomainProblem<DIM>::ProcessExtracellularStimulus()
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 AbstractCardiacTissue<DIM> * ExtendedBidomainProblem<DIM>::CreateCardiacTissue()
 {
     //set the mesh into the second cell factory as well.
@@ -193,7 +193,7 @@ AbstractCardiacTissue<DIM> * ExtendedBidomainProblem<DIM>::CreateCardiacTissue()
     return mpExtendedBidomainTissue;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void ExtendedBidomainProblem<DIM>::SetExtendedBidomainParameters(double Am1, double Am2, double AmGap, double Cm1, double Cm2, double Ggap)
 {
      mAmFirstCell = Am1;
@@ -224,7 +224,7 @@ void ExtendedBidomainProblem<DIM>::SetExtracellularStimulusFactory( AbstractStim
     mUserSuppliedExtracellularStimulus = true;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 AbstractDynamicLinearPdeSolver<DIM, DIM, 3>* ExtendedBidomainProblem<DIM>::CreateSolver()
 {
     /*
@@ -256,7 +256,7 @@ AbstractDynamicLinearPdeSolver<DIM, DIM, 3>* ExtendedBidomainProblem<DIM>::Creat
     return mpSolver;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 ExtendedBidomainProblem<DIM>::~ExtendedBidomainProblem()
 {
     if (!mUserSuppliedExtracellularStimulus)
@@ -265,7 +265,7 @@ ExtendedBidomainProblem<DIM>::~ExtendedBidomainProblem()
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void ExtendedBidomainProblem<DIM>::SetIntracellularConductivitiesForSecondCell(c_vector<double, DIM> conductivities)
 {
     for (unsigned i = 0; i < DIM; i++)
@@ -275,7 +275,7 @@ void ExtendedBidomainProblem<DIM>::SetIntracellularConductivitiesForSecondCell(c
     mUserSpecifiedSecondCellConductivities = true;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void ExtendedBidomainProblem<DIM>::SetFixedExtracellularPotentialNodes(std::vector<unsigned> nodes)
 {
     assert(mFixedExtracellularPotentialNodes.size() == 0); ///\todo turn this into an exception if the user calls this twice...
@@ -288,7 +288,7 @@ void ExtendedBidomainProblem<DIM>::SetFixedExtracellularPotentialNodes(std::vect
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void ExtendedBidomainProblem<DIM>::SetNodeForAverageOfPhiZeroed(unsigned node)
 {
     if (node==0)
@@ -302,14 +302,14 @@ void ExtendedBidomainProblem<DIM>::SetNodeForAverageOfPhiZeroed(unsigned node)
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 ExtendedBidomainTissue<DIM>* ExtendedBidomainProblem<DIM>::GetExtendedBidomainTissue()
 {
     assert(mpExtendedBidomainTissue!=NULL);
     return mpExtendedBidomainTissue;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void ExtendedBidomainProblem<DIM>::WriteInfo(double time)
 {
     if (PetscTools::AmMaster())
@@ -337,7 +337,7 @@ void ExtendedBidomainProblem<DIM>::WriteInfo(double time)
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void ExtendedBidomainProblem<DIM>::DefineWriterColumns(bool extending)
 {
     if (!extending)
@@ -377,7 +377,7 @@ void ExtendedBidomainProblem<DIM>::DefineWriterColumns(bool extending)
 
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void ExtendedBidomainProblem<DIM>::WriteOneStep(double time, Vec voltageVec)
 {
     this->mpWriter->PutUnlimitedVariable(time);
@@ -414,7 +414,7 @@ void ExtendedBidomainProblem<DIM>::WriteOneStep(double time, Vec voltageVec)
     AbstractCardiacProblem<DIM,DIM,3>::WriteExtraVariablesOneStep();
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void ExtendedBidomainProblem<DIM>::PreSolveChecks()
 {
     AbstractCardiacProblem<DIM,DIM, 3>::PreSolveChecks();
@@ -434,13 +434,13 @@ void ExtendedBidomainProblem<DIM>::PreSolveChecks()
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 bool ExtendedBidomainProblem<DIM>::GetHasBath()
 {
     return mHasBath;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void ExtendedBidomainProblem<DIM>::SetHasBath(bool hasBath)
 {
     mHasBath = hasBath;

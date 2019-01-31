@@ -81,7 +81,7 @@ private:
      * @param archive the archive
      * @param version the archive version
      */
-    template<class Archive>
+    template <class Archive>
     void save(Archive & archive, const unsigned int version) const
     {
         const std::string so_path = GetLoader()->GetLoadableModulePath();
@@ -93,7 +93,7 @@ private:
      * @param archive the archive
      * @param version the archive version
      */
-    template<class Archive>
+    template <class Archive>
     void load(Archive & archive, const unsigned int version)
     {
         std::string so_path;

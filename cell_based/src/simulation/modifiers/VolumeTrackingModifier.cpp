@@ -36,24 +36,24 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "VolumeTrackingModifier.hpp"
 #include "MeshBasedCellPopulation.hpp"
 
-template<unsigned DIM>
+template <unsigned DIM>
 VolumeTrackingModifier<DIM>::VolumeTrackingModifier()
     : AbstractCellBasedSimulationModifier<DIM>()
 {
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 VolumeTrackingModifier<DIM>::~VolumeTrackingModifier()
 {
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void VolumeTrackingModifier<DIM>::UpdateAtEndOfTimeStep(AbstractCellPopulation<DIM,DIM>& rCellPopulation)
 {
     UpdateCellData(rCellPopulation);
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void VolumeTrackingModifier<DIM>::SetupSolve(AbstractCellPopulation<DIM,DIM>& rCellPopulation, std::string outputDirectory)
 {
     /*
@@ -63,7 +63,7 @@ void VolumeTrackingModifier<DIM>::SetupSolve(AbstractCellPopulation<DIM,DIM>& rC
     UpdateCellData(rCellPopulation);
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void VolumeTrackingModifier<DIM>::UpdateCellData(AbstractCellPopulation<DIM,DIM>& rCellPopulation)
 {
     // Make sure the cell population is updated
@@ -96,7 +96,7 @@ void VolumeTrackingModifier<DIM>::UpdateCellData(AbstractCellPopulation<DIM,DIM>
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void VolumeTrackingModifier<DIM>::OutputSimulationModifierParameters(out_stream& rParamsFile)
 {
     // No parameters to output, so just call method on direct parent class

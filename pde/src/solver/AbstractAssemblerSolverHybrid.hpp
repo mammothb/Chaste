@@ -51,7 +51,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  * See SimpleLinearEllipticSolver for an example of a concrete class
  */
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM, unsigned PROBLEM_DIM, InterpolationLevel INTERPOLATION_LEVEL>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM, unsigned PROBLEM_DIM, InterpolationLevel INTERPOLATION_LEVEL>
 class AbstractAssemblerSolverHybrid
    : public AbstractFeVolumeIntegralAssembler<ELEMENT_DIM, SPACE_DIM, PROBLEM_DIM, true, true, INTERPOLATION_LEVEL>
 {
@@ -107,7 +107,7 @@ public:
     void SetupGivenLinearSystem(Vec currentSolution, bool computeMatrix, LinearSystem* pLinearSystem);
 };
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM, unsigned PROBLEM_DIM, InterpolationLevel INTERPOLATION_LEVEL>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM, unsigned PROBLEM_DIM, InterpolationLevel INTERPOLATION_LEVEL>
 void AbstractAssemblerSolverHybrid<ELEMENT_DIM, SPACE_DIM, PROBLEM_DIM, INTERPOLATION_LEVEL>::SetupGivenLinearSystem(Vec currentSolution,
                                                                                                                      bool computeMatrix,
                                                                                                                      LinearSystem* pLinearSystem)

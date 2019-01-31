@@ -39,7 +39,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "UblasIncludes.hpp"
 
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 c_matrix<double,2*(ELEMENT_DIM+1),2*(ELEMENT_DIM+1)>
     BidomainAssembler<ELEMENT_DIM,SPACE_DIM>::ComputeMatrixTerm(
             c_vector<double, ELEMENT_DIM+1> &rPhi,
@@ -94,7 +94,7 @@ c_matrix<double,2*(ELEMENT_DIM+1),2*(ELEMENT_DIM+1)>
     return ret;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 BidomainAssembler<ELEMENT_DIM,SPACE_DIM>::BidomainAssembler(
             AbstractTetrahedralMesh<ELEMENT_DIM,SPACE_DIM>* pMesh,
             BidomainTissue<SPACE_DIM>* pTissue)

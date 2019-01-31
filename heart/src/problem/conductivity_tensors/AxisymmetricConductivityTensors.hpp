@@ -42,7 +42,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  * However axisymmetric conductivity only makes sense in 3D, so we check in the constructor
  * for SPACE_DIM to be 3.
  */
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 class AxisymmetricConductivityTensors : public AbstractConductivityTensors<ELEMENT_DIM, SPACE_DIM>
 {
 public:

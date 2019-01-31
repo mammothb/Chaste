@@ -46,7 +46,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *  the exact definition of this.
  *
  */
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 class BidomainWithBathAssembler : public BidomainAssembler<ELEMENT_DIM,SPACE_DIM>
 {
 protected:

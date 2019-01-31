@@ -22,7 +22,7 @@ namespace CxxTest
 {
     //
     // NOTE: This should have been
-    // template<class Char, class Traits, class Allocator>
+    // template <class Char, class Traits, class Allocator>
     // class ValueTraits< std::basic_string<Char, Traits, Allocator> > {};
     // But MSVC doesn't support it (yet).
     //
@@ -88,7 +88,7 @@ namespace CxxTest
     // Convert a range defined by iterators to a string
     // This is useful for almost all STL containers
     //
-    template<class Stream, class Iterator>
+    template <class Stream, class Iterator>
     void dumpRange( Stream &s, Iterator first, Iterator last )
     {
         s << "{ ";
@@ -103,7 +103,7 @@ namespace CxxTest
     //
     // std::pair
     //
-    template<class First, class Second>
+    template <class First, class Second>
     class ValueTraits< CXXTEST_STD(pair)<First, Second> > : public StdTraitsBase
     {
     public:
@@ -116,7 +116,7 @@ namespace CxxTest
     //
     // std::vector
     //
-    template<class Element>
+    template <class Element>
     class ValueTraits< CXXTEST_STD(vector)<Element> > : public StdTraitsBase
     {
     public:
@@ -129,7 +129,7 @@ namespace CxxTest
     //
     // std::list
     //
-    template<class Element>
+    template <class Element>
     class ValueTraits< CXXTEST_STD(list)<Element> > : public StdTraitsBase
     {
     public:
@@ -142,7 +142,7 @@ namespace CxxTest
     //
     // std::set
     //
-    template<class Element>
+    template <class Element>
     class ValueTraits< CXXTEST_STD(set)<Element> > : public StdTraitsBase
     {
     public:
@@ -155,7 +155,7 @@ namespace CxxTest
     //
     // std::map
     //
-    template<class Key, class Value>
+    template <class Key, class Value>
     class ValueTraits< CXXTEST_STD(map)<Key, Value> > : public StdTraitsBase
     {
     public:
@@ -168,7 +168,7 @@ namespace CxxTest
     //
     // std::deque
     //
-    template<class Element>
+    template <class Element>
     class ValueTraits< CXXTEST_STD(deque)<Element> > : public StdTraitsBase
     {
     public:
@@ -181,7 +181,7 @@ namespace CxxTest
     //
     // std::multiset
     //
-    template<class Element>
+    template <class Element>
     class ValueTraits< CXXTEST_STD(multiset)<Element> > : public StdTraitsBase
     {
     public:
@@ -194,7 +194,7 @@ namespace CxxTest
     //
     // std::multimap
     //
-    template<class Key, class Value>
+    template <class Key, class Value>
     class ValueTraits< CXXTEST_STD(multimap)<Key, Value> > : public StdTraitsBase
     {
     public:
@@ -207,7 +207,7 @@ namespace CxxTest
     //
     // std::complex
     //
-    template<class Number>
+    template <class Number>
     class ValueTraits< CXXTEST_STD(complex)<Number> > : public StdTraitsBase
     {
     public:

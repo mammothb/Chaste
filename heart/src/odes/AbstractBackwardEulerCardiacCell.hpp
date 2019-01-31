@@ -63,7 +63,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *      nonlinear system \f$U_n - U_{n-1} = dt*F(U_n, V_n)\f$.
  *      The template parameter to the class specifies the size of this nonlinear system.
  */
-template<unsigned SIZE>
+template <unsigned SIZE>
 class AbstractBackwardEulerCardiacCell : public AbstractCardiacCell
 {
     private:
@@ -75,7 +75,7 @@ class AbstractBackwardEulerCardiacCell : public AbstractCardiacCell
      * @param archive
      * @param version
      */
-    template<class Archive>
+    template <class Archive>
     void serialize(Archive & archive, const unsigned int version)
     {
         // This calls serialize on the base class.
@@ -297,7 +297,7 @@ void AbstractBackwardEulerCardiacCell<SIZE>::ComputeExceptVoltage(double tStart,
     }
 }
 
-template<unsigned SIZE>
+template <unsigned SIZE>
 void AbstractBackwardEulerCardiacCell<SIZE>::SolveAndUpdateState(double tStart, double tEnd)
 {
     TimeStepper stepper(tStart, tEnd, mDt);
@@ -326,7 +326,7 @@ void AbstractBackwardEulerCardiacCell<SIZE>::SolveAndUpdateState(double tStart, 
 /**
  * Specialization for the case where there are no non-linear ODEs in the model.
  */
-template<>
+template <>
 class AbstractBackwardEulerCardiacCell<0u> : public AbstractCardiacCell
 {
 private:
@@ -338,7 +338,7 @@ private:
      * @param archive
      * @param version
      */
-    template<class Archive>
+    template <class Archive>
     void serialize(Archive & archive, const unsigned int version)
     {
         // This calls serialize on the base class.
@@ -533,7 +533,7 @@ protected:
 #ifndef NDEBUG
 #include "OutputFileHandler.hpp"
 #include <boost/foreach.hpp>
-template<unsigned SIZE>
+template <unsigned SIZE>
 void DumpJacobianToFile(double time, const double rCurrentGuess[SIZE], double rJacobian[SIZE][SIZE],
                         const std::vector<double>& rY)
 {

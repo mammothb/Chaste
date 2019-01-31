@@ -60,7 +60,7 @@ class TestStressRecoveror;
  * Uses quadratic basis functions for displacement, and is therefore outside the
  * other assembler or solver hierarchy.
  */
-template<size_t DIM>
+template <size_t DIM>
 class CompressibleNonlinearElasticitySolver : public AbstractNonlinearElasticitySolver<DIM>
 {
     friend class TestCompressibleNonlinearElasticitySolver;

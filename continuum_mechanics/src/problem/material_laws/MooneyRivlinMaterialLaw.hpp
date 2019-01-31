@@ -60,7 +60,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
  *  Note: only dimension equals 2 or 3 is permitted.
  */
-template<unsigned DIM>
+template <unsigned DIM>
 class MooneyRivlinMaterialLaw : public AbstractIsotropicIncompressibleMaterialLaw<DIM>
 {
 private:

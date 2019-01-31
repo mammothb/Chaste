@@ -48,7 +48,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  * \todo #2266 - throw exceptions if using other cell population objects?
  * \todo #2266 - override CalculateForceBetweenNodes() to use a default rest length of 1.0 for all springs?
  */
-template<unsigned  ELEMENT_DIM, unsigned SPACE_DIM=ELEMENT_DIM>
+template <unsigned  ELEMENT_DIM, unsigned SPACE_DIM=ELEMENT_DIM>
 class DifferentialAdhesionGeneralisedLinearSpringForce : public GeneralisedLinearSpringForce<ELEMENT_DIM, SPACE_DIM>
 {
 private :
@@ -84,7 +84,7 @@ private :
      * @param archive the archive
      * @param version the current version of this class
      */
-    template<class Archive>
+    template <class Archive>
     void serialize(Archive & archive, const unsigned int version)
     {
         archive & boost::serialization::base_object<GeneralisedLinearSpringForce<ELEMENT_DIM, SPACE_DIM> >(*this);

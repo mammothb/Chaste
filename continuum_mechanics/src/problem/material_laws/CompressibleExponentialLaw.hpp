@@ -55,7 +55,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *  SetChangeOfBasisMatrix() before ComputeStressAndStressDerivative(), with
  *  the matrix P = [fibre_vec, sheet_vec, normal_vec] if this is not the case.
  */
-template<unsigned DIM>
+template <unsigned DIM>
 class CompressibleExponentialLaw : public AbstractCompressibleMaterialLaw<DIM>
 {
 friend class TestCompressibleLawTransverselyIsotropic; // note: this law is not transversely isotropic with the default parameters

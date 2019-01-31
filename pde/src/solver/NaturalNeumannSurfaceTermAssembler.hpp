@@ -58,7 +58,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *   BLOCK vector: [c1 c2 .. cP], where P = PROBLEM_DIM, each c_i is of dimension N (number of nodes/bases), and
  *   c1 has entries `integral_over_Gamma (g1*phi_i dS)`, etc.
  */
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM, unsigned PROBLEM_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM, unsigned PROBLEM_DIM>
 class NaturalNeumannSurfaceTermAssembler : public AbstractFeSurfaceIntegralAssembler<ELEMENT_DIM,SPACE_DIM,PROBLEM_DIM>
 {
 protected:

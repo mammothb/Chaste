@@ -42,13 +42,13 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "PottsBasedCellPopulation.hpp"
 #include "VertexBasedCellPopulation.hpp"
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 CellMutationStatesCountWriter<ELEMENT_DIM, SPACE_DIM>::CellMutationStatesCountWriter()
     : AbstractCellPopulationCountWriter<ELEMENT_DIM, SPACE_DIM>("cellmutationstates.dat")
 {
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void CellMutationStatesCountWriter<ELEMENT_DIM, SPACE_DIM>::WriteHeader(AbstractCellPopulation<ELEMENT_DIM, SPACE_DIM>* pCellPopulation)
 {
     if (PetscTools::AmMaster())
@@ -71,7 +71,7 @@ void CellMutationStatesCountWriter<ELEMENT_DIM, SPACE_DIM>::WriteHeader(Abstract
     }
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void CellMutationStatesCountWriter<ELEMENT_DIM, SPACE_DIM>::VisitAnyPopulation(AbstractCellPopulation<SPACE_DIM, SPACE_DIM>* pCellPopulation)
 {
     std::vector<unsigned> mutation_state_count = pCellPopulation->GetCellMutationStateCount();
@@ -85,7 +85,7 @@ void CellMutationStatesCountWriter<ELEMENT_DIM, SPACE_DIM>::VisitAnyPopulation(A
     }
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void CellMutationStatesCountWriter<ELEMENT_DIM, SPACE_DIM>::Visit(MeshBasedCellPopulation<ELEMENT_DIM, SPACE_DIM>* pCellPopulation)
 {
     std::vector<unsigned> mutation_state_count = pCellPopulation->GetCellMutationStateCount();
@@ -99,25 +99,25 @@ void CellMutationStatesCountWriter<ELEMENT_DIM, SPACE_DIM>::Visit(MeshBasedCellP
     }
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void CellMutationStatesCountWriter<ELEMENT_DIM, SPACE_DIM>::Visit(CaBasedCellPopulation<SPACE_DIM>* pCellPopulation)
 {
     VisitAnyPopulation(pCellPopulation);
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void CellMutationStatesCountWriter<ELEMENT_DIM, SPACE_DIM>::Visit(NodeBasedCellPopulation<SPACE_DIM>* pCellPopulation)
 {
     VisitAnyPopulation(pCellPopulation);
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void CellMutationStatesCountWriter<ELEMENT_DIM, SPACE_DIM>::Visit(PottsBasedCellPopulation<SPACE_DIM>* pCellPopulation)
 {
     VisitAnyPopulation(pCellPopulation);
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void CellMutationStatesCountWriter<ELEMENT_DIM, SPACE_DIM>::Visit(VertexBasedCellPopulation<SPACE_DIM>* pCellPopulation)
 {
     VisitAnyPopulation(pCellPopulation);

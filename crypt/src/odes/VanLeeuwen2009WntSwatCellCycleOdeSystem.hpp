@@ -208,7 +208,7 @@ private:
      * @param archive the archive
      * @param version the current version of this class
      */
-    template<class Archive>
+    template <class Archive>
     void serialize(Archive & archive, const unsigned int version)
     {
         archive & boost::serialization::base_object<AbstractOdeSystem>(*this);
@@ -311,7 +311,7 @@ namespace serialization
 /**
  * Serialize information required to construct a VanLeeuwen2009WntSwatCellCycleOdeSystem.
  */
-template<class Archive>
+template <class Archive>
 inline void save_construct_data(
     Archive & ar, const VanLeeuwen2009WntSwatCellCycleOdeSystem * t, const unsigned int file_version)
 {
@@ -332,7 +332,7 @@ inline void save_construct_data(
 /**
  * De-serialize constructor parameters and initialise a VanLeeuwen2009WntSwatCellCycleOdeSystem.
  */
-template<class Archive>
+template <class Archive>
 inline void load_construct_data(
     Archive & ar, VanLeeuwen2009WntSwatCellCycleOdeSystem * t, const unsigned int file_version)
 {

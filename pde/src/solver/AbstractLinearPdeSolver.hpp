@@ -45,7 +45,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  * Simple abstract class containing some common functionality between
  * AbstractStaticLinearPdeSolver and AbstractDynamicLinearPdeSolver.
  */
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM, unsigned PROBLEM_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM, unsigned PROBLEM_DIM>
 class AbstractLinearPdeSolver : private boost::noncopyable
 {
 protected:

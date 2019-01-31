@@ -159,7 +159,7 @@ const boost::shared_ptr<AbstractCellMutationState> Mirams2010WntOdeSystem::GetMu
     return mpMutationState;
 }
 
-template<>
+template <>
 void CellwiseOdeSystemInformation<Mirams2010WntOdeSystem>::Initialise()
 {
     this->mVariableNames.push_back("Beta_Cat_Allele1");

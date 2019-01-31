@@ -44,14 +44,14 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
                 rMeshReader.methNameIncrement();                  \
     } } }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void SeekToBoundaryElement(AbstractMeshReader<ELEMENT_DIM, SPACE_DIM>& rMeshReader,
                            unsigned boundaryElementIndex)
 {
     SEEK_TO_CONTENT(GetFaceData, GetNextFaceData, boundaryElementIndex);
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void QuadraticMeshHelper<DIM>::AddInternalNodesToElements(AbstractTetrahedralMesh<DIM, DIM>* pMesh,
                                                           AbstractMeshReader<DIM,DIM>* pMeshReader)
 {
@@ -100,7 +100,7 @@ void QuadraticMeshHelper<DIM>::AddInternalNodesToElements(AbstractTetrahedralMes
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void QuadraticMeshHelper<DIM>::AddInternalNodesToBoundaryElements(AbstractTetrahedralMesh<DIM, DIM>* pMesh,
                                                                   AbstractMeshReader<DIM,DIM>* pMeshReader)
 {
@@ -124,7 +124,7 @@ void QuadraticMeshHelper<DIM>::AddInternalNodesToBoundaryElements(AbstractTetrah
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void QuadraticMeshHelper<DIM>::AddNodesToBoundaryElements(AbstractTetrahedralMesh<DIM, DIM>* pMesh,
                                                           AbstractMeshReader<DIM,DIM>* pMeshReader)
  {
@@ -242,7 +242,7 @@ void QuadraticMeshHelper<DIM>::AddNodesToBoundaryElements(AbstractTetrahedralMes
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void QuadraticMeshHelper<DIM>::CheckBoundaryElements(AbstractTetrahedralMesh<DIM, DIM>* pMesh)
 {
 #ifndef NDEBUG
@@ -257,7 +257,7 @@ void QuadraticMeshHelper<DIM>::CheckBoundaryElements(AbstractTetrahedralMesh<DIM
 #endif
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void QuadraticMeshHelper<DIM>::AddNodeToBoundaryElement(AbstractTetrahedralMesh<DIM, DIM>* pMesh,
                                                         BoundaryElement<DIM-1,DIM>* pBoundaryElement,
                                                         Node<DIM>* pNode)
@@ -274,7 +274,7 @@ void QuadraticMeshHelper<DIM>::AddNodeToBoundaryElement(AbstractTetrahedralMesh<
     pBoundaryElement->AddNode(pNode);
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void QuadraticMeshHelper<DIM>::AddNodeToBoundaryElement(AbstractTetrahedralMesh<DIM, DIM>* pMesh,
                                                         BoundaryElement<DIM-1,DIM>* pBoundaryElement,
                                                         Element<DIM,DIM>* pElement,
@@ -287,7 +287,7 @@ void QuadraticMeshHelper<DIM>::AddNodeToBoundaryElement(AbstractTetrahedralMesh<
     AddNodeToBoundaryElement(pMesh, pBoundaryElement, p_internal_node);
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void QuadraticMeshHelper<DIM>::AddExtraBoundaryNodes(AbstractTetrahedralMesh<DIM, DIM>* pMesh,
                                                      BoundaryElement<DIM-1,DIM>* pBoundaryElement,
                                                      Element<DIM,DIM>* pElement,
@@ -343,7 +343,7 @@ void QuadraticMeshHelper<DIM>::AddExtraBoundaryNodes(AbstractTetrahedralMesh<DIM
 ///////////////////////////////////////////////////////////////////////////////
 
 // LCOV_EXCL_START /// \todo These helper methods aren't properly covered
-template<unsigned DIM>
+template <unsigned DIM>
 void QuadraticMeshHelper<DIM>::HelperMethod1(unsigned boundaryElemNode0, unsigned boundaryElemNode1,
                                              Element<DIM,DIM>* pElement,
                                              unsigned node0, unsigned node1, unsigned node2,
@@ -395,7 +395,7 @@ void QuadraticMeshHelper<DIM>::HelperMethod1(unsigned boundaryElemNode0, unsigne
 
 
 // LCOV_EXCL_START /// \todo These helper methods aren't properly covered
-template<unsigned DIM>
+template <unsigned DIM>
 void QuadraticMeshHelper<DIM>::HelperMethod2(AbstractTetrahedralMesh<DIM, DIM>* pMesh,
                                              BoundaryElement<DIM-1,DIM>* pBoundaryElement,
                                              Element<DIM,DIM>* pElement,

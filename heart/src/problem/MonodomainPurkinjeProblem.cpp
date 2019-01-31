@@ -39,14 +39,14 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "ReplicatableVector.hpp"
 
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 AbstractCardiacTissue<ELEMENT_DIM,SPACE_DIM>* MonodomainPurkinjeProblem<ELEMENT_DIM, SPACE_DIM>::CreateCardiacTissue()
 {
     return new MonodomainTissue<ELEMENT_DIM,SPACE_DIM>(this->mpCellFactory, HeartConfig::Instance()->GetUseStateVariableInterpolation());
 }
 
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 AbstractDynamicLinearPdeSolver<ELEMENT_DIM, SPACE_DIM, 2>* MonodomainPurkinjeProblem<ELEMENT_DIM, SPACE_DIM>::CreateSolver()
 {
     assert(!HeartConfig::Instance()->GetUseReactionDiffusionOperatorSplitting());
@@ -59,14 +59,14 @@ AbstractDynamicLinearPdeSolver<ELEMENT_DIM, SPACE_DIM, 2>* MonodomainPurkinjePro
                                                                this->mpBoundaryConditionsContainer.get());
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void MonodomainPurkinjeProblem<ELEMENT_DIM,SPACE_DIM>::CreateMeshFromHeartConfig()
 {
     this->mpMesh = new MixedDimensionMesh<ELEMENT_DIM, SPACE_DIM>(HeartConfig::Instance()->GetMeshPartitioning());
 }
 
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 Vec MonodomainPurkinjeProblem<ELEMENT_DIM, SPACE_DIM>::CreateInitialCondition()
 {
     Vec init_cond = AbstractCardiacProblem<ELEMENT_DIM,SPACE_DIM,2>::CreateInitialCondition();
@@ -89,7 +89,7 @@ Vec MonodomainPurkinjeProblem<ELEMENT_DIM, SPACE_DIM>::CreateInitialCondition()
 }
 
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 MonodomainPurkinjeProblem<ELEMENT_DIM, SPACE_DIM>::MonodomainPurkinjeProblem(AbstractPurkinjeCellFactory<ELEMENT_DIM,SPACE_DIM>* pCellFactory)
         : AbstractCardiacProblem<ELEMENT_DIM, SPACE_DIM, 2>(pCellFactory),
           mPurkinjeVoltageColumnId(UNSIGNED_UNSET)
@@ -98,7 +98,7 @@ MonodomainPurkinjeProblem<ELEMENT_DIM, SPACE_DIM>::MonodomainPurkinjeProblem(Abs
 
 
 // LCOV_EXCL_START
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 MonodomainPurkinjeProblem<ELEMENT_DIM, SPACE_DIM>::MonodomainPurkinjeProblem()
     : AbstractCardiacProblem<ELEMENT_DIM, SPACE_DIM, 2>(),
       mPurkinjeVoltageColumnId(UNSIGNED_UNSET)
@@ -106,13 +106,13 @@ MonodomainPurkinjeProblem<ELEMENT_DIM, SPACE_DIM>::MonodomainPurkinjeProblem()
 }
 // LCOV_EXCL_STOP
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 MonodomainPurkinjeProblem<ELEMENT_DIM, SPACE_DIM>::~MonodomainPurkinjeProblem()
 {
 }
 
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void MonodomainPurkinjeProblem<ELEMENT_DIM, SPACE_DIM>::WriteInfo(double time)
 {
     if (PetscTools::AmMaster())
@@ -149,7 +149,7 @@ void MonodomainPurkinjeProblem<ELEMENT_DIM, SPACE_DIM>::WriteInfo(double time)
 }
 
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void MonodomainPurkinjeProblem<ELEMENT_DIM, SPACE_DIM>::DefineWriterColumns(bool extending)
 {
     AbstractCardiacProblem<ELEMENT_DIM, SPACE_DIM,2>::DefineWriterColumns(extending);
@@ -165,7 +165,7 @@ void MonodomainPurkinjeProblem<ELEMENT_DIM, SPACE_DIM>::DefineWriterColumns(bool
 }
 
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void MonodomainPurkinjeProblem<ELEMENT_DIM, SPACE_DIM>::WriteOneStep(double time, Vec voltageVec)
 {
     this->mpWriter->PutUnlimitedVariable(time);

@@ -56,7 +56,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  *
  */
-template<unsigned DIM>
+template <unsigned DIM>
 class ExtendedBidomainMassMatrixAssembler : public AbstractFeVolumeIntegralAssembler<DIM,DIM,3,false,true,NORMAL>
 {
 protected:

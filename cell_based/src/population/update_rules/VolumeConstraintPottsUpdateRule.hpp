@@ -48,7 +48,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  * Note this currently assumes cells don't grow, i.e the target volume is constant
  * for each cell over time.
  */
-template<unsigned DIM>
+template <unsigned DIM>
 class VolumeConstraintPottsUpdateRule : public AbstractPottsUpdateRule<DIM>
 {
 friend class TestPottsUpdateRules;
@@ -77,7 +77,7 @@ private:
      * @param archive  The boost archive.
      * @param version  The current version of this class.
      */
-    template<class Archive>
+    template <class Archive>
     void serialize(Archive & archive, const unsigned int version)
     {
         archive & boost::serialization::base_object<AbstractPottsUpdateRule<DIM> >(*this);

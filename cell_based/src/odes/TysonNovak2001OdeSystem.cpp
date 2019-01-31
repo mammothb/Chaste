@@ -250,7 +250,7 @@ double TysonNovak2001OdeSystem::CalculateRootFunction(double time, const std::ve
     return rY[0]-mCycB_threshold;
 }
 
-template<>
+template <>
 void OdeSystemInformation<TysonNovak2001OdeSystem>::Initialise()
 {
     /*

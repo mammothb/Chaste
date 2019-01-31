@@ -37,14 +37,14 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "AbstractCellPopulation.hpp"
 #include "CellLabel.hpp"
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 CellLabelWriter<ELEMENT_DIM, SPACE_DIM>::CellLabelWriter()
     : AbstractCellWriter<ELEMENT_DIM, SPACE_DIM>("results.vizlabels")
 {
     this->mVtkCellDataName = "Cell labels";
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 double CellLabelWriter<ELEMENT_DIM, SPACE_DIM>::GetCellDataForVtkOutput(CellPtr pCell, AbstractCellPopulation<ELEMENT_DIM, SPACE_DIM>* pCellPopulation)
 {
     double label = 0.0;
@@ -57,7 +57,7 @@ double CellLabelWriter<ELEMENT_DIM, SPACE_DIM>::GetCellDataForVtkOutput(CellPtr 
     return label;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void CellLabelWriter<ELEMENT_DIM, SPACE_DIM>::VisitCell(CellPtr pCell, AbstractCellPopulation<ELEMENT_DIM, SPACE_DIM>* pCellPopulation)
 {
     unsigned label = 0;

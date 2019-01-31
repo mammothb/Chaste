@@ -36,7 +36,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "ElectroMechanicsProblemDefinition.hpp"
 #include "LabelBasedContractionCellFactory.hpp"
 
-template<unsigned DIM>
+template <unsigned DIM>
 ElectroMechanicsProblemDefinition<DIM>::ElectroMechanicsProblemDefinition(QuadraticMesh<DIM>& rMesh)
     : SolidMechanicsProblemDefinition<DIM>(rMesh),
       mContractionModelOdeTimeStep(-1.0),
@@ -55,7 +55,7 @@ ElectroMechanicsProblemDefinition<DIM>::ElectroMechanicsProblemDefinition(Quadra
 {
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 ElectroMechanicsProblemDefinition<DIM>::~ElectroMechanicsProblemDefinition()
 {
     if (mpDefaultMaterialLaw)
@@ -69,7 +69,7 @@ ElectroMechanicsProblemDefinition<DIM>::~ElectroMechanicsProblemDefinition()
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void ElectroMechanicsProblemDefinition<DIM>::SetContractionModel(ContractionModelName contractionModel, double timestep)
 {
     assert(timestep > 0.0);
@@ -89,7 +89,7 @@ void ElectroMechanicsProblemDefinition<DIM>::SetContractionModel(ContractionMode
     SetContractionCellFactory(p_factory);
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void ElectroMechanicsProblemDefinition<DIM>::SetUseDefaultCardiacMaterialLaw(CompressibilityType compressibilityType)
 {
     if (mpDefaultMaterialLaw)
@@ -109,21 +109,21 @@ void ElectroMechanicsProblemDefinition<DIM>::SetUseDefaultCardiacMaterialLaw(Com
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void ElectroMechanicsProblemDefinition<DIM>::SetDeformationAffectsElectrophysiology(bool deformationAffectsConductivity, bool deformationAffectsCellModels)
 {
     mDeformationAffectsConductivity = deformationAffectsConductivity;
     mDeformationAffectsCellModels = deformationAffectsCellModels;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void ElectroMechanicsProblemDefinition<DIM>::SetMechanicsSolveTimestep(double timestep)
 {
     assert(timestep > 0.0);
     mMechanicsSolveTimestep = timestep;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void ElectroMechanicsProblemDefinition<DIM>::SetVariableFibreSheetDirectionsFile(const FileFinder& rFibreSheetDirectionsFile, bool definedPerQuadraturePoint)
 {
     mReadFibreSheetInformationFromFile = true;
@@ -131,7 +131,7 @@ void ElectroMechanicsProblemDefinition<DIM>::SetVariableFibreSheetDirectionsFile
     mFibreSheetDirectionsDefinedPerQuadraturePoint = definedPerQuadraturePoint;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void ElectroMechanicsProblemDefinition<DIM>::SetApplyIsotropicCrossFibreTension(bool applyCrossFibreTension, double crossFibreTensionFraction)
 {
     mApplyCrossFibreTension = applyCrossFibreTension;
@@ -139,7 +139,7 @@ void ElectroMechanicsProblemDefinition<DIM>::SetApplyIsotropicCrossFibreTension(
     mSheetNormalTensionFraction = crossFibreTensionFraction;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void ElectroMechanicsProblemDefinition<DIM>::SetApplyAnisotropicCrossFibreTension(bool applyCrossFibreTension, double sheetTensionFraction, double sheetNormalTensionFraction)
 {
     if (DIM!=3)
@@ -151,7 +151,7 @@ void ElectroMechanicsProblemDefinition<DIM>::SetApplyAnisotropicCrossFibreTensio
     mSheetNormalTensionFraction = sheetNormalTensionFraction;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void ElectroMechanicsProblemDefinition<DIM>::SetContractionCellFactory(AbstractContractionCellFactory<DIM>* pCellFactory)
 {
     // Make sure we aren't overwriting a problem that has been set up with a cell factory already.
@@ -161,7 +161,7 @@ void ElectroMechanicsProblemDefinition<DIM>::SetContractionCellFactory(AbstractC
     mpContractionCellFactory->SetMechanicsMesh(static_cast<QuadraticMesh<DIM>*>(&(this->mrMesh)));
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void ElectroMechanicsProblemDefinition<DIM>::Validate()
 {
     SolidMechanicsProblemDefinition<DIM>::Validate();

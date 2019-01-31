@@ -215,7 +215,7 @@ double NhsContractionModel::GetActiveTension()
     }
 }
 
-template<>
+template <>
 void OdeSystemInformation<NhsContractionModel>::Initialise(void)
 {
     this->mVariableNames.push_back("CalciumTroponin");

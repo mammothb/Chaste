@@ -130,7 +130,7 @@ const std::vector<std::vector<double> >& OdeSolution::rGetSolutions() const
 }
 
 
-template<typename VECTOR>
+template <typename VECTOR>
 void OdeSolution::CalculateDerivedQuantitiesAndParameters(AbstractParameterisedSystem<VECTOR>* pOdeSystem)
 {
     assert(pOdeSystem->GetSystemInformation() == mpOdeSystemInformation); // Just in case...
@@ -139,7 +139,7 @@ void OdeSolution::CalculateDerivedQuantitiesAndParameters(AbstractParameterisedS
 }
 
 
-template<typename VECTOR>
+template <typename VECTOR>
 std::vector<double>& OdeSolution::rGetParameters(AbstractParameterisedSystem<VECTOR>* pOdeSystem)
 {
     mParameters.clear();

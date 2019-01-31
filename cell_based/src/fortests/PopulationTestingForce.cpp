@@ -35,14 +35,14 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include "PopulationTestingForce.hpp"
 
-template<unsigned  ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned  ELEMENT_DIM, unsigned SPACE_DIM>
 PopulationTestingForce<ELEMENT_DIM, SPACE_DIM>::PopulationTestingForce(bool hasPositionDependence)
     :AbstractForce<ELEMENT_DIM, SPACE_DIM>(),
      mWithPositionDependence(hasPositionDependence)
 {
 }
 
-template<unsigned  ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned  ELEMENT_DIM, unsigned SPACE_DIM>
 void PopulationTestingForce<ELEMENT_DIM, SPACE_DIM>::AddForceContribution(AbstractCellPopulation<ELEMENT_DIM,SPACE_DIM>& rCellPopulation)
 {
     for (unsigned i=0; i<rCellPopulation.GetNumNodes(); i++)
@@ -65,7 +65,7 @@ void PopulationTestingForce<ELEMENT_DIM, SPACE_DIM>::AddForceContribution(Abstra
     }
 }
 
-template<unsigned  ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned  ELEMENT_DIM, unsigned SPACE_DIM>
 c_vector<double, SPACE_DIM> PopulationTestingForce<ELEMENT_DIM, SPACE_DIM>::GetExpectedOneStepLocationFE(unsigned nodeIndex,
                                                                                        double damping,
                                                                                        c_vector<double, SPACE_DIM>& oldLocation,
@@ -86,7 +86,7 @@ c_vector<double, SPACE_DIM> PopulationTestingForce<ELEMENT_DIM, SPACE_DIM>::GetE
     return result;
 }
 
-template<unsigned  ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned  ELEMENT_DIM, unsigned SPACE_DIM>
 c_vector<double, SPACE_DIM> PopulationTestingForce<ELEMENT_DIM, SPACE_DIM>::GetExpectedOneStepLocationRK4(unsigned nodeIndex,
                                                                                       double damping,
                                                                                       c_vector<double, SPACE_DIM>& oldLocation,
@@ -104,7 +104,7 @@ c_vector<double, SPACE_DIM> PopulationTestingForce<ELEMENT_DIM, SPACE_DIM>::GetE
     return result;
 }
 
-template<unsigned  ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned  ELEMENT_DIM, unsigned SPACE_DIM>
 c_vector<double, SPACE_DIM> PopulationTestingForce<ELEMENT_DIM, SPACE_DIM>::GetExpectedOneStepLocationAM2(unsigned nodeIndex,
                                                                                     double damping,
                                                                                     c_vector<double, SPACE_DIM>& oldLocation,
@@ -118,7 +118,7 @@ c_vector<double, SPACE_DIM> PopulationTestingForce<ELEMENT_DIM, SPACE_DIM>::GetE
     return result;
 }
 
-template<unsigned  ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned  ELEMENT_DIM, unsigned SPACE_DIM>
 c_vector<double, SPACE_DIM> PopulationTestingForce<ELEMENT_DIM, SPACE_DIM>::GetExpectedOneStepLocationBE(unsigned nodeIndex,
                                                                                       double damping,
                                                                                       c_vector<double, SPACE_DIM>& oldLocation,
@@ -132,7 +132,7 @@ c_vector<double, SPACE_DIM> PopulationTestingForce<ELEMENT_DIM, SPACE_DIM>::GetE
     return result;
 }
 
-template<unsigned  ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned  ELEMENT_DIM, unsigned SPACE_DIM>
 void PopulationTestingForce<ELEMENT_DIM, SPACE_DIM>::OutputForceParameters(out_stream& rParamsFile)
 {
     // This force is not used in a simulation so this method is never called

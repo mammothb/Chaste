@@ -48,7 +48,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *  class outputs a HDF5 file corresponding to nodes on the mechanics mesh, and converts it to
  *  CMGUI output.
  */
-template<unsigned DIM>
+template <unsigned DIM>
 class VoltageInterpolaterOntoMechanicsMesh
 {
 

@@ -44,8 +44,8 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "VertexBasedCellPopulation.hpp"
 
 // Forward declaration prevents circular include chain
-template<unsigned SPACE_DIM> class VertexBasedCellPopulation;
-template<unsigned SPACE_DIM> class AbstractVertexBasedDivisionRule;
+template <unsigned SPACE_DIM> class VertexBasedCellPopulation;
+template <unsigned SPACE_DIM> class AbstractVertexBasedDivisionRule;
 
 /**
  * A class to generate a division vector of unit length specified in
@@ -53,7 +53,7 @@ template<unsigned SPACE_DIM> class AbstractVertexBasedDivisionRule;
  *
  * This helper class is used in TestVertexhBasedCellPopulation.hpp.
  */
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 class FixedVertexBasedDivisionRule : public AbstractVertexBasedDivisionRule<SPACE_DIM>
 {
 private:
@@ -71,7 +71,7 @@ private:
      * @param archive the archive
      * @param version the current version of this class
      */
-    template<class Archive>
+    template <class Archive>
     void serialize(Archive & archive, const unsigned int version)
     {
         archive & boost::serialization::base_object<AbstractVertexBasedDivisionRule<SPACE_DIM> >(*this);
@@ -119,7 +119,7 @@ namespace serialization
 /**
  * Serialize information required to construct a FixedVertexBasedDivisionRule.
  */
-template<class Archive, unsigned SPACE_DIM>
+template <class Archive, unsigned SPACE_DIM>
 inline void save_construct_data(
     Archive & ar, const FixedVertexBasedDivisionRule<SPACE_DIM>* t, const unsigned int file_version)
 {
@@ -134,7 +134,7 @@ inline void save_construct_data(
 /**
  * De-serialize constructor parameters and initialize a FixedVertexBasedDivisionRule.
  */
-template<class Archive, unsigned SPACE_DIM>
+template <class Archive, unsigned SPACE_DIM>
 inline void load_construct_data(
     Archive & ar, FixedVertexBasedDivisionRule<SPACE_DIM>* t, const unsigned int file_version)
 {

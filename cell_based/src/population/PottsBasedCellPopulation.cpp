@@ -43,7 +43,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // Needed to convert mesh in order to write nodes to VTK (visualize as glyphs)
 #include "VtkMeshWriter.hpp"
 
-template<unsigned DIM>
+template <unsigned DIM>
 void PottsBasedCellPopulation<DIM>::Validate()
 {
     // Check each element has only one cell associated with it
@@ -71,7 +71,7 @@ void PottsBasedCellPopulation<DIM>::Validate()
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 PottsBasedCellPopulation<DIM>::PottsBasedCellPopulation(PottsMesh<DIM>& rMesh,
                                                         std::vector<CellPtr>& rCells,
                                                         bool deleteMesh,
@@ -91,7 +91,7 @@ PottsBasedCellPopulation<DIM>::PottsBasedCellPopulation(PottsMesh<DIM>& rMesh,
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 PottsBasedCellPopulation<DIM>::PottsBasedCellPopulation(PottsMesh<DIM>& rMesh)
     : AbstractOnLatticeCellPopulation<DIM>(rMesh),
       mpElementTessellation(nullptr),
@@ -102,7 +102,7 @@ PottsBasedCellPopulation<DIM>::PottsBasedCellPopulation(PottsMesh<DIM>& rMesh)
     mpPottsMesh = static_cast<PottsMesh<DIM>* >(&(this->mrMesh));
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 PottsBasedCellPopulation<DIM>::~PottsBasedCellPopulation()
 {
     delete mpElementTessellation;
@@ -115,19 +115,19 @@ PottsBasedCellPopulation<DIM>::~PottsBasedCellPopulation()
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 PottsMesh<DIM>& PottsBasedCellPopulation<DIM>::rGetMesh()
 {
     return *mpPottsMesh;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 const PottsMesh<DIM>& PottsBasedCellPopulation<DIM>::rGetMesh() const
 {
     return *mpPottsMesh;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 TetrahedralMesh<DIM, DIM>* PottsBasedCellPopulation<DIM>::GetTetrahedralMeshForPdeModifier()
 {
     std::vector<Node<DIM>*> temp_nodes;
@@ -145,50 +145,50 @@ TetrahedralMesh<DIM, DIM>* PottsBasedCellPopulation<DIM>::GetTetrahedralMeshForP
     return new MutableMesh<DIM, DIM>(temp_nodes);
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 PottsElement<DIM>* PottsBasedCellPopulation<DIM>::GetElement(unsigned elementIndex)
 {
     return mpPottsMesh->GetElement(elementIndex);
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 unsigned PottsBasedCellPopulation<DIM>::GetNumElements()
 {
     return mpPottsMesh->GetNumElements();
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 Node<DIM>* PottsBasedCellPopulation<DIM>::GetNode(unsigned index)
 {
     return this->mrMesh.GetNode(index);
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 unsigned PottsBasedCellPopulation<DIM>::GetNumNodes()
 {
     return this->mrMesh.GetNumNodes();
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 std::set<unsigned> PottsBasedCellPopulation<DIM>::GetNeighbouringLocationIndices(CellPtr pCell)
 {
     unsigned elem_index = this->GetLocationIndexUsingCell(pCell);
     return mpPottsMesh->GetNeighbouringElementIndices(elem_index);
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 c_vector<double, DIM> PottsBasedCellPopulation<DIM>::GetLocationOfCellCentre(CellPtr pCell)
 {
     return mpPottsMesh->GetCentroidOfElement(this->GetLocationIndexUsingCell(pCell));
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 PottsElement<DIM>* PottsBasedCellPopulation<DIM>::GetElementCorrespondingToCell(CellPtr pCell)
 {
     return mpPottsMesh->GetElement(this->GetLocationIndexUsingCell(pCell));
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 CellPtr PottsBasedCellPopulation<DIM>::AddCell(CellPtr pNewCell, CellPtr pParentCell)
 {
     // Get the element associated with this cell
@@ -206,7 +206,7 @@ CellPtr PottsBasedCellPopulation<DIM>::AddCell(CellPtr pNewCell, CellPtr pParent
     return p_created_cell;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 unsigned PottsBasedCellPopulation<DIM>::RemoveDeadCells()
 {
     unsigned num_removed = 0;
@@ -235,7 +235,7 @@ unsigned PottsBasedCellPopulation<DIM>::RemoveDeadCells()
     return num_removed;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void PottsBasedCellPopulation<DIM>::UpdateCellLocations(double dt)
 {
     /*
@@ -346,18 +346,18 @@ void PottsBasedCellPopulation<DIM>::UpdateCellLocations(double dt)
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 bool PottsBasedCellPopulation<DIM>::IsCellAssociatedWithADeletedLocation(CellPtr pCell)
 {
     return GetElementCorrespondingToCell(pCell)->IsDeleted();
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void PottsBasedCellPopulation<DIM>::Update(bool hasHadBirthsOrDeaths)
 {
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void PottsBasedCellPopulation<DIM>::OpenWritersFiles(OutputFileHandler& rOutputFileHandler)
 {
     if (this->mOutputResultsForChasteVisualizer)
@@ -373,7 +373,7 @@ void PottsBasedCellPopulation<DIM>::OpenWritersFiles(OutputFileHandler& rOutputF
     AbstractCellPopulation<DIM>::OpenWritersFiles(rOutputFileHandler);
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void PottsBasedCellPopulation<DIM>::WriteResultsToFiles(const std::string& rDirectory)
 {
     CreateElementTessellation(); // To be used to output to the visualizer
@@ -381,25 +381,25 @@ void PottsBasedCellPopulation<DIM>::WriteResultsToFiles(const std::string& rDire
     AbstractCellPopulation<DIM>::WriteResultsToFiles(rDirectory);
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void PottsBasedCellPopulation<DIM>::AcceptPopulationWriter(boost::shared_ptr<AbstractCellPopulationWriter<DIM, DIM> > pPopulationWriter)
 {
     pPopulationWriter->Visit(this);
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void PottsBasedCellPopulation<DIM>::AcceptPopulationCountWriter(boost::shared_ptr<AbstractCellPopulationCountWriter<DIM, DIM> > pPopulationCountWriter)
 {
     pPopulationCountWriter->Visit(this);
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void PottsBasedCellPopulation<DIM>::AcceptCellWriter(boost::shared_ptr<AbstractCellWriter<DIM, DIM> > pCellWriter, CellPtr pCell)
 {
     pCellWriter->VisitCell(pCell, this);
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 double PottsBasedCellPopulation<DIM>::GetVolumeOfCell(CellPtr pCell)
 {
     // Get element index corresponding to this cell
@@ -411,7 +411,7 @@ double PottsBasedCellPopulation<DIM>::GetVolumeOfCell(CellPtr pCell)
     return cell_volume;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 double PottsBasedCellPopulation<DIM>::GetWidth(const unsigned& rDimension)
 {
     // Call GetWidth() on the mesh
@@ -420,14 +420,14 @@ double PottsBasedCellPopulation<DIM>::GetWidth(const unsigned& rDimension)
     return width;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void PottsBasedCellPopulation<DIM>::AddUpdateRule(boost::shared_ptr<AbstractUpdateRule<DIM> > pUpdateRule)
 {
     assert(bool(dynamic_cast<AbstractPottsUpdateRule<DIM>*>(pUpdateRule.get())));
     this->mUpdateRuleCollection.push_back(pUpdateRule);
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void PottsBasedCellPopulation<DIM>::CreateElementTessellation()
 {
     ///\todo implement this method (#1666)
@@ -445,14 +445,14 @@ void PottsBasedCellPopulation<DIM>::CreateElementTessellation()
 //    mpElementTessellation = new VertexMesh<2,2>(mesh);
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 VertexMesh<DIM,DIM>* PottsBasedCellPopulation<DIM>::GetElementTessellation()
 {
 //    assert(mpElementTessellation != NULL);
     return mpElementTessellation;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void PottsBasedCellPopulation<DIM>::CreateMutableMesh()
 {
     delete mpMutableMesh;
@@ -468,14 +468,14 @@ void PottsBasedCellPopulation<DIM>::CreateMutableMesh()
     mpMutableMesh = new MutableMesh<DIM,DIM>(nodes);
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 MutableMesh<DIM,DIM>* PottsBasedCellPopulation<DIM>::GetMutableMesh()
 {
     assert(mpMutableMesh);
     return mpMutableMesh;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void PottsBasedCellPopulation<DIM>::OutputCellPopulationParameters(out_stream& rParamsFile)
 {
     *rParamsFile << "\t\t<Temperature>" << mTemperature << "</Temperature>\n";
@@ -485,31 +485,31 @@ void PottsBasedCellPopulation<DIM>::OutputCellPopulationParameters(out_stream& r
     AbstractOnLatticeCellPopulation<DIM>::OutputCellPopulationParameters(rParamsFile);
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void PottsBasedCellPopulation<DIM>::SetTemperature(double temperature)
 {
     mTemperature = temperature;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 double PottsBasedCellPopulation<DIM>::GetTemperature()
 {
     return mTemperature;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void PottsBasedCellPopulation<DIM>::SetNumSweepsPerTimestep(unsigned numSweepsPerTimestep)
 {
     mNumSweepsPerTimestep = numSweepsPerTimestep;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 unsigned PottsBasedCellPopulation<DIM>::GetNumSweepsPerTimestep()
 {
     return mNumSweepsPerTimestep;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void PottsBasedCellPopulation<DIM>::WriteVtkResultsToFile(const std::string& rDirectory)
 {
 #ifdef CHASTE_VTK
@@ -755,7 +755,7 @@ void PottsBasedCellPopulation<DIM>::WriteVtkResultsToFile(const std::string& rDi
 #endif //CHASTE_VTK
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 double PottsBasedCellPopulation<DIM>::GetCellDataItemAtPdeNode(
     unsigned pdeNodeIndex,
     std::string& rVariableName,

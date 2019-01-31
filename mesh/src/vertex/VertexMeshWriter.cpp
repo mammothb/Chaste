@@ -41,7 +41,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 /**
  * Convenience collection of iterators, primarily to get compilation to happen.
  */
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 struct MeshWriterIterators
 {
     /** Iterator over nodes */
@@ -54,7 +54,7 @@ struct MeshWriterIterators
 // Implementation
 ///////////////////////////////////////////////////////////////////////////////////
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 VertexMeshWriter<ELEMENT_DIM, SPACE_DIM>::VertexMeshWriter(const std::string& rDirectory,
                                                            const std::string& rBaseName,
                                                            const bool clearOutputDir)
@@ -73,7 +73,7 @@ VertexMeshWriter<ELEMENT_DIM, SPACE_DIM>::VertexMeshWriter(const std::string& rD
 #endif //CHASTE_VTK
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 VertexMeshWriter<ELEMENT_DIM, SPACE_DIM>::~VertexMeshWriter()
 {
     if (mpIters->pNodeIter)
@@ -95,7 +95,7 @@ VertexMeshWriter<ELEMENT_DIM, SPACE_DIM>::~VertexMeshWriter()
 #endif //CHASTE_VTK
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 std::vector<double> VertexMeshWriter<ELEMENT_DIM, SPACE_DIM>::GetNextNode()
 {
     if (mpMesh)
@@ -122,7 +122,7 @@ std::vector<double> VertexMeshWriter<ELEMENT_DIM, SPACE_DIM>::GetNextNode()
     }
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 VertexElementData VertexMeshWriter<ELEMENT_DIM, SPACE_DIM>::GetNextElementWithFaces()
 {
     // This method should only be called in 3D
@@ -175,7 +175,7 @@ VertexElementData VertexMeshWriter<ELEMENT_DIM, SPACE_DIM>::GetNextElementWithFa
     return elem_data;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 ElementData VertexMeshWriter<ELEMENT_DIM, SPACE_DIM>::GetNextElement()
 {
     ///\todo Assert this method should only be called in 2D? (#1076/#1377)
@@ -204,7 +204,7 @@ ElementData VertexMeshWriter<ELEMENT_DIM, SPACE_DIM>::GetNextElement()
     }
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void VertexMeshWriter<ELEMENT_DIM, SPACE_DIM>::WriteVtkUsingMesh(VertexMesh<ELEMENT_DIM, SPACE_DIM>& rMesh, std::string stamp)
 {
 #ifdef CHASTE_VTK
@@ -246,7 +246,7 @@ void VertexMeshWriter<ELEMENT_DIM, SPACE_DIM>::WriteVtkUsingMesh(VertexMesh<ELEM
  * @param rMesh reference to the vertex-based mesh
  * @param stamp is an optional stamp (like a time-stamp) to put into the name of the file
  */
-template<>
+template <>
 void VertexMeshWriter<2, 2>::WriteVtkUsingMesh(VertexMesh<2, 2>& rMesh, std::string stamp)
 {
 #ifdef CHASTE_VTK
@@ -299,7 +299,7 @@ void VertexMeshWriter<2, 2>::WriteVtkUsingMesh(VertexMesh<2, 2>& rMesh, std::str
 #endif //CHASTE_VTK
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void VertexMeshWriter<ELEMENT_DIM, SPACE_DIM>::MakeVtkMesh(VertexMesh<ELEMENT_DIM, SPACE_DIM>& rMesh)
 {
 #ifdef CHASTE_VTK
@@ -346,7 +346,7 @@ void VertexMeshWriter<ELEMENT_DIM, SPACE_DIM>::MakeVtkMesh(VertexMesh<ELEMENT_DI
 #endif //CHASTE_VTK
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void VertexMeshWriter<ELEMENT_DIM, SPACE_DIM>::AddCellData(std::string dataName, std::vector<double> dataPayload)
 {
 #ifdef CHASTE_VTK
@@ -363,7 +363,7 @@ void VertexMeshWriter<ELEMENT_DIM, SPACE_DIM>::AddCellData(std::string dataName,
 #endif //CHASTE_VTK
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void VertexMeshWriter<ELEMENT_DIM, SPACE_DIM>::AddPointData(std::string dataName, std::vector<double> dataPayload)
 {
 #ifdef CHASTE_VTK
@@ -381,7 +381,7 @@ void VertexMeshWriter<ELEMENT_DIM, SPACE_DIM>::AddPointData(std::string dataName
 }
 
 ///\todo Mesh should be const (#1076)
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void VertexMeshWriter<ELEMENT_DIM, SPACE_DIM>::WriteFilesUsingMesh(VertexMesh<ELEMENT_DIM,SPACE_DIM>& rMesh)
 {
     this->mpMeshReader = nullptr;
@@ -409,7 +409,7 @@ void VertexMeshWriter<ELEMENT_DIM, SPACE_DIM>::WriteFilesUsingMesh(VertexMesh<EL
     WriteFiles();
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void VertexMeshWriter<ELEMENT_DIM, SPACE_DIM>::WriteFiles()
 {
     std::string comment = "# " + ChasteBuildInfo::GetProvenanceString();

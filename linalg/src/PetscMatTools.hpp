@@ -233,7 +233,7 @@ public:
      *
      * N.B. Values which are not local (ie the row is not owned) will be skipped.
      */
-    template<size_t MATRIX_SIZE>
+    template <size_t MATRIX_SIZE>
     static void AddMultipleValues(Mat matrix, unsigned* matrixRowAndColIndices, c_matrix<double, MATRIX_SIZE, MATRIX_SIZE>& rSmallMatrix)
     {
         PetscInt matrix_row_indices[MATRIX_SIZE];

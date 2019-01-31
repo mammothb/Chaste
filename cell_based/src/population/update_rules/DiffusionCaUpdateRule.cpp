@@ -35,19 +35,19 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include "DiffusionCaUpdateRule.hpp"
 
-template<unsigned DIM>
+template <unsigned DIM>
 DiffusionCaUpdateRule<DIM>::DiffusionCaUpdateRule()
     : AbstractCaUpdateRule<DIM>(),
       mDiffusionParameter(0.5)
 {
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 DiffusionCaUpdateRule<DIM>::~DiffusionCaUpdateRule()
 {
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 double DiffusionCaUpdateRule<DIM>::EvaluateProbability(unsigned currentNodeIndex,
                                                                unsigned targetNodeIndex,
                                                                CaBasedCellPopulation<DIM>& rCellPopulation,
@@ -61,19 +61,19 @@ double DiffusionCaUpdateRule<DIM>::EvaluateProbability(unsigned currentNodeIndex
    return (mDiffusionParameter*dt/(2* pow(norm_2(rCellPopulation.rGetMesh().GetVectorFromAtoB(node_index_location, node_neighbour_location)), 2)));
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 double DiffusionCaUpdateRule<DIM>::GetDiffusionParameter()
 {
     return mDiffusionParameter;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void DiffusionCaUpdateRule<DIM>::SetDiffusionParameter(double diffusionParameter)
 {
     mDiffusionParameter = diffusionParameter;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void DiffusionCaUpdateRule<DIM>::OutputUpdateRuleParameters(out_stream& rParamsFile)
 {
     *rParamsFile << "\t\t\t<DiffusionParameter>" << mDiffusionParameter << "</DiffusionParameter>\n";

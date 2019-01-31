@@ -56,7 +56,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  * Uses quadratic-linear bases (for displacement and pressure), and is therefore
  * outside other assembler or solver hierarchy.
  */
-template<size_t DIM>
+template <size_t DIM>
 class IncompressibleNonlinearElasticitySolver : public AbstractNonlinearElasticitySolver<DIM>
 {
     friend class TestIncompressibleNonlinearElasticitySolver;

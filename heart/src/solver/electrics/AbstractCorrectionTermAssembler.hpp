@@ -45,7 +45,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  * A parent class for MonodomainCorrectionTermAssembler and BidomainCorrectionTermAssembler,
  * used for state variable interpolation (SVI).
  */
-template<unsigned ELEM_DIM,unsigned SPACE_DIM,unsigned PROBLEM_DIM>
+template <unsigned ELEM_DIM,unsigned SPACE_DIM,unsigned PROBLEM_DIM>
 class AbstractCorrectionTermAssembler
     : public AbstractCardiacFeVolumeIntegralAssembler<ELEM_DIM,SPACE_DIM,PROBLEM_DIM,true,false,CARDIAC>
 {

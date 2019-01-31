@@ -63,7 +63,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //////////////////////////////////////////////////////////
 // Assembler for integrals over cable elements
 //////////////////////////////////////////////////////////
-template<unsigned DIM>
+template <unsigned DIM>
 class CoupledCableTestProblemCableComponentAssembler
     :  public AbstractFeCableIntegralAssembler<DIM,DIM,2,false,true,NORMAL>
 {
@@ -114,7 +114,7 @@ public:
 //////////////////////////////////////////////////////////
 // Assembler for integrals over volume elements
 /////////////////////////////////////////////////////////
-template<unsigned DIM>
+template <unsigned DIM>
 class CoupledCableTestProblemVolumeComponentAssembler
     : public AbstractFeVolumeIntegralAssembler<DIM,DIM,2,true,true,NORMAL>
 {
@@ -167,7 +167,7 @@ public:
 // Solver which uses assemblers to create the linear system
 //////////////////////////////////////////////////////////////
 
-template<unsigned DIM>
+template <unsigned DIM>
 class CoupledCableTestProblemSolver: public AbstractStaticLinearPdeSolver<DIM,DIM,2>
 {
 private:

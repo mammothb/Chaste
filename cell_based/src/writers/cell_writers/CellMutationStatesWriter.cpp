@@ -38,14 +38,14 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "AbstractCellPopulation.hpp"
 #include "CellLabel.hpp"
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 CellMutationStatesWriter<ELEMENT_DIM, SPACE_DIM>::CellMutationStatesWriter()
     : AbstractCellWriter<ELEMENT_DIM, SPACE_DIM>("results.vizmutationstates")
 {
     this->mVtkCellDataName = "Mutation states";
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 double CellMutationStatesWriter<ELEMENT_DIM, SPACE_DIM>::GetCellDataForVtkOutput(CellPtr pCell, AbstractCellPopulation<ELEMENT_DIM, SPACE_DIM>* pCellPopulation)
 {
     double mutation_state = pCell->GetMutationState()->GetColour();
@@ -62,7 +62,7 @@ double CellMutationStatesWriter<ELEMENT_DIM, SPACE_DIM>::GetCellDataForVtkOutput
     return mutation_state;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void CellMutationStatesWriter<ELEMENT_DIM, SPACE_DIM>::VisitCell(CellPtr pCell, AbstractCellPopulation<ELEMENT_DIM, SPACE_DIM>* pCellPopulation)
 {
     double mutation_state = pCell->GetMutationState()->GetColour();

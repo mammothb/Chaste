@@ -36,7 +36,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "AbstractCellPopulation.hpp"
 #include "UblasVectorInclude.hpp"
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 AbstractCellWriter<ELEMENT_DIM, SPACE_DIM>::AbstractCellWriter(const std::string& rFileName)
     : AbstractCellBasedWriter<ELEMENT_DIM, SPACE_DIM>(rFileName),
       mOutputScalarData(true),
@@ -46,31 +46,31 @@ AbstractCellWriter<ELEMENT_DIM, SPACE_DIM>::AbstractCellWriter(const std::string
 {
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 bool AbstractCellWriter<ELEMENT_DIM, SPACE_DIM>::GetOutputScalarData()
 {
     return mOutputScalarData;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 bool AbstractCellWriter<ELEMENT_DIM, SPACE_DIM>::GetOutputVectorData()
 {
     return mOutputVectorData;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void AbstractCellWriter<ELEMENT_DIM, SPACE_DIM>::SetVtkCellDataName(std::string vtkCellDataName)
 {
     mVtkCellDataName = vtkCellDataName;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void AbstractCellWriter<ELEMENT_DIM, SPACE_DIM>::SetVtkVectorCellDataName(std::string vtkCellDataName)
 {
     mVtkVectorCellDataName = vtkCellDataName;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 double AbstractCellWriter<ELEMENT_DIM, SPACE_DIM>::GetCellDataForVtkOutput(
         CellPtr pCell,
         AbstractCellPopulation<ELEMENT_DIM, SPACE_DIM>* pCellPopulation)
@@ -78,7 +78,7 @@ double AbstractCellWriter<ELEMENT_DIM, SPACE_DIM>::GetCellDataForVtkOutput(
     return DOUBLE_UNSET;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 c_vector<double, SPACE_DIM> AbstractCellWriter<ELEMENT_DIM, SPACE_DIM>::GetVectorCellDataForVtkOutput(
         CellPtr pCell,
         AbstractCellPopulation<ELEMENT_DIM, SPACE_DIM>* pCellPopulation)
@@ -86,13 +86,13 @@ c_vector<double, SPACE_DIM> AbstractCellWriter<ELEMENT_DIM, SPACE_DIM>::GetVecto
     return scalar_vector<double>(SPACE_DIM, DOUBLE_UNSET);
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 std::string AbstractCellWriter<ELEMENT_DIM, SPACE_DIM>::GetVtkCellDataName()
 {
     return mVtkCellDataName;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 std::string AbstractCellWriter<ELEMENT_DIM, SPACE_DIM>::GetVtkVectorCellDataName()
 {
     return mVtkVectorCellDataName;

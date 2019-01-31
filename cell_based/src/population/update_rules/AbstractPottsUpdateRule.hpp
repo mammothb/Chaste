@@ -39,13 +39,13 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "AbstractUpdateRule.hpp"
 #include "PottsBasedCellPopulation.hpp"
 
-template<unsigned DIM>
+template <unsigned DIM>
 class PottsBasedCellPopulation; // Circular definition
 
 /**
  * An abstract Potts update rule class, for use in cellular Potts model simulations.
  */
-template<unsigned DIM>
+template <unsigned DIM>
 class AbstractPottsUpdateRule : public AbstractUpdateRule<DIM>
 {
     /** Needed for serialization. */
@@ -57,7 +57,7 @@ class AbstractPottsUpdateRule : public AbstractUpdateRule<DIM>
      * @param archive  The boost archive.
      * @param version  The current version of this class.
      */
-    template<class Archive>
+    template <class Archive>
     void serialize(Archive & archive, const unsigned int version)
     {
         archive & boost::serialization::base_object<AbstractUpdateRule<DIM> >(*this);

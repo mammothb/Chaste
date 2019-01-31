@@ -35,12 +35,12 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include "AbstractIsotropicCompressibleMaterialLaw.hpp"
 
-template<unsigned DIM>
+template <unsigned DIM>
 AbstractIsotropicCompressibleMaterialLaw<DIM>::~AbstractIsotropicCompressibleMaterialLaw()
 {
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void AbstractIsotropicCompressibleMaterialLaw<DIM>::ComputeStressAndStressDerivative(c_matrix<double,DIM,DIM>& rC,
                                                                                      c_matrix<double,DIM,DIM>& rInvC,
                                                                                      double                    pressure,

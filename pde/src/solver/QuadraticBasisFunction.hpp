@@ -62,7 +62,7 @@ public:
 /**
  * We need to specialise for the 0d case, because 0x0 matrices don't work.
  */
-template<>
+template <>
 class QuadraticBasisFunction<0>
 {
 public:

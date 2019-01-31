@@ -511,7 +511,7 @@ static const char CmguiAdditionalFieldHeader1DQuadratic[] = " field, rectangular
  *  gfx read elem base_file generate_faces_and_lines
  *  gfx cr win
  */
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 class CmguiMeshWriter : public AbstractTetrahedralMeshWriter<ELEMENT_DIM,SPACE_DIM>
 {
 protected:

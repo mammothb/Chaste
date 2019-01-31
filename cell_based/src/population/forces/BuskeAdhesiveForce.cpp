@@ -35,26 +35,26 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include "BuskeAdhesiveForce.hpp"
 
-template<unsigned DIM>
+template <unsigned DIM>
 BuskeAdhesiveForce<DIM>::BuskeAdhesiveForce()
    : AbstractTwoBodyInteractionForce<DIM>(),
      mAdhesionEnergyParameter(0.2)        // Denoted by epsilon in Buske et al (2011) (doi:10.1371/journal.pcbi.1001045).
 {
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 double BuskeAdhesiveForce<DIM>::GetAdhesionEnergyParameter()
 {
     return mAdhesionEnergyParameter;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void BuskeAdhesiveForce<DIM>::SetAdhesionEnergyParameter(double adhesionEnergyParameter)
 {
     mAdhesionEnergyParameter = adhesionEnergyParameter;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 c_vector<double, DIM> BuskeAdhesiveForce<DIM>::CalculateForceBetweenNodes(unsigned nodeAGlobalIndex,
                                                                           unsigned nodeBGlobalIndex,
                                                                           AbstractCellPopulation<DIM>& rCellPopulation)
@@ -103,7 +103,7 @@ c_vector<double, DIM> BuskeAdhesiveForce<DIM>::CalculateForceBetweenNodes(unsign
     return force_between_nodes;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 double BuskeAdhesiveForce<DIM>::GetMagnitudeOfForce(double distanceBetweenNodes, double radiusOfCellOne, double radiusOfCellTwo)
 {
     double dWAdd = 0.0;
@@ -120,7 +120,7 @@ double BuskeAdhesiveForce<DIM>::GetMagnitudeOfForce(double distanceBetweenNodes,
     return dWAdd;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void BuskeAdhesiveForce<DIM>::OutputForceParameters(out_stream& rParamsFile)
 {
     *rParamsFile << "\t\t\t<AdhesionEnergyParameter>" << mAdhesionEnergyParameter << "</AdhesionEnergyParameter>\n";

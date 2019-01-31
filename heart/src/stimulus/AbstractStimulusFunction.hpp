@@ -59,7 +59,7 @@ class AbstractStimulusFunction
      * @param archive
      * @param version
      */
-    template<class Archive>
+    template <class Archive>
     void serialize(Archive & archive, const unsigned int version)
     {
         // No member variables, but this is here so boost is happy serializing these classes.

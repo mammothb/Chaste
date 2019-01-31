@@ -48,7 +48,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  * Mesh class for storing lists of nodes (no elements). This inherits from MutableMesh
  * because we want to be able to add and delete nodes.
  */
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 class NodesOnlyMesh: public MutableMesh<SPACE_DIM, SPACE_DIM>
 {
 private:
@@ -69,7 +69,7 @@ private:
      * @param archive the archive
      * @param version the current version of this class
      */
-    template<class Archive>
+    template <class Archive>
     void save(Archive & archive, const unsigned int version) const
     {
         archive & mMaximumInteractionDistance;
@@ -90,7 +90,7 @@ private:
      * @param archive the archive
      * @param version the current version of this class
      */
-    template<class Archive>
+    template <class Archive>
     void load(Archive & archive, const unsigned int version)
     {
         archive & mMaximumInteractionDistance;

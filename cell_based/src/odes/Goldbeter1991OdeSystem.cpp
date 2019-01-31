@@ -93,7 +93,7 @@ void Goldbeter1991OdeSystem::EvaluateYDerivatives(double time, const std::vector
     rDY[2] = (reaction6 - reaction7) / cell; // dX/dt
 }
 
-template<>
+template <>
 void CellwiseOdeSystemInformation<Goldbeter1991OdeSystem>::Initialise()
 {
     this->mVariableNames.push_back("Cyclin");

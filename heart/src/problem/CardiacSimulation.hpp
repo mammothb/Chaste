@@ -91,7 +91,7 @@ private:
      * Templated method which creates and runs a cardiac simulation, based on the
      * XML file passed to our constructor.
      */
-    template<class Problem, unsigned SPACE_DIM>
+    template <class Problem, unsigned SPACE_DIM>
     void CreateAndRun()
     {
         boost::shared_ptr<Problem> p_problem;

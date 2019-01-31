@@ -53,7 +53,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  * multiple Hdf5Readers (a member variable of this class) seem to cause problems.
  *
  */
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 class PostProcessingWriter
 {
     friend class TestPostProcessingWriter;

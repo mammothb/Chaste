@@ -147,7 +147,7 @@ public:
  * Specialization for 0d elements so we don't get errors from Boost on some
  * compilers.
  */
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 class AbstractTetrahedralElement<0, SPACE_DIM> : public AbstractElement<0,SPACE_DIM>
 {
 public:

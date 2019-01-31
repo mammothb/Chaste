@@ -42,7 +42,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "VectorHelperFunctions.hpp"
 
 
-template<typename VECTOR>
+template <typename VECTOR>
 AbstractParameterisedSystem<VECTOR>::AbstractParameterisedSystem(unsigned numberOfStateVariables)
     : AbstractUntemplatedParameterisedSystem(numberOfStateVariables)
 {
@@ -50,20 +50,20 @@ AbstractParameterisedSystem<VECTOR>::AbstractParameterisedSystem(unsigned number
     InitialiseEmptyVector(mStateVariables);
 }
 
-template<typename VECTOR>
+template <typename VECTOR>
 std::string AbstractParameterisedSystem<VECTOR>::DumpState(const std::string& rMessage)
 {
     return GetStateMessage(rMessage, mStateVariables);
 }
 
-template<typename VECTOR>
+template <typename VECTOR>
 std::string AbstractParameterisedSystem<VECTOR>::DumpState(const std::string& rMessage,
                                                            VECTOR Y)
 {
     return GetStateMessage(rMessage, Y);
 }
 
-template<typename VECTOR>
+template <typename VECTOR>
 std::string AbstractParameterisedSystem<VECTOR>::DumpState(const std::string& rMessage,
                                                            VECTOR Y,
                                                            double time)
@@ -74,7 +74,7 @@ std::string AbstractParameterisedSystem<VECTOR>::DumpState(const std::string& rM
     return GetStateMessage(new_message, Y);
 }
 
-template<typename VECTOR>
+template <typename VECTOR>
 std::string AbstractParameterisedSystem<VECTOR>::GetStateMessage(const std::string& rMessage, VECTOR Y)
 {
     std::stringstream res;
@@ -93,7 +93,7 @@ std::string AbstractParameterisedSystem<VECTOR>::GetStateMessage(const std::stri
     return res.str();
 }
 
-template<typename VECTOR>
+template <typename VECTOR>
 void AbstractParameterisedSystem<VECTOR>::CheckParametersOnLoad(const std::vector<double>& rParameters, const std::vector<std::string>& rParameterNames)
 {
     if (GetVectorSize(mParameters) != rGetParameterNames().size())
@@ -132,19 +132,19 @@ void AbstractParameterisedSystem<VECTOR>::CheckParametersOnLoad(const std::vecto
 // State variable methods
 //
 
-template<typename VECTOR>
+template <typename VECTOR>
 VECTOR& AbstractParameterisedSystem<VECTOR>::rGetStateVariables()
 {
     return mStateVariables;
 }
 
-template<typename VECTOR>
+template <typename VECTOR>
 VECTOR AbstractParameterisedSystem<VECTOR>::GetStateVariables()
 {
     return CopyVector(mStateVariables);
 }
 
-template<typename VECTOR>
+template <typename VECTOR>
 void AbstractParameterisedSystem<VECTOR>::SetStateVariables(const VECTOR& rStateVariables)
 {
     if (mNumberOfStateVariables != GetVectorSize(rStateVariables))
@@ -159,7 +159,7 @@ void AbstractParameterisedSystem<VECTOR>::SetStateVariables(const VECTOR& rState
     }
 }
 
-template<typename VECTOR>
+template <typename VECTOR>
 double AbstractParameterisedSystem<VECTOR>::GetStateVariable(unsigned index) const
 {
     if (index >= mNumberOfStateVariables)
@@ -169,13 +169,13 @@ double AbstractParameterisedSystem<VECTOR>::GetStateVariable(unsigned index) con
     return GetVectorComponent(mStateVariables, index);
 }
 
-template<typename VECTOR>
+template <typename VECTOR>
 double AbstractParameterisedSystem<VECTOR>::GetStateVariable(const std::string& rName) const
 {
     return GetStateVariable(GetStateVariableIndex(rName));
 }
 
-template<typename VECTOR>
+template <typename VECTOR>
 void AbstractParameterisedSystem<VECTOR>::SetStateVariable(unsigned index, double newValue)
 {
     if (mNumberOfStateVariables <= index)
@@ -185,7 +185,7 @@ void AbstractParameterisedSystem<VECTOR>::SetStateVariable(unsigned index, doubl
     SetVectorComponent(mStateVariables, index, newValue);
 }
 
-template<typename VECTOR>
+template <typename VECTOR>
 void AbstractParameterisedSystem<VECTOR>::SetStateVariable(const std::string& rName, double newValue)
 {
     SetStateVariable(GetStateVariableIndex(rName), newValue);
@@ -195,7 +195,7 @@ void AbstractParameterisedSystem<VECTOR>::SetStateVariable(const std::string& rN
 // Initial condition methods
 //
 
-template<typename VECTOR>
+template <typename VECTOR>
 void AbstractParameterisedSystem<VECTOR>::SetDefaultInitialConditions(const VECTOR& rInitialConditions)
 {
     if (GetVectorSize(rInitialConditions) != mNumberOfStateVariables)
@@ -208,7 +208,7 @@ void AbstractParameterisedSystem<VECTOR>::SetDefaultInitialConditions(const VECT
     mpSystemInfo->SetDefaultInitialConditions(inits);
 }
 
-template<typename VECTOR>
+template <typename VECTOR>
 void AbstractParameterisedSystem<VECTOR>::SetDefaultInitialCondition(unsigned index, double initialCondition)
 {
     if (index >= mNumberOfStateVariables)
@@ -219,7 +219,7 @@ void AbstractParameterisedSystem<VECTOR>::SetDefaultInitialCondition(unsigned in
     mpSystemInfo->SetDefaultInitialCondition(index, initialCondition);
 }
 
-template<typename VECTOR>
+template <typename VECTOR>
 VECTOR AbstractParameterisedSystem<VECTOR>::GetInitialConditions() const
 {
     assert(mpSystemInfo);
@@ -230,7 +230,7 @@ VECTOR AbstractParameterisedSystem<VECTOR>::GetInitialConditions() const
     return v;
 }
 
-template<typename VECTOR>
+template <typename VECTOR>
 void AbstractParameterisedSystem<VECTOR>::ResetToInitialConditions()
 {
     VECTOR inits = GetInitialConditions();
@@ -242,7 +242,7 @@ void AbstractParameterisedSystem<VECTOR>::ResetToInitialConditions()
 // Parameter methods
 //
 
-template<typename VECTOR>
+template <typename VECTOR>
 double AbstractParameterisedSystem<VECTOR>::GetParameter(unsigned index) const
 {
     if (index >= GetVectorSize(mParameters))
@@ -252,7 +252,7 @@ double AbstractParameterisedSystem<VECTOR>::GetParameter(unsigned index) const
     return GetVectorComponent(mParameters, index);
 }
 
-template<typename VECTOR>
+template <typename VECTOR>
 void AbstractParameterisedSystem<VECTOR>::SetParameter(unsigned index, double value)
 {
     if (index >= GetVectorSize(mParameters))
@@ -262,13 +262,13 @@ void AbstractParameterisedSystem<VECTOR>::SetParameter(unsigned index, double va
     SetVectorComponent(mParameters, index, value);
 }
 
-template<typename VECTOR>
+template <typename VECTOR>
 void AbstractParameterisedSystem<VECTOR>::SetParameter(const std::string& rName, double value)
 {
     SetVectorComponent(mParameters, GetParameterIndex(rName), value);
 }
 
-template<typename VECTOR>
+template <typename VECTOR>
 double AbstractParameterisedSystem<VECTOR>::GetParameter(const std::string& rName) const
 {
     return GetParameter(GetParameterIndex(rName));
@@ -278,7 +278,7 @@ double AbstractParameterisedSystem<VECTOR>::GetParameter(const std::string& rNam
 // "Any variable" methods
 //
 
-template<typename VECTOR>
+template <typename VECTOR>
 double AbstractParameterisedSystem<VECTOR>::GetAnyVariable(unsigned index, double time,
                                                            VECTOR* pDerivedQuantities)
 {
@@ -315,7 +315,7 @@ double AbstractParameterisedSystem<VECTOR>::GetAnyVariable(unsigned index, doubl
     }
 }
 
-template<typename VECTOR>
+template <typename VECTOR>
 double AbstractParameterisedSystem<VECTOR>::GetAnyVariable(const std::string& rName,
                                                            double time,
                                                            VECTOR* pDerivedQuantities)
@@ -323,7 +323,7 @@ double AbstractParameterisedSystem<VECTOR>::GetAnyVariable(const std::string& rN
     return GetAnyVariable(GetAnyVariableIndex(rName), time, pDerivedQuantities);
 }
 
-template<typename VECTOR>
+template <typename VECTOR>
 void AbstractParameterisedSystem<VECTOR>::SetAnyVariable(unsigned index, double value)
 {
     if (index < mNumberOfStateVariables)
@@ -340,7 +340,7 @@ void AbstractParameterisedSystem<VECTOR>::SetAnyVariable(unsigned index, double 
     }
 }
 
-template<typename VECTOR>
+template <typename VECTOR>
 void AbstractParameterisedSystem<VECTOR>::SetAnyVariable(const std::string& rName, double value)
 {
     SetAnyVariable(GetAnyVariableIndex(rName), value);
@@ -350,14 +350,14 @@ void AbstractParameterisedSystem<VECTOR>::SetAnyVariable(const std::string& rNam
 // "Derived quantities" methods
 //
 
-template<typename VECTOR>
+template <typename VECTOR>
 VECTOR AbstractParameterisedSystem<VECTOR>::ComputeDerivedQuantities(double time,
                                                                      const VECTOR& rState)
 {
     EXCEPTION("This ODE system does not define derived quantities.");
 }
 
-template<typename VECTOR>
+template <typename VECTOR>
 VECTOR AbstractParameterisedSystem<VECTOR>::ComputeDerivedQuantitiesFromCurrentState(double time)
 {
     return this->ComputeDerivedQuantities(time, mStateVariables);

@@ -38,7 +38,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "DifferentiatedCellProliferativeType.hpp"
 #include "AbstractPhaseBasedCellCycleModel.hpp"
 
-template<unsigned DIM>
+template <unsigned DIM>
 TargetAreaLinearGrowthModifier<DIM>::TargetAreaLinearGrowthModifier()
     : AbstractTargetAreaModifier<DIM>(),
       mAgeToStartGrowing(DOUBLE_UNSET),
@@ -46,12 +46,12 @@ TargetAreaLinearGrowthModifier<DIM>::TargetAreaLinearGrowthModifier()
 {
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 TargetAreaLinearGrowthModifier<DIM>::~TargetAreaLinearGrowthModifier()
 {
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void TargetAreaLinearGrowthModifier<DIM>::UpdateTargetAreaOfCell(CellPtr pCell)
 {
     // Get target area A of a healthy cell in S, G2 or M phase
@@ -130,33 +130,33 @@ void TargetAreaLinearGrowthModifier<DIM>::UpdateTargetAreaOfCell(CellPtr pCell)
     pCell->GetCellData()->SetItem("target area", cell_target_area);
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 double TargetAreaLinearGrowthModifier<DIM>::GetAgeToStartGrowing()
 {
     return mAgeToStartGrowing;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void TargetAreaLinearGrowthModifier<DIM>::SetAgeToStartGrowing(double ageToStartGrowing)
 {
     assert(ageToStartGrowing >= 0.0);
     mAgeToStartGrowing = ageToStartGrowing;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 double TargetAreaLinearGrowthModifier<DIM>::GetGrowthRate()
 {
     return mGrowthRate;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void TargetAreaLinearGrowthModifier<DIM>::SetGrowthRate(double growthRate)
 {
     assert(growthRate >= 0.0);
     mGrowthRate = growthRate;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void TargetAreaLinearGrowthModifier<DIM>::OutputSimulationModifierParameters(out_stream& rParamsFile)
 {
     *rParamsFile << "\t\t\t<AgeToStartGrowing>" << mAgeToStartGrowing << "</AgeToStartGrowing>\n";

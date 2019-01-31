@@ -87,7 +87,7 @@ class TestMeshBasedCellPopulation : public AbstractCellBasedTestSuite
 {
 private:
 
-    template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+    template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
     void TestSmallMeshBasedCellPopulation(std::string meshFilename)
     {
         // Create a simple mesh

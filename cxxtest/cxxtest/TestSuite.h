@@ -43,13 +43,13 @@ namespace CxxTest
     void doFailTest( const char *file, unsigned line, const char *message );
     void doFailAssert( const char *file, unsigned line, const char *expression, const char *message );
 
-    template<class X, class Y>
+    template <class X, class Y>
     bool equals( X x, Y y )
     {
         return (x == y);
     }
 
-    template<class X, class Y>
+    template <class X, class Y>
     void doAssertEquals( const char *file, unsigned line,
                          const char *xExpr, X x,
                          const char *yExpr, Y y,
@@ -69,13 +69,13 @@ namespace CxxTest
                            const char *sizeExpr, unsigned size,
                            const char *message );
 
-    template<class X, class Y>
+    template <class X, class Y>
     bool differs( X x, Y y )
     {
         return !(x == y);
     }
 
-    template<class X, class Y>
+    template <class X, class Y>
     void doAssertDiffers( const char *file, unsigned line,
                           const char *xExpr, X x,
                           const char *yExpr, Y y,
@@ -89,13 +89,13 @@ namespace CxxTest
         }
     }
 
-    template<class X, class Y>
+    template <class X, class Y>
     bool lessThan( X x, Y y )
     {
         return (x < y);
     }
 
-    template<class X, class Y>
+    template <class X, class Y>
     void doAssertLessThan( const char *file, unsigned line,
                            const char *xExpr, X x,
                            const char *yExpr, Y y,
@@ -109,13 +109,13 @@ namespace CxxTest
         }
     }
 
-    template<class X, class Y>
+    template <class X, class Y>
     bool lessThanEquals( X x, Y y )
     {
         return (x <= y);
     }
 
-    template<class X, class Y>
+    template <class X, class Y>
     void doAssertLessThanEquals( const char *file, unsigned line,
                                  const char *xExpr, X x,
                                  const char *yExpr, Y y,
@@ -129,7 +129,7 @@ namespace CxxTest
         }
     }
 
-    template<class X, class P>
+    template <class X, class P>
     void doAssertPredicate( const char *file, unsigned line,
                             const char *pExpr, const P &p,
                             const char *xExpr, X x,
@@ -143,7 +143,7 @@ namespace CxxTest
         }
     }
 
-    template<class X, class Y, class R>
+    template <class X, class Y, class R>
     void doAssertRelation( const char *file, unsigned line,
                            const char *rExpr, const R &r,
                            const char *xExpr, X x,
@@ -158,13 +158,13 @@ namespace CxxTest
         }
     }
 
-    template<class X, class Y, class D>
+    template <class X, class Y, class D>
     bool delta( X x, Y y, D d )
     {
         return ((y >= x - d) && (y <= x + d));
     }
 
-    template<class X, class Y, class D>
+    template <class X, class Y, class D>
     void doAssertDelta( const char *file, unsigned line,
                         const char *xExpr, X x,
                         const char *yExpr, Y y,

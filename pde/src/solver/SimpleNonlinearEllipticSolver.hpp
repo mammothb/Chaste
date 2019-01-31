@@ -42,7 +42,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 /**
  * Solver of nonlinear elliptic PDEs.
  */
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 class SimpleNonlinearEllipticSolver : public AbstractNonlinearAssemblerSolverHybrid<ELEMENT_DIM,SPACE_DIM,1>
 {
 private:

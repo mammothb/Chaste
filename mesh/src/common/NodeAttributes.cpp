@@ -38,7 +38,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "NodeAttributes.hpp"
 #include "Exception.hpp"
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 NodeAttributes<SPACE_DIM>::NodeAttributes()
     :   mAttributes(std::vector<double>()),
         mRegion(0u),
@@ -50,43 +50,43 @@ NodeAttributes<SPACE_DIM>::NodeAttributes()
 {
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 std::vector<double>& NodeAttributes<SPACE_DIM>::rGetAttributes()
 {
     return mAttributes;
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 void NodeAttributes<SPACE_DIM>::AddAttribute(double attribute)
 {
     mAttributes.push_back(attribute);
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 unsigned NodeAttributes<SPACE_DIM>::GetRegion()
 {
     return mRegion;
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 void NodeAttributes<SPACE_DIM>::SetRegion(unsigned region)
 {
     mRegion = region;
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 c_vector<double, SPACE_DIM>& NodeAttributes<SPACE_DIM>::rGetAppliedForce()
 {
     return mAppliedForce;
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 void NodeAttributes<SPACE_DIM>::AddAppliedForceContribution(const c_vector<double, SPACE_DIM>& rForceContribution)
 {
     mAppliedForce += rForceContribution;
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 void NodeAttributes<SPACE_DIM>::ClearAppliedForce()
 {
     for (unsigned d = 0; d < SPACE_DIM; d++)
@@ -95,69 +95,69 @@ void NodeAttributes<SPACE_DIM>::ClearAppliedForce()
     }
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 void NodeAttributes<SPACE_DIM>::AddNeighbour(unsigned index)
 {
     mNeighbourIndices.push_back(index);
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 void NodeAttributes<SPACE_DIM>::ClearNeighbours()
 {
     mNeighbourIndices.clear();
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 void NodeAttributes<SPACE_DIM>::RemoveDuplicateNeighbours()
 {
     sort( mNeighbourIndices.begin(), mNeighbourIndices.end() );
     mNeighbourIndices.erase( unique( mNeighbourIndices.begin(), mNeighbourIndices.end() ), mNeighbourIndices.end() );
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 bool NodeAttributes<SPACE_DIM>::NeighboursIsEmpty()
 {
     return mNeighbourIndices.empty();
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 void NodeAttributes<SPACE_DIM>::SetNeighboursSetUp(bool flag)
 {
     mNeighboursSetUp = flag;
 };
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 bool NodeAttributes<SPACE_DIM>::GetNeighboursSetUp()
 {
     return mNeighboursSetUp;
 };
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 std::vector<unsigned>& NodeAttributes<SPACE_DIM>::rGetNeighbours()
 {
     return mNeighbourIndices;
 };
 
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 bool NodeAttributes<SPACE_DIM>::IsParticle()
 {
     return mIsParticle;
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 void NodeAttributes<SPACE_DIM>::SetIsParticle(bool isParticle)
 {
     mIsParticle = isParticle;
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 double NodeAttributes<SPACE_DIM>::GetRadius()
 {
     return mRadius;
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 void NodeAttributes<SPACE_DIM>::SetRadius(double radius)
 {
     if (radius < 0.0)

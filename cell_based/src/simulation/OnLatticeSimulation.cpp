@@ -37,7 +37,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "AbstractOnLatticeCellPopulation.hpp"
 #include "CellBasedEventHandler.hpp"
 
-template<unsigned DIM>
+template <unsigned DIM>
 OnLatticeSimulation<DIM>::OnLatticeSimulation(AbstractCellPopulation<DIM>& rCellPopulation,
                                               bool deleteCellPopulationInDestructor,
                                               bool initialiseCells)
@@ -51,21 +51,21 @@ OnLatticeSimulation<DIM>::OnLatticeSimulation(AbstractCellPopulation<DIM>& rCell
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void OnLatticeSimulation<DIM>::AddUpdateRule(boost::shared_ptr<AbstractUpdateRule<DIM> > pUpdateRule)
 {
     // This static_cast is fine, since otherwise an exception would have been thrown in the constructor
     static_cast<AbstractOnLatticeCellPopulation<DIM>*>(&(this->mrCellPopulation))->AddUpdateRule(pUpdateRule);
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void OnLatticeSimulation<DIM>::RemoveAllUpdateRules()
 {
     // This static_cast is fine, since otherwise an exception would have been thrown in the constructor
     static_cast<AbstractOnLatticeCellPopulation<DIM>*>(&(this->mrCellPopulation))->RemoveAllUpdateRules();
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void OnLatticeSimulation<DIM>::UpdateCellLocationsAndTopology()
 {
     CellBasedEventHandler::BeginEvent(CellBasedEventHandler::POSITION);
@@ -73,7 +73,7 @@ void OnLatticeSimulation<DIM>::UpdateCellLocationsAndTopology()
     CellBasedEventHandler::EndEvent(CellBasedEventHandler::POSITION);
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void OnLatticeSimulation<DIM>::UpdateCellPopulation()
 {
     bool update_cell_population_this_timestep = (this->mInitialiseCells) || (SimulationTime::Instance()->GetTimeStepsElapsed() != 0);
@@ -83,7 +83,7 @@ void OnLatticeSimulation<DIM>::UpdateCellPopulation()
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void OnLatticeSimulation<DIM>::OutputAdditionalSimulationSetup(out_stream& rParamsFile)
 {
     // Loop over the collection of update rules and output info for each
@@ -103,7 +103,7 @@ void OnLatticeSimulation<DIM>::OutputAdditionalSimulationSetup(out_stream& rPara
     *rParamsFile << "\t</UpdateRules>\n";
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void OnLatticeSimulation<DIM>::OutputSimulationParameters(out_stream& rParamsFile)
 {
     // Call method on direct parent class

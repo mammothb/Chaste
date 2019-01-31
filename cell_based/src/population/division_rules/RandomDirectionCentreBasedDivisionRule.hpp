@@ -42,8 +42,8 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "AbstractCentreBasedCellPopulation.hpp"
 
 // Forward declaration prevents circular include chain
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM> class AbstractCentreBasedCellPopulation;
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM> class AbstractCentreBasedDivisionRule;
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM> class AbstractCentreBasedCellPopulation;
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM> class AbstractCentreBasedDivisionRule;
 
 /**
  * A class to generate two daughter cell positions, located a distance
@@ -51,7 +51,7 @@ template<unsigned ELEMENT_DIM, unsigned SPACE_DIM> class AbstractCentreBasedDivi
  * along a random axis. The midpoint between the two daughter cell
  * positions corresponds to the parent cell's position.
  */
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM=ELEMENT_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM=ELEMENT_DIM>
 class RandomDirectionCentreBasedDivisionRule : public AbstractCentreBasedDivisionRule<ELEMENT_DIM, SPACE_DIM>
 {
 private:
@@ -62,7 +62,7 @@ private:
      * @param archive the archive
      * @param version the current version of this class
      */
-    template<class Archive>
+    template <class Archive>
     void serialize(Archive & archive, const unsigned int version)
     {
         archive & boost::serialization::base_object<AbstractCentreBasedDivisionRule<ELEMENT_DIM, SPACE_DIM> >(*this);

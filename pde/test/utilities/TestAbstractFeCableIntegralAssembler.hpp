@@ -46,7 +46,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "ReplicatableVector.hpp"
 #include "TrianglesMeshReader.hpp"
 
-template<unsigned DIM>
+template <unsigned DIM>
 class BasicCableAssembler : public AbstractFeCableIntegralAssembler<DIM,DIM,1,true,true,NORMAL>
 {
 private:
@@ -83,7 +83,7 @@ public:
     }
 };
 
-template<unsigned DIM>
+template <unsigned DIM>
 class SimpleVectorAssembler : public AbstractFeCableIntegralAssembler<DIM,DIM,1,true,false,NORMAL>
 {
 private:
@@ -105,7 +105,7 @@ public:
     }
 };
 
-template<unsigned DIM>
+template <unsigned DIM>
 class SimpleMatrixAssembler : public AbstractFeCableIntegralAssembler<DIM,DIM,1,false,true,NORMAL>
 {
 private:

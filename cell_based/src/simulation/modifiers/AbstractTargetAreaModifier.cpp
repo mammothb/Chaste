@@ -35,25 +35,25 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include "AbstractTargetAreaModifier.hpp"
 
-template<unsigned DIM>
+template <unsigned DIM>
 AbstractTargetAreaModifier<DIM>::AbstractTargetAreaModifier()
     : AbstractCellBasedSimulationModifier<DIM>(),
       mReferenceTargetArea(1.0)
 {
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 AbstractTargetAreaModifier<DIM>::~AbstractTargetAreaModifier()
 {
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void AbstractTargetAreaModifier<DIM>::UpdateAtEndOfTimeStep(AbstractCellPopulation<DIM,DIM>& rCellPopulation)
 {
     UpdateTargetAreas(rCellPopulation);
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void AbstractTargetAreaModifier<DIM>::SetupSolve(AbstractCellPopulation<DIM,DIM>& rCellPopulation, std::string outputDirectory)
 {
     /*
@@ -63,7 +63,7 @@ void AbstractTargetAreaModifier<DIM>::SetupSolve(AbstractCellPopulation<DIM,DIM>
     UpdateTargetAreas(rCellPopulation);
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void AbstractTargetAreaModifier<DIM>::UpdateTargetAreas(AbstractCellPopulation<DIM,DIM>& rCellPopulation)
 {
     // Loop over the list of cells, rather than using the population iterator, so as to include dead cells
@@ -75,20 +75,20 @@ void AbstractTargetAreaModifier<DIM>::UpdateTargetAreas(AbstractCellPopulation<D
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 double AbstractTargetAreaModifier<DIM>::GetReferenceTargetArea()
 {
     return mReferenceTargetArea;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void AbstractTargetAreaModifier<DIM>::SetReferenceTargetArea(double referenceTargetArea)
 {
     assert(referenceTargetArea >= 0.0);
     mReferenceTargetArea = referenceTargetArea;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void AbstractTargetAreaModifier<DIM>::OutputSimulationModifierParameters(out_stream& rParamsFile)
 {
     *rParamsFile << "\t\t\t<ReferenceTargetArea>" << mReferenceTargetArea << "</ReferenceTargetArea>\n";

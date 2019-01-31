@@ -60,7 +60,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  * Examples of PDEs in the source folder that can be solved using this class are
  * AveragedSourceParabolicPde and UniformSourceParabolicPde.
  */
-template<unsigned DIM>
+template <unsigned DIM>
 class ParabolicBoxDomainPdeModifier : public AbstractBoxDomainPdeModifier<DIM>
 {
     friend class TestParabolicBoxDomainPdeModifier;
@@ -76,7 +76,7 @@ private:
      * @param archive  The boost archive.
      * @param version  The current version of this class.
      */
-    template<class Archive>
+    template <class Archive>
     void serialize(Archive & archive, const unsigned int version)
     {
         archive & boost::serialization::base_object<AbstractBoxDomainPdeModifier<DIM> >(*this);
@@ -160,7 +160,7 @@ namespace boost
 {
 namespace serialization
 {
-template<class Archive, unsigned DIM>
+template <class Archive, unsigned DIM>
 inline void save_construct_data(
     Archive & ar, const ParabolicBoxDomainPdeModifier<DIM> * t, const unsigned int file_version)
 {
@@ -171,7 +171,7 @@ inline void save_construct_data(
     }
 }
 
-template<class Archive, unsigned DIM>
+template <class Archive, unsigned DIM>
 inline void load_construct_data(
     Archive & ar, ParabolicBoxDomainPdeModifier<DIM> * t, const unsigned int file_version)
 {

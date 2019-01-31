@@ -36,7 +36,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "AveragedSourceParabolicPde.hpp"
 #include "ApoptoticCellProperty.hpp"
 
-template<unsigned DIM>
+template <unsigned DIM>
 AveragedSourceParabolicPde<DIM>::AveragedSourceParabolicPde(AbstractCellPopulation<DIM,DIM>& rCellPopulation,
                                                             double duDtCoefficient,
                                                             double diffusionCoefficient,
@@ -48,13 +48,13 @@ AveragedSourceParabolicPde<DIM>::AveragedSourceParabolicPde(AbstractCellPopulati
 {
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 const AbstractCellPopulation<DIM,DIM>& AveragedSourceParabolicPde<DIM>::rGetCellPopulation() const
 {
     return mrCellPopulation;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void AveragedSourceParabolicPde<DIM>::SetupSourceTerms(TetrahedralMesh<DIM,DIM>& rCoarseMesh, std::map<CellPtr, unsigned>* pCellPdeElementMap) // must be called before solve
 {
     // Allocate memory
@@ -100,13 +100,13 @@ void AveragedSourceParabolicPde<DIM>::SetupSourceTerms(TetrahedralMesh<DIM,DIM>&
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 double AveragedSourceParabolicPde<DIM>::ComputeDuDtCoefficientFunction(const ChastePoint<DIM>& )
 {
     return mDuDtCoefficient;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 double AveragedSourceParabolicPde<DIM>::ComputeSourceTerm(const ChastePoint<DIM>& rX, double u, Element<DIM,DIM>* pElement)
 {
     assert(!mCellDensityOnCoarseElements.empty());
@@ -117,7 +117,7 @@ double AveragedSourceParabolicPde<DIM>::ComputeSourceTerm(const ChastePoint<DIM>
 }
 
 // LCOV_EXCL_START
-template<unsigned DIM>
+template <unsigned DIM>
 double AveragedSourceParabolicPde<DIM>::ComputeSourceTermAtNode(const Node<DIM>& rNode, double u)
 {
     NEVER_REACHED;
@@ -125,13 +125,13 @@ double AveragedSourceParabolicPde<DIM>::ComputeSourceTermAtNode(const Node<DIM>&
 }
 // LCOV_EXCL_STOP
 
-template<unsigned DIM>
+template <unsigned DIM>
 c_matrix<double,DIM,DIM> AveragedSourceParabolicPde<DIM>::ComputeDiffusionTerm(const ChastePoint<DIM>& rX, Element<DIM,DIM>* pElement)
 {
     return mDiffusionCoefficient*identity_matrix<double>(DIM);
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 double AveragedSourceParabolicPde<DIM>::GetUptakeRateForElement(unsigned elementIndex)
 {
     return this->mCellDensityOnCoarseElements[elementIndex];

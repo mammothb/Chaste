@@ -49,7 +49,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  * pointer (boost::shared_ptr) to the system information object.  Hence both the
  * original and the copy will share the same information object.
  */
-template<class ODE_SYSTEM>
+template <class ODE_SYSTEM>
 class CellwiseOdeSystemInformation : public AbstractOdeSystemInformation
 {
 public:
@@ -69,7 +69,7 @@ protected:
      *
      * Developers should specialise this method to their ODE system.  For example,
 
-        template<>
+        template <>
         void CellwiseOdeSystemInformation<MyNewOdeSystem>::Initialise()
         {
             this->mVariableNames.push_back("Variable_1");
@@ -82,13 +82,13 @@ protected:
     void Initialise();
 };
 
-template<class ODE_SYSTEM>
+template <class ODE_SYSTEM>
 CellwiseOdeSystemInformation<ODE_SYSTEM>::CellwiseOdeSystemInformation()
 {
     CellwiseOdeSystemInformation<ODE_SYSTEM>::Initialise();
 }
 
-template<class ODE_SYSTEM>
+template <class ODE_SYSTEM>
 void CellwiseOdeSystemInformation<ODE_SYSTEM>::Initialise()
 {
 }

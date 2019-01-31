@@ -49,7 +49,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  * r^(t+1) = r^t + dt F^t.
  */
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM=ELEMENT_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM=ELEMENT_DIM>
 class ForwardEulerNumericalMethod : public AbstractNumericalMethod<ELEMENT_DIM,SPACE_DIM> {
 
 private:
@@ -63,7 +63,7 @@ private:
      * @param archive the archive
      * @param version the current version of this class
      */
-    template<class Archive>
+    template <class Archive>
     void serialize(Archive & archive, const unsigned int version)
     {
         archive & boost::serialization::base_object<AbstractNumericalMethod<ELEMENT_DIM,SPACE_DIM> >(*this);

@@ -76,13 +76,13 @@ void AbstractExtendedBidomainSolver<ELEMENT_DIM, SPACE_DIM>::InitialiseForSolve(
     }
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void AbstractExtendedBidomainSolver<ELEMENT_DIM,SPACE_DIM>::PrepareForSetupLinearSystem(Vec existingSolution)
 {
     mpExtendedBidomainTissue->SolveCellSystems(existingSolution, PdeSimulationTime::GetTime(), PdeSimulationTime::GetNextTime());
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 Vec AbstractExtendedBidomainSolver<ELEMENT_DIM,SPACE_DIM>::GenerateNullBasis() const
 {
     double sqrrt_num_nodes = sqrt(  this->mpMesh->GetNumNodes());
@@ -107,7 +107,7 @@ Vec AbstractExtendedBidomainSolver<ELEMENT_DIM,SPACE_DIM>::GenerateNullBasis() c
     return nullbasis;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void AbstractExtendedBidomainSolver<ELEMENT_DIM,SPACE_DIM>::FinaliseLinearSystem(Vec existingSolution)
 {
     if (!(this->mpBoundaryConditions->HasDirichletBoundaryConditions()))
@@ -162,7 +162,7 @@ void AbstractExtendedBidomainSolver<ELEMENT_DIM,SPACE_DIM>::FinaliseLinearSystem
     CheckCompatibilityCondition();
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void AbstractExtendedBidomainSolver<ELEMENT_DIM,SPACE_DIM>::CheckCompatibilityCondition()
 {
     if (this->mpBoundaryConditions->HasDirichletBoundaryConditions() || mRowForAverageOfPhiZeroed!=INT_MAX )
@@ -198,7 +198,7 @@ void AbstractExtendedBidomainSolver<ELEMENT_DIM,SPACE_DIM>::CheckCompatibilityCo
 #endif
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 AbstractExtendedBidomainSolver<ELEMENT_DIM,SPACE_DIM>::AbstractExtendedBidomainSolver(
         bool bathSimulation,
         AbstractTetrahedralMesh<ELEMENT_DIM,SPACE_DIM>* pMesh,
@@ -223,12 +223,12 @@ AbstractExtendedBidomainSolver<ELEMENT_DIM,SPACE_DIM>::AbstractExtendedBidomainS
     mpExtendedBidomainAssembler = NULL; // can't initialise until know what dt is
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 AbstractExtendedBidomainSolver<ELEMENT_DIM,SPACE_DIM>::~AbstractExtendedBidomainSolver()
 {
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void AbstractExtendedBidomainSolver<ELEMENT_DIM,SPACE_DIM>::SetFixedExtracellularPotentialNodes(
             std::vector<unsigned> fixedExtracellularPotentialNodes)
 {
@@ -260,7 +260,7 @@ void AbstractExtendedBidomainSolver<ELEMENT_DIM,SPACE_DIM>::SetFixedExtracellula
     }
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void AbstractExtendedBidomainSolver<ELEMENT_DIM,SPACE_DIM>::SetRowForAverageOfPhiZeroed(unsigned row)
 {
     // Row should be every 3 entries, starting from zero...

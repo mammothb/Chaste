@@ -89,7 +89,7 @@ double FitzHughNagumo1961OdeSystem::GetIIonic(const std::vector<double>* pStateV
     return fake_ionic_current;
 }
 
-template<>
+template <>
 void OdeSystemInformation<FitzHughNagumo1961OdeSystem>::Initialise(void)
 {
     /*

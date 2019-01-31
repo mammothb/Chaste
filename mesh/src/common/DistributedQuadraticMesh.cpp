@@ -36,19 +36,19 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include "DistributedQuadraticMesh.hpp"
 
-template<unsigned DIM>
+template <unsigned DIM>
 DistributedQuadraticMesh<DIM>::DistributedQuadraticMesh(DistributedTetrahedralMeshPartitionType::type partitioningMethod)
     : DistributedTetrahedralMesh<DIM, DIM>(partitioningMethod)
 {
 
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 DistributedQuadraticMesh<DIM>::~DistributedQuadraticMesh()
 {
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void DistributedQuadraticMesh<DIM>::ConstructFromMeshReader(AbstractMeshReader<DIM, DIM>& rAbsMeshReader)
 {
     TrianglesMeshReader<DIM, DIM>* p_mesh_reader=dynamic_cast<TrianglesMeshReader<DIM, DIM>*>(&rAbsMeshReader);

@@ -118,7 +118,7 @@ public:
  *
  * Used for testing exception handling in TestBidomain3dErrorHandling
  */
-template<class CELL, unsigned ELEMENT_DIM, unsigned SPACE_DIM = ELEMENT_DIM>
+template <class CELL, unsigned ELEMENT_DIM, unsigned SPACE_DIM = ELEMENT_DIM>
 class ExceptionStimulusCellFactory : public AbstractCardiacCellFactory<ELEMENT_DIM,SPACE_DIM>
 {
 protected:

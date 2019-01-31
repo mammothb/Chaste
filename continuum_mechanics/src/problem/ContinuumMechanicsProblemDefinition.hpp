@@ -70,7 +70,7 @@ typedef enum TractionBoundaryConditionType_
  *  nodes are in space in a solid problem, which nodes have fixed flow in a fluids problem), the body force (per unit mass)
  *  (usually acceleration due to gravity or zero), the traction boundary conditions, and the density.
  */
-template<unsigned DIM>
+template <unsigned DIM>
 class ContinuumMechanicsProblemDefinition
 {
 public:

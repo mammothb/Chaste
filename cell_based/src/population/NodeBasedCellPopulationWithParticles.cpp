@@ -42,7 +42,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "CellVolumesWriter.hpp"
 #include "CellMutationStatesCountWriter.hpp"
 
-template<unsigned DIM>
+template <unsigned DIM>
 NodeBasedCellPopulationWithParticles<DIM>::NodeBasedCellPopulationWithParticles(NodesOnlyMesh<DIM>& rMesh,
                                       std::vector<CellPtr>& rCells,
                                       const std::vector<unsigned> locationIndices,
@@ -87,19 +87,19 @@ NodeBasedCellPopulationWithParticles<DIM>::NodeBasedCellPopulationWithParticles(
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 NodeBasedCellPopulationWithParticles<DIM>::NodeBasedCellPopulationWithParticles(NodesOnlyMesh<DIM>& rMesh)
     : NodeBasedCellPopulation<DIM>(rMesh)
 {
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 bool NodeBasedCellPopulationWithParticles<DIM>::IsParticle(unsigned index)
 {
     return this->GetNode(index)->IsParticle();
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 std::set<unsigned> NodeBasedCellPopulationWithParticles<DIM>::GetParticleIndices()
 {
     std::set<unsigned> particle_indices;
@@ -117,7 +117,7 @@ std::set<unsigned> NodeBasedCellPopulationWithParticles<DIM>::GetParticleIndices
     return particle_indices;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void NodeBasedCellPopulationWithParticles<DIM>::SetParticles(const std::set<unsigned>& rParticleIndices)
 {
     for (typename AbstractMesh<DIM,DIM>::NodeIterator node_iter = this->mrMesh.GetNodeIteratorBegin();
@@ -132,12 +132,12 @@ void NodeBasedCellPopulationWithParticles<DIM>::SetParticles(const std::set<unsi
     NodeBasedCellPopulationWithParticles::Validate();
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void NodeBasedCellPopulationWithParticles<DIM>::UpdateParticlesAfterReMesh(NodeMap& rMap)
 {
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 CellPtr NodeBasedCellPopulationWithParticles<DIM>::AddCell(CellPtr pNewCell, CellPtr pParentCell)
 {
     assert(pNewCell);
@@ -155,7 +155,7 @@ CellPtr NodeBasedCellPopulationWithParticles<DIM>::AddCell(CellPtr pNewCell, Cel
     return p_created_cell;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void NodeBasedCellPopulationWithParticles<DIM>::Validate()
 {
     std::map<unsigned, bool> validated_nodes;
@@ -190,7 +190,7 @@ void NodeBasedCellPopulationWithParticles<DIM>::Validate()
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void NodeBasedCellPopulationWithParticles<DIM>::AcceptCellWritersAcrossPopulation()
 {
     for (typename AbstractMesh<DIM, DIM>::NodeIterator node_iter = this->rGetMesh().GetNodeIteratorBegin();
@@ -211,7 +211,7 @@ void NodeBasedCellPopulationWithParticles<DIM>::AcceptCellWritersAcrossPopulatio
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void NodeBasedCellPopulationWithParticles<DIM>::WriteVtkResultsToFile(const std::string& rDirectory)
 {
 #ifdef CHASTE_VTK
@@ -335,7 +335,7 @@ void NodeBasedCellPopulationWithParticles<DIM>::WriteVtkResultsToFile(const std:
 #endif //CHASTE_VTK
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void NodeBasedCellPopulationWithParticles<DIM>::OutputCellPopulationParameters(out_stream& rParamsFile)
 {
     // Call method on direct parent class

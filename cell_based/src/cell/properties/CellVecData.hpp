@@ -81,7 +81,7 @@ private:
      * @param archive the archive
      * @param version the current version of this class
      */
-    template<class Archive>
+    template <class Archive>
     void serialize(Archive & archive, const unsigned int version)
     {
         archive & boost::serialization::base_object<AbstractCellProperty>(*this);
@@ -151,7 +151,7 @@ namespace boost
 {
 namespace serialization
 {
-template<class Archive>
+template <class Archive>
 inline void save_construct_data(
     Archive & ar, const CellVecData * t, const unsigned int file_version)
 {
@@ -184,7 +184,7 @@ inline void save_construct_data(
 
 }
 
-template<class Archive>
+template <class Archive>
 inline void load_construct_data(
     Archive & ar, CellVecData * t, const unsigned int file_version)
 {

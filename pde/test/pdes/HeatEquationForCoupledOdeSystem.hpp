@@ -51,7 +51,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  * which is defined in the separate class OdeSystemForCoupledHeatEquation.
  */
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 class HeatEquationForCoupledOdeSystem : public AbstractLinearParabolicPdeSystemForCoupledOdeSystem<SPACE_DIM, SPACE_DIM, 1>
 {
 public:

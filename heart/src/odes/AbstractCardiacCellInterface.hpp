@@ -454,7 +454,7 @@ private:
      * @param archive  the archive file.
      * @param version  the version of archiving, defined in the macro at the bottom of the class.
      */
-    template<class Archive>
+    template <class Archive>
     void serialize(Archive & archive, const unsigned int version)
     {
         // For version 0 these were archived by AbstractCardiacCell, now

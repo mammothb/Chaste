@@ -38,7 +38,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "PetscMatTools.hpp"
 
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void MonodomainSolver<ELEMENT_DIM,SPACE_DIM>::SetupLinearSystem(Vec currentSolution, bool computeMatrix)
 {
     assert(this->mpLinearSystem->rGetLhsMatrix() != NULL);
@@ -130,7 +130,7 @@ void MonodomainSolver<ELEMENT_DIM,SPACE_DIM>::SetupLinearSystem(Vec currentSolut
     this->mpLinearSystem->FinaliseRhsVector();
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void MonodomainSolver<ELEMENT_DIM,SPACE_DIM>::InitialiseForSolve(Vec initialSolution)
 {
     if (this->mpLinearSystem != NULL)
@@ -169,14 +169,14 @@ void MonodomainSolver<ELEMENT_DIM,SPACE_DIM>::InitialiseForSolve(Vec initialSolu
                          local_size, local_size);
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void MonodomainSolver<ELEMENT_DIM,SPACE_DIM>::PrepareForSetupLinearSystem(Vec currentSolution)
 {
     // solve cell models
     mpMonodomainTissue->SolveCellSystems(currentSolution, PdeSimulationTime::GetTime(), PdeSimulationTime::GetNextTime());
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 MonodomainSolver<ELEMENT_DIM,SPACE_DIM>::MonodomainSolver(
             AbstractTetrahedralMesh<ELEMENT_DIM,SPACE_DIM>* pMesh,
             MonodomainTissue<ELEMENT_DIM,SPACE_DIM>* pTissue,
@@ -210,7 +210,7 @@ MonodomainSolver<ELEMENT_DIM,SPACE_DIM>::MonodomainSolver(
     }
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 MonodomainSolver<ELEMENT_DIM,SPACE_DIM>::~MonodomainSolver()
 {
     delete mpMonodomainAssembler;

@@ -55,7 +55,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  * @param rM The matrix of which to find the determinant.
  */
-template<class T>
+template <class T>
 inline T Determinant(const boost::numeric::ublas::c_matrix<T, 1, 1>& rM)
 {
     using namespace boost::numeric::ublas;
@@ -69,7 +69,7 @@ inline T Determinant(const boost::numeric::ublas::c_matrix<T, 1, 1>& rM)
  *
  * @param rM The matrix of which to find the determinant.
  */
-template<class T>
+template <class T>
 T Determinant(const boost::numeric::ublas::c_matrix<T,2,2>& rM)
 {
     using namespace boost::numeric::ublas;
@@ -83,7 +83,7 @@ T Determinant(const boost::numeric::ublas::c_matrix<T,2,2>& rM)
  *
  * @param rM The matrix of which to find the determinant.
  */
-template<class T>
+template <class T>
 T Determinant(const boost::numeric::ublas::c_matrix<T, 3, 3>& rM)
 {
     using namespace boost::numeric::ublas;
@@ -102,7 +102,7 @@ T Determinant(const boost::numeric::ublas::c_matrix<T, 3, 3>& rM)
  *
  * @param rM The matrix of which to find the generalized determinant.
  */
-template<class T>
+template <class T>
 T Determinant(const boost::numeric::ublas::c_matrix<T, 3, 2>& rM)
 {
     using namespace boost::numeric::ublas;
@@ -117,7 +117,7 @@ T Determinant(const boost::numeric::ublas::c_matrix<T, 3, 2>& rM)
  *
  * @param rM The matrix of which to find the generalized determinant.
  */
-template<class T>
+template <class T>
 T Determinant(const boost::numeric::ublas::c_matrix<T, 3, 1>& rM)
 {
     using namespace boost::numeric::ublas;
@@ -131,7 +131,7 @@ T Determinant(const boost::numeric::ublas::c_matrix<T, 3, 1>& rM)
  *
  * @param rM The matrix of which to find the generalized determinant.
  */
-template<class T>
+template <class T>
 T Determinant(const boost::numeric::ublas::c_matrix<T, 2, 1>& rM)
 {
     using namespace boost::numeric::ublas;
@@ -144,7 +144,7 @@ T Determinant(const boost::numeric::ublas::c_matrix<T, 2, 1>& rM)
  *
  * @param rM The matrix of which to find the generalized determinant.
  */
-template<class T>
+template <class T>
 T Determinant(const boost::numeric::ublas::c_matrix<T, 3, 0>& rM)
 {
     NEVER_REACHED;
@@ -156,7 +156,7 @@ T Determinant(const boost::numeric::ublas::c_matrix<T, 3, 0>& rM)
  *
  * @param rM The matrix of which to find the generalized determinant.
  */
-template<class T>
+template <class T>
 T Determinant(const boost::numeric::ublas::c_matrix<T, 2, 0>& rM)
 {
     NEVER_REACHED;
@@ -168,7 +168,7 @@ T Determinant(const boost::numeric::ublas::c_matrix<T, 2, 0>& rM)
  *
  * @param rM The matrix of which to find the generalized determinant.
  */
-template<class T>
+template <class T>
 T Determinant(const boost::numeric::ublas::c_matrix<T, 1, 0>& rM)
 {
     NEVER_REACHED;
@@ -185,7 +185,7 @@ T Determinant(const boost::numeric::ublas::c_matrix<T, 1, 0>& rM)
  * @param missrow The index to the row to remove
  * @param misscol The index to the column to remove
  */
-template<class T>
+template <class T>
 T SubDeterminant(const boost::numeric::ublas::c_matrix<T, 1, 1>& rM, const unsigned missrow, const unsigned misscol)
 {
     using namespace boost::numeric::ublas;
@@ -203,7 +203,7 @@ T SubDeterminant(const boost::numeric::ublas::c_matrix<T, 1, 1>& rM, const unsig
  * @param missrow The index to the row to remove
  * @param misscol The index to the column to remove
  */
-template<class T>
+template <class T>
 T SubDeterminant(const boost::numeric::ublas::c_matrix<T, 2, 2>& rM, const unsigned missrow, const unsigned misscol)
 {
     using namespace boost::numeric::ublas;
@@ -224,7 +224,7 @@ T SubDeterminant(const boost::numeric::ublas::c_matrix<T, 2, 2>& rM, const unsig
  * @param missrow The index to the row to remove
  * @param misscol The index to the column to remove
  */
-template<class T>
+template <class T>
 T SubDeterminant(const boost::numeric::ublas::c_matrix<T, 3, 3>& rM, const unsigned missrow, const unsigned misscol)
 {
     using namespace boost::numeric::ublas;
@@ -249,7 +249,7 @@ T SubDeterminant(const boost::numeric::ublas::c_matrix<T, 3, 3>& rM, const unsig
  * @param missrow The index to the row to remove
  * @param misscol The index to the column to remove
  */
-template<class T>
+template <class T>
 T SubDeterminant(const boost::numeric::ublas::c_matrix<T, 3, 2>& rM, const unsigned missrow, const unsigned misscol)
 {
     using namespace boost::numeric::ublas;
@@ -272,7 +272,7 @@ T SubDeterminant(const boost::numeric::ublas::c_matrix<T, 3, 2>& rM, const unsig
  * @param missrow The index to the row to remove
  * @param misscol The index to the column to remove
  */
-template<class T>
+template <class T>
 T SubDeterminant(const boost::numeric::ublas::c_matrix<T, 3, 1>& rM, const unsigned missrow, const unsigned misscol)
 {
     using namespace boost::numeric::ublas;
@@ -295,7 +295,7 @@ T SubDeterminant(const boost::numeric::ublas::c_matrix<T, 3, 1>& rM, const unsig
  * @param missrow The index to the row to remove
  * @param misscol The index to the column to remove
  */
-template<class T>
+template <class T>
 T SubDeterminant(const boost::numeric::ublas::c_matrix<T, 2, 1>& rM, const unsigned missrow, const unsigned misscol)
 {
     using namespace boost::numeric::ublas;
@@ -319,7 +319,7 @@ T SubDeterminant(const boost::numeric::ublas::c_matrix<T, 2, 1>& rM, const unsig
  * @param missrow The index to the row to remove
  * @param misscol The index to the column to remove
  */
-template<class T>
+template <class T>
 T SubDeterminant(const boost::numeric::ublas::c_matrix<T, 3, 0>& rM, const unsigned missrow, const unsigned misscol)
 {
     NEVER_REACHED;
@@ -333,7 +333,7 @@ T SubDeterminant(const boost::numeric::ublas::c_matrix<T, 3, 0>& rM, const unsig
  * @param missrow The index to the row to remove
  * @param misscol The index to the column to remove
  */
-template<class T>
+template <class T>
 T SubDeterminant(const boost::numeric::ublas::c_matrix<T, 2, 0>& rM, const unsigned missrow, const unsigned misscol)
 {
     NEVER_REACHED;
@@ -347,7 +347,7 @@ T SubDeterminant(const boost::numeric::ublas::c_matrix<T, 2, 0>& rM, const unsig
  * @param missrow The index to the row to remove
  * @param misscol The index to the column to remove
  */
-template<class T>
+template <class T>
 T SubDeterminant(const boost::numeric::ublas::c_matrix<T, 1, 0>& rM, const unsigned missrow, const unsigned misscol)
 {
     NEVER_REACHED;
@@ -363,7 +363,7 @@ T SubDeterminant(const boost::numeric::ublas::c_matrix<T, 1, 0>& rM, const unsig
  * @param rM The matrix of which to find the inverse.
  * @return The inverse
  */
-template<class T>
+template <class T>
 boost::numeric::ublas::c_matrix<T, 1, 1> Inverse(const boost::numeric::ublas::c_matrix<T, 1, 1>& rM)
 {
     using namespace boost::numeric::ublas;
@@ -382,7 +382,7 @@ boost::numeric::ublas::c_matrix<T, 1, 1> Inverse(const boost::numeric::ublas::c_
  * @param rM The matrix of which to find the inverse.
  * @return The inverse
  */
-template<class T>
+template <class T>
 boost::numeric::ublas::c_matrix<T, 2, 2> Inverse(const boost::numeric::ublas::c_matrix<T, 2, 2>& rM)
 {
     using namespace boost::numeric::ublas;
@@ -405,7 +405,7 @@ boost::numeric::ublas::c_matrix<T, 2, 2> Inverse(const boost::numeric::ublas::c_
  * @param rM The matrix of which to find the inverse.
  * @return The inverse
  */
-template<class T>
+template <class T>
 boost::numeric::ublas::c_matrix<T, 3, 3> Inverse(const boost::numeric::ublas::c_matrix<T, 3, 3>& rM)
 {
     using namespace boost::numeric::ublas;
@@ -436,7 +436,7 @@ boost::numeric::ublas::c_matrix<T, 3, 3> Inverse(const boost::numeric::ublas::c_
  * @param rM The matrix of which to find the inverse.
  * @return The inverse
  */
-template<class T>
+template <class T>
 boost::numeric::ublas::c_matrix<T, 2, 3> Inverse(const boost::numeric::ublas::c_matrix<T, 3, 2>& rM)
 {
     using namespace boost::numeric::ublas;
@@ -476,7 +476,7 @@ boost::numeric::ublas::c_matrix<T, 2, 3> Inverse(const boost::numeric::ublas::c_
  * @param rM The matrix of which to find the inverse.
  * @return The inverse
  */
-template<class T>
+template <class T>
 boost::numeric::ublas::c_matrix<T, 1, 2> Inverse(const boost::numeric::ublas::c_matrix<T, 2, 1>& rM)
 {
     using namespace boost::numeric::ublas;
@@ -497,7 +497,7 @@ boost::numeric::ublas::c_matrix<T, 1, 2> Inverse(const boost::numeric::ublas::c_
  * @param rM The matrix of which to find the inverse.
  * @return The inverse
  */
-template<class T>
+template <class T>
 boost::numeric::ublas::c_matrix<T, 1, 3> Inverse(const boost::numeric::ublas::c_matrix<T, 3, 1>& rM)
 {
     using namespace boost::numeric::ublas;
@@ -520,7 +520,7 @@ boost::numeric::ublas::c_matrix<T, 1, 3> Inverse(const boost::numeric::ublas::c_
  * @param rM The matrix of which to find the trace.
  * @return The trace
  */
-template<class T>
+template <class T>
 inline T Trace(const c_matrix<T, 1, 1>& rM)
 {
     return rM(0,0);
@@ -532,7 +532,7 @@ inline T Trace(const c_matrix<T, 1, 1>& rM)
  * @param rM The matrix of which to find the trace.
  * @return The trace
  */
-template<class T>
+template <class T>
 inline T Trace(const c_matrix<T, 2, 2>& rM)
 {
     return rM(0,0) + rM(1,1);
@@ -544,7 +544,7 @@ inline T Trace(const c_matrix<T, 2, 2>& rM)
  * @param rM The matrix of which to find the trace.
  * @return The trace
  */
-template<class T>
+template <class T>
 inline T Trace(const c_matrix<T, 3, 3>& rM)
 {
     return rM(0,0) + rM(1,1) + rM(2,2);
@@ -556,7 +556,7 @@ inline T Trace(const c_matrix<T, 3, 3>& rM)
  * @param rM The matrix of which to find the trace.
  * @return The trace
  */
-template<class T>
+template <class T>
 inline T Trace(const c_matrix<T, 4, 4>& rM)
 {
     return rM(0,0) + rM(1,1) + rM(2,2) + rM(3,3);
@@ -572,7 +572,7 @@ inline T Trace(const c_matrix<T, 4, 4>& rM)
  *
  * @param rM The matrix
  */
-template<class T>
+template <class T>
 T SecondInvariant(const c_matrix<T, 3, 3>& rM)
 {
     return    rM(0,0)*rM(1,1) + rM(1,1)*rM(2,2) + rM(2,2)*rM(0,0)
@@ -586,7 +586,7 @@ T SecondInvariant(const c_matrix<T, 3, 3>& rM)
  *
  * @param rM The matrix
  */
-template<class T>
+template <class T>
 T SecondInvariant(const c_matrix<T, 2, 2>& rM)
 {
     return Determinant(rM);
@@ -622,7 +622,7 @@ double CalculateMaxEigenpair(c_matrix<double, 3, 3>& rA, c_vector<double, 3>& rE
  * @param rB second vector
  * @return Does not return rA x rB
  */
-template<class T>
+template <class T>
 c_vector<T, 1> VectorProduct(const c_vector<T, 1>& rA, const c_vector<T, 1>& rB)
 {
     NEVER_REACHED;
@@ -635,7 +635,7 @@ c_vector<T, 1> VectorProduct(const c_vector<T, 1>& rA, const c_vector<T, 1>& rB)
  * @param rB second vector
  * @return Does not return rA x rB
  */
-template<class T>
+template <class T>
 c_vector<T, 2> VectorProduct(const c_vector<T, 2>& rA, const c_vector<T, 2>& rB)
 {
     NEVER_REACHED;
@@ -648,7 +648,7 @@ c_vector<T, 2> VectorProduct(const c_vector<T, 2>& rA, const c_vector<T, 2>& rB)
  * @param rB second vector
  * @return rA x rB
  */
-template<class T>
+template <class T>
 c_vector<T, 3> VectorProduct(const c_vector<T, 3>& rA, const c_vector<T, 3>& rB)
 {
 

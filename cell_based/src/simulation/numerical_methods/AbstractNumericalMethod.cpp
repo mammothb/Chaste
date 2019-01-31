@@ -41,7 +41,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "MeshBasedCellPopulationWithGhostNodes.hpp"
 #include "CellBasedEventHandler.hpp"
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 AbstractNumericalMethod<ELEMENT_DIM,SPACE_DIM>::AbstractNumericalMethod()
     : mpCellPopulation(nullptr),
       mpForceCollection(nullptr),
@@ -52,12 +52,12 @@ AbstractNumericalMethod<ELEMENT_DIM,SPACE_DIM>::AbstractNumericalMethod()
     // mpCellPopulation and mpForceCollection are initialized by the OffLatticeSimulation constructor
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 AbstractNumericalMethod<ELEMENT_DIM,SPACE_DIM>::~AbstractNumericalMethod()
 {
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void AbstractNumericalMethod<ELEMENT_DIM,SPACE_DIM>::SetCellPopulation(AbstractOffLatticeCellPopulation<ELEMENT_DIM,SPACE_DIM>* pPopulation)
 {
     mpCellPopulation = pPopulation;
@@ -79,25 +79,25 @@ void AbstractNumericalMethod<ELEMENT_DIM,SPACE_DIM>::SetCellPopulation(AbstractO
     }
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void AbstractNumericalMethod<ELEMENT_DIM,SPACE_DIM>::SetForceCollection(std::vector<boost::shared_ptr<AbstractForce<ELEMENT_DIM, SPACE_DIM> > >* pForces)
 {
     mpForceCollection = pForces;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void AbstractNumericalMethod<ELEMENT_DIM,SPACE_DIM>::SetUseAdaptiveTimestep(bool useAdaptiveTimestep)
 {
     mUseAdaptiveTimestep = useAdaptiveTimestep;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 bool AbstractNumericalMethod<ELEMENT_DIM,SPACE_DIM>::HasAdaptiveTimestep()
 {
     return mUseAdaptiveTimestep;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 std::vector<c_vector<double, SPACE_DIM> > AbstractNumericalMethod<ELEMENT_DIM,SPACE_DIM>::ComputeForcesIncludingDamping()
 {
     CellBasedEventHandler::BeginEvent(CellBasedEventHandler::FORCE);
@@ -141,7 +141,7 @@ std::vector<c_vector<double, SPACE_DIM> > AbstractNumericalMethod<ELEMENT_DIM,SP
     return forces_as_vector;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 std::vector<c_vector<double, SPACE_DIM> > AbstractNumericalMethod<ELEMENT_DIM,SPACE_DIM>::SaveCurrentLocations()
 {
     std::vector<c_vector<double, SPACE_DIM> > current_locations;
@@ -157,14 +157,14 @@ std::vector<c_vector<double, SPACE_DIM> > AbstractNumericalMethod<ELEMENT_DIM,SP
     return current_locations;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void AbstractNumericalMethod<ELEMENT_DIM,SPACE_DIM>::SafeNodePositionUpdate( unsigned nodeIndex, c_vector<double, SPACE_DIM> newPosition)
 {
     ChastePoint<SPACE_DIM> new_point(newPosition);
     mpCellPopulation->SetNode(nodeIndex, new_point);
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void AbstractNumericalMethod<ELEMENT_DIM,SPACE_DIM>::DetectStepSizeExceptions(unsigned nodeIndex, c_vector<double,SPACE_DIM>& displacement, double dt)
 {
     try
@@ -189,19 +189,19 @@ void AbstractNumericalMethod<ELEMENT_DIM,SPACE_DIM>::DetectStepSizeExceptions(un
     }
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void AbstractNumericalMethod<ELEMENT_DIM,SPACE_DIM>::SetUseUpdateNodeLocation(bool useUpdateNodeLocation)
 {
     mUseUpdateNodeLocation = useUpdateNodeLocation;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 bool AbstractNumericalMethod<ELEMENT_DIM,SPACE_DIM>::GetUseUpdateNodeLocation()
 {
     return mUseUpdateNodeLocation;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void AbstractNumericalMethod<ELEMENT_DIM,SPACE_DIM>::OutputNumericalMethodInfo(out_stream& rParamsFile)
 {
     std::string numerical_method_type = GetIdentifier();
@@ -211,7 +211,7 @@ void AbstractNumericalMethod<ELEMENT_DIM,SPACE_DIM>::OutputNumericalMethodInfo(o
     *rParamsFile << "\t\t</" << numerical_method_type << ">\n";
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void AbstractNumericalMethod<ELEMENT_DIM,SPACE_DIM>::OutputNumericalMethodParameters(out_stream& rParamsFile)
 {
     *rParamsFile << "\t\t\t<UseAdaptiveTimestep>" << mUseAdaptiveTimestep << "</UseAdaptiveTimestep> \n";

@@ -36,7 +36,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "AbstractCorrectionTermAssembler.hpp"
 #include <typeinfo>
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM, unsigned PROBLEM_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM, unsigned PROBLEM_DIM>
 AbstractCorrectionTermAssembler<ELEMENT_DIM,SPACE_DIM,PROBLEM_DIM>::AbstractCorrectionTermAssembler(
         AbstractTetrahedralMesh<ELEMENT_DIM,SPACE_DIM>* pMesh,
         AbstractCardiacTissue<ELEMENT_DIM,SPACE_DIM>* pTissue)
@@ -79,7 +79,7 @@ AbstractCorrectionTermAssembler<ELEMENT_DIM,SPACE_DIM,PROBLEM_DIM>::AbstractCorr
     // Note: the mStateVariables std::vector is resized if correction will be applied to a given element
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM, unsigned PROBLEM_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM, unsigned PROBLEM_DIM>
 void AbstractCorrectionTermAssembler<ELEMENT_DIM,SPACE_DIM,PROBLEM_DIM>::ResetInterpolatedQuantities()
 {
     // reset ionic current, and state variables
@@ -90,7 +90,7 @@ void AbstractCorrectionTermAssembler<ELEMENT_DIM,SPACE_DIM,PROBLEM_DIM>::ResetIn
     }
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM, unsigned PROBLEM_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM, unsigned PROBLEM_DIM>
 void AbstractCorrectionTermAssembler<ELEMENT_DIM,SPACE_DIM,PROBLEM_DIM>::IncrementInterpolatedQuantities(
             double phiI, const Node<SPACE_DIM>* pNode)
 {
@@ -105,7 +105,7 @@ void AbstractCorrectionTermAssembler<ELEMENT_DIM,SPACE_DIM,PROBLEM_DIM>::Increme
     }
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM, unsigned PROBLEM_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM, unsigned PROBLEM_DIM>
 bool AbstractCorrectionTermAssembler<ELEMENT_DIM,SPACE_DIM,PROBLEM_DIM>::ElementAssemblyCriterion(Element<ELEMENT_DIM,SPACE_DIM>& rElement)
 {
     // Check that SVI is allowed on this element

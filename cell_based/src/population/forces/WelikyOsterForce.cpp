@@ -35,7 +35,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include "WelikyOsterForce.hpp"
 
-template<unsigned DIM>
+template <unsigned DIM>
 WelikyOsterForce<DIM>::WelikyOsterForce()
    : AbstractForce<DIM>(),
      mWelikyOsterAreaParameter(1.0),
@@ -43,12 +43,12 @@ WelikyOsterForce<DIM>::WelikyOsterForce()
 {
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 WelikyOsterForce<DIM>::~WelikyOsterForce()
 {
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void WelikyOsterForce<DIM>::AddForceContribution(AbstractCellPopulation<DIM>& rCellPopulation)
 {
     // Make sure that we are in the correct dimension - this code will be eliminated at compile time
@@ -123,31 +123,31 @@ void WelikyOsterForce<DIM>::AddForceContribution(AbstractCellPopulation<DIM>& rC
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 double WelikyOsterForce<DIM>::GetWelikyOsterAreaParameter()
 {
     return mWelikyOsterAreaParameter;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 double WelikyOsterForce<DIM>::GetWelikyOsterPerimeterParameter()
 {
     return mWelikyOsterPerimeterParameter;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void WelikyOsterForce<DIM>::SetWelikyOsterAreaParameter(double welikyOsterAreaParameter)
 {
     mWelikyOsterAreaParameter = welikyOsterAreaParameter;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void WelikyOsterForce<DIM>::SetWelikyOsterPerimeterParameter(double welikyOsterPerimeterParameter)
 {
     mWelikyOsterPerimeterParameter = welikyOsterPerimeterParameter;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void WelikyOsterForce<DIM>::OutputForceParameters(out_stream& rParamsFile)
 {
     *rParamsFile << "\t\t\t<WelikyOsterAreaParameter>" << mWelikyOsterAreaParameter << "</WelikyOsterAreaParameter>\n";

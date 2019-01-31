@@ -35,31 +35,31 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include "UniformSourceEllipticPde.hpp"
 
-template<unsigned DIM>
+template <unsigned DIM>
 UniformSourceEllipticPde<DIM>::UniformSourceEllipticPde(double sourceCoefficient)
     : mSourceCoefficient(sourceCoefficient)
 {
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 double UniformSourceEllipticPde<DIM>::GetCoefficient() const
 {
     return mSourceCoefficient;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 double UniformSourceEllipticPde<DIM>::ComputeConstantInUSourceTerm(const ChastePoint<DIM>& rX, Element<DIM,DIM>* pElement)
 {
     return 0.0;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 double UniformSourceEllipticPde<DIM>::ComputeLinearInUCoeffInSourceTerm(const ChastePoint<DIM>& rX, Element<DIM,DIM>* pElement)
 {
     return mSourceCoefficient;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 c_matrix<double,DIM,DIM> UniformSourceEllipticPde<DIM>::ComputeDiffusionTerm(const ChastePoint<DIM>& rX)
 {
     return identity_matrix<double>(DIM);

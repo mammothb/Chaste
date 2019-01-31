@@ -48,7 +48,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  * (std::vector<double> GetNextNode(); etc) can be called to interrogate the
  * data.
  */
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 class TrianglesMeshReader : public AbstractMeshReader<ELEMENT_DIM,SPACE_DIM>
 {
 
@@ -328,7 +328,7 @@ private:
      * @param rNumAttributes  The number of attributes per item that we expect to read. Either #mNumFaceAttributes or #mNumElementAttributes.
      * @param rAttributes  Will be filled with the attribute values if rNumAttributes > 0, otherwise empty.  Note that floating point attributes are now standard
      */
-    template<class T_DATA>
+    template <class T_DATA>
     void GetNextItemFromStream(std::ifstream& rFileStream, unsigned expectedItemNumber,
                                std::vector<T_DATA>& rDataPacket, const unsigned& rNumAttributes,
                                std::vector<double>& rAttributes);

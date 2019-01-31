@@ -66,8 +66,8 @@ typedef enum _ApplyDirichletBcsType
 } ApplyDirichletBcsType;
 
 //forward declarations
-template<unsigned DIM> class StressRecoveror;
-template<unsigned DIM> class VtkNonlinearElasticitySolutionWriter;
+template <unsigned DIM> class StressRecoveror;
+template <unsigned DIM> class VtkNonlinearElasticitySolutionWriter;
 
 /**
  *  General base class for continuum mechanics solvers. Deals with memory allocation,
@@ -83,7 +83,7 @@ template<unsigned DIM> class VtkNonlinearElasticitySolutionWriter;
  *  variables for pressure unknowns at internal hences, with the equation Pi=0 at these nodes,
  *  hence the need for an identity block to be added the corresponding parts of the matrix.
  */
-template<unsigned DIM>
+template <unsigned DIM>
 class AbstractContinuumMechanicsSolver
 {
     friend class StressRecoveror<DIM>;
@@ -372,7 +372,7 @@ public:
     std::vector<double>& rGetPressures();
 };
 
-template<unsigned DIM>
+template <unsigned DIM>
 AbstractContinuumMechanicsSolver<DIM>::AbstractContinuumMechanicsSolver(AbstractTetrahedralMesh<DIM, DIM>& rQuadMesh,
                                                                         ContinuumMechanicsProblemDefinition<DIM>& rProblemDefinition,
                                                                         std::string outputDirectory,
@@ -426,7 +426,7 @@ AbstractContinuumMechanicsSolver<DIM>::AbstractContinuumMechanicsSolver(Abstract
     mCurrentSolution.resize(mNumDofs, 0.0);
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 AbstractContinuumMechanicsSolver<DIM>::~AbstractContinuumMechanicsSolver()
 {
     if (mpOutputFileHandler)
@@ -454,7 +454,7 @@ AbstractContinuumMechanicsSolver<DIM>::~AbstractContinuumMechanicsSolver()
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void AbstractContinuumMechanicsSolver<DIM>::WriteCurrentSpatialSolution(std::string fileName,
                                                                         std::string fileExtension,
                                                                         int counterToAppend)
@@ -496,7 +496,7 @@ void AbstractContinuumMechanicsSolver<DIM>::WriteCurrentSpatialSolution(std::str
     PetscTools::Barrier("WriteSpatial");
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void AbstractContinuumMechanicsSolver<DIM>::WriteCurrentPressureSolution(int counterToAppend)
 {
     // Only write output if the flag mWriteOutput has been set
@@ -532,7 +532,7 @@ void AbstractContinuumMechanicsSolver<DIM>::WriteCurrentPressureSolution(int cou
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void AbstractContinuumMechanicsSolver<DIM>::SetWriteOutput(bool writeOutput)
 {
     if (writeOutput && (mOutputDirectory==""))
@@ -543,7 +543,7 @@ void AbstractContinuumMechanicsSolver<DIM>::SetWriteOutput(bool writeOutput)
 }
 
 // ** TO BE DEPRECATED - see #2321 **
-template<unsigned DIM>
+template <unsigned DIM>
 void AbstractContinuumMechanicsSolver<DIM>::CreateVtkOutput(std::string spatialSolutionName)
 {
     if (this->mOutputDirectory=="")
@@ -574,7 +574,7 @@ void AbstractContinuumMechanicsSolver<DIM>::CreateVtkOutput(std::string spatialS
 #endif
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 std::vector<double>& AbstractContinuumMechanicsSolver<DIM>::rGetPressures()
 {
     assert(mProblemDimension==DIM+1);
@@ -589,7 +589,7 @@ std::vector<double>& AbstractContinuumMechanicsSolver<DIM>::rGetPressures()
     return mPressureSolution;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void AbstractContinuumMechanicsSolver<DIM>::RemovePressureDummyValuesThroughLinearInterpolation()
 {
     assert(mProblemDimension==DIM+1);
@@ -668,7 +668,7 @@ void AbstractContinuumMechanicsSolver<DIM>::RemovePressureDummyValuesThroughLine
  * and a'_d is the dth-column of the matrix but with the d-th component zeroed, and where
  * there are D boundary conditions
  */
-template<unsigned DIM>
+template <unsigned DIM>
 void AbstractContinuumMechanicsSolver<DIM>::ApplyDirichletBoundaryConditions(ApplyDirichletBcsType type, bool symmetricProblem)
 {
     std::vector<unsigned> rows;
@@ -792,7 +792,7 @@ void AbstractContinuumMechanicsSolver<DIM>::ApplyDirichletBoundaryConditions(App
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void AbstractContinuumMechanicsSolver<DIM>::AddIdentityBlockForDummyPressureVariables(ApplyDirichletBcsType type)
 {
     assert(mCompressibilityType==INCOMPRESSIBLE);
@@ -824,7 +824,7 @@ void AbstractContinuumMechanicsSolver<DIM>::AddIdentityBlockForDummyPressureVari
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void AbstractContinuumMechanicsSolver<DIM>::AllocateMatrixMemory()
 {
     Vec template_vec = mrQuadMesh.GetDistributedVectorFactory()->CreateVec(mProblemDimension);

@@ -36,13 +36,13 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "StimulusBoundaryCondition.hpp"
 #include "PdeSimulationTime.hpp"
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 StimulusBoundaryCondition<SPACE_DIM>::StimulusBoundaryCondition(AbstractStimulusFunction* pStimulus)
 {
     mpStimulus = pStimulus;
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 double StimulusBoundaryCondition<SPACE_DIM>::GetValue(const ChastePoint<SPACE_DIM>& rX) const
 {
     return mpStimulus->GetStimulus(PdeSimulationTime::GetTime());

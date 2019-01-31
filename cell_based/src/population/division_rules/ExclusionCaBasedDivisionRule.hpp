@@ -42,8 +42,8 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "AbstractCaBasedDivisionRule.hpp"
 #include "CaBasedCellPopulation.hpp"
 
-template<unsigned SPACE_DIM> class CaBasedCellPopulation;
-template<unsigned SPACE_DIM> class AbstractCaBasedDivisionRule;
+template <unsigned SPACE_DIM> class CaBasedCellPopulation;
+template <unsigned SPACE_DIM> class AbstractCaBasedDivisionRule;
 
 /**
  * A division rule for CA-based cell populations to divide randomly into the available neighbours.
@@ -61,7 +61,7 @@ private:
      * @param archive the archive
      * @param version the current version of this class
      */
-    template<class Archive>
+    template <class Archive>
     void serialize(Archive & archive, const unsigned int version)
     {
         archive & boost::serialization::base_object<AbstractCaBasedDivisionRule<SPACE_DIM> >(*this);

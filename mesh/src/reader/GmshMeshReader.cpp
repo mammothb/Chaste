@@ -39,7 +39,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "GmshMeshReader.hpp"
 #include "Exception.hpp"
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 GmshMeshReader<ELEMENT_DIM, SPACE_DIM>::GmshMeshReader(std::string pathBaseName,
                                                        unsigned orderOfElements,
                                                        unsigned orderOfBoundaryElements) :
@@ -72,13 +72,13 @@ GmshMeshReader<ELEMENT_DIM, SPACE_DIM>::GmshMeshReader(std::string pathBaseName,
     ReadHeaders();
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 GmshMeshReader<ELEMENT_DIM, SPACE_DIM>::~GmshMeshReader()
 {
     CloseFiles();
 }
 
-template<unsigned  ELEMENT_DIM, unsigned  SPACE_DIM>
+template <unsigned  ELEMENT_DIM, unsigned  SPACE_DIM>
 void GmshMeshReader<ELEMENT_DIM, SPACE_DIM>::OpenFiles()
 {
     // Open mesh file
@@ -91,7 +91,7 @@ void GmshMeshReader<ELEMENT_DIM, SPACE_DIM>::OpenFiles()
     }
 }
 
-template<unsigned  ELEMENT_DIM, unsigned  SPACE_DIM>
+template <unsigned  ELEMENT_DIM, unsigned  SPACE_DIM>
 void GmshMeshReader<ELEMENT_DIM, SPACE_DIM>::CloseFiles()
 {
     mNodeFile.close();
@@ -99,7 +99,7 @@ void GmshMeshReader<ELEMENT_DIM, SPACE_DIM>::CloseFiles()
     mFaceFile.close();
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void GmshMeshReader<ELEMENT_DIM, SPACE_DIM>::ReadHeaders()
 {
     /*
@@ -142,7 +142,7 @@ void GmshMeshReader<ELEMENT_DIM, SPACE_DIM>::ReadHeaders()
     }
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void GmshMeshReader<ELEMENT_DIM, SPACE_DIM>::ReadNodeHeader()
 {
     // Search for the start of the node section
@@ -160,7 +160,7 @@ void GmshMeshReader<ELEMENT_DIM, SPACE_DIM>::ReadNodeHeader()
     line >> mNumNodes; // mNodesFile should now be pointing at the start of the node lines in the file.
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void GmshMeshReader<ELEMENT_DIM, SPACE_DIM>::ReadElementHeader()
 {
     // Search for the start of the elements section
@@ -205,7 +205,7 @@ void GmshMeshReader<ELEMENT_DIM, SPACE_DIM>::ReadElementHeader()
     mElementFile.seekg(ele_start); //mElementFile should now be pointing at the start of the node lines in the file.
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void GmshMeshReader<ELEMENT_DIM, SPACE_DIM>::ReadFaceHeader()
 {
     // Search for the start of the elements section
@@ -247,26 +247,26 @@ void GmshMeshReader<ELEMENT_DIM, SPACE_DIM>::ReadFaceHeader()
     mFaceFile.seekg(face_start); //mFacesFile should now be pointing at the start of the node lines in the file.
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 unsigned GmshMeshReader<ELEMENT_DIM, SPACE_DIM>::GetNumElements() const
 {
     return mNumElements;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 unsigned GmshMeshReader<ELEMENT_DIM, SPACE_DIM>::GetNumNodes() const
 {
     return mNumNodes;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 unsigned GmshMeshReader<ELEMENT_DIM, SPACE_DIM>::GetNumFaces() const
 {
     return mNumFaces;
 }
 
 // LCOV_EXCL_START
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 unsigned GmshMeshReader<ELEMENT_DIM, SPACE_DIM>::GetNumCableElements() const
 {
     NEVER_REACHED;
@@ -274,32 +274,32 @@ unsigned GmshMeshReader<ELEMENT_DIM, SPACE_DIM>::GetNumCableElements() const
 }
 // LCOV_EXCL_STOP
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 unsigned GmshMeshReader<ELEMENT_DIM, SPACE_DIM>::GetOrderOfElements()
 {
     return mOrderOfElements;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 unsigned GmshMeshReader<ELEMENT_DIM, SPACE_DIM>::GetOrderOfBoundaryElements()
 {
     return mOrderOfBoundaryElements;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 unsigned GmshMeshReader<ELEMENT_DIM, SPACE_DIM>::GetNumElementAttributes() const
 {
     return mNumElementAttributes;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 unsigned GmshMeshReader<ELEMENT_DIM, SPACE_DIM>::GetNumFaceAttributes() const
 {
     return mNumFaceAttributes;
 }
 
 // LCOV_EXCL_START
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 unsigned GmshMeshReader<ELEMENT_DIM, SPACE_DIM>::GetNumCableElementAttributes() const
 {
     NEVER_REACHED;
@@ -307,7 +307,7 @@ unsigned GmshMeshReader<ELEMENT_DIM, SPACE_DIM>::GetNumCableElementAttributes() 
 }
 // LCOV_EXCL_STOP
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void GmshMeshReader<ELEMENT_DIM, SPACE_DIM>::Reset()
 {
     CloseFiles();
@@ -316,7 +316,7 @@ void GmshMeshReader<ELEMENT_DIM, SPACE_DIM>::Reset()
     ReadHeaders();
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 std::vector<double> GmshMeshReader<ELEMENT_DIM, SPACE_DIM>::GetNextNode()
 {
     std::vector<double> ret_coords(SPACE_DIM);
@@ -337,13 +337,13 @@ std::vector<double> GmshMeshReader<ELEMENT_DIM, SPACE_DIM>::GetNextNode()
     return ret_coords;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 std::vector<double> GmshMeshReader<ELEMENT_DIM, SPACE_DIM>::GetNodeAttributes()
 {
     return std::vector<double>(0);
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 ElementData GmshMeshReader<ELEMENT_DIM, SPACE_DIM>::GetNextElementData()
 {
     ElementData element_data;
@@ -398,14 +398,14 @@ ElementData GmshMeshReader<ELEMENT_DIM, SPACE_DIM>::GetNextElementData()
 }
 
 // LCOV_EXCL_START
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 ElementData GmshMeshReader<ELEMENT_DIM, SPACE_DIM>::GetNextCableElementData()
 {
     NEVER_REACHED;
 }
 // LCOV_EXCL_STOP
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 ElementData GmshMeshReader<ELEMENT_DIM, SPACE_DIM>::GetNextFaceData()
 {
     ElementData face_data;
@@ -460,7 +460,7 @@ ElementData GmshMeshReader<ELEMENT_DIM, SPACE_DIM>::GetNextFaceData()
 }
 
 // LCOV_EXCL_START
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 std::vector<double> GmshMeshReader<ELEMENT_DIM, SPACE_DIM>::GetNode(unsigned index)
 {
     NEVER_REACHED;
@@ -468,7 +468,7 @@ std::vector<double> GmshMeshReader<ELEMENT_DIM, SPACE_DIM>::GetNode(unsigned ind
 // LCOV_EXCL_STOP
 
 // LCOV_EXCL_START
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 ElementData GmshMeshReader<ELEMENT_DIM, SPACE_DIM>::GetElementData(unsigned index)
 {
     NEVER_REACHED;
@@ -476,7 +476,7 @@ ElementData GmshMeshReader<ELEMENT_DIM, SPACE_DIM>::GetElementData(unsigned inde
 // LCOV_EXCL_STOP
 
 // LCOV_EXCL_START
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 ElementData GmshMeshReader<ELEMENT_DIM, SPACE_DIM>::GetFaceData(unsigned index)
 {
     NEVER_REACHED;

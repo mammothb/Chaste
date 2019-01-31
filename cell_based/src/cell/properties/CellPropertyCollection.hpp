@@ -78,7 +78,7 @@ private:
      * @param archive the archive
      * @param version the current version of this class
      */
-    template<class Archive>
+    template <class Archive>
     void serialize(Archive & archive, const unsigned int version)
     {
         archive & mProperties;
@@ -123,7 +123,7 @@ public:
      * Should be used like
      *   bool healthy = collection.HasProperty<WildTypeCellMutationState>();
      */
-    template<typename CLASS>
+    template <typename CLASS>
     bool HasProperty() const
     {
         for (ConstIteratorType it = mProperties.begin(); it != mProperties.end(); ++it)
@@ -142,7 +142,7 @@ public:
      * Should be used like
      *   collection.HasPropertyType<AbstractCellMutationState>();
      */
-    template<typename BASECLASS>
+    template <typename BASECLASS>
     bool HasPropertyType() const
     {
         for (ConstIteratorType it = mProperties.begin(); it != mProperties.end(); ++it)
@@ -158,7 +158,7 @@ public:
     /**
      * Remove a single property of the given type.
      */
-    template<typename CLASS>
+    template <typename CLASS>
     void RemoveProperty()
     {
         for (IteratorType it = mProperties.begin(); it != mProperties.end(); ++it)
@@ -210,7 +210,7 @@ public:
      * @return a sub-collection containing all our properties that are instances
      * of the given class.
      */
-    template<typename CLASS>
+    template <typename CLASS>
     CellPropertyCollection GetProperties() const
     {
         CellPropertyCollection result;
@@ -228,7 +228,7 @@ public:
      * @return a sub-collection containing all our properties that are instances
      * of the given class or any of its subclasses.
      */
-    template<typename BASECLASS>
+    template <typename BASECLASS>
     CellPropertyCollection GetPropertiesType() const
     {
         CellPropertyCollection result;

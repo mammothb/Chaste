@@ -45,7 +45,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // Implementation
 ///////////////////////////////////////////////////////////////////////////////////
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 MeshalyzerMeshWriter<ELEMENT_DIM, SPACE_DIM>::MeshalyzerMeshWriter(const std::string& rDirectory,
         const std::string& rBaseName,
         const bool &rCleanDirectory,
@@ -69,7 +69,7 @@ MeshalyzerMeshWriter<ELEMENT_DIM, SPACE_DIM>::MeshalyzerMeshWriter(const std::st
     }
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void MeshalyzerMeshWriter<ELEMENT_DIM, SPACE_DIM>::WriteFiles()
 {
     std::string comment = "# " + ChasteBuildInfo::GetProvenanceString();
@@ -185,12 +185,12 @@ void MeshalyzerMeshWriter<ELEMENT_DIM, SPACE_DIM>::WriteFiles()
     }
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 MeshalyzerMeshWriter<ELEMENT_DIM, SPACE_DIM>::~MeshalyzerMeshWriter()
 {
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void MeshalyzerMeshWriter<ELEMENT_DIM, SPACE_DIM>::WriteMetaFile()
 {
     if (this->mWriteMetaFile)
@@ -207,7 +207,7 @@ void MeshalyzerMeshWriter<ELEMENT_DIM, SPACE_DIM>::WriteMetaFile()
     }
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 std::ios_base::openmode MeshalyzerMeshWriter<ELEMENT_DIM, SPACE_DIM>::GetOpenMode(bool append)
 {
     std::ios_base::openmode mode = std::ios::out;
@@ -222,14 +222,14 @@ std::ios_base::openmode MeshalyzerMeshWriter<ELEMENT_DIM, SPACE_DIM>::GetOpenMod
     return mode;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 out_stream MeshalyzerMeshWriter<ELEMENT_DIM, SPACE_DIM>::OpenNodeFile(bool append)
 {
     std::string node_file_name = this->mBaseName + ".pts";
     return this->mpOutputFileHandler->OpenOutputFile(node_file_name, GetOpenMode(append));
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 out_stream MeshalyzerMeshWriter<ELEMENT_DIM, SPACE_DIM>::OpenElementFile(bool append)
 {
     std::string element_file_name;
@@ -250,14 +250,14 @@ out_stream MeshalyzerMeshWriter<ELEMENT_DIM, SPACE_DIM>::OpenElementFile(bool ap
     return this->mpOutputFileHandler->OpenOutputFile(element_file_name, GetOpenMode(append));
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 out_stream MeshalyzerMeshWriter<ELEMENT_DIM, SPACE_DIM>::OpenFaceFile(bool append)
 {
     std::string face_file_name = this->mBaseName + ".tri";
     return this->mpOutputFileHandler->OpenOutputFile(face_file_name, GetOpenMode(append));
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void MeshalyzerMeshWriter<ELEMENT_DIM, SPACE_DIM>::CreateFilesWithHeaders()
 {
     /*
@@ -302,7 +302,7 @@ void MeshalyzerMeshWriter<ELEMENT_DIM, SPACE_DIM>::CreateFilesWithHeaders()
 
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void MeshalyzerMeshWriter<ELEMENT_DIM, SPACE_DIM>::AppendLocalDataToFiles()
 {
     out_stream p_node_file = OpenNodeFile(true);
@@ -389,7 +389,7 @@ void MeshalyzerMeshWriter<ELEMENT_DIM, SPACE_DIM>::AppendLocalDataToFiles()
     }
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void MeshalyzerMeshWriter<ELEMENT_DIM, SPACE_DIM>::WriteFilesFooter()
 {
     std::string comment = "# " + ChasteBuildInfo::GetProvenanceString();

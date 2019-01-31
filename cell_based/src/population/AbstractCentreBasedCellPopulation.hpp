@@ -39,13 +39,13 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "AbstractOffLatticeCellPopulation.hpp"
 #include "AbstractCentreBasedDivisionRule.hpp"
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM> class AbstractCentreBasedDivisionRule; // Circular definition thing.
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM> class AbstractCentreBasedDivisionRule; // Circular definition thing.
 
 /**
  * An abstract facade class encapsulating a centre-based cell population, in which
  * each cell corresponds to a Node.
  */
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM=ELEMENT_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM=ELEMENT_DIM>
 class AbstractCentreBasedCellPopulation : public AbstractOffLatticeCellPopulation<ELEMENT_DIM, SPACE_DIM>
 {
 private:
@@ -62,7 +62,7 @@ private:
      * @param archive the archive
      * @param version the current version of this class
      */
-    template<class Archive>
+    template <class Archive>
     void serialize(Archive & archive, const unsigned int version)
     {
         archive & boost::serialization::base_object<AbstractOffLatticeCellPopulation<ELEMENT_DIM, SPACE_DIM> >(*this);

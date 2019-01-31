@@ -64,7 +64,7 @@ struct GmshTypes
 /**
  * Class to enable reading of Gmsh format mesh files (see #2312).
  */
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 class GmshMeshReader : public AbstractMeshReader<ELEMENT_DIM,SPACE_DIM>
 {
 public:

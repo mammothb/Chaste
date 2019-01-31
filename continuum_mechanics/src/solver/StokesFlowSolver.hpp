@@ -51,7 +51,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 /**
  * Finite element solver for Stokes flow problems
  */
-template<unsigned DIM>
+template <unsigned DIM>
 class StokesFlowSolver : public AbstractContinuumMechanicsSolver<DIM>
 {
     friend class TestStokesFlowSolver;
@@ -137,7 +137,7 @@ public:
 ///////////////////////////////////////////////////////////////////////////////////
 
 
-template<unsigned DIM>
+template <unsigned DIM>
 StokesFlowSolver<DIM>::StokesFlowSolver(AbstractTetrahedralMesh<DIM,DIM>& rQuadMesh,
                                         StokesFlowProblemDefinition<DIM>& rProblemDefinition,
                                         std::string outputDirectory)
@@ -153,7 +153,7 @@ StokesFlowSolver<DIM>::StokesFlowSolver(AbstractTetrahedralMesh<DIM,DIM>& rQuadM
     mpNeumannBcsAssembler = new ContinuumMechanicsNeumannBcsAssembler<DIM>(&this->mrQuadMesh, &mrProblemDefinition);
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 StokesFlowSolver<DIM>::~StokesFlowSolver()
 {
     delete mpStokesFlowAssembler;
@@ -161,7 +161,7 @@ StokesFlowSolver<DIM>::~StokesFlowSolver()
     delete mpNeumannBcsAssembler;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void StokesFlowSolver<DIM>::Solve()
 {
     mrProblemDefinition.Validate();
@@ -281,7 +281,7 @@ void StokesFlowSolver<DIM>::Solve()
     this->WriteCurrentPressureSolution();
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void StokesFlowSolver<DIM>::AssembleSystem()
 {
     // Use assembler to assemble volume integral part....
@@ -314,14 +314,14 @@ void StokesFlowSolver<DIM>::AssembleSystem()
     PetscMatTools::Finalise(this->mPreconditionMatrix);
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void StokesFlowSolver<DIM>::SetKspAbsoluteTolerance(double kspAbsoluteTolerance)
 {
     assert(kspAbsoluteTolerance > 0);
     mKspAbsoluteTol = kspAbsoluteTolerance;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 std::vector<c_vector<double,DIM> >& StokesFlowSolver<DIM>::rGetSpatialSolution()
 {
     this->mSpatialSolution.resize(this->mrQuadMesh.GetNumNodes(), zero_vector<double>(DIM));
@@ -336,7 +336,7 @@ std::vector<c_vector<double,DIM> >& StokesFlowSolver<DIM>::rGetSpatialSolution()
     return this->mSpatialSolution;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 std::vector<c_vector<double,DIM> >& StokesFlowSolver<DIM>::rGetVelocities()
 {
     return rGetSpatialSolution();

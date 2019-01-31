@@ -46,7 +46,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  * A NodeBasedCellPopulationWithBuskeUpdate is a CellPopulation consisting of only nodes in space with associated cells.
  * There are no elements and no mesh. The cell positions are updated according to Buske et al (2011) (doi:10.1371/journal.pcbi.1001045).
  */
-template<unsigned DIM>
+template <unsigned DIM>
 class NodeBasedCellPopulationWithBuskeUpdate : public NodeBasedCellPopulation<DIM>
 {
     friend class TestNodeBasedCellPopulationWithBuskeUpdate;
@@ -64,7 +64,7 @@ private:
      * @param archive the archive
      * @param version the current version of this class
      */
-    template<class Archive>
+    template <class Archive>
     void serialize(Archive & archive, const unsigned int version)
     {
         archive & boost::serialization::base_object<NodeBasedCellPopulation<DIM> >(*this);
@@ -122,7 +122,7 @@ namespace serialization
 /**
  * Serialize information required to construct a NodeBasedCellPopulationWithBuskeUpdate.
  */
-template<class Archive, unsigned DIM>
+template <class Archive, unsigned DIM>
 inline void save_construct_data(
     Archive & ar, const NodeBasedCellPopulationWithBuskeUpdate<DIM> * t, const unsigned int file_version)
 {
@@ -135,7 +135,7 @@ inline void save_construct_data(
  * De-serialize constructor parameters and initialise a NodeBasedCellPopulationWithBuskeUpdate.
  * Loads the mesh from separate files.
  */
-template<class Archive, unsigned DIM>
+template <class Archive, unsigned DIM>
 inline void load_construct_data(
     Archive & ar, NodeBasedCellPopulationWithBuskeUpdate<DIM> * t, const unsigned int file_version)
 {

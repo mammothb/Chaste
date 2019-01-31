@@ -36,7 +36,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "ShovingCaBasedDivisionRule.hpp"
 #include "RandomNumberGenerator.hpp"
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 void ShovingCaBasedDivisionRule<SPACE_DIM>::IsNodeOnBoundary(unsigned numNeighbours)
 {
     // This logic currently only works for Moore neighbourhood in 2D
@@ -58,13 +58,13 @@ void ShovingCaBasedDivisionRule<SPACE_DIM>::IsNodeOnBoundary(unsigned numNeighbo
     }
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 bool ShovingCaBasedDivisionRule<SPACE_DIM>::IsRoomToDivide(CellPtr pParentCell, CaBasedCellPopulation<SPACE_DIM>& rCellPopulation)
 {
     return true;
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 unsigned ShovingCaBasedDivisionRule<SPACE_DIM>::CalculateDaughterNodeIndex(CellPtr pNewCell,
     CellPtr pParentCell,
     CaBasedCellPopulation<SPACE_DIM>& rCellPopulation)

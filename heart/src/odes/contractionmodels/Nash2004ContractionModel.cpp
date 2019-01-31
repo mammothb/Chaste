@@ -38,7 +38,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 const double Nash2004ContractionModel::e0ByT0 = 1.0/100; //See class doxygen for discussion on where this comes from
 const double Nash2004ContractionModel::kTa = 47.9;
 
-template<>
+template <>
 void OdeSystemInformation<Nash2004ContractionModel>::Initialise()
 {
     this->mVariableNames.push_back("Ta");

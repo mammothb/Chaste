@@ -37,7 +37,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "RandomNumberGenerator.hpp"
 
 
-template<unsigned DIM>
+template <unsigned DIM>
 PottsMesh<DIM>::PottsMesh(std::vector<Node<DIM>*> nodes,
                           std::vector<PottsElement<DIM>*> pottsElements,
                           std::vector<std::set<unsigned> > vonNeumannNeighbouringNodeIndices,
@@ -83,40 +83,40 @@ PottsMesh<DIM>::PottsMesh(std::vector<Node<DIM>*> nodes,
     this->mMeshChangesDuringSimulation = true;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 PottsMesh<DIM>::PottsMesh()
 {
     this->mMeshChangesDuringSimulation = true;
     Clear();
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 PottsMesh<DIM>::~PottsMesh()
 {
     Clear();
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 unsigned PottsMesh<DIM>::SolveNodeMapping(unsigned index) const
 {
     assert(index < this->mNodes.size());
     return index;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 unsigned PottsMesh<DIM>::SolveElementMapping(unsigned index) const
 {
     assert(index < this->mElements.size());
     return index;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 unsigned PottsMesh<DIM>::SolveBoundaryElementMapping(unsigned index) const
 {
     return index;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void PottsMesh<DIM>::Clear()
 {
     // Delete elements
@@ -140,32 +140,32 @@ void PottsMesh<DIM>::Clear()
     //mMooreNeighbouringNodeIndices.clear();
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 unsigned PottsMesh<DIM>::GetNumNodes() const
 {
     return this->mNodes.size();
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 unsigned PottsMesh<DIM>::GetNumElements() const
 {
     return mElements.size() - mDeletedElementIndices.size();
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 unsigned PottsMesh<DIM>::GetNumAllElements() const
 {
     return mElements.size();
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 PottsElement<DIM>* PottsMesh<DIM>::GetElement(unsigned index) const
 {
     assert(index < mElements.size());
     return mElements[index];
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 c_vector<double, DIM> PottsMesh<DIM>::GetCentroidOfElement(unsigned index)
 {
     PottsElement<DIM>* p_element = GetElement(index);
@@ -185,7 +185,7 @@ c_vector<double, DIM> PottsMesh<DIM>::GetCentroidOfElement(unsigned index)
     return centroid;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 double PottsMesh<DIM>::GetVolumeOfElement(unsigned index)
 {
     PottsElement<DIM>* p_element = GetElement(index);
@@ -194,7 +194,7 @@ double PottsMesh<DIM>::GetVolumeOfElement(unsigned index)
     return element_volume;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 double PottsMesh<DIM>::GetSurfaceAreaOfElement(unsigned index)
 {
     ///\todo not implemented in 3d yet
@@ -229,19 +229,19 @@ double PottsMesh<DIM>::GetSurfaceAreaOfElement(unsigned index)
     return surface_area;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 std::set<unsigned> PottsMesh<DIM>::GetMooreNeighbouringNodeIndices(unsigned nodeIndex)
 {
     return mMooreNeighbouringNodeIndices[nodeIndex];
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 std::set<unsigned> PottsMesh<DIM>::GetVonNeumannNeighbouringNodeIndices(unsigned nodeIndex)
 {
     return mVonNeumannNeighbouringNodeIndices[nodeIndex];
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void PottsMesh<DIM>::DeleteElement(unsigned index)
 {
     // Mark this element as deleted; this also updates the nodes containing element indices
@@ -249,7 +249,7 @@ void PottsMesh<DIM>::DeleteElement(unsigned index)
     mDeletedElementIndices.push_back(index);
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void PottsMesh<DIM>::RemoveDeletedElements()
 {
     // Remove any elements that have been removed and re-order the remaining ones
@@ -268,7 +268,7 @@ void PottsMesh<DIM>::RemoveDeletedElements()
     mDeletedElementIndices.clear();
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void PottsMesh<DIM>::DeleteNode(unsigned index)
 {
     //Mark node as deleted so we don't consider it when iterating over nodes
@@ -382,7 +382,7 @@ void PottsMesh<DIM>::DeleteNode(unsigned index)
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 unsigned PottsMesh<DIM>::DivideElement(PottsElement<DIM>* pElement,
                                        bool placeOriginalElementBelow)
 {
@@ -509,7 +509,7 @@ unsigned PottsMesh<DIM>::DivideElement(PottsElement<DIM>* pElement,
     return new_element_index;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 unsigned PottsMesh<DIM>::AddElement(PottsElement<DIM>* pNewElement)
 {
     unsigned new_element_index = pNewElement->GetIndex();
@@ -526,7 +526,7 @@ unsigned PottsMesh<DIM>::AddElement(PottsElement<DIM>* pNewElement)
     return pNewElement->GetIndex();
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 std::set<unsigned> PottsMesh<DIM>::GetNeighbouringElementIndices(unsigned elementIndex)
 {
     // Helper variables
@@ -570,7 +570,7 @@ std::set<unsigned> PottsMesh<DIM>::GetNeighbouringElementIndices(unsigned elemen
     return neighbouring_element_indices;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void PottsMesh<DIM>::ConstructFromMeshReader(AbstractMeshReader<DIM, DIM>& rMeshReader)
 {
     assert(rMeshReader.HasNodePermutation() == false);

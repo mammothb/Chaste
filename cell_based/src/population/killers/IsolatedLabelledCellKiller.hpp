@@ -50,7 +50,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  * Works for a VertexBasedCellPopulation only.
  */
-template<unsigned DIM>
+template <unsigned DIM>
 class IsolatedLabelledCellKiller : public AbstractCellKiller<DIM>
 {
     friend class TestCellKillers;
@@ -64,7 +64,7 @@ private:
      * @param archive the archive
      * @param version the current version of this class
      */
-    template<class Archive>
+    template <class Archive>
     void serialize(Archive & archive, const unsigned int version)
     {
         archive & boost::serialization::base_object<AbstractCellKiller<DIM> >(*this);
@@ -102,7 +102,7 @@ namespace serialization
 /**
  * Serialize information required to construct a IsolatedLabelledCellKiller.
  */
-template<class Archive, unsigned DIM>
+template <class Archive, unsigned DIM>
 inline void save_construct_data(
     Archive & ar, const IsolatedLabelledCellKiller<DIM> * t, const unsigned int file_version)
 {
@@ -114,7 +114,7 @@ inline void save_construct_data(
 /**
  * De-serialize constructor parameters and initialise a IsolatedLabelledCellKiller.
  */
-template<class Archive, unsigned DIM>
+template <class Archive, unsigned DIM>
 inline void load_construct_data(
     Archive & ar, IsolatedLabelledCellKiller<DIM> * t, const unsigned int file_version)
 {

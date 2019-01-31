@@ -37,20 +37,20 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #define POTTSMESHWRITER_HPP_
 
 // Forward declaration prevents circular include chain
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 class PottsMesh;
 
 #include "PottsMesh.hpp"
 #include "AbstractMeshWriter.hpp"
 #include "NodeMap.hpp"
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 struct MeshPottsWriterIterators;
 
 /**
  * A mesh writer class for Potts meshes.
  */
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 class PottsMeshWriter : public AbstractMeshWriter<SPACE_DIM, SPACE_DIM>
 {
 private:

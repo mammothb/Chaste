@@ -77,7 +77,7 @@ void DeltaNotchOdeSystem::EvaluateYDerivatives(double time, const std::vector<do
     rDY[1] = 1.0/(1.0 + 100.0*notch*notch) - delta;                   // d[Delta]/dt
 }
 
-template<>
+template <>
 void CellwiseOdeSystemInformation<DeltaNotchOdeSystem>::Initialise()
 {
     this->mVariableNames.push_back("Notch");

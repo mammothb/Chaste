@@ -38,7 +38,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "AbstractCvodeCell.hpp"
 #include "HeartConfig.hpp"
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 AbstractCardiacCellInterface*  AbstractCardiacCellFactory<ELEMENT_DIM,SPACE_DIM>::CreateCardiacCellForNode(
     Node<SPACE_DIM>* pNode)
 {
@@ -66,7 +66,7 @@ AbstractCardiacCellInterface*  AbstractCardiacCellFactory<ELEMENT_DIM,SPACE_DIM>
     }
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void AbstractCardiacCellFactory<ELEMENT_DIM,SPACE_DIM>::FinaliseCellCreation(
     std::vector< AbstractCardiacCellInterface* >* pCellsDistributed,
     unsigned lo,
@@ -74,7 +74,7 @@ void AbstractCardiacCellFactory<ELEMENT_DIM,SPACE_DIM>::FinaliseCellCreation(
 {
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void AbstractCardiacCellFactory<ELEMENT_DIM,SPACE_DIM>::FillInCellularTransmuralAreas()
 {
     EXCEPTION("To get here you have probably asked for Epi/Mid/Endo CellularHeterogeneities in your HeartConfig "
@@ -82,14 +82,14 @@ void AbstractCardiacCellFactory<ELEMENT_DIM,SPACE_DIM>::FillInCellularTransmural
               " `FillInCellularTransmuralAreas()` in your cell factory to override this one.");
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 unsigned AbstractCardiacCellFactory<ELEMENT_DIM,SPACE_DIM>::GetNumberOfCells()
 {
     assert(mpMesh != NULL);
     return mpMesh->GetNumNodes();
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 AbstractCardiacCellFactory<ELEMENT_DIM,SPACE_DIM>::AbstractCardiacCellFactory(
         boost::shared_ptr<AbstractIvpOdeSolver> pSolver)
     : mpMesh(NULL),
@@ -99,18 +99,18 @@ AbstractCardiacCellFactory<ELEMENT_DIM,SPACE_DIM>::AbstractCardiacCellFactory(
 {
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 AbstractCardiacCellFactory<ELEMENT_DIM,SPACE_DIM>::~AbstractCardiacCellFactory()
 {
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void AbstractCardiacCellFactory<ELEMENT_DIM,SPACE_DIM>::SetMesh(AbstractTetrahedralMesh<ELEMENT_DIM,SPACE_DIM>* pMesh)
 {
     mpMesh = pMesh;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 AbstractTetrahedralMesh<ELEMENT_DIM,SPACE_DIM>* AbstractCardiacCellFactory<ELEMENT_DIM,SPACE_DIM>::GetMesh()
 {
     if (mpMesh == NULL)
@@ -120,13 +120,13 @@ AbstractTetrahedralMesh<ELEMENT_DIM,SPACE_DIM>* AbstractCardiacCellFactory<ELEME
     return mpMesh;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void AbstractCardiacCellFactory<ELEMENT_DIM,SPACE_DIM>::SetHeartGeometryInformation(HeartGeometryInformation<SPACE_DIM>* pHeartGeometryInformation)
 {
     mpHeartGeometryInformation = pHeartGeometryInformation;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 HeartGeometryInformation<SPACE_DIM>* AbstractCardiacCellFactory<ELEMENT_DIM,SPACE_DIM>::GetHeartGeometryInformation()
 {
     if (mpHeartGeometryInformation == NULL)

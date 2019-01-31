@@ -40,7 +40,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "IsNan.hpp"
 #include "HeartConfig.hpp"
 
-template<unsigned DIM>
+template <unsigned DIM>
 ZeroNetChargeElectrodes<DIM>::ZeroNetChargeElectrodes(std::vector<std::pair<AbstractChasteRegion<DIM>*, AbstractChasteRegion<DIM>*> >& rElectrodePairs,
                                                           std::vector<double>& rStimulusMagnitudes,
                                                           std::vector<double>& rDurations,
@@ -51,12 +51,12 @@ ZeroNetChargeElectrodes<DIM>::ZeroNetChargeElectrodes(std::vector<std::pair<Abst
 {
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 ZeroNetChargeElectrodes<DIM>::~ZeroNetChargeElectrodes()
 {
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 boost::shared_ptr<AbstractStimulusFunction> ZeroNetChargeElectrodes<DIM>::CreateStimulusForNode(Node<DIM>* pNode)
 {
     boost::shared_ptr<RegularStimulusZeroNetCharge> p_stimulus;

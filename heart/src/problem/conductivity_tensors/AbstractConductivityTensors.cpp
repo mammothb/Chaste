@@ -37,7 +37,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "Exception.hpp"
 #include <sstream>
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 AbstractConductivityTensors<ELEMENT_DIM,SPACE_DIM>::AbstractConductivityTensors()
     : mpMesh(NULL),
       mUseNonConstantConductivities(false),
@@ -52,19 +52,19 @@ AbstractConductivityTensors<ELEMENT_DIM,SPACE_DIM>::AbstractConductivityTensors(
     }
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 AbstractConductivityTensors<ELEMENT_DIM,SPACE_DIM>::~AbstractConductivityTensors()
 {
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void AbstractConductivityTensors<ELEMENT_DIM,SPACE_DIM>::SetFibreOrientationFile(const FileFinder &rFibreOrientationFile)
 {
     mUseFibreOrientation = true;
     mFibreOrientationFile = rFibreOrientationFile;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void AbstractConductivityTensors<ELEMENT_DIM,SPACE_DIM>::SetConstantConductivities(c_vector<double, 1> constantConductivities)
 {
     if (SPACE_DIM != 1)
@@ -76,7 +76,7 @@ void AbstractConductivityTensors<ELEMENT_DIM,SPACE_DIM>::SetConstantConductiviti
     mConstantConductivities = constantConductivities;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void AbstractConductivityTensors<ELEMENT_DIM,SPACE_DIM>::SetConstantConductivities(c_vector<double, 2> constantConductivities)
 {
     if (SPACE_DIM != 2)
@@ -88,7 +88,7 @@ void AbstractConductivityTensors<ELEMENT_DIM,SPACE_DIM>::SetConstantConductiviti
     mConstantConductivities = constantConductivities;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void AbstractConductivityTensors<ELEMENT_DIM,SPACE_DIM>::SetConstantConductivities(c_vector<double, 3> constantConductivities)
 {
     if (SPACE_DIM != 3)
@@ -100,14 +100,14 @@ void AbstractConductivityTensors<ELEMENT_DIM,SPACE_DIM>::SetConstantConductiviti
     mConstantConductivities = constantConductivities;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void AbstractConductivityTensors<ELEMENT_DIM,SPACE_DIM>::SetNonConstantConductivities(std::vector<c_vector<double, SPACE_DIM> >* pNonConstantConductivities)
 {
     mUseNonConstantConductivities = true;
     mpNonConstantConductivities = pNonConstantConductivities;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 c_matrix<double,SPACE_DIM,SPACE_DIM>& AbstractConductivityTensors<ELEMENT_DIM,SPACE_DIM>::operator[](const unsigned global_index)
 {
     assert(mInitialised);

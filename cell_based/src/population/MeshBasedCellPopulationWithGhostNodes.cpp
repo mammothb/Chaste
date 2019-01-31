@@ -36,7 +36,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "MeshBasedCellPopulationWithGhostNodes.hpp"
 #include "CellLocationIndexWriter.hpp"
 
-template<unsigned DIM>
+template <unsigned DIM>
 MeshBasedCellPopulationWithGhostNodes<DIM>::MeshBasedCellPopulationWithGhostNodes(
      MutableMesh<DIM, DIM>& rMesh,
      std::vector<CellPtr>& rCells,
@@ -76,7 +76,7 @@ MeshBasedCellPopulationWithGhostNodes<DIM>::MeshBasedCellPopulationWithGhostNode
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 MeshBasedCellPopulationWithGhostNodes<DIM>::MeshBasedCellPopulationWithGhostNodes(MutableMesh<DIM, DIM>& rMesh,
                                                                                   double ghostSpringStiffness)
     : MeshBasedCellPopulation<DIM,DIM>(rMesh),
@@ -84,31 +84,31 @@ MeshBasedCellPopulationWithGhostNodes<DIM>::MeshBasedCellPopulationWithGhostNode
 {
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 MeshBasedCellPopulationWithGhostNodes<DIM>::~MeshBasedCellPopulationWithGhostNodes()
 {
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 TetrahedralMesh<DIM, DIM>* MeshBasedCellPopulationWithGhostNodes<DIM>::GetTetrahedralMeshForPdeModifier()
 {
     EXCEPTION("Currently can't solve PDEs on meshes with ghost nodes");
     return static_cast<TetrahedralMesh<DIM, DIM>*>(&(this->mrMesh));
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 std::vector<bool>& MeshBasedCellPopulationWithGhostNodes<DIM>::rGetGhostNodes()
 {
     return this->mIsGhostNode;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 bool MeshBasedCellPopulationWithGhostNodes<DIM>::IsGhostNode(unsigned index)
 {
     return this->mIsGhostNode[index];
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 std::set<unsigned> MeshBasedCellPopulationWithGhostNodes<DIM>::GetGhostNodeIndices()
 {
     std::set<unsigned> ghost_node_indices;
@@ -122,7 +122,7 @@ std::set<unsigned> MeshBasedCellPopulationWithGhostNodes<DIM>::GetGhostNodeIndic
     return ghost_node_indices;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void MeshBasedCellPopulationWithGhostNodes<DIM>::SetGhostNodes(const std::set<unsigned>& rGhostNodeIndices)
 {
     // Reinitialise all entries of mIsGhostNode to false
@@ -137,7 +137,7 @@ void MeshBasedCellPopulationWithGhostNodes<DIM>::SetGhostNodes(const std::set<un
     Validate();
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 c_vector<double, DIM> MeshBasedCellPopulationWithGhostNodes<DIM>::CalculateForceBetweenGhostNodes(const unsigned& rNodeAGlobalIndex, const unsigned& rNodeBGlobalIndex)
 {
     assert(rNodeAGlobalIndex != rNodeBGlobalIndex);
@@ -156,7 +156,7 @@ c_vector<double, DIM> MeshBasedCellPopulationWithGhostNodes<DIM>::CalculateForce
     return mGhostSpringStiffness * unit_difference * (distance_between_nodes - rest_length);
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 CellPtr MeshBasedCellPopulationWithGhostNodes<DIM>::AddCell(CellPtr pNewCell, CellPtr pParentCell)
 {
     // Add new cell to population
@@ -176,7 +176,7 @@ CellPtr MeshBasedCellPopulationWithGhostNodes<DIM>::AddCell(CellPtr pNewCell, Ce
     return p_created_cell;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void MeshBasedCellPopulationWithGhostNodes<DIM>::Validate()
 {
     // Get a list of all the nodes that are ghosts
@@ -205,7 +205,7 @@ void MeshBasedCellPopulationWithGhostNodes<DIM>::Validate()
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void MeshBasedCellPopulationWithGhostNodes<DIM>::UpdateGhostNodesAfterReMesh(NodeMap& rMap)
 {
     // Copy mIsGhostNode to a temporary vector
@@ -226,7 +226,7 @@ void MeshBasedCellPopulationWithGhostNodes<DIM>::UpdateGhostNodesAfterReMesh(Nod
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 std::set<unsigned> MeshBasedCellPopulationWithGhostNodes<DIM>::GetNeighbouringLocationIndices(CellPtr pCell)
 {
     unsigned node_index = this->GetLocationIndexUsingCell(pCell);
@@ -249,7 +249,7 @@ std::set<unsigned> MeshBasedCellPopulationWithGhostNodes<DIM>::GetNeighbouringLo
     return neighbour_indices;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void MeshBasedCellPopulationWithGhostNodes<DIM>::AcceptCellWritersAcrossPopulation()
 {
     for (typename AbstractMesh<DIM, DIM>::NodeIterator node_iter = this->rGetMesh().GetNodeIteratorBegin();
@@ -270,7 +270,7 @@ void MeshBasedCellPopulationWithGhostNodes<DIM>::AcceptCellWritersAcrossPopulati
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void MeshBasedCellPopulationWithGhostNodes<DIM>::ApplyGhostForces()
 {
     // Initialise vector of forces on ghost nodes
@@ -318,7 +318,7 @@ void MeshBasedCellPopulationWithGhostNodes<DIM>::ApplyGhostForces()
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void MeshBasedCellPopulationWithGhostNodes<DIM>::OpenWritersFiles(OutputFileHandler& rOutputFileHandler)
 {
     if (this->mOutputResultsForChasteVisualizer)
@@ -332,7 +332,7 @@ void MeshBasedCellPopulationWithGhostNodes<DIM>::OpenWritersFiles(OutputFileHand
     MeshBasedCellPopulation<DIM, DIM>::OpenWritersFiles(rOutputFileHandler);
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void MeshBasedCellPopulationWithGhostNodes<DIM>::WriteVtkResultsToFile(const std::string& rDirectory)
 {
 #ifdef CHASTE_VTK
@@ -407,7 +407,7 @@ void MeshBasedCellPopulationWithGhostNodes<DIM>::WriteVtkResultsToFile(const std
 #endif //CHASTE_VTK
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void MeshBasedCellPopulationWithGhostNodes<DIM>::OutputCellPopulationParameters(out_stream& rParamsFile)
 {
     *rParamsFile << "\t\t<GhostSpringStiffness>" << mGhostSpringStiffness << "</GhostSpringStiffness>\n";

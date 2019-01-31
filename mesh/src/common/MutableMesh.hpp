@@ -46,7 +46,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 /**
  * A concrete mutable mesh class.
  */
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 class MutableMesh : public TetrahedralMesh<ELEMENT_DIM, SPACE_DIM>
 {
     /** Needed for serialization. */
@@ -58,7 +58,7 @@ class MutableMesh : public TetrahedralMesh<ELEMENT_DIM, SPACE_DIM>
      * @param archive the archive to save to.
      * @param version the version number.
      */
-    template<class Archive>
+    template <class Archive>
     void save(Archive & archive, const unsigned int version) const
     {
         archive & boost::serialization::base_object<TetrahedralMesh<ELEMENT_DIM, SPACE_DIM> >(*this);
@@ -89,7 +89,7 @@ class MutableMesh : public TetrahedralMesh<ELEMENT_DIM, SPACE_DIM>
      * @param archive the archive to save to.
      * @param version the version number.
      */
-    template<class Archive>
+    template <class Archive>
     void load(Archive & archive, const unsigned int version)
     {
         archive & boost::serialization::base_object<TetrahedralMesh<ELEMENT_DIM, SPACE_DIM> >(*this);

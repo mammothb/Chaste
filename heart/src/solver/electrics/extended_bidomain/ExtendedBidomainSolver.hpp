@@ -55,7 +55,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *  An extended bidomain solver, which computes the right-hand-side (RHS) vector of the linear
  *  system to be solved using matrix-vector products.
  */
-template<unsigned ELEM_DIM, unsigned SPACE_DIM>
+template <unsigned ELEM_DIM, unsigned SPACE_DIM>
 class ExtendedBidomainSolver : public AbstractExtendedBidomainSolver<ELEM_DIM,SPACE_DIM>
 {
 private:

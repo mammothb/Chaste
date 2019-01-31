@@ -48,7 +48,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  * This class works with all off-lattice cell populations.
  */
-template<unsigned DIM>
+template <unsigned DIM>
 class DiffusionForce : public AbstractForce<DIM>
 {
 private :
@@ -82,7 +82,7 @@ private :
      * @param archive  The boost archive.
      * @param version  The current version of this class.
      */
-    template<class Archive>
+    template <class Archive>
     void serialize(Archive & archive, const unsigned int version)
     {
         archive & boost::serialization::base_object<AbstractForce<DIM> >(*this);

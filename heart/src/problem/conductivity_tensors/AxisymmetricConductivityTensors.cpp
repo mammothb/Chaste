@@ -39,7 +39,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "Exception.hpp"
 
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 AxisymmetricConductivityTensors<ELEMENT_DIM, SPACE_DIM>::AxisymmetricConductivityTensors()
 {
     if (SPACE_DIM != 3)
@@ -48,7 +48,7 @@ AxisymmetricConductivityTensors<ELEMENT_DIM, SPACE_DIM>::AxisymmetricConductivit
     }
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void AxisymmetricConductivityTensors<ELEMENT_DIM, SPACE_DIM>::SetConstantConductivities(c_vector<double, 3> constantConductivities)
 {
     //assert(SPACE_DIM == 3);//Otherwise constructor would have thrown
@@ -61,7 +61,7 @@ void AxisymmetricConductivityTensors<ELEMENT_DIM, SPACE_DIM>::SetConstantConduct
     this->mConstantConductivities = constantConductivities;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void AxisymmetricConductivityTensors<ELEMENT_DIM, SPACE_DIM>::Init(AbstractTetrahedralMesh<ELEMENT_DIM, SPACE_DIM> *pMesh)
 {
     this->mpMesh = pMesh;

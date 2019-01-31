@@ -40,7 +40,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "PdeSimulationTime.hpp"
 #include "ConstBoundaryCondition.hpp"
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 c_matrix<double,3*(ELEMENT_DIM+1),3*(ELEMENT_DIM+1)>
     ExtendedBidomainAssembler<ELEMENT_DIM,SPACE_DIM>::ComputeMatrixTerm(
             c_vector<double, ELEMENT_DIM+1> &rPhi,
@@ -128,7 +128,7 @@ c_matrix<double,3*(ELEMENT_DIM+1),3*(ELEMENT_DIM+1)>
     return ret;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 ExtendedBidomainAssembler<ELEMENT_DIM,SPACE_DIM>::ExtendedBidomainAssembler(
                                 AbstractTetrahedralMesh<ELEMENT_DIM,SPACE_DIM>* pMesh,
                                 ExtendedBidomainTissue<SPACE_DIM>* pTissue)
@@ -138,7 +138,7 @@ ExtendedBidomainAssembler<ELEMENT_DIM,SPACE_DIM>::ExtendedBidomainAssembler(
     assert(pTissue != NULL);
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 ExtendedBidomainAssembler<ELEMENT_DIM,SPACE_DIM>::~ExtendedBidomainAssembler()
 {
 }

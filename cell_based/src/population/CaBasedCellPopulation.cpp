@@ -49,14 +49,14 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "VtkMeshWriter.hpp"
 
 // LCOV_EXCL_START
-template<unsigned DIM>
+template <unsigned DIM>
 void CaBasedCellPopulation<DIM>::Validate()
 {
     NEVER_REACHED;
 }
 // LCOV_EXCL_STOP
 
-template<unsigned DIM>
+template <unsigned DIM>
 CaBasedCellPopulation<DIM>::CaBasedCellPopulation(PottsMesh<DIM>& rMesh,
                                                         std::vector<CellPtr>& rCells,
                                                         const std::vector<unsigned> locationIndices,
@@ -97,13 +97,13 @@ CaBasedCellPopulation<DIM>::CaBasedCellPopulation(PottsMesh<DIM>& rMesh,
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 CaBasedCellPopulation<DIM>::CaBasedCellPopulation(PottsMesh<DIM>& rMesh)
     : AbstractOnLatticeCellPopulation<DIM>(rMesh)
 {
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 CaBasedCellPopulation<DIM>::~CaBasedCellPopulation()
 {
     if (this->mDeleteMesh)
@@ -112,32 +112,32 @@ CaBasedCellPopulation<DIM>::~CaBasedCellPopulation()
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 std::vector<unsigned>& CaBasedCellPopulation<DIM>::rGetAvailableSpaces()
 {
     return mAvailableSpaces;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 bool CaBasedCellPopulation<DIM>::IsSiteAvailable(unsigned index, CellPtr pCell)
 {
     ///\todo this is where to deal with carrying capacity
     return (mAvailableSpaces[index] != 0);
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 PottsMesh<DIM>& CaBasedCellPopulation<DIM>::rGetMesh()
 {
     return static_cast<PottsMesh<DIM>& >((this->mrMesh));
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 const PottsMesh<DIM>& CaBasedCellPopulation<DIM>::rGetMesh() const
 {
     return static_cast<PottsMesh<DIM>& >((this->mrMesh));
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 TetrahedralMesh<DIM, DIM>* CaBasedCellPopulation<DIM>::GetTetrahedralMeshForPdeModifier()
 {
     std::vector<Node<DIM>*> temp_nodes;
@@ -155,19 +155,19 @@ TetrahedralMesh<DIM, DIM>* CaBasedCellPopulation<DIM>::GetTetrahedralMeshForPdeM
     return new MutableMesh<DIM,DIM>(temp_nodes);
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 Node<DIM>* CaBasedCellPopulation<DIM>::GetNode(unsigned index)
 {
     return this->mrMesh.GetNode(index);
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 unsigned CaBasedCellPopulation<DIM>::GetNumNodes()
 {
     return this->mrMesh.GetNumNodes();
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 std::set<unsigned> CaBasedCellPopulation<DIM>::GetNeighbouringLocationIndices(CellPtr pCell)
 {
     unsigned index = this->GetLocationIndexUsingCell(pCell);
@@ -187,19 +187,19 @@ std::set<unsigned> CaBasedCellPopulation<DIM>::GetNeighbouringLocationIndices(Ce
     return neighbour_indices;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 c_vector<double, DIM> CaBasedCellPopulation<DIM>::GetLocationOfCellCentre(CellPtr pCell)
 {
     return this->mrMesh.GetNode(this->GetLocationIndexUsingCell(pCell))->rGetLocation();
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 Node<DIM>* CaBasedCellPopulation<DIM>::GetNodeCorrespondingToCell(CellPtr pCell)
 {
     return this->mrMesh.GetNode(this->GetLocationIndexUsingCell(pCell));
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void CaBasedCellPopulation<DIM>::AddCellUsingLocationIndex(unsigned index, CellPtr pCell)
 {
     if (!IsSiteAvailable(index, pCell))
@@ -211,7 +211,7 @@ void CaBasedCellPopulation<DIM>::AddCellUsingLocationIndex(unsigned index, CellP
     AbstractCellPopulation<DIM,DIM>::AddCellUsingLocationIndex(index, pCell);
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void CaBasedCellPopulation<DIM>::RemoveCellUsingLocationIndex(unsigned index, CellPtr pCell)
 {
     AbstractCellPopulation<DIM,DIM>::RemoveCellUsingLocationIndex(index, pCell);
@@ -221,13 +221,13 @@ void CaBasedCellPopulation<DIM>::RemoveCellUsingLocationIndex(unsigned index, Ce
     assert(mAvailableSpaces[index] <= mLatticeCarryingCapacity);
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 bool CaBasedCellPopulation<DIM>::IsRoomToDivide(CellPtr pCell)
 {
     return mpCaBasedDivisionRule->IsRoomToDivide(pCell, *this);
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 CellPtr CaBasedCellPopulation<DIM>::AddCell(CellPtr pNewCell, CellPtr pParentCell)
 {
     unsigned daughter_node_index = mpCaBasedDivisionRule->CalculateDaughterNodeIndex(pNewCell,pParentCell,*this);
@@ -242,7 +242,7 @@ CellPtr CaBasedCellPopulation<DIM>::AddCell(CellPtr pNewCell, CellPtr pParentCel
     return p_created_cell;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 double CaBasedCellPopulation<DIM>:: EvaluateDivisionPropensity(unsigned currentNodeIndex,
                                                                unsigned targetNodeIndex,
                                                                CellPtr pCell)
@@ -250,7 +250,7 @@ double CaBasedCellPopulation<DIM>:: EvaluateDivisionPropensity(unsigned currentN
     return 1.0;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 unsigned CaBasedCellPopulation<DIM>::RemoveDeadCells()
 {
     unsigned num_removed = 0;
@@ -279,7 +279,7 @@ unsigned CaBasedCellPopulation<DIM>::RemoveDeadCells()
     return num_removed;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void CaBasedCellPopulation<DIM>::UpdateCellLocations(double dt)
 {
     /*
@@ -490,36 +490,36 @@ void CaBasedCellPopulation<DIM>::UpdateCellLocations(double dt)
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 bool CaBasedCellPopulation<DIM>::IsCellAssociatedWithADeletedLocation(CellPtr pCell)
 {
     return false;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void CaBasedCellPopulation<DIM>::Update(bool hasHadBirthsOrDeaths)
 {
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void CaBasedCellPopulation<DIM>::AcceptPopulationWriter(boost::shared_ptr<AbstractCellPopulationWriter<DIM, DIM> > pPopulationWriter)
 {
     pPopulationWriter->Visit(this);
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void CaBasedCellPopulation<DIM>::AcceptPopulationCountWriter(boost::shared_ptr<AbstractCellPopulationCountWriter<DIM, DIM> > pPopulationCountWriter)
 {
     pPopulationCountWriter->Visit(this);
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void CaBasedCellPopulation<DIM>::AcceptCellWriter(boost::shared_ptr<AbstractCellWriter<DIM, DIM> > pCellWriter, CellPtr pCell)
 {
     pCellWriter->VisitCell(pCell, this);
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void CaBasedCellPopulation<DIM>::OpenWritersFiles(OutputFileHandler& rOutputFileHandler)
 {
     if (this->mOutputResultsForChasteVisualizer)
@@ -533,21 +533,21 @@ void CaBasedCellPopulation<DIM>::OpenWritersFiles(OutputFileHandler& rOutputFile
     AbstractCellPopulation<DIM>::OpenWritersFiles(rOutputFileHandler);
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 double CaBasedCellPopulation<DIM>::GetVolumeOfCell(CellPtr pCell)
 {
     double cell_volume = 1.0;
     return cell_volume;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 double CaBasedCellPopulation<DIM>::GetWidth(const unsigned& rDimension)
 {
     double width = this->mrMesh.GetWidth(rDimension);
     return width;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void CaBasedCellPopulation<DIM>::AddUpdateRule(boost::shared_ptr<AbstractUpdateRule<DIM> > pUpdateRule)
 {
     // The update rule must be derived from AbstractCaUpdateRule or AbstractCaSwitchingUpdateRule
@@ -564,7 +564,7 @@ void CaBasedCellPopulation<DIM>::AddUpdateRule(boost::shared_ptr<AbstractUpdateR
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void CaBasedCellPopulation<DIM>::RemoveAllUpdateRules()
 {
     // Clear mSwitchingUpdateRuleCollection
@@ -574,7 +574,7 @@ void CaBasedCellPopulation<DIM>::RemoveAllUpdateRules()
     AbstractOnLatticeCellPopulation<DIM>::RemoveAllUpdateRules();
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 const std::vector<boost::shared_ptr<AbstractUpdateRule<DIM> > > CaBasedCellPopulation<DIM>::GetUpdateRuleCollection() const
 {
     std::vector<boost::shared_ptr<AbstractUpdateRule<DIM> > > update_rules;
@@ -591,19 +591,19 @@ const std::vector<boost::shared_ptr<AbstractUpdateRule<DIM> > > CaBasedCellPopul
     return update_rules;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 boost::shared_ptr<AbstractCaBasedDivisionRule<DIM> > CaBasedCellPopulation<DIM>::GetCaBasedDivisionRule()
 {
     return mpCaBasedDivisionRule;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void CaBasedCellPopulation<DIM>::SetCaBasedDivisionRule(boost::shared_ptr<AbstractCaBasedDivisionRule<DIM> > pCaBasedDivisionRule)
 {
     mpCaBasedDivisionRule = pCaBasedDivisionRule;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void CaBasedCellPopulation<DIM>::OutputCellPopulationParameters(out_stream& rParamsFile)
 {
     // Add the division rule parameters
@@ -615,7 +615,7 @@ void CaBasedCellPopulation<DIM>::OutputCellPopulationParameters(out_stream& rPar
     AbstractOnLatticeCellPopulation<DIM>::OutputCellPopulationParameters(rParamsFile);
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void CaBasedCellPopulation<DIM>::WriteVtkResultsToFile(const std::string& rDirectory)
 {
 #ifdef CHASTE_VTK
@@ -781,7 +781,7 @@ void CaBasedCellPopulation<DIM>::WriteVtkResultsToFile(const std::string& rDirec
 #endif //CHASTE_VTK
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 double CaBasedCellPopulation<DIM>::GetCellDataItemAtPdeNode(
     unsigned pdeNodeIndex,
     std::string& rVariableName,
@@ -801,7 +801,7 @@ double CaBasedCellPopulation<DIM>::GetCellDataItemAtPdeNode(
     return value;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 bool CaBasedCellPopulation<DIM>::IsPdeNodeAssociatedWithNonApoptoticCell(unsigned pdeNodeIndex)
 {
     // pdeNodeIndex corresponds to the 'position' of the cell to interrogate in the vector of cells

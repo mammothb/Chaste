@@ -176,7 +176,7 @@ public:
      *
      * @param pOdeSystem  the ODE system which was solved to generate this solution object
      */
-    template<typename VECTOR>
+    template <typename VECTOR>
     void CalculateDerivedQuantitiesAndParameters(AbstractParameterisedSystem<VECTOR>* pOdeSystem);
 
     /**
@@ -204,7 +204,7 @@ public:
      * @param pOdeSystem  The ODE system which was solved to generate this solution object.
      * @return  A vector of the current system parameters.
      */
-    template<typename VECTOR>
+    template <typename VECTOR>
     std::vector<double>& rGetParameters(AbstractParameterisedSystem<VECTOR>* pOdeSystem);
 
     /**

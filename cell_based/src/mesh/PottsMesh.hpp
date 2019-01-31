@@ -37,7 +37,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #define POTTSMESH_HPP_
 
 // Forward declaration prevents circular include chain
-template<unsigned DIM>
+template <unsigned DIM>
 class PottsMeshWriter;
 
 #include <iostream>
@@ -59,7 +59,7 @@ class PottsMeshWriter;
 /**
  * A Potts-based mesh class, for use in Cellular Potts model simulations.
  */
-template<unsigned DIM>
+template <unsigned DIM>
 class PottsMesh : public AbstractMesh<DIM, DIM>
 {
     friend class TestPottsMesh;
@@ -117,7 +117,7 @@ protected:
      * @param archive the archive
      * @param version the current version of this class
      */
-    template<class Archive>
+    template <class Archive>
     void save(Archive & archive, const unsigned int version) const
     {
         // NOTE - Subclasses must archive their member variables BEFORE calling this method.
@@ -139,7 +139,7 @@ protected:
      * @param archive the archive
      * @param version the current version of this class
      */
-    template<class Archive>
+    template <class Archive>
     void load(Archive & archive, const unsigned int version)
     {
         // NOTE - Subclasses must archive their member variables BEFORE calling this method.
@@ -418,40 +418,40 @@ EXPORT_TEMPLATE_CLASS_SAME_DIMS(PottsMesh)
 // PottsElementIterator class implementation - most methods are inlined     //
 //////////////////////////////////////////////////////////////////////////////
 
-template<unsigned DIM>
+template <unsigned DIM>
 typename PottsMesh<DIM>::PottsElementIterator PottsMesh<DIM>::GetElementIteratorBegin(
         bool skipDeletedElements)
 {
     return PottsElementIterator(*this, mElements.begin(), skipDeletedElements);
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 typename PottsMesh<DIM>::PottsElementIterator PottsMesh<DIM>::GetElementIteratorEnd()
 {
     return PottsElementIterator(*this, mElements.end());
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 PottsElement<DIM>& PottsMesh<DIM>::PottsElementIterator::operator*()
 {
     assert(!IsAtEnd());
     return **mElementIter;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 PottsElement<DIM>* PottsMesh<DIM>::PottsElementIterator::operator->()
 {
     assert(!IsAtEnd());
     return *mElementIter;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 bool PottsMesh<DIM>::PottsElementIterator::operator!=(const typename PottsMesh<DIM>::PottsElementIterator& rOther)
 {
     return mElementIter != rOther.mElementIter;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 typename PottsMesh<DIM>::PottsElementIterator& PottsMesh<DIM>::PottsElementIterator::operator++()
 {
     do
@@ -463,7 +463,7 @@ typename PottsMesh<DIM>::PottsElementIterator& PottsMesh<DIM>::PottsElementItera
     return (*this);
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 PottsMesh<DIM>::PottsElementIterator::PottsElementIterator(
         PottsMesh<DIM>& rMesh,
         typename std::vector<PottsElement<DIM>*>::iterator elementIter,
@@ -487,13 +487,13 @@ PottsMesh<DIM>::PottsElementIterator::PottsElementIterator(
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 bool PottsMesh<DIM>::PottsElementIterator::IsAtEnd()
 {
     return mElementIter == mrMesh.mElements.end();
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 bool PottsMesh<DIM>::PottsElementIterator::IsAllowedElement()
 {
     return !(mSkipDeletedElements && (*this)->IsDeleted());

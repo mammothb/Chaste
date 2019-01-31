@@ -38,7 +38,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include <sstream>
 #include "Exception.hpp"
 
-template<unsigned DIM>
+template <unsigned DIM>
 FibreReader<DIM>::FibreReader(const FileFinder& rFileFinder, FibreFileType fibreFileType)
    : mFileIsBinary(false), // overwritten by ReadNumLinesOfDataFromFile() if applicable.
      mNextIndex(0u)
@@ -64,13 +64,13 @@ FibreReader<DIM>::FibreReader(const FileFinder& rFileFinder, FibreFileType fibre
     ReadNumLinesOfDataFromFile();
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 FibreReader<DIM>::~FibreReader()
 {
     mDataFile.close();
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void FibreReader<DIM>::GetAllAxi(std::vector< c_vector<double, DIM> >& direction)
 {
     assert(direction.empty());
@@ -87,7 +87,7 @@ void FibreReader<DIM>::GetAllAxi(std::vector< c_vector<double, DIM> >& direction
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void FibreReader<DIM>::GetAllOrtho(std::vector< c_vector<double, DIM> >& first_direction,
                                    std::vector< c_vector<double, DIM> >& second_direction,
                                    std::vector< c_vector<double, DIM> >& third_direction)
@@ -121,7 +121,7 @@ void FibreReader<DIM>::GetAllOrtho(std::vector< c_vector<double, DIM> >& first_d
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void FibreReader<DIM>::GetFibreSheetAndNormalMatrix(unsigned fibreIndex,
                                                     c_matrix<double,DIM,DIM>& rFibreMatrix,
                                                     bool checkOrthogonality)
@@ -192,7 +192,7 @@ void FibreReader<DIM>::GetFibreSheetAndNormalMatrix(unsigned fibreIndex,
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void FibreReader<DIM>::GetFibreVector(unsigned fibreIndex,
                                       c_vector<double,DIM>& rFibreVector,
                                       bool checkNormalised)
@@ -242,7 +242,7 @@ void FibreReader<DIM>::GetFibreVector(unsigned fibreIndex,
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 unsigned FibreReader<DIM>::GetTokensAtNextLine()
 {
     assert(mTokens.size() == mNumItemsPerLine);
@@ -298,7 +298,7 @@ unsigned FibreReader<DIM>::GetTokensAtNextLine()
     return index; // the number of entries put into mTokens
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void FibreReader<DIM>::ReadNumLinesOfDataFromFile()
 {
     std::string raw_line;

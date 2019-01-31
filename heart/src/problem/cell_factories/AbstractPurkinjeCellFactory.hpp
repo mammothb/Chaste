@@ -45,7 +45,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  *  The dimensions should be 2 or 3.
  */
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM = ELEMENT_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM = ELEMENT_DIM>
 class AbstractPurkinjeCellFactory : public AbstractCardiacCellFactory<ELEMENT_DIM,SPACE_DIM>
 {
 private:

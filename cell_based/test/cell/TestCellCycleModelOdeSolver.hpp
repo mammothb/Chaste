@@ -75,7 +75,7 @@ public:
     }
 };
 
-template<>
+template <>
 void OdeSystemInformation<SimpleOde>::Initialise()
 {
     this->mVariableNames.push_back("Variable_1");
@@ -112,7 +112,7 @@ public:
     }
 };
 
-template<>
+template <>
 void OdeSystemInformation<OdeSecondOrderWithEvents>::Initialise()
 {
     this->mVariableNames.push_back("Variable_1");

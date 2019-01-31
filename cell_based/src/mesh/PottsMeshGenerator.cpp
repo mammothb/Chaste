@@ -37,7 +37,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include <boost/scoped_array.hpp>
 
-template<unsigned DIM>
+template <unsigned DIM>
 PottsMeshGenerator<DIM>::PottsMeshGenerator(unsigned numNodesAcross, unsigned numElementsAcross, unsigned elementWidth,
                                             unsigned numNodesUp, unsigned numElementsUp, unsigned elementHeight,
                                             unsigned numNodesDeep, unsigned numElementsDeep, unsigned elementDepth,
@@ -737,13 +737,13 @@ PottsMeshGenerator<DIM>::PottsMeshGenerator(unsigned numNodesAcross, unsigned nu
     mpMesh = new PottsMesh<DIM>(nodes, elements, von_neumann_neighbours, moore_neighbours);
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 PottsMeshGenerator<DIM>::~PottsMeshGenerator()
 {
     delete mpMesh;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 PottsMesh<DIM>* PottsMeshGenerator<DIM>::GetMesh()
 {
     return mpMesh;

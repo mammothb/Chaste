@@ -307,7 +307,7 @@ double WntCellCycleOdeSystem::CalculateRootFunction(double time, const std::vect
     return rY[1] - 1.0;
 }
 
-template<>
+template <>
 void CellwiseOdeSystemInformation<WntCellCycleOdeSystem>::Initialise()
 {
     this->mVariableNames.push_back("pRb");

@@ -36,7 +36,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #define MUTABLEVERTEXMESH_HPP_
 
 // Forward declaration prevents circular include chain
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 class VertexMeshWriter;
 
 #include <iostream>
@@ -61,7 +61,7 @@ class VertexMeshWriter;
  * the junctional network of cells that forms the basis of simulations of off-lattice
  * vertex-based models.
  */
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 class MutableVertexMesh : public VertexMesh<ELEMENT_DIM, SPACE_DIM>
 {
     friend class TestMutableVertexMesh;
@@ -333,7 +333,7 @@ protected:
      * @param archive the archive
      * @param version the current version of this class
      */
-    template<class Archive>
+    template <class Archive>
     void serialize(Archive & archive, const unsigned int version)
     {
         // NOTE - Subclasses must archive their member variables BEFORE calling this method.

@@ -35,53 +35,53 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include "MooneyRivlinMaterialLaw.hpp"
 
-template<unsigned DIM>
+template <unsigned DIM>
 double MooneyRivlinMaterialLaw<DIM>::Get_dW_dI1(double I1, double I2)
 {
     return mC1;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 double MooneyRivlinMaterialLaw<DIM>::Get_dW_dI2(double I1, double I2)
 {
     assert(DIM == 3); // LCOV_EXCL_LINE
     return mC2;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 double MooneyRivlinMaterialLaw<DIM>::Get_d2W_dI1(double I1, double I2)
 {
     return 0.0;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 double MooneyRivlinMaterialLaw<DIM>::Get_d2W_dI2(double I1, double I2)
 {
     assert(DIM == 3); // LCOV_EXCL_LINE
     return 0.0;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 double MooneyRivlinMaterialLaw<DIM>::Get_d2W_dI1I2(double I1, double I2)
 {
     assert(DIM == 3); // LCOV_EXCL_LINE
     return 0.0;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 double MooneyRivlinMaterialLaw<DIM>::GetC1()
 {
     return mC1;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 double MooneyRivlinMaterialLaw<DIM>::GetC2()
 {
     assert(DIM == 3); // LCOV_EXCL_LINE
     return mC2;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 MooneyRivlinMaterialLaw<DIM>::MooneyRivlinMaterialLaw(double c1, double c2)
     : mC1(c1),
       mC2(c2)
@@ -100,7 +100,7 @@ MooneyRivlinMaterialLaw<DIM>::MooneyRivlinMaterialLaw(double c1, double c2)
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void MooneyRivlinMaterialLaw<DIM>::ScaleMaterialParameters(double scaleFactor)
 {
     assert(scaleFactor > 0.0);

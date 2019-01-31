@@ -42,7 +42,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 /**
  * Helper class for constructing cuboidal meshes.
  */
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM = ELEMENT_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM = ELEMENT_DIM>
 class CuboidMeshConstructor
 {
 private:

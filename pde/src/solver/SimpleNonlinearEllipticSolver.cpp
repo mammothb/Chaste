@@ -35,7 +35,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include "SimpleNonlinearEllipticSolver.hpp"
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 c_matrix<double,1*(ELEMENT_DIM+1),1*(ELEMENT_DIM+1)> SimpleNonlinearEllipticSolver<ELEMENT_DIM,SPACE_DIM>::ComputeMatrixTerm(
         c_vector<double, ELEMENT_DIM+1>& rPhi,
         c_matrix<double, SPACE_DIM, ELEMENT_DIM+1>& rGradPhi,
@@ -68,7 +68,7 @@ c_matrix<double,1*(ELEMENT_DIM+1),1*(ELEMENT_DIM+1)> SimpleNonlinearEllipticSolv
     return ret;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 c_vector<double,1*(ELEMENT_DIM+1)> SimpleNonlinearEllipticSolver<ELEMENT_DIM,SPACE_DIM>::ComputeVectorTerm(
         c_vector<double, ELEMENT_DIM+1>& rPhi,
         c_matrix<double, SPACE_DIM, ELEMENT_DIM+1>& rGradPhi,
@@ -97,7 +97,7 @@ c_vector<double,1*(ELEMENT_DIM+1)> SimpleNonlinearEllipticSolver<ELEMENT_DIM,SPA
     return ret;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 SimpleNonlinearEllipticSolver<ELEMENT_DIM,SPACE_DIM>::SimpleNonlinearEllipticSolver(
                               AbstractTetrahedralMesh<ELEMENT_DIM, SPACE_DIM>* pMesh,
                               AbstractNonlinearEllipticPde<SPACE_DIM>* pPde,

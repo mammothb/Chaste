@@ -37,7 +37,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "ReplicatableVector.hpp"
 #include "OdeLinearSystemSolver.hpp"
 
-template<unsigned DIM>
+template <unsigned DIM>
 NodeBasedCellPopulationWithBuskeUpdate<DIM>::NodeBasedCellPopulationWithBuskeUpdate(NodesOnlyMesh<DIM>& rMesh,
                                       std::vector<CellPtr>& rCells,
                                       const std::vector<unsigned> locationIndices,
@@ -46,14 +46,14 @@ NodeBasedCellPopulationWithBuskeUpdate<DIM>::NodeBasedCellPopulationWithBuskeUpd
 {
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 NodeBasedCellPopulationWithBuskeUpdate<DIM>::NodeBasedCellPopulationWithBuskeUpdate(NodesOnlyMesh<DIM>& rMesh)
     : NodeBasedCellPopulation<DIM>(rMesh)
 {
     // No Validate() because the cells are not associated with the cell population yet in archiving
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void NodeBasedCellPopulationWithBuskeUpdate<DIM>::UpdateNodeLocations(double dt)
 {
     // Declare solver and give the size of the system and timestep
@@ -198,7 +198,7 @@ void NodeBasedCellPopulationWithBuskeUpdate<DIM>::UpdateNodeLocations(double dt)
     PetscTools::Destroy(initial_condition);
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void NodeBasedCellPopulationWithBuskeUpdate<DIM>::OutputCellPopulationParameters(out_stream& rParamsFile)
 {
     // Currently no specific parameters to output all come from parent classes

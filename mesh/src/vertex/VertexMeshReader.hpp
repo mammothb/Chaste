@@ -59,7 +59,7 @@ struct VertexElementData
 /**
  * A mesh reader class for vertex-based meshes. So far implemented in 2D only.
  */
- template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+ template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 class VertexMeshReader : public AbstractMeshReader<ELEMENT_DIM, SPACE_DIM>
 {
 private:

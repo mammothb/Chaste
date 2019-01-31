@@ -47,7 +47,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  * Concrete readers which will read large, memory-intensive, meshes should
  * inherit from AbstractMeshReader, not this class.
  */
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 class AbstractCachedMeshReader : public AbstractMeshReader<ELEMENT_DIM, SPACE_DIM>
 {
 protected:

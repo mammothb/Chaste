@@ -43,8 +43,8 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "RandomNumberGenerator.hpp"
 
 // Forward declaration prevents circular include chain
-template<unsigned SPACE_DIM> class VertexBasedCellPopulation;
-template<unsigned SPACE_DIM> class AbstractVertexBasedDivisionRule;
+template <unsigned SPACE_DIM> class VertexBasedCellPopulation;
+template <unsigned SPACE_DIM> class AbstractVertexBasedDivisionRule;
 
 /**
  * A class to generate a division vector of unit lengths that points in a random direction,
@@ -62,7 +62,7 @@ private:
      * @param archive the archive
      * @param version the current version of this class
      */
-    template<class Archive>
+    template <class Archive>
     void serialize(Archive & archive, const unsigned int version)
     {
         archive & boost::serialization::base_object<AbstractVertexBasedDivisionRule<SPACE_DIM> >(*this);

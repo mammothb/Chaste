@@ -50,7 +50,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  *  (I1=trace(C), I2=0.5(trace(C)^2-trace(C^2)), I3=det(C)).
  */
-template<unsigned DIM>
+template <unsigned DIM>
 class AbstractIsotropicCompressibleMaterialLaw : public AbstractCompressibleMaterialLaw<DIM>
 {
 protected:

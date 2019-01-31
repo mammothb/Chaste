@@ -44,13 +44,13 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include "CellLabel.hpp"
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 HeterotypicBoundaryLengthWriter<ELEMENT_DIM, SPACE_DIM>::HeterotypicBoundaryLengthWriter()
     : AbstractCellPopulationWriter<ELEMENT_DIM, SPACE_DIM>("heterotypicboundary.dat")
 {
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void HeterotypicBoundaryLengthWriter<ELEMENT_DIM, SPACE_DIM>::Visit(MeshBasedCellPopulation<ELEMENT_DIM, SPACE_DIM>* pCellPopulation)
 {
     // Initialise helper variables
@@ -119,7 +119,7 @@ void HeterotypicBoundaryLengthWriter<ELEMENT_DIM, SPACE_DIM>::Visit(MeshBasedCel
     *this->mpOutStream << heterotypic_boundary_length << "\t" << total_shared_edges_length << "\t" << num_heterotypic_pairs << "\t" << total_num_pairs;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void HeterotypicBoundaryLengthWriter<ELEMENT_DIM, SPACE_DIM>::Visit(CaBasedCellPopulation<SPACE_DIM>* pCellPopulation)
 {
     // Initialise helper variables
@@ -184,7 +184,7 @@ void HeterotypicBoundaryLengthWriter<ELEMENT_DIM, SPACE_DIM>::Visit(CaBasedCellP
     *this->mpOutStream << heterotypic_boundary_length << "\t" << total_shared_edges_length << "\t" << num_heterotypic_pairs << "\t" << total_num_pairs;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void HeterotypicBoundaryLengthWriter<ELEMENT_DIM, SPACE_DIM>::Visit(NodeBasedCellPopulation<SPACE_DIM>* pCellPopulation)
 {
     // Make sure the cell population is updated so that mNodeNeighbours is set up
@@ -267,7 +267,7 @@ void HeterotypicBoundaryLengthWriter<ELEMENT_DIM, SPACE_DIM>::Visit(NodeBasedCel
     *this->mpOutStream << heterotypic_boundary_length << "\t" << total_shared_edges_length << "\t" << num_heterotypic_pairs << "\t" << total_num_pairs;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void HeterotypicBoundaryLengthWriter<ELEMENT_DIM, SPACE_DIM>::Visit(PottsBasedCellPopulation<SPACE_DIM>* pCellPopulation)
 {
     ///\todo #2273 - investigate whether there is a hard-coded assumption that neighbouring nodes in Potts simulations are unit distance apart
@@ -364,7 +364,7 @@ void HeterotypicBoundaryLengthWriter<ELEMENT_DIM, SPACE_DIM>::Visit(PottsBasedCe
     *this->mpOutStream << heterotypic_boundary_length << "\t" << total_shared_edges_length << "\t" << num_heterotypic_pairs << "\t" << total_num_pairs;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void HeterotypicBoundaryLengthWriter<ELEMENT_DIM, SPACE_DIM>::Visit(VertexBasedCellPopulation<SPACE_DIM>* pCellPopulation)
 {
     // Make sure the cell population is updated

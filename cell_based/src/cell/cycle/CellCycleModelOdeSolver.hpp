@@ -72,7 +72,7 @@ private:
      * @param archive the archive
      * @param version the current version of this class
      */
-    template<class Archive>
+    template <class Archive>
     void serialize(Archive & archive, const unsigned int version)
     {
         archive & boost::serialization::base_object<AbstractCellCycleModelOdeSolver>(*this);
@@ -103,11 +103,11 @@ public:
 };
 
 /** Definition of the instance static member. */
-template<class CELL_CYCLE_MODEL, class ODE_SOLVER>
+template <class CELL_CYCLE_MODEL, class ODE_SOLVER>
 boost::shared_ptr<CellCycleModelOdeSolver<CELL_CYCLE_MODEL, ODE_SOLVER> > CellCycleModelOdeSolver<CELL_CYCLE_MODEL, ODE_SOLVER>::mpInstance;
 
 
-template<class CELL_CYCLE_MODEL, class ODE_SOLVER>
+template <class CELL_CYCLE_MODEL, class ODE_SOLVER>
 CellCycleModelOdeSolver<CELL_CYCLE_MODEL, ODE_SOLVER>::CellCycleModelOdeSolver()
     : AbstractCellCycleModelOdeSolver()
 {
@@ -120,7 +120,7 @@ CellCycleModelOdeSolver<CELL_CYCLE_MODEL, ODE_SOLVER>::CellCycleModelOdeSolver()
      */
 }
 
-template<class CELL_CYCLE_MODEL, class ODE_SOLVER>
+template <class CELL_CYCLE_MODEL, class ODE_SOLVER>
 boost::shared_ptr<CellCycleModelOdeSolver<CELL_CYCLE_MODEL, ODE_SOLVER> > CellCycleModelOdeSolver<CELL_CYCLE_MODEL, ODE_SOLVER>::Instance()
 {
     if (!mpInstance)
@@ -130,13 +130,13 @@ boost::shared_ptr<CellCycleModelOdeSolver<CELL_CYCLE_MODEL, ODE_SOLVER> > CellCy
     return mpInstance;
 }
 
-template<class CELL_CYCLE_MODEL, class ODE_SOLVER>
+template <class CELL_CYCLE_MODEL, class ODE_SOLVER>
 bool CellCycleModelOdeSolver<CELL_CYCLE_MODEL, ODE_SOLVER>::IsSetUp()
 {
     return static_cast<bool>(mpOdeSolver.get());
 }
 
-template<class CELL_CYCLE_MODEL, class ODE_SOLVER>
+template <class CELL_CYCLE_MODEL, class ODE_SOLVER>
 void CellCycleModelOdeSolver<CELL_CYCLE_MODEL, ODE_SOLVER>::Initialise()
 {
     mpOdeSolver.reset(new ODE_SOLVER);
@@ -151,13 +151,13 @@ void CellCycleModelOdeSolver<CELL_CYCLE_MODEL, ODE_SOLVER>::Initialise()
 #endif //CHASTE_CVODE
 }
 
-template<class CELL_CYCLE_MODEL, class ODE_SOLVER>
+template <class CELL_CYCLE_MODEL, class ODE_SOLVER>
 bool CellCycleModelOdeSolver<CELL_CYCLE_MODEL, ODE_SOLVER>::IsAdaptive()
 {
     return AbstractCellCycleModelOdeSolver::IsAdaptive();
 }
 
-template<class CELL_CYCLE_MODEL, class ODE_SOLVER>
+template <class CELL_CYCLE_MODEL, class ODE_SOLVER>
 void CellCycleModelOdeSolver<CELL_CYCLE_MODEL, ODE_SOLVER>::Reset()
 {
     ///\todo Consider whether Reset() could be moved to the abstract class
@@ -167,7 +167,7 @@ void CellCycleModelOdeSolver<CELL_CYCLE_MODEL, ODE_SOLVER>::Reset()
  * Specialization for BackwardEulerIvpOdeSolver, whose constructor requires
  * an argument.
  */
-template<class CELL_CYCLE_MODEL>
+template <class CELL_CYCLE_MODEL>
 class CellCycleModelOdeSolver<CELL_CYCLE_MODEL, BackwardEulerIvpOdeSolver> : public AbstractCellCycleModelOdeSolver, private boost::noncopyable
 {
 private:
@@ -185,7 +185,7 @@ private:
      * @param archive the archive
      * @param version the current version of this class
      */
-    template<class Archive>
+    template <class Archive>
     void serialize(Archive & archive, const unsigned int version)
     {
         archive & boost::serialization::base_object<AbstractCellCycleModelOdeSolver>(*this);
@@ -206,16 +206,16 @@ public:
     void Reset();
 };
 
-template<class CELL_CYCLE_MODEL>
+template <class CELL_CYCLE_MODEL>
 boost::shared_ptr<CellCycleModelOdeSolver<CELL_CYCLE_MODEL, BackwardEulerIvpOdeSolver> > CellCycleModelOdeSolver<CELL_CYCLE_MODEL, BackwardEulerIvpOdeSolver>::mpInstance;
 
-template<class CELL_CYCLE_MODEL>
+template <class CELL_CYCLE_MODEL>
 CellCycleModelOdeSolver<CELL_CYCLE_MODEL, BackwardEulerIvpOdeSolver>::CellCycleModelOdeSolver()
     : AbstractCellCycleModelOdeSolver()
 {
 }
 
-template<class CELL_CYCLE_MODEL>
+template <class CELL_CYCLE_MODEL>
 boost::shared_ptr<CellCycleModelOdeSolver<CELL_CYCLE_MODEL, BackwardEulerIvpOdeSolver> > CellCycleModelOdeSolver<CELL_CYCLE_MODEL, BackwardEulerIvpOdeSolver>::Instance()
 {
     if (!mpInstance)
@@ -225,13 +225,13 @@ boost::shared_ptr<CellCycleModelOdeSolver<CELL_CYCLE_MODEL, BackwardEulerIvpOdeS
     return mpInstance;
 }
 
-template<class CELL_CYCLE_MODEL>
+template <class CELL_CYCLE_MODEL>
 bool CellCycleModelOdeSolver<CELL_CYCLE_MODEL, BackwardEulerIvpOdeSolver>::IsSetUp()
 {
     return mpOdeSolver && (mSizeOfOdeSystem != UNSIGNED_UNSET);
 }
 
-template<class CELL_CYCLE_MODEL>
+template <class CELL_CYCLE_MODEL>
 void CellCycleModelOdeSolver<CELL_CYCLE_MODEL, BackwardEulerIvpOdeSolver>::Initialise()
 {
     if (mSizeOfOdeSystem == UNSIGNED_UNSET)
@@ -241,7 +241,7 @@ void CellCycleModelOdeSolver<CELL_CYCLE_MODEL, BackwardEulerIvpOdeSolver>::Initi
     mpOdeSolver.reset(new BackwardEulerIvpOdeSolver(mSizeOfOdeSystem));
 }
 
-template<class CELL_CYCLE_MODEL>
+template <class CELL_CYCLE_MODEL>
 void CellCycleModelOdeSolver<CELL_CYCLE_MODEL, BackwardEulerIvpOdeSolver>::Reset()
 {
     mSizeOfOdeSystem = UNSIGNED_UNSET;

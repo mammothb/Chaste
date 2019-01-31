@@ -40,7 +40,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void MonodomainPurkinjeSolver<ELEMENT_DIM,SPACE_DIM>::SetupLinearSystem(Vec currentSolution, bool computeMatrix)
 {
     assert(this->mpLinearSystem->rGetLhsMatrix() != NULL);
@@ -136,7 +136,7 @@ void MonodomainPurkinjeSolver<ELEMENT_DIM,SPACE_DIM>::SetupLinearSystem(Vec curr
 }
 
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void MonodomainPurkinjeSolver<ELEMENT_DIM,SPACE_DIM>::SetIdentityBlockToLhsMatrix()
 {
     this->mpLinearSystem->FinaliseLhsMatrix();
@@ -160,7 +160,7 @@ void MonodomainPurkinjeSolver<ELEMENT_DIM,SPACE_DIM>::SetIdentityBlockToLhsMatri
     PetscTools::Destroy(diagonal);
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void MonodomainPurkinjeSolver<ELEMENT_DIM,SPACE_DIM>::InitialiseForSolve(Vec initialSolution)
 {
     if (this->mpLinearSystem != NULL)
@@ -199,14 +199,14 @@ void MonodomainPurkinjeSolver<ELEMENT_DIM,SPACE_DIM>::InitialiseForSolve(Vec ini
 }
 
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void MonodomainPurkinjeSolver<ELEMENT_DIM,SPACE_DIM>::PrepareForSetupLinearSystem(Vec currentSolution)
 {
     // solve cell models
     mpMonodomainTissue->SolveCellSystems(currentSolution, PdeSimulationTime::GetTime(), PdeSimulationTime::GetNextTime());
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 MonodomainPurkinjeSolver<ELEMENT_DIM,SPACE_DIM>::MonodomainPurkinjeSolver(
             MixedDimensionMesh<ELEMENT_DIM,SPACE_DIM>* pMesh,
             MonodomainTissue<ELEMENT_DIM,SPACE_DIM>* pTissue,
@@ -234,7 +234,7 @@ MonodomainPurkinjeSolver<ELEMENT_DIM,SPACE_DIM>::MonodomainPurkinjeSolver(
 
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 MonodomainPurkinjeSolver<ELEMENT_DIM,SPACE_DIM>::~MonodomainPurkinjeSolver()
 {
     delete mpVolumeAssembler;

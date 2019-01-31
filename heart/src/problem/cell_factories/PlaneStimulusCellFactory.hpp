@@ -46,7 +46,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 /**
  * PlaneStimulusCellFactory provides cells within 1e-5 of x=0 with a SimpleStimulus.
  */
-template<class CELL, unsigned ELEMENT_DIM, unsigned SPACE_DIM = ELEMENT_DIM>
+template <class CELL, unsigned ELEMENT_DIM, unsigned SPACE_DIM = ELEMENT_DIM>
 class PlaneStimulusCellFactory : public AbstractCardiacCellFactory<ELEMENT_DIM,SPACE_DIM>
 {
 protected:

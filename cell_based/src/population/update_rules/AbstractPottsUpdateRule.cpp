@@ -35,18 +35,18 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include "AbstractPottsUpdateRule.hpp"
 
-template<unsigned DIM>
+template <unsigned DIM>
 AbstractPottsUpdateRule<DIM>::AbstractPottsUpdateRule()
     : AbstractUpdateRule<DIM>()
 {
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 AbstractPottsUpdateRule<DIM>::~AbstractPottsUpdateRule()
 {
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void AbstractPottsUpdateRule<DIM>::OutputUpdateRuleParameters(out_stream& rParamsFile)
 {
     // Call method on direct parent class

@@ -70,7 +70,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //  And similarly in 1d and 3d
 //////////////////////////////////////////////////////////////////////////////////
 
-template<unsigned DIM>
+template <unsigned DIM>
 class ToyCellModel : public AbstractCardiacCell
 {
 private:
@@ -134,7 +134,7 @@ public :
 };
 
 
-template<unsigned DIM>
+template <unsigned DIM>
 class PositionDependentStimulus : public AbstractStimulusFunction
 {
 private:
@@ -167,7 +167,7 @@ public:
     }
 };
 
-template<unsigned DIM>
+template <unsigned DIM>
 class MyCellFactory : public AbstractCardiacCellFactory<DIM>
 {
 public:

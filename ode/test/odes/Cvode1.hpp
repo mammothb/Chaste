@@ -58,7 +58,7 @@ public:
     }
 };
 
-template<>
+template <>
 void OdeSystemInformation<Cvode1>::Initialise()
 {
     this->mVariableNames.push_back("Variable_1");

@@ -52,7 +52,7 @@ const char* MeshEventHandler::EventName[] = { "Tri write","BinTri write","VTK wr
 /**
  * Convenience collection of iterators, primarily to get compilation to happen.
  */
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 struct MeshWriterIterators
 {
     /** Iterator over nodes */
@@ -67,7 +67,7 @@ struct MeshWriterIterators
 // Implementation
 ///////////////////////////////////////////////////////////////////////////////////
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 AbstractTetrahedralMeshWriter<ELEMENT_DIM, SPACE_DIM>::AbstractTetrahedralMeshWriter(const std::string& rDirectory,
                    const std::string& rBaseName,
                    const bool clearOutputDir)
@@ -90,7 +90,7 @@ AbstractTetrahedralMeshWriter<ELEMENT_DIM, SPACE_DIM>::AbstractTetrahedralMeshWr
     mpIters->pBoundaryElemIter = nullptr;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 AbstractTetrahedralMeshWriter<ELEMENT_DIM, SPACE_DIM>::~AbstractTetrahedralMeshWriter()
 {
     if (mpIters->pNodeIter)
@@ -114,7 +114,7 @@ AbstractTetrahedralMeshWriter<ELEMENT_DIM, SPACE_DIM>::~AbstractTetrahedralMeshW
     }
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 std::vector<double> AbstractTetrahedralMeshWriter<ELEMENT_DIM, SPACE_DIM>::GetNextNode()
 {
     // if we are writing from a mesh..
@@ -164,7 +164,7 @@ std::vector<double> AbstractTetrahedralMeshWriter<ELEMENT_DIM, SPACE_DIM>::GetNe
     }
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 ElementData AbstractTetrahedralMeshWriter<ELEMENT_DIM, SPACE_DIM>::GetNextElement()
 {
     assert(PetscTools::AmMaster());
@@ -224,7 +224,7 @@ ElementData AbstractTetrahedralMeshWriter<ELEMENT_DIM, SPACE_DIM>::GetNextElemen
     }
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 ElementData AbstractTetrahedralMeshWriter<ELEMENT_DIM, SPACE_DIM>::GetNextBoundaryElement()
 {
     assert(PetscTools::AmMaster());
@@ -283,7 +283,7 @@ ElementData AbstractTetrahedralMeshWriter<ELEMENT_DIM, SPACE_DIM>::GetNextBounda
     }
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 ElementData AbstractTetrahedralMeshWriter<ELEMENT_DIM, SPACE_DIM>::GetNextCableElement()
 {
     assert(PetscTools::AmMaster());
@@ -327,7 +327,7 @@ ElementData AbstractTetrahedralMeshWriter<ELEMENT_DIM, SPACE_DIM>::GetNextCableE
     }
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void AbstractTetrahedralMeshWriter<ELEMENT_DIM, SPACE_DIM>::WriteNclFile(
         AbstractTetrahedralMesh<ELEMENT_DIM, SPACE_DIM>& rMesh,
         bool invertMeshPermutation)
@@ -437,7 +437,7 @@ void AbstractTetrahedralMeshWriter<ELEMENT_DIM, SPACE_DIM>::WriteNclFile(
 }
 
 ///\todo #1322 Mesh should be const
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void AbstractTetrahedralMeshWriter<ELEMENT_DIM, SPACE_DIM>::WriteFilesUsingMesh(
       AbstractTetrahedralMesh<ELEMENT_DIM,SPACE_DIM>& rMesh,
       bool keepOriginalElementIndexing)
@@ -519,7 +519,7 @@ void AbstractTetrahedralMeshWriter<ELEMENT_DIM, SPACE_DIM>::WriteFilesUsingMesh(
     mpIters->pBoundaryElemIter = nullptr;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void AbstractTetrahedralMeshWriter<ELEMENT_DIM, SPACE_DIM>::WriteFilesUsingMeshReaderAndMesh(
         AbstractMeshReader<ELEMENT_DIM, SPACE_DIM>& rMeshReader,
         AbstractTetrahedralMesh<ELEMENT_DIM, SPACE_DIM>& rMesh)
@@ -528,7 +528,7 @@ void AbstractTetrahedralMeshWriter<ELEMENT_DIM, SPACE_DIM>::WriteFilesUsingMeshR
     this->WriteFilesUsingMeshReader(rMeshReader);
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void AbstractTetrahedralMeshWriter<ELEMENT_DIM, SPACE_DIM>::WriteFilesUsingParallelMesh(bool keepOriginalElementIndexing)
 {
     if (keepOriginalElementIndexing)
@@ -642,7 +642,7 @@ void AbstractTetrahedralMeshWriter<ELEMENT_DIM, SPACE_DIM>::WriteFilesUsingParal
 }
 
 // LCOV_EXCL_START
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void AbstractTetrahedralMeshWriter<ELEMENT_DIM, SPACE_DIM>::CreateFilesWithHeaders()
 {
     // If control reaches this line you haven't implemented the optimised
@@ -653,7 +653,7 @@ void AbstractTetrahedralMeshWriter<ELEMENT_DIM, SPACE_DIM>::CreateFilesWithHeade
 
 
 // LCOV_EXCL_START
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void AbstractTetrahedralMeshWriter<ELEMENT_DIM, SPACE_DIM>::AppendLocalDataToFiles()
 {
     // If control reaches this line you haven't implemented the optimised
@@ -664,7 +664,7 @@ void AbstractTetrahedralMeshWriter<ELEMENT_DIM, SPACE_DIM>::AppendLocalDataToFil
 
 
 // LCOV_EXCL_START
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void AbstractTetrahedralMeshWriter<ELEMENT_DIM, SPACE_DIM>::WriteFilesFooter()
 {
     // If control reaches this line you haven't implemented the optimised

@@ -41,13 +41,13 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "PottsBasedCellPopulation.hpp"
 #include "VertexBasedCellPopulation.hpp"
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 CellProliferativeTypesCountWriter<ELEMENT_DIM, SPACE_DIM>::CellProliferativeTypesCountWriter()
     : AbstractCellPopulationCountWriter<ELEMENT_DIM, SPACE_DIM>("celltypes.dat")
 {
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void CellProliferativeTypesCountWriter<ELEMENT_DIM, SPACE_DIM>::VisitAnyPopulation(AbstractCellPopulation<SPACE_DIM, SPACE_DIM>* pCellPopulation)
 {
     std::vector<unsigned> proliferative_type_count = pCellPopulation->GetCellProliferativeTypeCount();
@@ -61,7 +61,7 @@ void CellProliferativeTypesCountWriter<ELEMENT_DIM, SPACE_DIM>::VisitAnyPopulati
     }
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void CellProliferativeTypesCountWriter<ELEMENT_DIM, SPACE_DIM>::Visit(MeshBasedCellPopulation<ELEMENT_DIM, SPACE_DIM>* pCellPopulation)
 {
     std::vector<unsigned> proliferative_type_count = pCellPopulation->GetCellProliferativeTypeCount();
@@ -74,25 +74,25 @@ void CellProliferativeTypesCountWriter<ELEMENT_DIM, SPACE_DIM>::Visit(MeshBasedC
     }
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void CellProliferativeTypesCountWriter<ELEMENT_DIM, SPACE_DIM>::Visit(CaBasedCellPopulation<SPACE_DIM>* pCellPopulation)
 {
     VisitAnyPopulation(pCellPopulation);
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void CellProliferativeTypesCountWriter<ELEMENT_DIM, SPACE_DIM>::Visit(NodeBasedCellPopulation<SPACE_DIM>* pCellPopulation)
 {
     VisitAnyPopulation(pCellPopulation);
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void CellProliferativeTypesCountWriter<ELEMENT_DIM, SPACE_DIM>::Visit(PottsBasedCellPopulation<SPACE_DIM>* pCellPopulation)
 {
     VisitAnyPopulation(pCellPopulation);
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void CellProliferativeTypesCountWriter<ELEMENT_DIM, SPACE_DIM>::Visit(VertexBasedCellPopulation<SPACE_DIM>* pCellPopulation)
 {
     VisitAnyPopulation(pCellPopulation);

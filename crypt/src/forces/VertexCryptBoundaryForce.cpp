@@ -36,7 +36,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "VertexCryptBoundaryForce.hpp"
 #include "MathsCustomFunctions.hpp"
 
-template<unsigned DIM>
+template <unsigned DIM>
 VertexCryptBoundaryForce<DIM>::VertexCryptBoundaryForce(double forceStrength)
    : AbstractForce<DIM>(),
      mForceStrength(forceStrength)
@@ -45,12 +45,12 @@ VertexCryptBoundaryForce<DIM>::VertexCryptBoundaryForce(double forceStrength)
     assert(mForceStrength > 0.0);
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 VertexCryptBoundaryForce<DIM>::~VertexCryptBoundaryForce()
 {
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void VertexCryptBoundaryForce<DIM>::AddForceContribution(AbstractCellPopulation<DIM>& rCellPopulation)
 {
     // Helper variable that is a static cast of the cell population
@@ -80,13 +80,13 @@ void VertexCryptBoundaryForce<DIM>::AddForceContribution(AbstractCellPopulation<
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 double VertexCryptBoundaryForce<DIM>::GetForceStrength() const
 {
     return mForceStrength;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void VertexCryptBoundaryForce<DIM>::OutputForceParameters(out_stream& rParamsFile)
 {
     *rParamsFile << "\t\t\t<ForceStrength>" << mForceStrength << "</ForceStrength>\n";

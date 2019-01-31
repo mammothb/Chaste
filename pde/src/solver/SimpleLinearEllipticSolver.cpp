@@ -35,7 +35,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include "SimpleLinearEllipticSolver.hpp"
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 c_matrix<double, 1*(ELEMENT_DIM+1), 1*(ELEMENT_DIM+1)>SimpleLinearEllipticSolver<ELEMENT_DIM,SPACE_DIM>:: ComputeMatrixTerm(
         c_vector<double, ELEMENT_DIM+1>& rPhi,
         c_matrix<double, SPACE_DIM, ELEMENT_DIM+1>& rGradPhi,
@@ -58,7 +58,7 @@ c_matrix<double, 1*(ELEMENT_DIM+1), 1*(ELEMENT_DIM+1)>SimpleLinearEllipticSolver
     }
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 c_vector<double,1*(ELEMENT_DIM+1)> SimpleLinearEllipticSolver<ELEMENT_DIM,SPACE_DIM>::ComputeVectorTerm(
         c_vector<double, ELEMENT_DIM+1>& rPhi,
         c_matrix<double, SPACE_DIM, ELEMENT_DIM+1>& rGradPhi,
@@ -70,7 +70,7 @@ c_vector<double,1*(ELEMENT_DIM+1)> SimpleLinearEllipticSolver<ELEMENT_DIM,SPACE_
     return mpEllipticPde->ComputeConstantInUSourceTerm(rX, pElement) * rPhi;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 SimpleLinearEllipticSolver<ELEMENT_DIM,SPACE_DIM>::SimpleLinearEllipticSolver(
                                   AbstractTetrahedralMesh<ELEMENT_DIM,SPACE_DIM>* pMesh,
                                   AbstractLinearEllipticPde<ELEMENT_DIM,SPACE_DIM>* pPde,
@@ -81,7 +81,7 @@ SimpleLinearEllipticSolver<ELEMENT_DIM,SPACE_DIM>::SimpleLinearEllipticSolver(
     mpEllipticPde = pPde;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void SimpleLinearEllipticSolver<ELEMENT_DIM,SPACE_DIM>::InitialiseForSolve(Vec initialSolution)
 {
     AbstractLinearPdeSolver<ELEMENT_DIM,SPACE_DIM,1>::InitialiseForSolve(initialSolution);

@@ -48,7 +48,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  * NOTE: the user should delete the mesh after use to manage memory.
  */
-template<unsigned DIM>
+template <unsigned DIM>
 class PottsMeshGenerator
 {
 protected:

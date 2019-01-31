@@ -43,7 +43,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // Implementation
 ///////////////////////////////////////////////////////////////////////////////////
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void AbstractTetrahedralElement<ELEMENT_DIM, SPACE_DIM>::RefreshJacobian(c_matrix<double, SPACE_DIM, ELEMENT_DIM>& rJacobian)
 {
     if (this->mIsDeleted)
@@ -59,7 +59,7 @@ void AbstractTetrahedralElement<ELEMENT_DIM, SPACE_DIM>::RefreshJacobian(c_matri
     }
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 AbstractTetrahedralElement<ELEMENT_DIM, SPACE_DIM>::AbstractTetrahedralElement(unsigned index, const std::vector<Node<SPACE_DIM>*>& rNodes)
     : AbstractElement<ELEMENT_DIM, SPACE_DIM>(index, rNodes)
 {
@@ -100,12 +100,12 @@ AbstractTetrahedralElement<ELEMENT_DIM, SPACE_DIM>::AbstractTetrahedralElement(u
 
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 AbstractTetrahedralElement<ELEMENT_DIM, SPACE_DIM>::AbstractTetrahedralElement(unsigned index)
     : AbstractElement<ELEMENT_DIM,SPACE_DIM>(index)
 {}
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void AbstractTetrahedralElement<ELEMENT_DIM, SPACE_DIM>::CalculateJacobian(c_matrix<double, SPACE_DIM, ELEMENT_DIM>& rJacobian, double& rJacobianDeterminant)
 {
 
@@ -145,7 +145,7 @@ void AbstractTetrahedralElement<ELEMENT_DIM, SPACE_DIM>::CalculateJacobian(c_mat
     }
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void AbstractTetrahedralElement<ELEMENT_DIM, SPACE_DIM>::CalculateWeightedDirection(c_vector<double, SPACE_DIM>& rWeightedDirection, double& rJacobianDeterminant)
 {
 
@@ -193,7 +193,7 @@ void AbstractTetrahedralElement<ELEMENT_DIM, SPACE_DIM>::CalculateWeightedDirect
     }
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 c_vector<double, SPACE_DIM> AbstractTetrahedralElement<ELEMENT_DIM, SPACE_DIM>::CalculateNormal()
 {
     if (ELEMENT_DIM == 1 && SPACE_DIM == 3)
@@ -214,7 +214,7 @@ c_vector<double, SPACE_DIM> AbstractTetrahedralElement<ELEMENT_DIM, SPACE_DIM>::
     return normal;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 c_vector<double, SPACE_DIM> AbstractTetrahedralElement<ELEMENT_DIM, SPACE_DIM>::CalculateCentroid() const
 {
     c_vector<double, SPACE_DIM> centroid = zero_vector<double>(SPACE_DIM);
@@ -225,7 +225,7 @@ c_vector<double, SPACE_DIM> AbstractTetrahedralElement<ELEMENT_DIM, SPACE_DIM>::
     return centroid/((double)(ELEMENT_DIM + 1));
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void AbstractTetrahedralElement<ELEMENT_DIM, SPACE_DIM>::CalculateInverseJacobian(c_matrix<double, SPACE_DIM, ELEMENT_DIM>& rJacobian, double& rJacobianDeterminant, c_matrix<double, ELEMENT_DIM, SPACE_DIM>& rInverseJacobian)
 {
     assert(ELEMENT_DIM <= SPACE_DIM);     // LCOV_EXCL_LINE
@@ -236,7 +236,7 @@ void AbstractTetrahedralElement<ELEMENT_DIM, SPACE_DIM>::CalculateInverseJacobia
     rInverseJacobian = Inverse(rJacobian);
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 double AbstractTetrahedralElement<ELEMENT_DIM, SPACE_DIM>::GetVolume(double determinant) const
 {
 
@@ -258,7 +258,7 @@ double AbstractTetrahedralElement<ELEMENT_DIM, SPACE_DIM>::GetVolume(double dete
     return determinant/scale_factor;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void AbstractTetrahedralElement<ELEMENT_DIM, SPACE_DIM>::GetStiffnessMatrixGlobalIndices(unsigned problemDim, unsigned* pIndices) const
 {
     for (unsigned local_index=0; local_index<ELEMENT_DIM+1; local_index++)
@@ -282,7 +282,7 @@ void AbstractTetrahedralElement<ELEMENT_DIM, SPACE_DIM>::GetStiffnessMatrixGloba
  * Specialization for 0d elements so we don't get errors from Boost on some
  * compilers.
  */
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 AbstractTetrahedralElement<0, SPACE_DIM>::AbstractTetrahedralElement(unsigned index, const std::vector<Node<SPACE_DIM>*>& rNodes)
     : AbstractElement<0, SPACE_DIM>(index, rNodes)
 {
@@ -303,13 +303,13 @@ AbstractTetrahedralElement<0, SPACE_DIM>::AbstractTetrahedralElement(unsigned in
     assert(det > 0.0);
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 AbstractTetrahedralElement<0, SPACE_DIM>::AbstractTetrahedralElement(unsigned index)
     : AbstractElement<0, SPACE_DIM>(index)
 {
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 void AbstractTetrahedralElement<0, SPACE_DIM>::CalculateWeightedDirection(
         c_vector<double, SPACE_DIM>& rWeightedDirection,
         double& rJacobianDeterminant)
@@ -323,7 +323,7 @@ void AbstractTetrahedralElement<0, SPACE_DIM>::CalculateWeightedDirection(
     rJacobianDeterminant = 1.0;
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 c_vector<double, SPACE_DIM> AbstractTetrahedralElement<0, SPACE_DIM>::CalculateNormal()
 {
     assert(SPACE_DIM > 0);     // LCOV_EXCL_LINE
@@ -334,14 +334,14 @@ c_vector<double, SPACE_DIM> AbstractTetrahedralElement<0, SPACE_DIM>::CalculateN
     return normal;
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 c_vector<double, SPACE_DIM> AbstractTetrahedralElement<0, SPACE_DIM>::CalculateCentroid() const
 {
     c_vector<double, SPACE_DIM> centroid = this->mNodes[0]->rGetLocation();
     return centroid;
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 void AbstractTetrahedralElement<0, SPACE_DIM>::GetStiffnessMatrixGlobalIndices(unsigned problemDim, unsigned* pIndices) const
 {
     for (unsigned local_index=0; local_index<1; local_index++)

@@ -41,7 +41,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "BetaCateninOneHitCellMutationState.hpp"
 #include "ApcTwoHitCellMutationState.hpp"
 
-template<unsigned DIM>
+template <unsigned DIM>
 LinearSpringWithVariableSpringConstantsForce<DIM>::LinearSpringWithVariableSpringConstantsForce()
     : GeneralisedLinearSpringForce<DIM>(),
       mUseEdgeBasedSpringConstant(false),
@@ -56,19 +56,19 @@ LinearSpringWithVariableSpringConstantsForce<DIM>::LinearSpringWithVariableSprin
 {
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 LinearSpringWithVariableSpringConstantsForce<DIM>::~LinearSpringWithVariableSpringConstantsForce()
 {
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void LinearSpringWithVariableSpringConstantsForce<DIM>::SetEdgeBasedSpringConstant(bool useEdgeBasedSpringConstant)
 {
     assert(DIM == 2); // LCOV_EXCL_LINE
     mUseEdgeBasedSpringConstant = useEdgeBasedSpringConstant;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void LinearSpringWithVariableSpringConstantsForce<DIM>::SetMutantSprings(bool useMutantSprings, double mutantMutantMultiplier, double normalMutantMultiplier)
 {
     mUseMutantSprings = useMutantSprings;
@@ -76,19 +76,19 @@ void LinearSpringWithVariableSpringConstantsForce<DIM>::SetMutantSprings(bool us
     mNormalMutantMultiplier = normalMutantMultiplier;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void LinearSpringWithVariableSpringConstantsForce<DIM>::SetBetaCateninSprings(bool useBCatSprings)
 {
     mUseBCatSprings = useBCatSprings;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void LinearSpringWithVariableSpringConstantsForce<DIM>::SetApoptoticSprings(bool useApoptoticSprings)
 {
     mUseApoptoticSprings = useApoptoticSprings;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 double LinearSpringWithVariableSpringConstantsForce<DIM>::VariableSpringConstantMultiplicationFactor(
     unsigned nodeAGlobalIndex,
     unsigned nodeBGlobalIndex,
@@ -219,7 +219,7 @@ double LinearSpringWithVariableSpringConstantsForce<DIM>::VariableSpringConstant
     return multiplication_factor;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void LinearSpringWithVariableSpringConstantsForce<DIM>::AddForceContribution(AbstractCellPopulation<DIM>& rCellPopulation)
 {
     // Throw an exception message if not using a MeshBasedCellPopulation
@@ -245,46 +245,46 @@ void LinearSpringWithVariableSpringConstantsForce<DIM>::AddForceContribution(Abs
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 double LinearSpringWithVariableSpringConstantsForce<DIM>::GetBetaCatSpringScaler()
 {
     return mBetaCatSpringScaler;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void LinearSpringWithVariableSpringConstantsForce<DIM>::SetBetaCatSpringScaler(double betaCatSpringScaler)
 {
     assert(betaCatSpringScaler > 0.0);
     mBetaCatSpringScaler = betaCatSpringScaler;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 double LinearSpringWithVariableSpringConstantsForce<DIM>::GetApoptoticSpringTensionStiffness()
 {
     return mApoptoticSpringTensionStiffness;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void LinearSpringWithVariableSpringConstantsForce<DIM>::SetApoptoticSpringTensionStiffness(double apoptoticSpringTensionStiffness)
 {
     assert(apoptoticSpringTensionStiffness >= 0.0);
     mApoptoticSpringTensionStiffness = apoptoticSpringTensionStiffness;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 double LinearSpringWithVariableSpringConstantsForce<DIM>::GetApoptoticSpringCompressionStiffness()
 {
     return mApoptoticSpringCompressionStiffness;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void LinearSpringWithVariableSpringConstantsForce<DIM>::SetApoptoticSpringCompressionStiffness(double apoptoticSpringCompressionStiffness)
 {
     assert(apoptoticSpringCompressionStiffness >= 0.0);
     mApoptoticSpringCompressionStiffness = apoptoticSpringCompressionStiffness;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void LinearSpringWithVariableSpringConstantsForce<DIM>::OutputForceParameters(out_stream& rParamsFile)
 {
     *rParamsFile << "\t\t\t<UseEdgeBasedSpringConstant>" << mUseEdgeBasedSpringConstant << "</UseEdgeBasedSpringConstant>\n";

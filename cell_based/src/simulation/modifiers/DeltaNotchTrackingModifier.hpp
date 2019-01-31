@@ -46,7 +46,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  * are computed and stored in CellData. To be used in conjunction with Delta
  * Notch cell cycle models.
  */
-template<unsigned DIM>
+template <unsigned DIM>
 class DeltaNotchTrackingModifier : public AbstractCellBasedSimulationModifier<DIM,DIM>
 {
     /** Needed for serialization. */
@@ -58,7 +58,7 @@ class DeltaNotchTrackingModifier : public AbstractCellBasedSimulationModifier<DI
      * @param archive  The boost archive.
      * @param version  The current version of this class.
      */
-    template<class Archive>
+    template <class Archive>
     void serialize(Archive & archive, const unsigned int version)
     {
         archive & boost::serialization::base_object<AbstractCellBasedSimulationModifier<DIM,DIM> >(*this);

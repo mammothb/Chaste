@@ -75,7 +75,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *  incompressible problems, and interpolates onto a finer mesh, returning an initial guess of the
  *  same structure.
  */
-template<unsigned DIM>
+template <unsigned DIM>
 void InterpolateMechanicsSolutionToNewMesh(QuadraticMesh<3>& rCoarseMesh, std::vector<double>& rCoarseSolution,
                                            QuadraticMesh<3>& rFineMesh, std::vector<double>& rFineSolution,
                                            CompressibilityType compressibilityType)

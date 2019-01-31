@@ -68,7 +68,7 @@ double PressureFunction(double t)
 }
 
 // Helper function for creating std vectors. Ugly, but makes things below much neater (avoids many, many push_backs).
-template<class T>
+template <class T>
 std::vector<T> MakeStdVec(unsigned size, T value0=0, T value1=0, T value2=0, T value3=0, T value4=0)
 {
     std::vector<T> ret(size);

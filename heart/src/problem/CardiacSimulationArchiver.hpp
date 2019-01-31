@@ -48,7 +48,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  * It would be more natural to template over dimensions as for other classes, and just deal with pointers
  * to AbstractCardiacProblem.  However, this breaks archive backwards compatibility...
  */
-template<class PROBLEM_CLASS>
+template <class PROBLEM_CLASS>
 class CardiacSimulationArchiver
 {
 public:

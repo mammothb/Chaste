@@ -65,7 +65,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  * Small helper method, which returns whether the two classes given as the template parameters
  * are identical or not
  */
-template<class T1, class T2>
+template <class T1, class T2>
 bool ClassesAreSame()
 {
     using namespace boost::mpl;
@@ -79,7 +79,7 @@ bool ClassesAreSame()
  *
  * It is templated over types of cell-cycle model.
  */
-template<class CELL_CYCLE_MODEL>
+template <class CELL_CYCLE_MODEL>
 class CryptCellsGenerator : public CellsGenerator<CELL_CYCLE_MODEL,2>
 {
 public:
@@ -112,7 +112,7 @@ public:
                   bool initialiseCells = false);
 };
 
-template<class CELL_CYCLE_MODEL>
+template <class CELL_CYCLE_MODEL>
 void CryptCellsGenerator<CELL_CYCLE_MODEL>::Generate(
                                       std::vector<CellPtr>& rCells,
                                       AbstractMesh<2,2>* pMesh,

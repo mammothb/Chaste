@@ -36,24 +36,24 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "DeltaNotchTrackingModifier.hpp"
 #include "DeltaNotchSrnModel.hpp"
 
-template<unsigned DIM>
+template <unsigned DIM>
 DeltaNotchTrackingModifier<DIM>::DeltaNotchTrackingModifier()
     : AbstractCellBasedSimulationModifier<DIM>()
 {
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 DeltaNotchTrackingModifier<DIM>::~DeltaNotchTrackingModifier()
 {
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void DeltaNotchTrackingModifier<DIM>::UpdateAtEndOfTimeStep(AbstractCellPopulation<DIM,DIM>& rCellPopulation)
 {
     UpdateCellData(rCellPopulation);
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void DeltaNotchTrackingModifier<DIM>::SetupSolve(AbstractCellPopulation<DIM,DIM>& rCellPopulation, std::string outputDirectory)
 {
     /*
@@ -63,7 +63,7 @@ void DeltaNotchTrackingModifier<DIM>::SetupSolve(AbstractCellPopulation<DIM,DIM>
     UpdateCellData(rCellPopulation);
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void DeltaNotchTrackingModifier<DIM>::UpdateCellData(AbstractCellPopulation<DIM,DIM>& rCellPopulation)
 {
     // Make sure the cell population is updated
@@ -113,7 +113,7 @@ void DeltaNotchTrackingModifier<DIM>::UpdateCellData(AbstractCellPopulation<DIM,
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void DeltaNotchTrackingModifier<DIM>::OutputSimulationModifierParameters(out_stream& rParamsFile)
 {
     // No parameters to output, so just call method on direct parent class

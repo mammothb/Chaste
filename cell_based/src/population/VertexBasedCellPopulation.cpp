@@ -48,7 +48,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "VertexT3SwapLocationsWriter.hpp"
 #include "AbstractCellBasedSimulation.hpp"
 
-template<unsigned DIM>
+template <unsigned DIM>
 VertexBasedCellPopulation<DIM>::VertexBasedCellPopulation(MutableVertexMesh<DIM, DIM>& rMesh,
                                           std::vector<CellPtr>& rCells,
                                           bool deleteMesh,
@@ -77,7 +77,7 @@ VertexBasedCellPopulation<DIM>::VertexBasedCellPopulation(MutableVertexMesh<DIM,
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 VertexBasedCellPopulation<DIM>::VertexBasedCellPopulation(MutableVertexMesh<DIM, DIM>& rMesh)
     : AbstractOffLatticeCellPopulation<DIM>(rMesh),
       mDeleteMesh(true),
@@ -87,7 +87,7 @@ VertexBasedCellPopulation<DIM>::VertexBasedCellPopulation(MutableVertexMesh<DIM,
     mpMutableVertexMesh = static_cast<MutableVertexMesh<DIM, DIM>* >(&(this->mrMesh));
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 VertexBasedCellPopulation<DIM>::~VertexBasedCellPopulation()
 {
     if (mDeleteMesh)
@@ -96,7 +96,7 @@ VertexBasedCellPopulation<DIM>::~VertexBasedCellPopulation()
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 double VertexBasedCellPopulation<DIM>::GetDampingConstant(unsigned nodeIndex)
 {
     // Take the average of the cells containing this vertex
@@ -131,74 +131,74 @@ double VertexBasedCellPopulation<DIM>::GetDampingConstant(unsigned nodeIndex)
     return average_damping_constant;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 MutableVertexMesh<DIM, DIM>& VertexBasedCellPopulation<DIM>::rGetMesh()
 {
     return *mpMutableVertexMesh;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 const MutableVertexMesh<DIM, DIM>& VertexBasedCellPopulation<DIM>::rGetMesh() const
 {
     return *mpMutableVertexMesh;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 VertexElement<DIM, DIM>* VertexBasedCellPopulation<DIM>::GetElement(unsigned elementIndex)
 {
     return mpMutableVertexMesh->GetElement(elementIndex);
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 unsigned VertexBasedCellPopulation<DIM>::GetNumNodes()
 {
     return this->mrMesh.GetNumNodes();
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 c_vector<double, DIM> VertexBasedCellPopulation<DIM>::GetLocationOfCellCentre(CellPtr pCell)
 {
     return mpMutableVertexMesh->GetCentroidOfElement(this->mCellLocationMap[pCell.get()]);
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 Node<DIM>* VertexBasedCellPopulation<DIM>::GetNode(unsigned index)
 {
     return this->mrMesh.GetNode(index);
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 std::set<unsigned> VertexBasedCellPopulation<DIM>::GetNeighbouringLocationIndices(CellPtr pCell)
 {
     unsigned elem_index = this->GetLocationIndexUsingCell(pCell);
     return this->rGetMesh().GetNeighbouringElementIndices(elem_index);
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 unsigned VertexBasedCellPopulation<DIM>::AddNode(Node<DIM>* pNewNode)
 {
     return mpMutableVertexMesh->AddNode(pNewNode);
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void VertexBasedCellPopulation<DIM>::SetNode(unsigned nodeIndex, ChastePoint<DIM>& rNewLocation)
 {
     mpMutableVertexMesh->SetNode(nodeIndex, rNewLocation);
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 VertexElement<DIM, DIM>* VertexBasedCellPopulation<DIM>::GetElementCorrespondingToCell(CellPtr pCell)
 {
     return mpMutableVertexMesh->GetElement(this->GetLocationIndexUsingCell(pCell));
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 unsigned VertexBasedCellPopulation<DIM>::GetNumElements()
 {
     return mpMutableVertexMesh->GetNumElements();
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 CellPtr VertexBasedCellPopulation<DIM>::AddCell(CellPtr pNewCell, CellPtr pParentCell)
 {
     // Get the element associated with this cell
@@ -221,7 +221,7 @@ CellPtr VertexBasedCellPopulation<DIM>::AddCell(CellPtr pNewCell, CellPtr pParen
     return p_created_cell;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 unsigned VertexBasedCellPopulation<DIM>::RemoveDeadCells()
 {
     unsigned num_removed = 0;
@@ -256,7 +256,7 @@ unsigned VertexBasedCellPopulation<DIM>::RemoveDeadCells()
     return num_removed;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void VertexBasedCellPopulation<DIM>::CheckForStepSizeException(unsigned nodeIndex, c_vector<double,DIM>& rDisplacement, double dt)
 {
     double length = norm_2(rDisplacement);
@@ -278,13 +278,13 @@ void VertexBasedCellPopulation<DIM>::CheckForStepSizeException(unsigned nodeInde
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 bool VertexBasedCellPopulation<DIM>::IsCellAssociatedWithADeletedLocation(CellPtr pCell)
 {
     return GetElementCorrespondingToCell(pCell)->IsDeleted();
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void VertexBasedCellPopulation<DIM>::Update(bool hasHadBirthsOrDeaths)
 {
     VertexElementMap element_map(mpMutableVertexMesh->GetNumAllElements());
@@ -318,7 +318,7 @@ void VertexBasedCellPopulation<DIM>::Update(bool hasHadBirthsOrDeaths)
     element_map.ResetToIdentity();
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void VertexBasedCellPopulation<DIM>::Validate()
 {
     // Check each element has only one cell attached
@@ -346,25 +346,25 @@ void VertexBasedCellPopulation<DIM>::Validate()
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void VertexBasedCellPopulation<DIM>::AcceptPopulationWriter(boost::shared_ptr<AbstractCellPopulationWriter<DIM, DIM> > pPopulationWriter)
 {
     pPopulationWriter->Visit(this);
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void VertexBasedCellPopulation<DIM>::AcceptPopulationCountWriter(boost::shared_ptr<AbstractCellPopulationCountWriter<DIM, DIM> > pPopulationCountWriter)
 {
     pPopulationCountWriter->Visit(this);
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void VertexBasedCellPopulation<DIM>::AcceptCellWriter(boost::shared_ptr<AbstractCellWriter<DIM, DIM> > pCellWriter, CellPtr pCell)
 {
     pCellWriter->VisitCell(pCell, this);
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 unsigned VertexBasedCellPopulation<DIM>::GetRosetteRankOfCell(CellPtr pCell)
 {
     // Get the vertex element index corresponding to this cell
@@ -376,7 +376,7 @@ unsigned VertexBasedCellPopulation<DIM>::GetRosetteRankOfCell(CellPtr pCell)
     return rosette_rank;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 double VertexBasedCellPopulation<DIM>::GetVolumeOfCell(CellPtr pCell)
 {
     // Get the vertex element index corresponding to this cell
@@ -388,7 +388,7 @@ double VertexBasedCellPopulation<DIM>::GetVolumeOfCell(CellPtr pCell)
     return cell_volume;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void VertexBasedCellPopulation<DIM>::WriteVtkResultsToFile(const std::string& rDirectory)
 {
 #ifdef CHASTE_VTK
@@ -471,7 +471,7 @@ void VertexBasedCellPopulation<DIM>::WriteVtkResultsToFile(const std::string& rD
 #endif //CHASTE_VTK
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void VertexBasedCellPopulation<DIM>::OpenWritersFiles(OutputFileHandler& rOutputFileHandler)
 {
     if (this->mOutputResultsForChasteVisualizer)
@@ -501,19 +501,19 @@ void VertexBasedCellPopulation<DIM>::OpenWritersFiles(OutputFileHandler& rOutput
     AbstractCellPopulation<DIM>::OpenWritersFiles(rOutputFileHandler);
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 bool VertexBasedCellPopulation<DIM>::GetOutputCellRearrangementLocations()
 {
     return mOutputCellRearrangementLocations;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void VertexBasedCellPopulation<DIM>::SetOutputCellRearrangementLocations(bool outputCellRearrangementLocations)
 {
     mOutputCellRearrangementLocations = outputCellRearrangementLocations;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void VertexBasedCellPopulation<DIM>::OutputCellPopulationParameters(out_stream& rParamsFile)
 {
     *rParamsFile << "\t\t<CellRearrangementThreshold>" << mpMutableVertexMesh->GetCellRearrangementThreshold() << "</CellRearrangementThreshold>\n";
@@ -530,7 +530,7 @@ void VertexBasedCellPopulation<DIM>::OutputCellPopulationParameters(out_stream& 
     AbstractOffLatticeCellPopulation<DIM>::OutputCellPopulationParameters(rParamsFile);
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 double VertexBasedCellPopulation<DIM>::GetWidth(const unsigned& rDimension)
 {
     // Call GetWidth() on the mesh
@@ -539,56 +539,56 @@ double VertexBasedCellPopulation<DIM>::GetWidth(const unsigned& rDimension)
     return width;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 std::set<unsigned> VertexBasedCellPopulation<DIM>::GetNeighbouringNodeIndices(unsigned index)
 {
     return mpMutableVertexMesh->GetNeighbouringNodeIndices(index);
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 boost::shared_ptr<AbstractVertexBasedDivisionRule<DIM> > VertexBasedCellPopulation<DIM>::GetVertexBasedDivisionRule()
 {
     return mpVertexBasedDivisionRule;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void VertexBasedCellPopulation<DIM>::SetVertexBasedDivisionRule(boost::shared_ptr<AbstractVertexBasedDivisionRule<DIM> > pVertexBasedDivisionRule)
 {
     mpVertexBasedDivisionRule = pVertexBasedDivisionRule;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 std::vector< c_vector< double, DIM > > VertexBasedCellPopulation<DIM>::GetLocationsOfT2Swaps()
 {
     return mLocationsOfT2Swaps;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 std::vector< unsigned > VertexBasedCellPopulation<DIM>::GetCellIdsOfT2Swaps()
 {
     return mCellIdsOfT2Swaps;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void VertexBasedCellPopulation<DIM>::AddLocationOfT2Swap(c_vector< double, DIM> locationOfT2Swap)
 {
     mLocationsOfT2Swaps.push_back(locationOfT2Swap);
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void VertexBasedCellPopulation<DIM>::AddCellIdOfT2Swap(unsigned idOfT2Swap)
 {
     mCellIdsOfT2Swaps.push_back(idOfT2Swap);
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void VertexBasedCellPopulation<DIM>::ClearLocationsAndCellIdsOfT2Swaps()
 {
     mCellIdsOfT2Swaps.clear();
     mLocationsOfT2Swaps.clear();
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 TetrahedralMesh<DIM, DIM>* VertexBasedCellPopulation<DIM>::GetTetrahedralMeshForPdeModifier()
 {
     // This method only works in 2D sequential
@@ -723,7 +723,7 @@ TetrahedralMesh<DIM, DIM>* VertexBasedCellPopulation<DIM>::GetTetrahedralMeshFor
     return p_mesh;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 bool VertexBasedCellPopulation<DIM>::IsPdeNodeAssociatedWithNonApoptoticCell(unsigned pdeNodeIndex)
 {
     bool non_apoptotic_cell_present = true;
@@ -755,7 +755,7 @@ bool VertexBasedCellPopulation<DIM>::IsPdeNodeAssociatedWithNonApoptoticCell(uns
     return non_apoptotic_cell_present;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 double VertexBasedCellPopulation<DIM>::GetCellDataItemAtPdeNode(
         unsigned pdeNodeIndex,
         std::string& rVariableName,
@@ -805,13 +805,13 @@ double VertexBasedCellPopulation<DIM>::GetCellDataItemAtPdeNode(
     return value;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 double VertexBasedCellPopulation<DIM>::GetDefaultTimeStep()
 {
     return 0.002;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void VertexBasedCellPopulation<DIM>::WriteDataToVisualizerSetupFile(out_stream& pVizSetupFile)
 {
     if (bool(dynamic_cast<Cylindrical2dVertexMesh*>(&(this->mrMesh))))
@@ -820,7 +820,7 @@ void VertexBasedCellPopulation<DIM>::WriteDataToVisualizerSetupFile(out_stream& 
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void VertexBasedCellPopulation<DIM>::SimulationSetupHook(AbstractCellBasedSimulation<DIM, DIM>* pSimulation)
 {
     MAKE_PTR_ARGS(T2SwapCellKiller<DIM>, p_t2_swap_cell_killer, (this));
@@ -828,13 +828,13 @@ void VertexBasedCellPopulation<DIM>::SimulationSetupHook(AbstractCellBasedSimula
 }
 
 
-template<unsigned DIM>
+template <unsigned DIM>
 bool VertexBasedCellPopulation<DIM>::GetRestrictVertexMovementBoolean()
 {
     return mRestrictVertexMovement;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void VertexBasedCellPopulation<DIM>::SetRestrictVertexMovementBoolean(bool restrictMovement)
 {
     mRestrictVertexMovement = restrictMovement;

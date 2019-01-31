@@ -60,7 +60,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *  added yet...
  *
  */
-template<unsigned DIM>
+template <unsigned DIM>
 class CompressibleMooneyRivlinMaterialLaw : public AbstractIsotropicCompressibleMaterialLaw<DIM>
 {
 private:
@@ -231,7 +231,7 @@ public:
 };
 
 /** Initialised to -1.0/DIM  */
-template<unsigned DIM>
+template <unsigned DIM>
 const double CompressibleMooneyRivlinMaterialLaw<DIM>::msMinusOneOverDimension = -1.0/DIM;
 
 #endif /*COMPRESSIBLEMOONEYRIVLINMATERIALLAW_HPP_*/

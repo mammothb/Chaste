@@ -43,7 +43,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 /**
  * Boundary condition defined by an AbstractStimlus object.
  */
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 class StimulusBoundaryCondition : public AbstractBoundaryCondition<SPACE_DIM>
 {
 private:

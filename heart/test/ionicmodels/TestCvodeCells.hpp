@@ -100,7 +100,7 @@ public :
     }
 };
 
-template<>
+template <>
 void OdeSystemInformation<ExceptionalCell>::Initialise(void)
 {
     // State variables

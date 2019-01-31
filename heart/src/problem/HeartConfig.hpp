@@ -97,7 +97,7 @@ private:
      * @param archive
      * @param version
      */
-    template<class Archive>
+    template <class Archive>
     void save(Archive & archive, const unsigned int version) const
     {
         //Only the Master should be writing the configuration file
@@ -135,7 +135,7 @@ private:
      * @param archive
      * @param version
      */
-    template<class Archive>
+    template <class Archive>
     void load(Archive & archive, const unsigned int version)
     {
         LoadFromCheckpoint();
@@ -328,7 +328,7 @@ public:
      * @param rDefinedRegions vector of axis-aligned box regions (one per cellular heterogeneity)
      * @param rIonicModels vector of models (one per cellular heterogeneity)
      */
-    template<unsigned DIM>
+    template <unsigned DIM>
     void GetIonicModelRegions(std::vector<boost::shared_ptr<AbstractChasteRegion<DIM> > >& rDefinedRegions,
                               std::vector<cp::ionic_model_selection_type>& rIonicModels) const;
 
@@ -380,7 +380,7 @@ public:
      *
      * \todo There is no set method
      */
-    template<unsigned DIM>
+    template <unsigned DIM>
     void GetStimuli(std::vector<boost::shared_ptr<AbstractStimulusFunction> >& rStimuliApplied,
                     std::vector<boost::shared_ptr<AbstractChasteRegion<DIM> > >& rStimulatedAreas) const;
 
@@ -399,7 +399,7 @@ public:
      * \todo - do we assume the vectors are initially empty?
      * \todo There is no set method
      */
-    template<unsigned DIM>
+    template <unsigned DIM>
     void GetCellHeterogeneities(std::vector<boost::shared_ptr<AbstractChasteRegion<DIM> > >& rCellHeterogeneityRegions,
                                 std::vector<double>& rScaleFactorGks,
                                 std::vector<double>& rScaleFactorIto,
@@ -452,7 +452,7 @@ public:
      * @param extraConductivities  extraConductivities[0] is conductivity vector for the first region
      * \todo - do we assume the vectors are initially empty?
      */
-    template<unsigned DIM>
+    template <unsigned DIM>
     void GetConductivityHeterogeneities(std::vector<boost::shared_ptr<AbstractChasteRegion<DIM> > >& conductivitiesHeterogeneityAreas,
                                         std::vector< c_vector<double,3> >& intraConductivities,
                                         std::vector< c_vector<double,3> >& extraConductivities) const;
@@ -685,7 +685,7 @@ public:
      * @param rPseudoEcgElectrodePositions  will be filled in with the positions of electrodes
      * to use in calculating pseudo-ECGs (if any)
      */
-    template<unsigned SPACE_DIM>
+    template <unsigned SPACE_DIM>
     void GetPseudoEcgElectrodePositions(std::vector<ChastePoint<SPACE_DIM> >& rPseudoEcgElectrodePositions) const;
 
     /**
@@ -1095,7 +1095,7 @@ public:
      * @param rPseudoEcgElectrodePositions  should contan the positions of electrodes
      * to use in calculating pseudo-ECGs (if any)
      */
-    template<unsigned SPACE_DIM>
+    template <unsigned SPACE_DIM>
     void SetPseudoEcgElectrodePositions(const std::vector<ChastePoint<SPACE_DIM> >& rPseudoEcgElectrodePositions);
 
 

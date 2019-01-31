@@ -42,13 +42,13 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "VertexBasedCellPopulation.hpp"
 #include "ApoptoticCellProperty.hpp"
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 CellPopulationAreaWriter<ELEMENT_DIM, SPACE_DIM>::CellPopulationAreaWriter()
     : AbstractCellPopulationWriter<ELEMENT_DIM, SPACE_DIM>("cellpopulationareas.dat")
 {
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void CellPopulationAreaWriter<ELEMENT_DIM, SPACE_DIM>::Visit(MeshBasedCellPopulation<ELEMENT_DIM, SPACE_DIM>* pCellPopulation)
 {
     assert(SPACE_DIM==2 || SPACE_DIM==3); // LCOV_EXCL_LINE
@@ -90,25 +90,25 @@ void CellPopulationAreaWriter<ELEMENT_DIM, SPACE_DIM>::Visit(MeshBasedCellPopula
     *this->mpOutStream << total_area << " " << apoptotic_area;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void CellPopulationAreaWriter<ELEMENT_DIM, SPACE_DIM>::Visit(CaBasedCellPopulation<SPACE_DIM>* pCellPopulation)
 {
     EXCEPTION("CellPopulationAreaWriter cannot be used with a CaBasedCellPopulation");
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void CellPopulationAreaWriter<ELEMENT_DIM, SPACE_DIM>::Visit(NodeBasedCellPopulation<SPACE_DIM>* pCellPopulation)
 {
     EXCEPTION("CellPopulationAreaWriter cannot be used with a NodeBasedCellPopulation");
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void CellPopulationAreaWriter<ELEMENT_DIM, SPACE_DIM>::Visit(PottsBasedCellPopulation<SPACE_DIM>* pCellPopulation)
 {
     EXCEPTION("CellPopulationAreaWriter cannot be used with a PottsBasedCellPopulation");
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void CellPopulationAreaWriter<ELEMENT_DIM, SPACE_DIM>::Visit(VertexBasedCellPopulation<SPACE_DIM>* pCellPopulation)
 {
     EXCEPTION("CellPopulationAreaWriter cannot be used with a VertexBasedCellPopulation");

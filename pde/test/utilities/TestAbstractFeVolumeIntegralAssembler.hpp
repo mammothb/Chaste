@@ -50,7 +50,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 // simple assembler which just returns a c_vector of ones for each quad point
 //  => final 'b' vector for each element will be equal to elem_vol*(1,..,1)
-template<unsigned DIM>
+template <unsigned DIM>
 class BasicVectorAssembler : public AbstractFeVolumeIntegralAssembler<DIM,DIM,1,true,false,NORMAL>
 {
 private:
@@ -80,7 +80,7 @@ public:
 
 // simple assembler which just returns a c_matrix of ones for each quad point
 //  => final 'A' matrix for each element will be equal to elem_vol*(1,..,1)
-template<unsigned DIM>
+template <unsigned DIM>
 class BasicMatrixAssembler : public AbstractFeVolumeIntegralAssembler<DIM,DIM,1,false,true,NORMAL>
 {
 private:
@@ -110,7 +110,7 @@ public:
 };
 
 // Assembler which does both of the above
-template<unsigned DIM>
+template <unsigned DIM>
 class BasicVectorAndMatrixAssembler : public AbstractFeVolumeIntegralAssembler<DIM,DIM,1,true,true,NORMAL>
 {
 private:
@@ -184,7 +184,7 @@ class TestAbstractFeVolumeIntegralAssembler : public CxxTest::TestSuite
 {
 private:
 
-    template<unsigned DIM>
+    template <unsigned DIM>
     void DoTestBasicVectorAssemblers()
     {
         TetrahedralMesh<DIM,DIM> mesh;

@@ -58,7 +58,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include <map>
 
 // Forward declaration prevents circular include chain
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 class NodesOnlyMesh;
 
 /**

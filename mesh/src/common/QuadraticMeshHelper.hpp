@@ -43,7 +43,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  * A helper class for QuadraticMesh and DistributedQuadratic mesh, containing utility methods
  * that are common to both classes (and only require public access).
  */
-template<unsigned DIM>
+template <unsigned DIM>
 class QuadraticMeshHelper
 {
 public:

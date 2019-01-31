@@ -46,7 +46,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  * Abstract class with shared functionalities for different
  * extended bidomain solvers.
  */
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 class AbstractExtendedBidomainSolver
     : public AbstractDynamicLinearPdeSolver<ELEMENT_DIM,SPACE_DIM,3>
 {

@@ -63,7 +63,7 @@ private:
      * @param archive the archive
      * @param version the current version of this class
      */
-    template<class Archive>
+    template <class Archive>
     void serialize(Archive & archive, const unsigned int version)
     {
         archive & mCellCount;
@@ -91,7 +91,7 @@ public:
      * It should be called like:
      *   bool healthy = p_property->IsType<HealthyMutationState>();
      */
-    template<class CLASS>
+    template <class CLASS>
     bool IsType() const
     {
         CLASS ref_obj;
@@ -105,7 +105,7 @@ public:
      * It should be called like:
      *   bool is_mutation = p_property->IsSubType<AbstractCellMutationState>();
      */
-    template<class BASECLASS>
+    template <class BASECLASS>
     bool IsSubType() const
     {
         // We put a const_cast in here so users don't have to worry about whether the

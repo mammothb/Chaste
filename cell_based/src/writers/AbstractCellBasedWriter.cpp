@@ -35,54 +35,54 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "AbstractCellBasedWriter.hpp"
 #include "SimulationTime.hpp"
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 AbstractCellBasedWriter<ELEMENT_DIM, SPACE_DIM>::AbstractCellBasedWriter(const std::string& rFileName)
     : mFileName(rFileName)
 {
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 AbstractCellBasedWriter<ELEMENT_DIM, SPACE_DIM>::~AbstractCellBasedWriter()
 {
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void AbstractCellBasedWriter<ELEMENT_DIM, SPACE_DIM>::CloseFile()
 {
     mpOutStream->close();
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void AbstractCellBasedWriter<ELEMENT_DIM, SPACE_DIM>::OpenOutputFile(OutputFileHandler& rOutputFileHandler)
 {
     mpOutStream = rOutputFileHandler.OpenOutputFile(mFileName);
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void AbstractCellBasedWriter<ELEMENT_DIM, SPACE_DIM>::OpenOutputFileForAppend(OutputFileHandler& rOutputFileHandler)
 {
     mpOutStream = rOutputFileHandler.OpenOutputFile(mFileName, std::ios::app);
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void AbstractCellBasedWriter<ELEMENT_DIM, SPACE_DIM>::WriteTimeStamp()
 {
     *mpOutStream << SimulationTime::Instance()->GetTime() << "\t";
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void AbstractCellBasedWriter<ELEMENT_DIM, SPACE_DIM>::WriteNewline()
 {
     *mpOutStream << "\n";
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void AbstractCellBasedWriter<ELEMENT_DIM, SPACE_DIM>::SetFileName(std::string fileName)
 {
     mFileName = fileName;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 std::string AbstractCellBasedWriter<ELEMENT_DIM, SPACE_DIM>::GetFileName()
 {
     return mFileName;

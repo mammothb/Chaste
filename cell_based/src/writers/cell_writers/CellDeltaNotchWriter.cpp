@@ -36,21 +36,21 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "CellDeltaNotchWriter.hpp"
 #include "AbstractCellPopulation.hpp"
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 CellDeltaNotchWriter<ELEMENT_DIM, SPACE_DIM>::CellDeltaNotchWriter()
     : AbstractCellWriter<ELEMENT_DIM, SPACE_DIM>("celldeltanotch.dat")
 {
     this->mVtkCellDataName = "Cell delta";
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 double CellDeltaNotchWriter<ELEMENT_DIM, SPACE_DIM>::GetCellDataForVtkOutput(CellPtr pCell, AbstractCellPopulation<ELEMENT_DIM, SPACE_DIM>* pCellPopulation)
 {
     double delta = pCell->GetCellData()->GetItem("delta");
     return delta;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void CellDeltaNotchWriter<ELEMENT_DIM, SPACE_DIM>::VisitCell(CellPtr pCell, AbstractCellPopulation<ELEMENT_DIM, SPACE_DIM>* pCellPopulation)
 {
     // Output the location index corresponding to this cell

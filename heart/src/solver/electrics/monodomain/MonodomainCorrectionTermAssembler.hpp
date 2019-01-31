@@ -50,7 +50,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  * to be 1uA/cm^2^. See wiki page ChasteGuides/StateVariableInterpolation
  * for more details.
  */
-template<unsigned ELEM_DIM,unsigned SPACE_DIM>
+template <unsigned ELEM_DIM,unsigned SPACE_DIM>
 class MonodomainCorrectionTermAssembler
     : public AbstractCorrectionTermAssembler<ELEM_DIM,SPACE_DIM,1>
 {

@@ -36,7 +36,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "EllipticBoxDomainPdeModifier.hpp"
 #include "SimpleLinearEllipticSolver.hpp"
 
-template<unsigned DIM>
+template <unsigned DIM>
 EllipticBoxDomainPdeModifier<DIM>::EllipticBoxDomainPdeModifier(boost::shared_ptr<AbstractLinearPde<DIM,DIM> > pPde,
                                                                 boost::shared_ptr<AbstractBoundaryCondition<DIM> > pBoundaryCondition,
                                                                 bool isNeumannBoundaryCondition,
@@ -52,12 +52,12 @@ EllipticBoxDomainPdeModifier<DIM>::EllipticBoxDomainPdeModifier(boost::shared_pt
 {
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 EllipticBoxDomainPdeModifier<DIM>::~EllipticBoxDomainPdeModifier()
 {
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void EllipticBoxDomainPdeModifier<DIM>::UpdateAtEndOfTimeStep(AbstractCellPopulation<DIM,DIM>& rCellPopulation)
 {
     // Set up boundary conditions
@@ -86,7 +86,7 @@ void EllipticBoxDomainPdeModifier<DIM>::UpdateAtEndOfTimeStep(AbstractCellPopula
     this->UpdateCellData(rCellPopulation);
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void EllipticBoxDomainPdeModifier<DIM>::SetupSolve(AbstractCellPopulation<DIM,DIM>& rCellPopulation, std::string outputDirectory)
 {
     AbstractBoxDomainPdeModifier<DIM>::SetupSolve(rCellPopulation,outputDirectory);
@@ -96,7 +96,7 @@ void EllipticBoxDomainPdeModifier<DIM>::SetupSolve(AbstractCellPopulation<DIM,DI
     this->UpdateAtEndOfOutputTimeStep(rCellPopulation);
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 std::shared_ptr<BoundaryConditionsContainer<DIM,DIM,1> > EllipticBoxDomainPdeModifier<DIM>::ConstructBoundaryConditionsContainer(AbstractCellPopulation<DIM,DIM>& rCellPopulation)
 {
     std::shared_ptr<BoundaryConditionsContainer<DIM,DIM,1> > p_bcc(new BoundaryConditionsContainer<DIM,DIM,1>(false));
@@ -152,7 +152,7 @@ std::shared_ptr<BoundaryConditionsContainer<DIM,DIM,1> > EllipticBoxDomainPdeMod
     return p_bcc;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void EllipticBoxDomainPdeModifier<DIM>::OutputSimulationModifierParameters(out_stream& rParamsFile)
 {
     // No parameters to output, so just call method on direct parent class

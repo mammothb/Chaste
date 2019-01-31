@@ -56,7 +56,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  * Behavior of the Heart", Hooks et al. 2007
  *
  */
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 class OrthotropicConductivityTensors : public AbstractConductivityTensors<ELEMENT_DIM, SPACE_DIM>
 {
 public:

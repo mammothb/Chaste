@@ -49,7 +49,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *  where W_material(E) is the material part of the strain energy, p is the pressure and
  *  I3 = det(C)
  */
-template<unsigned DIM>
+template <unsigned DIM>
 class AbstractIncompressibleMaterialLaw : public AbstractMaterialLaw<DIM>
 {
 public:

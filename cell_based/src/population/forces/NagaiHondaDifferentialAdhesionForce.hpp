@@ -55,7 +55,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  * mDampingConstantNormal takes the default value 1, whereas Nagai and
  * Honda (who denote the parameter by nu) take the value 0.01.
  */
-template<unsigned DIM>
+template <unsigned DIM>
 class NagaiHondaDifferentialAdhesionForce  : public NagaiHondaForce<DIM>
 {
 private:
@@ -89,7 +89,7 @@ private:
      * @param archive  The boost archive.
      * @param version  The current version of this class.
      */
-    template<class Archive>
+    template <class Archive>
     void serialize(Archive & archive, const unsigned int version)
     {
         archive & boost::serialization::base_object<NagaiHondaForce<DIM> >(*this);

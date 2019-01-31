@@ -81,7 +81,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *  Note that compatibility conditions will be taken care of by this class by calling specific methods within the stimulus factory class.
  *
  */
-template<unsigned DIM>
+template <unsigned DIM>
 class ExtendedBidomainProblem : public AbstractCardiacProblem<DIM,DIM, 3>
 {
     /** Needed for serialization. */
@@ -95,7 +95,7 @@ class ExtendedBidomainProblem : public AbstractCardiacProblem<DIM,DIM, 3>
      * @param archive
      * @param version
      */
-    template<class Archive>
+    template <class Archive>
     void save(Archive & archive, const unsigned int version) const
     {
         archive & boost::serialization::base_object<AbstractCardiacProblem<DIM, DIM, 3> >(*this);
@@ -156,7 +156,7 @@ class ExtendedBidomainProblem : public AbstractCardiacProblem<DIM,DIM, 3>
      * @param archive
      * @param version
      */
-    template<class Archive>
+    template <class Archive>
     void load(Archive & archive, const unsigned int version)
     {
         archive & boost::serialization::base_object<AbstractCardiacProblem<DIM, DIM, 3> >(*this);

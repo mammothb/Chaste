@@ -57,7 +57,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *  (iii) integrate the contraction models in order to get the active tension
  *  (iv) solve for the deformation using this active tension.
  */
-template<class ELASTICITY_SOLVER,unsigned DIM>
+template <class ELASTICITY_SOLVER,unsigned DIM>
 class ExplicitCardiacMechanicsSolver : public AbstractCardiacMechanicsSolver<ELASTICITY_SOLVER,DIM>
 {
 friend class TestExplicitCardiacMechanicsSolver;

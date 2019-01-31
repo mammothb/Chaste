@@ -43,7 +43,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  * which may not correspond to a physically acceptable law but can
  * still be used to test the code.
  */
-template<unsigned DIM>
+template <unsigned DIM>
 class ToyCompressibleMaterialLaw : public AbstractIsotropicCompressibleMaterialLaw<DIM>
 {
 private:

@@ -38,10 +38,10 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "Warnings.hpp"
 
 // Static member for "fudge factor" is instantiated here
-template<unsigned DIM>
+template <unsigned DIM>
 const double DistributedBoxCollection<DIM>::msFudge = 5e-14;
 
-template<unsigned DIM>
+template <unsigned DIM>
 DistributedBoxCollection<DIM>::DistributedBoxCollection(double boxWidth, c_vector<double, 2*DIM> domainSize, bool isPeriodicInX, int localRows)
     : mBoxWidth(boxWidth),
       mIsPeriodicInX(isPeriodicInX),
@@ -109,13 +109,13 @@ DistributedBoxCollection<DIM>::DistributedBoxCollection(double boxWidth, c_vecto
     SetupHaloBoxes();
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 DistributedBoxCollection<DIM>::~DistributedBoxCollection()
 {
     delete mpDistributedBoxStackFactory;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void DistributedBoxCollection<DIM>::EmptyBoxes()
 {
     for (unsigned i=0; i<mBoxes.size(); i++)
@@ -128,7 +128,7 @@ void DistributedBoxCollection<DIM>::EmptyBoxes()
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void DistributedBoxCollection<DIM>::SetupHaloBoxes()
 {
     // Get top-most and bottom-most value of Distributed Box Stack.
@@ -165,7 +165,7 @@ void DistributedBoxCollection<DIM>::SetupHaloBoxes()
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void DistributedBoxCollection<DIM>::UpdateHaloBoxes()
 {
     mHaloNodesLeft.clear();
@@ -192,19 +192,19 @@ void DistributedBoxCollection<DIM>::UpdateHaloBoxes()
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 unsigned DistributedBoxCollection<DIM>::GetNumLocalRows() const
 {
     return mpDistributedBoxStackFactory->GetHigh() - mpDistributedBoxStackFactory->GetLow();
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 bool DistributedBoxCollection<DIM>::IsBoxOwned(unsigned globalIndex)
 {
     return (!(globalIndex<mMinBoxIndex) && !(mMaxBoxIndex<globalIndex));
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 bool DistributedBoxCollection<DIM>::IsHaloBox(unsigned globalIndex)
 {
     bool is_halo_right = ((globalIndex > mMaxBoxIndex) && !(globalIndex > mMaxBoxIndex + mNumBoxesInAFace));
@@ -213,7 +213,7 @@ bool DistributedBoxCollection<DIM>::IsHaloBox(unsigned globalIndex)
     return (PetscTools::IsParallel() && (is_halo_right || is_halo_left));
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 bool DistributedBoxCollection<DIM>::IsInteriorBox(unsigned globalIndex)
 {
     bool is_on_boundary = !(globalIndex < mMaxBoxIndex - mNumBoxesInAFace) || (globalIndex < mMinBoxIndex + mNumBoxesInAFace);
@@ -221,7 +221,7 @@ bool DistributedBoxCollection<DIM>::IsInteriorBox(unsigned globalIndex)
     return (PetscTools::IsSequential() || !(is_on_boundary));
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 unsigned DistributedBoxCollection<DIM>::CalculateGlobalIndex(c_vector<unsigned, DIM> gridIndices)
 {
     ///\todo #2308 etc. We need to make allowance for periodicity here...
@@ -255,7 +255,7 @@ unsigned DistributedBoxCollection<DIM>::CalculateGlobalIndex(c_vector<unsigned, 
     return global_index;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 unsigned DistributedBoxCollection<DIM>::CalculateContainingBox(Node<DIM>* pNode)
 {
     // Get the location of the node
@@ -263,7 +263,7 @@ unsigned DistributedBoxCollection<DIM>::CalculateContainingBox(Node<DIM>* pNode)
     return CalculateContainingBox(location);
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 unsigned DistributedBoxCollection<DIM>::CalculateContainingBox(c_vector<double, DIM>& rLocation)
 {
     // The node must lie inside the boundary of the box collection
@@ -305,7 +305,7 @@ unsigned DistributedBoxCollection<DIM>::CalculateContainingBox(c_vector<double, 
     return containing_box_index;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 c_vector<unsigned, DIM> DistributedBoxCollection<DIM>::CalculateGridIndices(unsigned globalIndex)
 {
     c_vector<unsigned, DIM> grid_indices;
@@ -342,7 +342,7 @@ c_vector<unsigned, DIM> DistributedBoxCollection<DIM>::CalculateGridIndices(unsi
     return grid_indices;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 Box<DIM>& DistributedBoxCollection<DIM>::rGetBox(unsigned boxIndex)
 {
     // Check first for local ownership
@@ -355,7 +355,7 @@ Box<DIM>& DistributedBoxCollection<DIM>::rGetBox(unsigned boxIndex)
     return rGetHaloBox(boxIndex);
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 Box<DIM>& DistributedBoxCollection<DIM>::rGetHaloBox(unsigned boxIndex)
 {
     assert(IsHaloBox(boxIndex));
@@ -365,49 +365,49 @@ Box<DIM>& DistributedBoxCollection<DIM>::rGetHaloBox(unsigned boxIndex)
     return mHaloBoxes[local_index];
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 unsigned DistributedBoxCollection<DIM>::GetNumBoxes()
 {
     return mNumBoxes;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 unsigned DistributedBoxCollection<DIM>::GetNumLocalBoxes()
 {
     return mBoxes.size();
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 c_vector<double, 2*DIM> DistributedBoxCollection<DIM>::rGetDomainSize() const
 {
     return mDomainSize;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 bool DistributedBoxCollection<DIM>::GetAreLocalBoxesSet() const
 {
     return mAreLocalBoxesSet;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 double DistributedBoxCollection<DIM>::GetBoxWidth() const
 {
     return mBoxWidth;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 bool DistributedBoxCollection<DIM>::GetIsPeriodicInX() const
 {
     return mIsPeriodicInX;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 unsigned DistributedBoxCollection<DIM>::GetNumRowsOfBoxes() const
 {
     return mpDistributedBoxStackFactory->GetHigh() - mpDistributedBoxStackFactory->GetLow();
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 int DistributedBoxCollection<DIM>::LoadBalance(std::vector<int> localDistribution)
 {
     MPI_Status status;
@@ -495,7 +495,7 @@ int DistributedBoxCollection<DIM>::LoadBalance(std::vector<int> localDistributio
     return new_rows;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void DistributedBoxCollection<DIM>::SetupLocalBoxesHalfOnly()
 {
     if (mAreLocalBoxesSet)
@@ -755,7 +755,7 @@ void DistributedBoxCollection<DIM>::SetupLocalBoxesHalfOnly()
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void DistributedBoxCollection<DIM>::SetupAllLocalBoxes()
 {
     mAreLocalBoxesSet = true;
@@ -1076,7 +1076,7 @@ void DistributedBoxCollection<DIM>::SetupAllLocalBoxes()
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 std::set<unsigned>& DistributedBoxCollection<DIM>::rGetLocalBoxes(unsigned boxIndex)
 {
     // Make sure the box is locally owned
@@ -1084,7 +1084,7 @@ std::set<unsigned>& DistributedBoxCollection<DIM>::rGetLocalBoxes(unsigned boxIn
     return mLocalBoxes[boxIndex-mMinBoxIndex];
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 bool DistributedBoxCollection<DIM>::IsOwned(Node<DIM>* pNode)
 {
     unsigned index = CalculateContainingBox(pNode);
@@ -1092,7 +1092,7 @@ bool DistributedBoxCollection<DIM>::IsOwned(Node<DIM>* pNode)
     return IsBoxOwned(index);
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 bool DistributedBoxCollection<DIM>::IsOwned(c_vector<double, DIM>& location)
 {
     unsigned index = CalculateContainingBox(location);
@@ -1100,7 +1100,7 @@ bool DistributedBoxCollection<DIM>::IsOwned(c_vector<double, DIM>& location)
     return IsBoxOwned(index);
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 unsigned DistributedBoxCollection<DIM>::GetProcessOwningNode(Node<DIM>* pNode)
 {
     unsigned box_index = CalculateContainingBox(pNode);
@@ -1118,25 +1118,25 @@ unsigned DistributedBoxCollection<DIM>::GetProcessOwningNode(Node<DIM>* pNode)
     return containing_process;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 std::vector<unsigned>& DistributedBoxCollection<DIM>::rGetHaloNodesRight()
 {
     return mHaloNodesRight;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 std::vector<unsigned>& DistributedBoxCollection<DIM>::rGetHaloNodesLeft()
 {
     return mHaloNodesLeft;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void DistributedBoxCollection<DIM>::SetCalculateNodeNeighbours(bool calculateNodeNeighbours)
 {
     mCalculateNodeNeighbours = calculateNodeNeighbours;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void DistributedBoxCollection<DIM>::CalculateNodePairs(std::vector<Node<DIM>*>& rNodes, std::vector<std::pair<Node<DIM>*, Node<DIM>*> >& rNodePairs)
 {
     rNodePairs.clear();
@@ -1175,7 +1175,7 @@ void DistributedBoxCollection<DIM>::CalculateNodePairs(std::vector<Node<DIM>*>& 
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void DistributedBoxCollection<DIM>::CalculateInteriorNodePairs(std::vector<Node<DIM>*>& rNodes, std::vector<std::pair<Node<DIM>*, Node<DIM>*> >& rNodePairs)
 {
     rNodePairs.clear();
@@ -1219,7 +1219,7 @@ void DistributedBoxCollection<DIM>::CalculateInteriorNodePairs(std::vector<Node<
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void DistributedBoxCollection<DIM>::CalculateBoundaryNodePairs(std::vector<Node<DIM>*>& rNodes, std::vector<std::pair<Node<DIM>*, Node<DIM>*> >& rNodePairs)
 {
     for (unsigned box_index=mMinBoxIndex; box_index<=mMaxBoxIndex; box_index++)
@@ -1247,7 +1247,7 @@ void DistributedBoxCollection<DIM>::CalculateBoundaryNodePairs(std::vector<Node<
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void DistributedBoxCollection<DIM>::AddPairsFromBox(unsigned boxIndex,
                                                     std::vector<std::pair<Node<DIM>*, Node<DIM>*> >& rNodePairs)
 {
@@ -1312,7 +1312,7 @@ void DistributedBoxCollection<DIM>::AddPairsFromBox(unsigned boxIndex,
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 std::vector<int> DistributedBoxCollection<DIM>::CalculateNumberOfNodesInEachStrip()
 {
     std::vector<int> cell_numbers(mpDistributedBoxStackFactory->GetHigh() - mpDistributedBoxStackFactory->GetLow(), 0);

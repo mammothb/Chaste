@@ -51,7 +51,7 @@ class TestDistributedBoxCollection : public CxxTest::TestSuite
 {
 private:
 
-    template<unsigned DIM>
+    template <unsigned DIM>
     void DoUpdateHaloBoxes(unsigned numProcs)
     {
         if (3 < numProcs)
@@ -115,7 +115,7 @@ private:
         }
     }
 
-    template<unsigned DIM>
+    template <unsigned DIM>
     void DoSetupHaloBoxes(unsigned numProcs)
     {
         if (3 < numProcs)

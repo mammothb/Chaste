@@ -49,7 +49,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  * what the weight of that Gauss point for that particular element is. This struct
  * just contains this two pieces of data
  */
-template<unsigned DIM>
+template <unsigned DIM>
 struct ElementAndWeights
 {
     unsigned ElementNum; /**< Which element*/

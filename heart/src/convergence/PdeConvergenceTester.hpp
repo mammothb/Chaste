@@ -41,7 +41,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 /**
  * Drop the PDE time-step until a convergence criterion is met
  */
-template<class CELL, class CARDIAC_PROBLEM, unsigned DIM, unsigned PROBLEM_DIM>
+template <class CELL, class CARDIAC_PROBLEM, unsigned DIM, unsigned PROBLEM_DIM>
 class PdeConvergenceTester : public AbstractConvergenceTester<CELL, CARDIAC_PROBLEM, DIM, PROBLEM_DIM>
 {
 public:

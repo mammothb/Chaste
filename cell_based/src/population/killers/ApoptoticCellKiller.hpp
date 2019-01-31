@@ -44,7 +44,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 /**
  * A cell killer object that kills cells that have been specified using the ApoptoticCellProperty.
  */
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 class ApoptoticCellKiller : public AbstractCellKiller<SPACE_DIM>
 {
 private:
@@ -57,7 +57,7 @@ private:
      * @param archive  The boost archive.
      * @param version  The current version of this class.
      */
-    template<class Archive>
+    template <class Archive>
     void serialize(Archive & archive, const unsigned int version)
     {
         archive & boost::serialization::base_object<AbstractCellKiller<SPACE_DIM> >(*this);
@@ -102,7 +102,7 @@ namespace serialization
 /**
  * Serialize information required to construct an ApoptoticCellKiller.
  */
-template<class Archive, unsigned DIM>
+template <class Archive, unsigned DIM>
 inline void save_construct_data(
     Archive & ar, const ApoptoticCellKiller<DIM> * t, const unsigned int file_version)
 {
@@ -114,7 +114,7 @@ inline void save_construct_data(
 /**
  * De-serialize constructor parameters and initialise an ApoptoticCellKiller.
  */
-template<class Archive, unsigned DIM>
+template <class Archive, unsigned DIM>
 inline void load_construct_data(
     Archive & ar, ApoptoticCellKiller<DIM> * t, const unsigned int file_version)
 {

@@ -592,7 +592,7 @@ void VtkMeshWriter<ELEMENT_DIM,SPACE_DIM>::SetParallelFiles( AbstractTetrahedral
 }
 
 ///\todo #1322 Mesh should be const
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void VtkMeshWriter<ELEMENT_DIM, SPACE_DIM>::WriteFilesUsingMesh(
       AbstractTetrahedralMesh<ELEMENT_DIM,SPACE_DIM>& rMesh,
       bool keepOriginalElementIndexing)

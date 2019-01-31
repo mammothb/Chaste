@@ -36,13 +36,13 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "MixedDimensionMesh.hpp"
 #include "Exception.hpp"
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 MixedDimensionMesh<ELEMENT_DIM, SPACE_DIM>::MixedDimensionMesh(DistributedTetrahedralMeshPartitionType::type partitioningMethod)
     : DistributedTetrahedralMesh<ELEMENT_DIM, SPACE_DIM>::DistributedTetrahedralMesh(partitioningMethod)
 {
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 MixedDimensionMesh<ELEMENT_DIM, SPACE_DIM>::~MixedDimensionMesh()
 {
     for (unsigned i=0; i<mCableElements.size(); i++)
@@ -51,7 +51,7 @@ MixedDimensionMesh<ELEMENT_DIM, SPACE_DIM>::~MixedDimensionMesh()
     }
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void MixedDimensionMesh<ELEMENT_DIM, SPACE_DIM>::ConstructFromMeshReader(AbstractMeshReader<ELEMENT_DIM,SPACE_DIM>& rMeshReader)
 {
     DistributedTetrahedralMesh<ELEMENT_DIM,SPACE_DIM>::ConstructFromMeshReader(rMeshReader);
@@ -139,19 +139,19 @@ void MixedDimensionMesh<ELEMENT_DIM, SPACE_DIM>::RegisterCableElement(unsigned i
     mCableElementsMapping[index] = this->mCableElements.size();
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 unsigned MixedDimensionMesh<ELEMENT_DIM, SPACE_DIM>::GetNumCableElements() const
 {
    return mNumCableElements;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 unsigned MixedDimensionMesh<ELEMENT_DIM, SPACE_DIM>::GetNumLocalCableElements() const
 {
    return mCableElements.size();
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 Element<1u, SPACE_DIM>* MixedDimensionMesh<ELEMENT_DIM, SPACE_DIM>::GetCableElement(unsigned globalElementIndex) const
 {
     std::map<unsigned, unsigned>::const_iterator element_position = mCableElementsMapping.find(globalElementIndex);

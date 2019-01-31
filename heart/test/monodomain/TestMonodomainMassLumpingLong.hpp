@@ -43,7 +43,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "PetscSetupAndFinalize.hpp"
 
 
-template<class CELL>
+template <class CELL>
 class SmallBenchmarkStimulusHeartCellFactory : public AbstractCardiacCellFactory<3>
 {
 

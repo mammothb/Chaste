@@ -43,7 +43,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  * evaluates the function to determine the value of the condition at a given
  * point.
  */
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 class FunctionalBoundaryCondition : public AbstractBoundaryCondition<SPACE_DIM>
 {
 private:

@@ -44,7 +44,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  * Run the same simulation on cuboid meshes at progressively finer scales
  * until some convergence criterion is met.
  */
-template<class CELL, class CARDIAC_PROBLEM, unsigned DIM, unsigned PROBLEM_DIM>
+template <class CELL, class CARDIAC_PROBLEM, unsigned DIM, unsigned PROBLEM_DIM>
 class SpaceConvergenceTester : public AbstractConvergenceTester<CELL, CARDIAC_PROBLEM, DIM, PROBLEM_DIM>
 {
 public:

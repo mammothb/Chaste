@@ -37,7 +37,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include "CellLabel.hpp"
 
-template<unsigned DIM>
+template <unsigned DIM>
 DifferentialAdhesionPottsUpdateRule<DIM>::DifferentialAdhesionPottsUpdateRule()
     : AdhesionPottsUpdateRule<DIM>(),
       mLabelledCellLabelledCellAdhesionEnergyParameter(0.1), // Educated guess
@@ -46,12 +46,12 @@ DifferentialAdhesionPottsUpdateRule<DIM>::DifferentialAdhesionPottsUpdateRule()
 {
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 DifferentialAdhesionPottsUpdateRule<DIM>::~DifferentialAdhesionPottsUpdateRule()
 {
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 double DifferentialAdhesionPottsUpdateRule<DIM>::GetCellCellAdhesionEnergy(CellPtr pCellA, CellPtr pCellB)
 {
     if (pCellA->HasCellProperty<CellLabel>() && pCellB->HasCellProperty<CellLabel>())
@@ -68,7 +68,7 @@ double DifferentialAdhesionPottsUpdateRule<DIM>::GetCellCellAdhesionEnergy(CellP
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 double DifferentialAdhesionPottsUpdateRule<DIM>::GetCellBoundaryAdhesionEnergy(CellPtr pCell)
 {
     if (pCell->HasCellProperty<CellLabel>())
@@ -81,43 +81,43 @@ double DifferentialAdhesionPottsUpdateRule<DIM>::GetCellBoundaryAdhesionEnergy(C
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 double DifferentialAdhesionPottsUpdateRule<DIM>::GetLabelledCellLabelledCellAdhesionEnergyParameter()
 {
     return mLabelledCellLabelledCellAdhesionEnergyParameter;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 double DifferentialAdhesionPottsUpdateRule<DIM>::GetLabelledCellCellAdhesionEnergyParameter()
 {
     return mLabelledCellCellAdhesionEnergyParameter;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 double DifferentialAdhesionPottsUpdateRule<DIM>::GetLabelledCellBoundaryAdhesionEnergyParameter()
 {
     return mLabelledCellBoundaryAdhesionEnergyParameter;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void DifferentialAdhesionPottsUpdateRule<DIM>::SetLabelledCellLabelledCellAdhesionEnergyParameter(double labelledCellLabelledCellAdhesionEnergyParameter)
 {
     mLabelledCellLabelledCellAdhesionEnergyParameter = labelledCellLabelledCellAdhesionEnergyParameter;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void DifferentialAdhesionPottsUpdateRule<DIM>::SetLabelledCellCellAdhesionEnergyParameter(double labelledCellCellAdhesionEnergyParameter)
 {
     mLabelledCellCellAdhesionEnergyParameter = labelledCellCellAdhesionEnergyParameter;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void DifferentialAdhesionPottsUpdateRule<DIM>::SetLabelledCellBoundaryAdhesionEnergyParameter(double labelledCellBoundaryAdhesionEnergyParameter)
 {
     mLabelledCellBoundaryAdhesionEnergyParameter = labelledCellBoundaryAdhesionEnergyParameter;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void DifferentialAdhesionPottsUpdateRule<DIM>::OutputUpdateRuleParameters(out_stream& rParamsFile)
 {
     *rParamsFile << "\t\t\t<LabelledCellLabelledCellAdhesionEnergyParameter>" << mLabelledCellLabelledCellAdhesionEnergyParameter << "</LabelledCellLabelledCellAdhesionEnergyParameter>\n";

@@ -60,7 +60,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  * - A local copy of all the elements supporting those nodes
  * - A local copy of ghost/halo nodes which are all the nodes used in the supporting elements, but not owned outright.
  */
-template<unsigned DIM>
+template <unsigned DIM>
 class DistributedQuadraticMesh : public DistributedTetrahedralMesh<DIM, DIM>
 {
     /** Needed for serialization.*/
@@ -71,7 +71,7 @@ class DistributedQuadraticMesh : public DistributedTetrahedralMesh<DIM, DIM>
      * @param archive the archive
      * @param version the current version of this class
      */
-    template<class Archive>
+    template <class Archive>
     void serialize(Archive & archive, const unsigned int version)
     {
         archive & boost::serialization::base_object<DistributedTetrahedralMesh<DIM, DIM> >(*this);
@@ -109,7 +109,7 @@ namespace serialization
 /**
  * Record number of processors when saving...
  */
-template<class Archive, unsigned DIM>
+template <class Archive, unsigned DIM>
 inline void save_construct_data(
     Archive & ar, const DistributedQuadraticMesh<DIM> * t, const unsigned int file_version)
 {
@@ -123,7 +123,7 @@ inline void save_construct_data(
  * De-serialize constructor parameters and initialise a DistributedQuadraticMesh,
  * checking the number of processors is the same.
  */
-template<class Archive, unsigned DIM>
+template <class Archive, unsigned DIM>
 inline void load_construct_data(
     Archive & ar, DistributedQuadraticMesh<DIM> * t, const unsigned int file_version)
 {

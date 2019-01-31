@@ -39,7 +39,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "BidomainWithBathAssembler.hpp"
 #include "PetscMatTools.hpp"
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void BidomainSolver<ELEMENT_DIM,SPACE_DIM>::InitialiseForSolve(Vec initialSolution)
 {
     if (this->mpLinearSystem != NULL)
@@ -61,7 +61,7 @@ void BidomainSolver<ELEMENT_DIM,SPACE_DIM>::InitialiseForSolve(Vec initialSoluti
                          local_size, local_size);
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void BidomainSolver<ELEMENT_DIM,SPACE_DIM>::SetupLinearSystem(
         Vec currentSolution,
         bool computeMatrix)
@@ -196,7 +196,7 @@ void BidomainSolver<ELEMENT_DIM,SPACE_DIM>::SetupLinearSystem(
     this->mpLinearSystem->FinaliseRhsVector();
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 BidomainSolver<ELEMENT_DIM,SPACE_DIM>::BidomainSolver(
         bool bathSimulation,
         AbstractTetrahedralMesh<ELEMENT_DIM,SPACE_DIM>* pMesh,
@@ -234,7 +234,7 @@ BidomainSolver<ELEMENT_DIM,SPACE_DIM>::BidomainSolver(
     }
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 BidomainSolver<ELEMENT_DIM,SPACE_DIM>::~BidomainSolver()
 {
     delete mpBidomainAssembler;

@@ -44,7 +44,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // Implementation
 ///////////////////////////////////////////////////////////////////////////////////
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 CmguiMeshWriter<ELEMENT_DIM,SPACE_DIM>::CmguiMeshWriter(const std::string& rDirectory,
                                                         const std::string& rBaseName,
                                                         bool cleanDirectory)
@@ -91,7 +91,7 @@ CmguiMeshWriter<ELEMENT_DIM,SPACE_DIM>::CmguiMeshWriter(const std::string& rDire
     }
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void CmguiMeshWriter<ELEMENT_DIM,SPACE_DIM>::WriteFiles()
 {
     //////////////////////////
@@ -147,26 +147,26 @@ void CmguiMeshWriter<ELEMENT_DIM,SPACE_DIM>::WriteFiles()
     }
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void CmguiMeshWriter<ELEMENT_DIM,SPACE_DIM>::SetAdditionalFieldNames(std::vector<std::string>& rFieldNames)
 {
     mAdditionalFieldNames = rFieldNames;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void CmguiMeshWriter<ELEMENT_DIM,SPACE_DIM>::SetRegionNames(std::vector<std::string>& rRegionNames)
 {
     mRegionNames = rRegionNames;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 out_stream CmguiMeshWriter<ELEMENT_DIM, SPACE_DIM>::OpenNodeFile(bool append)
 {
     std::string node_file_name = this->mBaseName + ".exnode";
     return this->mpOutputFileHandler->OpenOutputFile(node_file_name, GetOpenMode(append));
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 std::vector<boost::shared_ptr<std::ofstream> > CmguiMeshWriter<ELEMENT_DIM, SPACE_DIM>::OpenElementFiles(bool append)
 {
 
@@ -202,7 +202,7 @@ std::vector<boost::shared_ptr<std::ofstream> > CmguiMeshWriter<ELEMENT_DIM, SPAC
     return elem_files;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void CmguiMeshWriter<ELEMENT_DIM,SPACE_DIM>::WriteNodeFileHeader(out_stream& rpNodeFile)
 {
     // Write provenance info
@@ -235,7 +235,7 @@ void CmguiMeshWriter<ELEMENT_DIM,SPACE_DIM>::WriteNodeFileHeader(out_stream& rpN
     }
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void CmguiMeshWriter<ELEMENT_DIM,SPACE_DIM>::WriteElementsFileHeader(std::vector<boost::shared_ptr<std::ofstream> >& rElemFiles)
 {
 
@@ -275,7 +275,7 @@ void CmguiMeshWriter<ELEMENT_DIM,SPACE_DIM>::WriteElementsFileHeader(std::vector
        }
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void CmguiMeshWriter<ELEMENT_DIM, SPACE_DIM>::CreateFilesWithHeaders()
 {
     /*
@@ -297,7 +297,7 @@ void CmguiMeshWriter<ELEMENT_DIM, SPACE_DIM>::CreateFilesWithHeaders()
      }
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void CmguiMeshWriter<ELEMENT_DIM, SPACE_DIM>::AppendLocalDataToFiles()
 {
     //Nodes first
@@ -351,13 +351,13 @@ void CmguiMeshWriter<ELEMENT_DIM, SPACE_DIM>::AppendLocalDataToFiles()
 
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void CmguiMeshWriter<ELEMENT_DIM, SPACE_DIM>::WriteFilesFooter()
 {
     //No need of footers here, but void implementation is needed
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 std::ios_base::openmode CmguiMeshWriter<ELEMENT_DIM, SPACE_DIM>::GetOpenMode(bool append)
 {
     std::ios_base::openmode mode = std::ios::out;

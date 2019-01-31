@@ -56,7 +56,7 @@ public:
     }
 };
 
-template<>
+template <>
 void OdeSystemInformation<TwoDimOdeSystem>::Initialise()
 {
     this->mVariableNames.push_back("Variable_1");

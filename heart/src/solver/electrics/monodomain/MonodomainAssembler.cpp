@@ -39,7 +39,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "MonodomainAssembler.hpp"
 #include "PdeSimulationTime.hpp"
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 c_matrix<double,1*(ELEMENT_DIM+1),1*(ELEMENT_DIM+1)> MonodomainAssembler<ELEMENT_DIM,SPACE_DIM>::ComputeMatrixTerm(
                 c_vector<double, ELEMENT_DIM+1> &rPhi,
                 c_matrix<double, SPACE_DIM, ELEMENT_DIM+1> &rGradPhi,
@@ -53,7 +53,7 @@ c_matrix<double,1*(ELEMENT_DIM+1),1*(ELEMENT_DIM+1)> MonodomainAssembler<ELEMENT
             + mStiffnessMatrixAssembler.ComputeMatrixTerm(rPhi,rGradPhi,rX,rU,rGradU,pElement);
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 MonodomainAssembler<ELEMENT_DIM,SPACE_DIM>::MonodomainAssembler(
                         AbstractTetrahedralMesh<ELEMENT_DIM,SPACE_DIM>* pMesh,
                         MonodomainTissue<ELEMENT_DIM,SPACE_DIM>* pTissue)

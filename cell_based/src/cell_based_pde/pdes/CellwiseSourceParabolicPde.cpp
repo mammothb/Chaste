@@ -35,7 +35,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include "CellwiseSourceParabolicPde.hpp"
 
-template<unsigned DIM>
+template <unsigned DIM>
 CellwiseSourceParabolicPde<DIM>::CellwiseSourceParabolicPde(AbstractCellPopulation<DIM,DIM>& rCellPopulation,
                                                             double duDtCoefficient,
                                                             double diffusionCoefficient,
@@ -47,20 +47,20 @@ CellwiseSourceParabolicPde<DIM>::CellwiseSourceParabolicPde(AbstractCellPopulati
 {
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 const AbstractCellPopulation<DIM,DIM>& CellwiseSourceParabolicPde<DIM>::rGetCellPopulation() const
 {
     return mrCellPopulation;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 double CellwiseSourceParabolicPde<DIM>::ComputeDuDtCoefficientFunction(const ChastePoint<DIM>& )
 {
     return mDuDtCoefficient;
 }
 
 // LCOV_EXCL_START
-template<unsigned DIM>
+template <unsigned DIM>
 double CellwiseSourceParabolicPde<DIM>::ComputeSourceTerm(const ChastePoint<DIM>& rX, double u, Element<DIM,DIM>* pElement)
 {
     NEVER_REACHED;
@@ -68,7 +68,7 @@ double CellwiseSourceParabolicPde<DIM>::ComputeSourceTerm(const ChastePoint<DIM>
 }
 // LCOV_EXCL_STOP
 
-template<unsigned DIM>
+template <unsigned DIM>
 double CellwiseSourceParabolicPde<DIM>::ComputeSourceTermAtNode(const Node<DIM>& rNode, double u)
 {
     double source_coefficient = 0.0;
@@ -82,7 +82,7 @@ double CellwiseSourceParabolicPde<DIM>::ComputeSourceTermAtNode(const Node<DIM>&
     return source_coefficient*u;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 c_matrix<double,DIM,DIM> CellwiseSourceParabolicPde<DIM>::ComputeDiffusionTerm(const ChastePoint<DIM>& rX, Element<DIM,DIM>* pElement)
 {
     return mDiffusionCoefficient*identity_matrix<double>(DIM);

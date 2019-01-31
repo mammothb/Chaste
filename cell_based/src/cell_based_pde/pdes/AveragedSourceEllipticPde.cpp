@@ -36,7 +36,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "AveragedSourceEllipticPde.hpp"
 #include "ApoptoticCellProperty.hpp"
 
-template<unsigned DIM>
+template <unsigned DIM>
 AveragedSourceEllipticPde<DIM>::AveragedSourceEllipticPde(AbstractCellPopulation<DIM>& rCellPopulation,
                                                           double sourceCoefficient,
                                                           double diffusionCoefficient)
@@ -46,19 +46,19 @@ AveragedSourceEllipticPde<DIM>::AveragedSourceEllipticPde(AbstractCellPopulation
 {
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 const AbstractCellPopulation<DIM>& AveragedSourceEllipticPde<DIM>::rGetCellPopulation() const
 {
     return mrCellPopulation;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 double AveragedSourceEllipticPde<DIM>::GetCoefficient() const
 {
     return mSourceCoefficient;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void AveragedSourceEllipticPde<DIM>::SetupSourceTerms(TetrahedralMesh<DIM,DIM>& rCoarseMesh, std::map< CellPtr, unsigned >* pCellPdeElementMap) // must be called before solve
 {
     // Allocate memory
@@ -104,26 +104,26 @@ void AveragedSourceEllipticPde<DIM>::SetupSourceTerms(TetrahedralMesh<DIM,DIM>& 
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 double AveragedSourceEllipticPde<DIM>::ComputeConstantInUSourceTerm(const ChastePoint<DIM>& rX, Element<DIM,DIM>* pElement)
 {
     return 0.0;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 double AveragedSourceEllipticPde<DIM>::ComputeLinearInUCoeffInSourceTerm(const ChastePoint<DIM>& rX, Element<DIM,DIM>* pElement) // now takes in element
 {
     assert(!mCellDensityOnCoarseElements.empty());
     return mSourceCoefficient * mCellDensityOnCoarseElements[pElement->GetIndex()];
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 c_matrix<double,DIM,DIM> AveragedSourceEllipticPde<DIM>::ComputeDiffusionTerm(const ChastePoint<DIM>& rX)
 {
     return mDiffusionCoefficient*identity_matrix<double>(DIM);
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 double AveragedSourceEllipticPde<DIM>::GetUptakeRateForElement(unsigned elementIndex)
 {
     return this->mCellDensityOnCoarseElements[elementIndex];

@@ -87,7 +87,7 @@ private:
      * @param archive
      * @param version
      */
-    template<class Archive>
+    template <class Archive>
     void serialize(Archive & archive, const unsigned int version)
     {
         archive & boost::serialization::base_object<AbstractCardiacTissue<SPACE_DIM> >(*this);
@@ -421,7 +421,7 @@ public:
       * @param archive  the master archive; cells will actually be written to the process-specific archive.
       * @param version
       */
-     template<class Archive>
+     template <class Archive>
      void SaveExtendedBidomainCells(Archive & archive, const unsigned int version) const
      {
          Archive& r_archive = *ProcessSpecificArchive<Archive>::Get();
@@ -468,7 +468,7 @@ public:
       * @param rGgaps vector of values of gap junctions
       * @param pMesh  the mesh, so we can get at the node permutation, if any
       */
-     template<class Archive>
+     template <class Archive>
      static void LoadExtendedBidomainCells(Archive & archive, const unsigned int version,
                                   std::vector<AbstractCardiacCellInterface*>& rCells,
                                   std::vector<AbstractCardiacCellInterface*>& rSecondCells,
@@ -554,7 +554,7 @@ public:
       * @param archive  the master archive; cells will actually be written to the process-specific archive.
       * @param version
       */
-     template<class Archive>
+     template <class Archive>
      void SaveExtracellularStimulus(Archive & archive, const unsigned int version) const
      {
          Archive& r_archive = *ProcessSpecificArchive<Archive>::Get();
@@ -576,7 +576,7 @@ public:
       * @param rStimuli the extracellular stimuli (will be filled from the archive).
       * @param pMesh the mesh (needed to work out number of nodes). Here it is assumed we have already unarchived the mesh somewhere and the pointer passed in is not NULL.
       */
-     template<class Archive>
+     template <class Archive>
      void LoadExtracellularStimulus(Archive & archive, const unsigned int version,
                                                std::vector<boost::shared_ptr<AbstractStimulusFunction> >& rStimuli,
                                                AbstractTetrahedralMesh<SPACE_DIM,SPACE_DIM>* pMesh)
@@ -631,7 +631,7 @@ public:
  namespace serialization
  {
 
- template<class Archive, unsigned SPACE_DIM>
+ template <class Archive, unsigned SPACE_DIM>
  inline void save_construct_data(
      Archive & ar, const ExtendedBidomainTissue<SPACE_DIM> * t, const unsigned int file_version)
  {
@@ -662,7 +662,7 @@ public:
   * Allow us to not need a default constructor, by specifying how Boost should
   * instantiate an instance (using existing constructor)
   */
- template<class Archive, unsigned SPACE_DIM>
+ template <class Archive, unsigned SPACE_DIM>
  inline void load_construct_data(
      Archive & ar, ExtendedBidomainTissue<SPACE_DIM> * t, const unsigned int file_version)
  {

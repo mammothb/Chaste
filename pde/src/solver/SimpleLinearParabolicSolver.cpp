@@ -35,7 +35,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include "SimpleLinearParabolicSolver.hpp"
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 c_matrix<double, 1*(ELEMENT_DIM+1), 1*(ELEMENT_DIM+1)> SimpleLinearParabolicSolver<ELEMENT_DIM,SPACE_DIM>::ComputeMatrixTerm(
         c_vector<double, ELEMENT_DIM+1>& rPhi,
         c_matrix<double, SPACE_DIM, ELEMENT_DIM+1>& rGradPhi,
@@ -50,7 +50,7 @@ c_matrix<double, 1*(ELEMENT_DIM+1), 1*(ELEMENT_DIM+1)> SimpleLinearParabolicSolv
             + PdeSimulationTime::GetPdeTimeStepInverse() * mpParabolicPde->ComputeDuDtCoefficientFunction(rX) * outer_prod(rPhi, rPhi);
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 c_vector<double,1*(ELEMENT_DIM+1)> SimpleLinearParabolicSolver<ELEMENT_DIM,SPACE_DIM>::ComputeVectorTerm(
         c_vector<double, ELEMENT_DIM+1>& rPhi,
         c_matrix<double, SPACE_DIM, ELEMENT_DIM+1>& rGradPhi,
@@ -63,7 +63,7 @@ c_vector<double,1*(ELEMENT_DIM+1)> SimpleLinearParabolicSolver<ELEMENT_DIM,SPACE
             + PdeSimulationTime::GetPdeTimeStepInverse() * mpParabolicPde->ComputeDuDtCoefficientFunction(rX) * rU(0)) * rPhi;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 SimpleLinearParabolicSolver<ELEMENT_DIM,SPACE_DIM>::SimpleLinearParabolicSolver(
                             AbstractTetrahedralMesh<ELEMENT_DIM,SPACE_DIM>* pMesh,
                             AbstractLinearParabolicPde<ELEMENT_DIM,SPACE_DIM>* pPde,

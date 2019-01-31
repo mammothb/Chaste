@@ -44,7 +44,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *  a class which allows for the setting of body force, density and various
  *  types of boundary condition.
  */
-template<unsigned DIM>
+template <unsigned DIM>
 class StokesFlowProblemDefinition : public ContinuumMechanicsProblemDefinition<DIM>
 {
 private:

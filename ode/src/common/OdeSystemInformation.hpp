@@ -90,7 +90,7 @@ protected:
      *
      * Developers should specialise this method to their ODE system.  For example,
 
-template<>
+template <>
 void OdeSystemInformation<MyNewOdeSystem>::Initialise()
 {
     this->mVariableNames.push_back("Variable_1");
@@ -110,7 +110,7 @@ public:
     static boost::shared_ptr<OdeSystemInformation<ODE_SYSTEM> > Instance();
 };
 
-template<class ODE_SYSTEM>
+template <class ODE_SYSTEM>
 boost::shared_ptr<OdeSystemInformation<ODE_SYSTEM> > OdeSystemInformation<ODE_SYSTEM>::Instance()
 {
     if (!mpInstance)
@@ -121,14 +121,14 @@ boost::shared_ptr<OdeSystemInformation<ODE_SYSTEM> > OdeSystemInformation<ODE_SY
     return mpInstance;
 }
 
-template<class ODE_SYSTEM>
+template <class ODE_SYSTEM>
 OdeSystemInformation<ODE_SYSTEM>::OdeSystemInformation()
 {
     // Make sure there's only one instance - enforces correct serialization
     assert(mpInstance == nullptr);
 }
 
-template<class ODE_SYSTEM>
+template <class ODE_SYSTEM>
 void OdeSystemInformation<ODE_SYSTEM>::Initialise()
 {
     // does nothing; designed to be specialised
@@ -137,7 +137,7 @@ void OdeSystemInformation<ODE_SYSTEM>::Initialise()
 /**
  * Definition of the instance static member.
  */
-template<class ODE_SYSTEM>
+template <class ODE_SYSTEM>
 boost::shared_ptr<OdeSystemInformation<ODE_SYSTEM> > OdeSystemInformation<ODE_SYSTEM>::mpInstance;
 
 

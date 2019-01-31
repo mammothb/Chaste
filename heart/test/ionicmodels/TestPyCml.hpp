@@ -74,7 +74,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 class TestPyCml : public CxxTest::TestSuite
 {
-    template<typename VECTOR_TYPE>
+    template <typename VECTOR_TYPE>
     void CheckDerivedQuantities(AbstractParameterisedSystem<VECTOR_TYPE>& rCell,
                                 const VECTOR_TYPE& rStateVec)
     {
@@ -97,7 +97,7 @@ class TestPyCml : public CxxTest::TestSuite
         DeleteVector(derived);
     }
 
-    template<typename VECTOR_TYPE>
+    template <typename VECTOR_TYPE>
     void CheckParameter(AbstractParameterisedSystem<VECTOR_TYPE>& rCell)
     {
         TS_ASSERT_EQUALS(rCell.GetNumberOfParameters(), 3u);
@@ -110,7 +110,7 @@ class TestPyCml : public CxxTest::TestSuite
         rCell.SetParameter(1u, 23.0);
     }
 
-    template<typename VECTOR_TYPE>
+    template <typename VECTOR_TYPE>
     void CheckAttributes(AbstractParameterisedSystem<VECTOR_TYPE>& rCell)
     {
         TS_ASSERT_EQUALS(rCell.GetNumberOfAttributes(), 2u);

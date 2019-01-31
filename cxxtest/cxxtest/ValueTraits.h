@@ -16,7 +16,7 @@
 #ifdef _CXXTEST_OLD_TEMPLATE_SYNTAX
 #   define CXXTEST_TEMPLATE_INSTANTIATION
 #else // !_CXXTEST_OLD_TEMPLATE_SYNTAX
-#   define CXXTEST_TEMPLATE_INSTANTIATION template<>
+#   define CXXTEST_TEMPLATE_INSTANTIATION template <>
 #endif // _CXXTEST_OLD_TEMPLATE_SYNTAX
 
 namespace CxxTest 
@@ -117,8 +117,8 @@ namespace CxxTest
     //
     // Avoid compiler warnings about unsigned types always >= 0
     //
-    template<class N> inline bool negative( N n ) { return n < 0; }
-    template<class N> inline N abs( N n ) { return negative(n) ? -n : n; }
+    template <class N> inline bool negative( N n ) { return n < 0; }
+    template <class N> inline N abs( N n ) { return negative(n) ? -n : n; }
 
 #   define CXXTEST_NON_NEGATIVE(Type) \
     CXXTEST_TEMPLATE_INSTANTIATION \
@@ -140,7 +140,7 @@ namespace CxxTest
     // Returns one past the end of the string
     // Remember -- we can't use the standard library!
     //
-    template<class N>
+    template <class N>
     char *numberToString( N n, char *s,
                           N base = 10,
                           unsigned skipDigits = 0,

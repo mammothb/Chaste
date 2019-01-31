@@ -54,7 +54,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "GeneralPlaneStimulusCellFactory.hpp"
 #include "CuboidMeshConstructor.hpp"
 
-template<class CELL, class CARDIAC_PROBLEM, unsigned DIM>
+template <class CELL, class CARDIAC_PROBLEM, unsigned DIM>
 class PerformanceTester
 {
 protected:
@@ -167,7 +167,7 @@ private:
 };
 
 ///Set static const on instantiation
-template<class CELL, class CARDIAC_PROBLEM, unsigned DIM>
+template <class CELL, class CARDIAC_PROBLEM, unsigned DIM>
 const double PerformanceTester<CELL, CARDIAC_PROBLEM, DIM>::mMeshWidth=0.2;//cm
 
 #endif /*PERFORMANCETESTER_HPP_*/

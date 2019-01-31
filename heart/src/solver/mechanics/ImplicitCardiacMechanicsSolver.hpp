@@ -55,7 +55,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *  calcium concentration. See CardiacElectroMechanicsProblem documentation
  *  for more detail.
  */
-template<class ELASTICITY_SOLVER, unsigned DIM>
+template <class ELASTICITY_SOLVER, unsigned DIM>
 class ImplicitCardiacMechanicsSolver : public AbstractCardiacMechanicsSolver<ELASTICITY_SOLVER,DIM>
 {
 friend class TestImplicitCardiacMechanicsSolver;

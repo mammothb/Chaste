@@ -123,7 +123,7 @@ namespace CxxTest
         void doInitialize( unsigned argCreateLine, unsigned argDestroyLine );
     };
     
-    template<class S>
+    template <class S>
     class DynamicSuiteDescription : public CommonDynamicSuiteDescription
     {
     public:
@@ -172,7 +172,7 @@ namespace CxxTest
         S **_suite;
     };
 
-    template<class S>
+    template <class S>
     bool DynamicSuiteDescription<S>::setUp()
     {
         _TS_TRY {
@@ -184,7 +184,7 @@ namespace CxxTest
         return (suite() != 0);
     }
 
-    template<class S>
+    template <class S>
     bool DynamicSuiteDescription<S>::tearDown()
     {
         if ( !_suite )

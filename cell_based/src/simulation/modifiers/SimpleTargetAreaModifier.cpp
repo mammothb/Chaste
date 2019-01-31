@@ -37,19 +37,19 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "AbstractPhaseBasedCellCycleModel.hpp"
 #include "ApoptoticCellProperty.hpp"
 
-template<unsigned DIM>
+template <unsigned DIM>
 SimpleTargetAreaModifier<DIM>::SimpleTargetAreaModifier()
     : AbstractTargetAreaModifier<DIM>(),
       mGrowthDuration(DOUBLE_UNSET)
 {
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 SimpleTargetAreaModifier<DIM>::~SimpleTargetAreaModifier()
 {
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void SimpleTargetAreaModifier<DIM>::UpdateTargetAreaOfCell(CellPtr pCell)
 {
     // Get target area A of a healthy cell in S, G2 or M phase
@@ -120,20 +120,20 @@ void SimpleTargetAreaModifier<DIM>::UpdateTargetAreaOfCell(CellPtr pCell)
     pCell->GetCellData()->SetItem("target area", cell_target_area);
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 double SimpleTargetAreaModifier<DIM>::GetGrowthDuration()
 {
     return mGrowthDuration;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void SimpleTargetAreaModifier<DIM>::SetGrowthDuration(double growthDuration)
 {
     assert(growthDuration >= 0.0);
     mGrowthDuration = growthDuration;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void SimpleTargetAreaModifier<DIM>::OutputSimulationModifierParameters(out_stream& rParamsFile)
 {
     *rParamsFile << "\t\t\t<GrowthDuration>" << mGrowthDuration << "</GrowthDuration>\n";

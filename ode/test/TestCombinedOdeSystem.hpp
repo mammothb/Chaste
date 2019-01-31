@@ -67,7 +67,7 @@ public:
     }
 };
 
-template<>
+template <>
 void OdeSystemInformation<SimpleOde1>::Initialise()
 {
     this->mVariableNames.push_back("Variable_y");
@@ -100,7 +100,7 @@ public:
     }
 };
 
-template<>
+template <>
 void OdeSystemInformation<SimpleOde2>::Initialise()
 {
     this->mVariableNames.push_back("Variable_x");
@@ -139,7 +139,7 @@ public:
     }
 };
 
-template<>
+template <>
 void OdeSystemInformation<SimpleOde3>::Initialise()
 {
     this->mVariableNames.push_back("x");
@@ -168,7 +168,7 @@ public:
     }
 };
 
-template<>
+template <>
 void OdeSystemInformation<SimpleOde4>::Initialise()
 {
     this->mVariableNames.push_back("y");
@@ -198,7 +198,7 @@ public:
     }
 };
 
-template<>
+template <>
 void OdeSystemInformation<SimpleOde5>::Initialise()
 {
     this->mVariableNames.push_back("z");
@@ -230,7 +230,7 @@ public:
     }
 };
 
-template<>
+template <>
 void OdeSystemInformation<SimpleOde6>::Initialise()
 {
     this->mVariableNames.push_back("y");

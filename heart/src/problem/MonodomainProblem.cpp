@@ -41,14 +41,14 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "OperatorSplittingMonodomainSolver.hpp"
 
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 AbstractCardiacTissue<ELEMENT_DIM,SPACE_DIM>* MonodomainProblem<ELEMENT_DIM, SPACE_DIM>::CreateCardiacTissue()
 {
     mpMonodomainTissue = new MonodomainTissue<ELEMENT_DIM,SPACE_DIM>(this->mpCellFactory, HeartConfig::Instance()->GetUseStateVariableInterpolation());
     return mpMonodomainTissue;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 AbstractDynamicLinearPdeSolver<ELEMENT_DIM, SPACE_DIM, 1>* MonodomainProblem<ELEMENT_DIM, SPACE_DIM>::CreateSolver()
 {
     assert(mpMonodomainTissue);
@@ -76,33 +76,33 @@ AbstractDynamicLinearPdeSolver<ELEMENT_DIM, SPACE_DIM, 1>* MonodomainProblem<ELE
     }
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 MonodomainProblem<ELEMENT_DIM, SPACE_DIM>::MonodomainProblem(AbstractCardiacCellFactory<ELEMENT_DIM,SPACE_DIM>* pCellFactory)
         : AbstractCardiacProblem<ELEMENT_DIM, SPACE_DIM, 1>(pCellFactory),
           mpMonodomainTissue(NULL)
 {
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 MonodomainProblem<ELEMENT_DIM, SPACE_DIM>::MonodomainProblem()
     : AbstractCardiacProblem<ELEMENT_DIM, SPACE_DIM, 1>(),
       mpMonodomainTissue(NULL)
 {
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 MonodomainProblem<ELEMENT_DIM, SPACE_DIM>::~MonodomainProblem()
 {
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 MonodomainTissue<ELEMENT_DIM,SPACE_DIM> * MonodomainProblem<ELEMENT_DIM, SPACE_DIM>::GetMonodomainTissue()
 {
     assert(mpMonodomainTissue != NULL);
     return mpMonodomainTissue;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void MonodomainProblem<ELEMENT_DIM, SPACE_DIM>::WriteInfo(double time)
 {
     if (PetscTools::AmMaster())
@@ -121,14 +121,14 @@ void MonodomainProblem<ELEMENT_DIM, SPACE_DIM>::WriteInfo(double time)
     }
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void MonodomainProblem<ELEMENT_DIM, SPACE_DIM>::DefineWriterColumns(bool extending)
 {
     AbstractCardiacProblem<ELEMENT_DIM,SPACE_DIM,1>::DefineWriterColumns(extending);
     AbstractCardiacProblem<ELEMENT_DIM,SPACE_DIM,1>::DefineExtraVariablesWriterColumns(extending);
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void MonodomainProblem<ELEMENT_DIM, SPACE_DIM>::WriteOneStep(double time, Vec voltageVec)
 {
     this->mpWriter->PutUnlimitedVariable(time);

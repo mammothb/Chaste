@@ -53,12 +53,12 @@ AbstractGrowingDomainPdeModifier<DIM>::AbstractGrowingDomainPdeModifier(boost::s
 {
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 AbstractGrowingDomainPdeModifier<DIM>::~AbstractGrowingDomainPdeModifier()
 {
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void AbstractGrowingDomainPdeModifier<DIM>::GenerateFeMesh(AbstractCellPopulation<DIM,DIM>& rCellPopulation)
 {
     if (this->mDeleteFeMesh)
@@ -80,7 +80,7 @@ void AbstractGrowingDomainPdeModifier<DIM>::GenerateFeMesh(AbstractCellPopulatio
     this->mpFeMesh = rCellPopulation.GetTetrahedralMeshForPdeModifier();
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void AbstractGrowingDomainPdeModifier<DIM>::UpdateCellData(AbstractCellPopulation<DIM,DIM>& rCellPopulation)
 {
     // Store the PDE solution in an accessible form
@@ -174,7 +174,7 @@ void AbstractGrowingDomainPdeModifier<DIM>::UpdateCellData(AbstractCellPopulatio
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void AbstractGrowingDomainPdeModifier<DIM>::OutputSimulationModifierParameters(out_stream& rParamsFile)
 {
     // No parameters to output, so just call method on direct parent class

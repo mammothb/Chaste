@@ -1554,7 +1554,7 @@ class CellMLToChasteTranslator(CellMLTranslator):
         # Serialization
         if self.include_serialization:
             self.writeln_hpp('friend class boost::serialization::access;')
-            self.writeln_hpp('template<class Archive>')
+            self.writeln_hpp('template <class Archive>')
             self.writeln_hpp('void serialize(Archive & archive, const unsigned int version)')
             self.open_block(subsidiary=True)
             self.writeln_hpp('archive & boost::serialization::base_object<', self.base_class_name,
@@ -3270,7 +3270,7 @@ class CellMLToChasteTranslator(CellMLTranslator):
         self.set_indent(offset=-1)
         self.writeln_hpp('};\n\n')
         # ODE system information
-        self.writeln('template<>')
+        self.writeln('template <>')
         self.writeln('void OdeSystemInformation<', self.class_name,
                      '>::Initialise(void)')
         self.open_block()
@@ -3324,7 +3324,7 @@ class CellMLToChasteTranslator(CellMLTranslator):
             self.writeln_hpp('namespace serialization')
             self.open_block(subsidiary=True)
             # Save
-            self.writeln_hpp('template<class Archive>')
+            self.writeln_hpp('template <class Archive>')
             self.writeln_hpp('inline void save_construct_data(')
             self.writeln_hpp('Archive & ar, const ', self.class_name,
                              ' * t, const unsigned int fileVersion)',
@@ -3336,7 +3336,7 @@ class CellMLToChasteTranslator(CellMLTranslator):
             self.writeln_hpp('ar << p_stimulus;')
             self.close_block(subsidiary=True)
             # Load
-            self.writeln_hpp('template<class Archive>')
+            self.writeln_hpp('template <class Archive>')
             self.writeln_hpp('inline void load_construct_data(')
             self.writeln_hpp('Archive & ar, ', self.class_name,
                              ' * t, const unsigned int fileVersion)',

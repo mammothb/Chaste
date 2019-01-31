@@ -70,7 +70,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  * \todo Consider creating a VolumeDependentAveragedSourceParabolicPde class
  */
-template<unsigned DIM>
+template <unsigned DIM>
 class VolumeDependentAveragedSourceEllipticPde : public AveragedSourceEllipticPde<DIM>
 {
     friend class TestCellBasedEllipticPdes;
@@ -85,7 +85,7 @@ private:
      * @param archive the archive
      * @param version the current version of this class
      */
-    template<class Archive>
+    template <class Archive>
     void serialize(Archive & archive, const unsigned int version)
     {
        archive & boost::serialization::base_object<AveragedSourceEllipticPde<DIM> >(*this);
@@ -123,7 +123,7 @@ namespace serialization
 /**
  * Serialize information required to construct a VolumeDependentAveragedSourceEllipticPde.
  */
-template<class Archive, unsigned DIM>
+template <class Archive, unsigned DIM>
 inline void save_construct_data(
     Archive & ar, const VolumeDependentAveragedSourceEllipticPde<DIM>* t, const unsigned int file_version)
 {
@@ -135,7 +135,7 @@ inline void save_construct_data(
 /**
  * De-serialize constructor parameters and initialise a VolumeDependentAveragedSourceEllipticPde.
  */
-template<class Archive, unsigned DIM>
+template <class Archive, unsigned DIM>
 inline void load_construct_data(
     Archive & ar, VolumeDependentAveragedSourceEllipticPde<DIM>* t, const unsigned int file_version)
 {

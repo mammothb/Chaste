@@ -36,7 +36,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include "MonodomainCorrectionTermAssembler.hpp"
 
-template<unsigned ELEM_DIM, unsigned SPACE_DIM>
+template <unsigned ELEM_DIM, unsigned SPACE_DIM>
 MonodomainCorrectionTermAssembler<ELEM_DIM,SPACE_DIM>::MonodomainCorrectionTermAssembler(
         AbstractTetrahedralMesh<ELEM_DIM,SPACE_DIM>* pMesh,
         MonodomainTissue<ELEM_DIM,SPACE_DIM>* pTissue)
@@ -45,7 +45,7 @@ MonodomainCorrectionTermAssembler<ELEM_DIM,SPACE_DIM>::MonodomainCorrectionTermA
     assert(this->mpConfig->GetUseStateVariableInterpolation());
 }
 
-template<unsigned ELEM_DIM, unsigned SPACE_DIM>
+template <unsigned ELEM_DIM, unsigned SPACE_DIM>
 c_vector<double,1*(ELEM_DIM+1)> MonodomainCorrectionTermAssembler<ELEM_DIM,SPACE_DIM>::ComputeVectorTerm(
     c_vector<double, ELEM_DIM+1> &rPhi,
     c_matrix<double, SPACE_DIM, ELEM_DIM+1> &rGradPhi /* not used */,

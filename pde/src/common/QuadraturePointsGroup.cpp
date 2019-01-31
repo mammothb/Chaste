@@ -36,7 +36,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "QuadraturePointsGroup.hpp"
 #include "Exception.hpp"
 
-template<unsigned DIM>
+template <unsigned DIM>
 QuadraturePointsGroup<DIM>::QuadraturePointsGroup(AbstractTetrahedralMesh<DIM,DIM>& rMesh,
                                                   GaussianQuadratureRule<DIM>& rQuadRule)
 {
@@ -79,7 +79,7 @@ QuadraturePointsGroup<DIM>::QuadraturePointsGroup(AbstractTetrahedralMesh<DIM,DI
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 c_vector<double,DIM>& QuadraturePointsGroup<DIM>::rGet(unsigned elementIndex, unsigned quadIndex)
 {
     assert(elementIndex<mNumElements);
@@ -87,26 +87,26 @@ c_vector<double,DIM>& QuadraturePointsGroup<DIM>::rGet(unsigned elementIndex, un
     return data[ elementIndex*mNumQuadPointsPerElement + quadIndex ];
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 c_vector<double,DIM>& QuadraturePointsGroup<DIM>::rGet(unsigned i)
 {
     assert(i < mNumElements*mNumQuadPointsPerElement);
     return data[i];
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 unsigned QuadraturePointsGroup<DIM>::GetNumElements() const
 {
     return mNumElements;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 unsigned QuadraturePointsGroup<DIM>::GetNumQuadPointsPerElement() const
 {
     return mNumQuadPointsPerElement;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 unsigned QuadraturePointsGroup<DIM>::Size() const
 {
     return mNumElements*mNumQuadPointsPerElement;

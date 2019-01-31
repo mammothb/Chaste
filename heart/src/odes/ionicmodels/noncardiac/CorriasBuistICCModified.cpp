@@ -420,7 +420,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
         rDY[17] = (f_inf_kv11-rY[17])/tau_f_kv11;
     }
 
-template<>
+template <>
 void OdeSystemInformation<CorriasBuistICCModified>::Initialise(void)
 {
 

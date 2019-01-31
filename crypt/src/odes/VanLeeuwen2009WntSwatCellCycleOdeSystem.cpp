@@ -389,7 +389,7 @@ double VanLeeuwen2009WntSwatCellCycleOdeSystem::CalculateRootFunction(double tim
     return rY[1] - 1.0;
 }
 
-template<>
+template <>
 void CellwiseOdeSystemInformation<VanLeeuwen2009WntSwatCellCycleOdeSystem>::Initialise()
 {
     this->mVariableNames.push_back("pRb");

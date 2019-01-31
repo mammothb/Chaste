@@ -40,10 +40,10 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "AbstractCompressibleMaterialLaw.hpp"
 
 
-template<unsigned DIM>
+template <unsigned DIM>
 const double ContinuumMechanicsProblemDefinition<DIM>::FREE = std::numeric_limits<double>::max();
 
-template<unsigned DIM>
+template <unsigned DIM>
 ContinuumMechanicsProblemDefinition<DIM>::ContinuumMechanicsProblemDefinition(AbstractTetrahedralMesh<DIM,DIM>& rMesh)
     : mrMesh(rMesh),
       mDensity(1.0),
@@ -54,54 +54,54 @@ ContinuumMechanicsProblemDefinition<DIM>::ContinuumMechanicsProblemDefinition(Ab
 {
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void ContinuumMechanicsProblemDefinition<DIM>::SetDensity(double density)
 {
     assert(density>0.0);
     mDensity = density;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 double ContinuumMechanicsProblemDefinition<DIM>::GetDensity()
 {
     return mDensity;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void ContinuumMechanicsProblemDefinition<DIM>::SetBodyForce(c_vector<double,DIM> bodyForce)
 {
     mBodyForceType = CONSTANT_BODY_FORCE;
     mConstantBodyForce = bodyForce;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void ContinuumMechanicsProblemDefinition<DIM>::SetBodyForce(c_vector<double,DIM> (*pFunction)(c_vector<double,DIM>& rX, double t))
 {
     mBodyForceType = FUNCTIONAL_BODY_FORCE;
     mpBodyForceFunction = pFunction;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 BodyForceType ContinuumMechanicsProblemDefinition<DIM>::GetBodyForceType()
 {
     return mBodyForceType;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 c_vector<double,DIM> ContinuumMechanicsProblemDefinition<DIM>::GetConstantBodyForce()
 {
     assert(mBodyForceType==CONSTANT_BODY_FORCE);
     return mConstantBodyForce;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 c_vector<double,DIM> ContinuumMechanicsProblemDefinition<DIM>::EvaluateBodyForceFunction(c_vector<double,DIM>& rX, double t)
 {
     assert(mBodyForceType==FUNCTIONAL_BODY_FORCE);
     return (*mpBodyForceFunction)(rX,t);
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 c_vector<double,DIM> ContinuumMechanicsProblemDefinition<DIM>::GetBodyForce(c_vector<double,DIM>& rX, double t)
 {
     switch(mBodyForceType)
@@ -119,13 +119,13 @@ c_vector<double,DIM> ContinuumMechanicsProblemDefinition<DIM>::GetBodyForce(c_ve
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 TractionBoundaryConditionType ContinuumMechanicsProblemDefinition<DIM>::GetTractionBoundaryConditionType()
 {
     return mTractionBoundaryConditionType;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void ContinuumMechanicsProblemDefinition<DIM>::SetTractionBoundaryConditions(std::vector<BoundaryElement<DIM-1,DIM>*>& rTractionBoundaryElements,
                                                                              std::vector<c_vector<double,DIM> >& rElementwiseTractions)
 {
@@ -136,7 +136,7 @@ void ContinuumMechanicsProblemDefinition<DIM>::SetTractionBoundaryConditions(std
     mElementwiseTractions = rElementwiseTractions;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void ContinuumMechanicsProblemDefinition<DIM>::SetTractionBoundaryConditions(std::vector<BoundaryElement<DIM-1,DIM>*>& rTractionBoundaryElements,
                                                                              c_vector<double,DIM> (*pFunction)(c_vector<double,DIM>& rX, double t))
 {
@@ -145,7 +145,7 @@ void ContinuumMechanicsProblemDefinition<DIM>::SetTractionBoundaryConditions(std
     mpTractionBoundaryConditionFunction = pFunction;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void ContinuumMechanicsProblemDefinition<DIM>::SetApplyNormalPressureOnDeformedSurface(std::vector<BoundaryElement<DIM-1,DIM>*>& rTractionBoundaryElements,
                                                                                        double normalPressure)
 {
@@ -156,7 +156,7 @@ void ContinuumMechanicsProblemDefinition<DIM>::SetApplyNormalPressureOnDeformedS
 
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void ContinuumMechanicsProblemDefinition<DIM>::SetApplyNormalPressureOnDeformedSurface(std::vector<BoundaryElement<DIM-1,DIM>*>& rTractionBoundaryElements,
                                                                                        double (*pFunction)(double t))
 {
@@ -165,7 +165,7 @@ void ContinuumMechanicsProblemDefinition<DIM>::SetApplyNormalPressureOnDeformedS
     mpNormalPressureFunction = pFunction;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void ContinuumMechanicsProblemDefinition<DIM>::SetZeroDirichletNodes(std::vector<unsigned>& rZeroDirichletNodes)
 {
     mDirichletNodes = rZeroDirichletNodes;
@@ -182,60 +182,60 @@ void ContinuumMechanicsProblemDefinition<DIM>::SetZeroDirichletNodes(std::vector
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 std::vector<unsigned>& ContinuumMechanicsProblemDefinition<DIM>::rGetDirichletNodes()
 {
     return mDirichletNodes;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 std::vector<c_vector<double,DIM> >& ContinuumMechanicsProblemDefinition<DIM>::rGetDirichletNodeValues()
 {
     return mDirichletNodeValues;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 std::vector<BoundaryElement<DIM-1,DIM>*>& ContinuumMechanicsProblemDefinition<DIM>::rGetTractionBoundaryElements()
 {
     return mTractionBoundaryElements;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 std::vector<c_vector<double,DIM> >& ContinuumMechanicsProblemDefinition<DIM>::rGetElementwiseTractions()
 {
     assert(mTractionBoundaryConditionType==ELEMENTWISE_TRACTION);
     return mElementwiseTractions;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 double ContinuumMechanicsProblemDefinition<DIM>::GetNormalPressure()
 {
     assert(mTractionBoundaryConditionType==PRESSURE_ON_DEFORMED);
     return mNormalPressure;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 c_vector<double,DIM> ContinuumMechanicsProblemDefinition<DIM>::EvaluateTractionFunction(c_vector<double,DIM>& rX, double t)
 {
     assert(mTractionBoundaryConditionType==FUNCTIONAL_TRACTION);
     return (*mpTractionBoundaryConditionFunction)(rX,t);
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 double ContinuumMechanicsProblemDefinition<DIM>::EvaluateNormalPressureFunction(double t)
 {
     assert(mTractionBoundaryConditionType==FUNCTIONAL_PRESSURE_ON_DEFORMED);
     return (*mpNormalPressureFunction)(t);
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void ContinuumMechanicsProblemDefinition<DIM>::SetPressureScaling(double scaleFactor)
 {
     assert(mTractionBoundaryConditionType==PRESSURE_ON_DEFORMED);
     mNormalPressure = mOriginalNormalPressure*scaleFactor;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void ContinuumMechanicsProblemDefinition<DIM>::Validate()
 {
     if (mDirichletNodes.size() == 0)

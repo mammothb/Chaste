@@ -39,7 +39,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "PetscMatTools.hpp"
 #include "PetscVecTools.hpp"
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void AbstractBidomainSolver<ELEMENT_DIM,SPACE_DIM>::InitialiseForSolve(Vec initialSolution)
 {
     // The base class method that calls this function will only call it with a null linear system
@@ -95,13 +95,13 @@ void AbstractBidomainSolver<ELEMENT_DIM,SPACE_DIM>::InitialiseForSolve(Vec initi
         HeartConfig::Instance()->GetEvaluateNumItsEveryNSolves());
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void AbstractBidomainSolver<ELEMENT_DIM,SPACE_DIM>::PrepareForSetupLinearSystem(Vec existingSolution)
 {
     mpBidomainTissue->SolveCellSystems(existingSolution, PdeSimulationTime::GetTime(), PdeSimulationTime::GetNextTime());
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 Vec AbstractBidomainSolver<ELEMENT_DIM,SPACE_DIM>::GenerateNullBasis() const
 {
     double sqrt_num_nodes = sqrt((double) this->mpMesh->GetNumNodes());
@@ -125,7 +125,7 @@ Vec AbstractBidomainSolver<ELEMENT_DIM,SPACE_DIM>::GenerateNullBasis() const
     return null_basis;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void AbstractBidomainSolver<ELEMENT_DIM,SPACE_DIM>::FinaliseLinearSystem(Vec existingSolution)
 {
     // If no dirichlet boundary conditions
@@ -194,7 +194,7 @@ void AbstractBidomainSolver<ELEMENT_DIM,SPACE_DIM>::FinaliseLinearSystem(Vec exi
     }
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void AbstractBidomainSolver<ELEMENT_DIM,SPACE_DIM>::CheckCompatibilityCondition()
 {
     if (GetBoundaryConditions()->HasDirichletBoundaryConditions() || this->mRowForAverageOfPhiZeroed!=INT_MAX)
@@ -230,7 +230,7 @@ void AbstractBidomainSolver<ELEMENT_DIM,SPACE_DIM>::CheckCompatibilityCondition(
 #endif
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 AbstractBidomainSolver<ELEMENT_DIM,SPACE_DIM>::AbstractBidomainSolver(
             bool bathSimulation,
             AbstractTetrahedralMesh<ELEMENT_DIM,SPACE_DIM>* pMesh,
@@ -253,12 +253,12 @@ AbstractBidomainSolver<ELEMENT_DIM,SPACE_DIM>::AbstractBidomainSolver(
     mpConfig = HeartConfig::Instance();
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 AbstractBidomainSolver<ELEMENT_DIM,SPACE_DIM>::~AbstractBidomainSolver()
 {
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void AbstractBidomainSolver<ELEMENT_DIM,SPACE_DIM>::SetFixedExtracellularPotentialNodes(
             std::vector<unsigned> fixedExtracellularPotentialNodes)
 {
@@ -291,7 +291,7 @@ void AbstractBidomainSolver<ELEMENT_DIM,SPACE_DIM>::SetFixedExtracellularPotenti
     }
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void AbstractBidomainSolver<ELEMENT_DIM,SPACE_DIM>::SetRowForAverageOfPhiZeroed(unsigned row)
 {
     // Row should be odd in C++-like indexing
@@ -303,7 +303,7 @@ void AbstractBidomainSolver<ELEMENT_DIM,SPACE_DIM>::SetRowForAverageOfPhiZeroed(
     mRowForAverageOfPhiZeroed = row;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void AbstractBidomainSolver<ELEMENT_DIM,SPACE_DIM>::FinaliseForBath(bool computeMatrix, bool computeVector)
 {
     assert(mBathSimulation);

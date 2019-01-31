@@ -41,12 +41,12 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include <boost/serialization/base_object.hpp>
 
 // Forward declaration prevents circular include chain
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM> class AbstractCellPopulation;
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM> class MeshBasedCellPopulation;
-template<unsigned SPACE_DIM> class CaBasedCellPopulation;
-template<unsigned SPACE_DIM> class NodeBasedCellPopulation;
-template<unsigned SPACE_DIM> class PottsBasedCellPopulation;
-template<unsigned SPACE_DIM> class VertexBasedCellPopulation;
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM> class AbstractCellPopulation;
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM> class MeshBasedCellPopulation;
+template <unsigned SPACE_DIM> class CaBasedCellPopulation;
+template <unsigned SPACE_DIM> class NodeBasedCellPopulation;
+template <unsigned SPACE_DIM> class PottsBasedCellPopulation;
+template <unsigned SPACE_DIM> class VertexBasedCellPopulation;
 
 /**
  * Abstract class for a writer that takes information from an AbstractCellPopulation and writes it to file.
@@ -57,7 +57,7 @@ template<unsigned SPACE_DIM> class VertexBasedCellPopulation;
  * concentrate the information from all processes and then write it at each timestep for which output
  * is required.
  */
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 class AbstractCellPopulationCountWriter : public AbstractCellBasedWriter<ELEMENT_DIM, SPACE_DIM>
 {
 private:
@@ -69,7 +69,7 @@ private:
      * @param archive the archive
      * @param version the current version of this class
      */
-    template<class Archive>
+    template <class Archive>
     void serialize(Archive & archive, const unsigned int version)
     {
         archive & boost::serialization::base_object<AbstractCellBasedWriter<ELEMENT_DIM, SPACE_DIM> >(*this);

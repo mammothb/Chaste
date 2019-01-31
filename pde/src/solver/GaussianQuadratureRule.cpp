@@ -39,21 +39,21 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "Exception.hpp"
 #include "UblasCustomFunctions.hpp"
 
-template<unsigned ELEMENT_DIM>
+template <unsigned ELEMENT_DIM>
 const ChastePoint<ELEMENT_DIM>& GaussianQuadratureRule<ELEMENT_DIM>::rGetQuadPoint(unsigned index) const
 {
     assert(index < mNumQuadPoints);
     return mPoints[index];
 }
 
-template<unsigned ELEMENT_DIM>
+template <unsigned ELEMENT_DIM>
 double GaussianQuadratureRule<ELEMENT_DIM>::GetWeight(unsigned index) const
 {
     assert(index < mNumQuadPoints);
     return mWeights[index];
 }
 
-template<unsigned ELEMENT_DIM>
+template <unsigned ELEMENT_DIM>
 unsigned GaussianQuadratureRule<ELEMENT_DIM>::GetNumQuadPoints() const
 {
     return mNumQuadPoints;
@@ -64,7 +64,7 @@ unsigned GaussianQuadratureRule<ELEMENT_DIM>::GetNumQuadPoints() const
  *
  * @param quadratureOrder The minimum polynomial order that the rule can integrate exactly (ignored in 0-d case)
  */
-template<>
+template <>
 GaussianQuadratureRule<0>::GaussianQuadratureRule(unsigned quadratureOrder)
 {
     mNumQuadPoints = 1;
@@ -77,7 +77,7 @@ GaussianQuadratureRule<0>::GaussianQuadratureRule(unsigned quadratureOrder)
  *
  * @param quadratureOrder The minimum polynomial order that the rule can integrate exactly
  */
-template<>
+template <>
 GaussianQuadratureRule<1>::GaussianQuadratureRule(unsigned quadratureOrder)
 {
     switch (quadratureOrder)
@@ -126,7 +126,7 @@ GaussianQuadratureRule<1>::GaussianQuadratureRule(unsigned quadratureOrder)
  * @param quadratureOrder The minimum polynomial order that the rule can integrate exactly
  *
  */
-template<>
+template <>
 GaussianQuadratureRule<2>::GaussianQuadratureRule(unsigned quadratureOrder)
 {
     double one_third = 1.0/3.0;
@@ -194,7 +194,7 @@ GaussianQuadratureRule<2>::GaussianQuadratureRule(unsigned quadratureOrder)
  *
  * @param quadratureOrder The minimum polynomial order that the rule can integrate exactly
  */
-template<>
+template <>
 GaussianQuadratureRule<3>::GaussianQuadratureRule(unsigned quadratureOrder)
 {
     switch (quadratureOrder)
@@ -278,7 +278,7 @@ break;
     mNumQuadPoints = mPoints.size();
 }
 
-template<unsigned ELEMENT_DIM>
+template <unsigned ELEMENT_DIM>
 GaussianQuadratureRule<ELEMENT_DIM>::GaussianQuadratureRule(unsigned quadratureOrder)
 {
     EXCEPTION("Gauss quadrature rule not available for this dimension.");

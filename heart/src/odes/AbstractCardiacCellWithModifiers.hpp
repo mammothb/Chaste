@@ -58,7 +58,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  * A base class for cardiac cells that have been altered to include calls to subclasses
  * of AbstractModifier when computing their derivatives.
  */
-template<class CARDIAC_CELL>
+template <class CARDIAC_CELL>
 class AbstractCardiacCellWithModifiers : public CARDIAC_CELL
 {
 private:
@@ -70,7 +70,7 @@ private:
      * @param archive
      * @param version
      */
-    template<class Archive>
+    template <class Archive>
     void save(Archive & archive, const unsigned int version) const
     {
         // This calls serialize on the base class.
@@ -95,7 +95,7 @@ private:
      * @param archive
      * @param version
      */
-    template<class Archive>
+    template <class Archive>
     void load(Archive & archive, const unsigned int version)
     {
         // This calls serialize on the base class.
@@ -188,11 +188,11 @@ public:
 namespace boost {
 namespace serialization {
 
-    template<class C>
+    template <class C>
     struct is_abstract<AbstractCardiacCellWithModifiers<C> >
         TEMPLATED_CLASS_IS_ABSTRACT_DEFN
 
-    template<class C>
+    template <class C>
     struct is_abstract<const AbstractCardiacCellWithModifiers<C> >
         TEMPLATED_CLASS_IS_ABSTRACT_DEFN
 }}

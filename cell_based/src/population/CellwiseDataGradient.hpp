@@ -41,7 +41,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 /**
  *  A class for calculating the gradients of the CellwiseData.
  */
-template<unsigned DIM>
+template <unsigned DIM>
 class CellwiseDataGradient
 {
 private:

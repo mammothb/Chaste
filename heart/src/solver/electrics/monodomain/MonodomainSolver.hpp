@@ -70,7 +70,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *  ( (chi*C/dt) M  + K ) V^{n+1} = (chi*C/dt) M V^{n} + M F^{n} + c_surf + c_correction
  *  and another assembler is used to create the c_correction.
  */
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 class MonodomainSolver
   : public AbstractDynamicLinearPdeSolver<ELEMENT_DIM,SPACE_DIM,1>
 {

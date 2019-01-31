@@ -72,7 +72,7 @@ private:
      * @param archive the archive
      * @param version the current version of this class
      */
-    template<class Archive>
+    template <class Archive>
     void serialize(Archive & archive, const unsigned int version)
     {
         archive & boost::serialization::base_object<NodesOnlyMesh<2> >(*this);
@@ -157,7 +157,7 @@ namespace serialization
 /**
  * Serialize information required to construct a Cylindrical2dNodesOnlyMesh.
  */
-template<class Archive>
+template <class Archive>
 inline void save_construct_data(
     Archive & ar, const Cylindrical2dNodesOnlyMesh * t, const unsigned int file_version)
 {
@@ -169,7 +169,7 @@ inline void save_construct_data(
 /**
  * De-serialize constructor parameters and initialise a Cylindrical2dNodesOnlyMesh.
  */
-template<class Archive>
+template <class Archive>
 inline void load_construct_data(
     Archive & ar, Cylindrical2dNodesOnlyMesh * t, const unsigned int file_version)
 {

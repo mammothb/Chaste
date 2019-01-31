@@ -36,26 +36,26 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "BuskeCompressionForce.hpp"
 #include "NodeBasedCellPopulation.hpp"
 
-template<unsigned DIM>
+template <unsigned DIM>
 BuskeCompressionForce<DIM>::BuskeCompressionForce()
     : AbstractForce<DIM>(),
       mCompressionEnergyParameter(5.0)
 {
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 double BuskeCompressionForce<DIM>::GetCompressionEnergyParameter()
 {
     return mCompressionEnergyParameter;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void BuskeCompressionForce<DIM>::SetCompressionEnergyParameter(double compressionEnergyParameter)
 {
     mCompressionEnergyParameter = compressionEnergyParameter;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void BuskeCompressionForce<DIM>::AddForceContribution(AbstractCellPopulation<DIM>& rCellPopulation)
 {
     // This force class is defined for NodeBasedCellPopulations only
@@ -138,7 +138,7 @@ void BuskeCompressionForce<DIM>::AddForceContribution(AbstractCellPopulation<DIM
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void BuskeCompressionForce<DIM>::OutputForceParameters(out_stream& rParamsFile)
 {
     *rParamsFile << "\t\t\t<CompressionEnergyParameter>" << mCompressionEnergyParameter << "</CompressionEnergyParameter>\n";

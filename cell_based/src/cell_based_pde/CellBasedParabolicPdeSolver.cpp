@@ -35,7 +35,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include "CellBasedParabolicPdeSolver.hpp"
 
-template<unsigned DIM>
+template <unsigned DIM>
 CellBasedParabolicPdeSolver<DIM>::CellBasedParabolicPdeSolver(TetrahedralMesh<DIM,DIM>* pMesh,
                               AbstractLinearParabolicPde<DIM,DIM>* pPde,
                               BoundaryConditionsContainer<DIM,DIM,1>* pBoundaryConditions)
@@ -43,12 +43,12 @@ CellBasedParabolicPdeSolver<DIM>::CellBasedParabolicPdeSolver(TetrahedralMesh<DI
 {
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 CellBasedParabolicPdeSolver<DIM>::~CellBasedParabolicPdeSolver()
 {
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 c_vector<double, 1*(DIM+1)> CellBasedParabolicPdeSolver<DIM>::ComputeVectorTerm(
         c_vector<double, DIM+1>& rPhi,
         c_matrix<double, DIM, DIM+1>& rGradPhi,
@@ -61,7 +61,7 @@ c_vector<double, 1*(DIM+1)> CellBasedParabolicPdeSolver<DIM>::ComputeVectorTerm(
         + PdeSimulationTime::GetPdeTimeStepInverse() * this->mpParabolicPde->ComputeDuDtCoefficientFunction(rX) * rU(0)) * rPhi;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 c_matrix<double, 1*(DIM+1), 1*(DIM+1)> CellBasedParabolicPdeSolver<DIM>::ComputeMatrixTerm(
         c_vector<double, DIM+1>& rPhi,
         c_matrix<double, DIM, DIM+1>& rGradPhi,
@@ -77,13 +77,13 @@ c_matrix<double, 1*(DIM+1), 1*(DIM+1)> CellBasedParabolicPdeSolver<DIM>::Compute
                 + PdeSimulationTime::GetPdeTimeStepInverse() * this->mpParabolicPde->ComputeDuDtCoefficientFunction(rX) * outer_prod(rPhi, rPhi);
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void CellBasedParabolicPdeSolver<DIM>::ResetInterpolatedQuantities()
 {
     mInterpolatedSourceTerm = 0;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void CellBasedParabolicPdeSolver<DIM>::IncrementInterpolatedQuantities(double phiI, const Node<DIM>* pNode)
 {
     unsigned index_of_unknown = 0;

@@ -35,17 +35,17 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include "AbstractUpdateRule.hpp"
 
-template<unsigned DIM>
+template <unsigned DIM>
 AbstractUpdateRule<DIM>::AbstractUpdateRule()
 {
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 AbstractUpdateRule<DIM>::~AbstractUpdateRule()
 {
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void AbstractUpdateRule<DIM>::OutputUpdateRuleInfo(out_stream& rParamsFile)
 {
     std::string update_type = GetIdentifier();
@@ -55,7 +55,7 @@ void AbstractUpdateRule<DIM>::OutputUpdateRuleInfo(out_stream& rParamsFile)
     *rParamsFile << "\t\t</" << update_type << ">\n";
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void AbstractUpdateRule<DIM>::OutputUpdateRuleParameters(out_stream& rParamsFile)
 {
     // No parameters to output

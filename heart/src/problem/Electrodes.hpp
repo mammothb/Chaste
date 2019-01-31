@@ -61,7 +61,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *  is required to archive (reconstruct) itself. Because boost is clever it will
  *  still only archive one copy of the mesh.
  */
-template<unsigned DIM>
+template <unsigned DIM>
 class Electrodes
 {
 friend class TestBidomainWithBathProblem;
@@ -110,7 +110,7 @@ private:
      * @param archive the archive
      * @param version the current version of this class
      */
-    template<class Archive>
+    template <class Archive>
     void save(Archive & archive, const unsigned int version) const
     {
         archive & mGroundSecondElectrode;
@@ -126,7 +126,7 @@ private:
      * @param archive the archive
      * @param version the current version of this class
      */
-    template<class Archive>
+    template <class Archive>
     void load(Archive & archive, const unsigned int version)
     {
         archive & mGroundSecondElectrode;

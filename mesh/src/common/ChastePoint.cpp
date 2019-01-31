@@ -40,7 +40,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // Implementation
 ///////////////////////////////////////////////////////////////////////////////////
 
-template<unsigned DIM>
+template <unsigned DIM>
 ChastePoint<DIM>::ChastePoint(double v1, double v2, double v3)
 {
     if (DIM > 0)
@@ -57,7 +57,7 @@ ChastePoint<DIM>::ChastePoint(double v1, double v2, double v3)
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 ChastePoint<DIM>::ChastePoint(std::vector<double> coords)
 {
     for (unsigned i=0; i<DIM; i++)
@@ -66,32 +66,32 @@ ChastePoint<DIM>::ChastePoint(std::vector<double> coords)
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 ChastePoint<DIM>::ChastePoint(c_vector<double, DIM> location)
     : mLocation(location)
 {
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 c_vector<double, DIM>& ChastePoint<DIM>::rGetLocation()
 {
     return mLocation;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 const c_vector<double, DIM>& ChastePoint<DIM>::rGetLocation() const
 {
     return mLocation;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 double ChastePoint<DIM>::operator[] (unsigned i) const
 {
     assert(i<DIM);
     return mLocation(i);
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 double ChastePoint<DIM>::GetWithDefault(unsigned i, double def) const
 {
     if (i<DIM)
@@ -104,14 +104,14 @@ double ChastePoint<DIM>::GetWithDefault(unsigned i, double def) const
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void ChastePoint<DIM>::SetCoordinate(unsigned i, double value)
 {
     assert(i < DIM);
     mLocation(i) = value;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 bool ChastePoint<DIM>::IsSamePoint(const ChastePoint<DIM>& rPoint) const
 {
     bool returned_value = true;

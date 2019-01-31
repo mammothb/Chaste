@@ -64,14 +64,14 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "AbstractCellWriter.hpp"
 
 // Forward declaration prevents circular include chain
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM> class AbstractCellBasedSimulation;
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM> class AbstractCellBasedSimulation;
 
 /**
  * An abstract facade class encapsulating a cell population.
  *
  * Contains a group of cells and associated methods.
  */
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM=ELEMENT_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM=ELEMENT_DIM>
 class AbstractCellPopulation : public Identifiable
 {
 private:
@@ -85,7 +85,7 @@ private:
      * @param archive the archive
      * @param version the current version of this class
      */
-    template<class Archive>
+    template <class Archive>
     void serialize(Archive & archive, const unsigned int version)
     {
         archive & mCells;
@@ -692,7 +692,7 @@ public:
      *
      * @return This method returns void
      */
-    template<template <unsigned, unsigned> class T>
+    template <template <unsigned, unsigned> class T>
     void AddPopulationWriter()
     {
         mCellPopulationWriters.push_back(boost::shared_ptr< T<ELEMENT_DIM, SPACE_DIM> >(new T<ELEMENT_DIM, SPACE_DIM> ));
@@ -704,7 +704,7 @@ public:
      *
      * @return This method returns void
      */
-    template<template <unsigned, unsigned> class T>
+    template <template <unsigned, unsigned> class T>
     void AddCellWriter()
     {
         mCellWriters.push_back(boost::shared_ptr< T<ELEMENT_DIM, SPACE_DIM> >(new T<ELEMENT_DIM, SPACE_DIM> ));
@@ -716,7 +716,7 @@ public:
      *
      * @return This method returns void
      */
-    template<template <unsigned, unsigned> class T>
+    template <template <unsigned, unsigned> class T>
     void AddCellPopulationCountWriter()
     {
         mCellPopulationCountWriters.push_back(boost::shared_ptr< T<ELEMENT_DIM, SPACE_DIM> >(new T<ELEMENT_DIM, SPACE_DIM> ));
@@ -769,7 +769,7 @@ public:
      *
      * @return whether the population has this writer
      */
-    template<template <unsigned, unsigned> class T>
+    template <template <unsigned, unsigned> class T>
     bool HasWriter() const
     {
         typedef AbstractCellPopulationWriter<ELEMENT_DIM, SPACE_DIM> population_writer_t;
@@ -921,27 +921,27 @@ TEMPLATED_CLASS_IS_ABSTRACT_1_UNSIGNED(AbstractCellPopulation)
 //         Iterator class implementation - most methods are inlined         //
 //////////////////////////////////////////////////////////////////////////////
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 CellPtr AbstractCellPopulation<ELEMENT_DIM, SPACE_DIM>::Iterator::operator*()
 {
     assert(!IsAtEnd());
     return *mCellIter;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 CellPtr AbstractCellPopulation<ELEMENT_DIM, SPACE_DIM>::Iterator::operator->()
 {
     assert(!IsAtEnd());
     return *mCellIter;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 bool AbstractCellPopulation<ELEMENT_DIM, SPACE_DIM>::Iterator::operator!=(const typename AbstractCellPopulation<ELEMENT_DIM, SPACE_DIM>::Iterator& rOther)
 {
     return mCellIter != rOther.mCellIter;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 typename AbstractCellPopulation<ELEMENT_DIM, SPACE_DIM>::Iterator& AbstractCellPopulation<ELEMENT_DIM, SPACE_DIM>::Iterator::operator++()
 {
     do
@@ -953,19 +953,19 @@ typename AbstractCellPopulation<ELEMENT_DIM, SPACE_DIM>::Iterator& AbstractCellP
     return (*this);
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 bool AbstractCellPopulation<ELEMENT_DIM, SPACE_DIM>::Iterator::IsRealCell()
 {
     return !( mrCellPopulation.IsCellAssociatedWithADeletedLocation(*mCellIter) || (*this)->IsDead() );
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 bool AbstractCellPopulation<ELEMENT_DIM, SPACE_DIM>::Iterator::IsAtEnd()
 {
     return mCellIter == mrCellPopulation.rGetCells().end();
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 AbstractCellPopulation<ELEMENT_DIM, SPACE_DIM>::Iterator::Iterator(AbstractCellPopulation& rCellPopulation, std::list<CellPtr>::iterator cellIter)
     : mrCellPopulation(rCellPopulation),
       mCellIter(cellIter)
@@ -985,13 +985,13 @@ AbstractCellPopulation<ELEMENT_DIM, SPACE_DIM>::Iterator::Iterator(AbstractCellP
     }
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 typename AbstractCellPopulation<ELEMENT_DIM, SPACE_DIM>::Iterator AbstractCellPopulation<ELEMENT_DIM, SPACE_DIM>::Begin()
 {
     return Iterator(*this, this->mCells.begin());
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 typename AbstractCellPopulation<ELEMENT_DIM, SPACE_DIM>::Iterator AbstractCellPopulation<ELEMENT_DIM, SPACE_DIM>::End()
 {
     return Iterator(*this, this->mCells.end());

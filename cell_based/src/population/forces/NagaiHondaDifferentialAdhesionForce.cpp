@@ -36,7 +36,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "NagaiHondaDifferentialAdhesionForce.hpp"
 #include "CellLabel.hpp"
 
-template<unsigned DIM>
+template <unsigned DIM>
 NagaiHondaDifferentialAdhesionForce<DIM>::NagaiHondaDifferentialAdhesionForce()
     : NagaiHondaForce<DIM>(),
       mNagaiHondaLabelledCellLabelledCellAdhesionEnergyParameter(1.0),
@@ -45,12 +45,12 @@ NagaiHondaDifferentialAdhesionForce<DIM>::NagaiHondaDifferentialAdhesionForce()
 {
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 NagaiHondaDifferentialAdhesionForce<DIM>::~NagaiHondaDifferentialAdhesionForce()
 {
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 double NagaiHondaDifferentialAdhesionForce<DIM>::GetAdhesionParameter(Node<DIM>* pNodeA,
                                                                       Node<DIM>* pNodeB,
                                                                       VertexBasedCellPopulation<DIM>& rVertexCellPopulation)
@@ -127,43 +127,43 @@ double NagaiHondaDifferentialAdhesionForce<DIM>::GetAdhesionParameter(Node<DIM>*
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 double NagaiHondaDifferentialAdhesionForce<DIM>::GetNagaiHondaLabelledCellCellAdhesionEnergyParameter()
 {
     return mNagaiHondaLabelledCellCellAdhesionEnergyParameter;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 double NagaiHondaDifferentialAdhesionForce<DIM>::GetNagaiHondaLabelledCellLabelledCellAdhesionEnergyParameter()
 {
     return mNagaiHondaLabelledCellLabelledCellAdhesionEnergyParameter;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 double NagaiHondaDifferentialAdhesionForce<DIM>::GetNagaiHondaLabelledCellBoundaryAdhesionEnergyParameter()
 {
     return mNagaiHondaLabelledCellBoundaryAdhesionEnergyParameter;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void NagaiHondaDifferentialAdhesionForce<DIM>::SetNagaiHondaLabelledCellCellAdhesionEnergyParameter(double labelledCellCellAdhesionEnergyParameter)
 {
     mNagaiHondaLabelledCellCellAdhesionEnergyParameter = labelledCellCellAdhesionEnergyParameter;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void NagaiHondaDifferentialAdhesionForce<DIM>::SetNagaiHondaLabelledCellLabelledCellAdhesionEnergyParameter(double labelledCellLabelledCellAdhesionEnergyParameter)
 {
     mNagaiHondaLabelledCellLabelledCellAdhesionEnergyParameter = labelledCellLabelledCellAdhesionEnergyParameter;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void NagaiHondaDifferentialAdhesionForce<DIM>::SetNagaiHondaLabelledCellBoundaryAdhesionEnergyParameter(double labelledCellBoundaryAdhesionEnergyParameter)
 {
     mNagaiHondaLabelledCellBoundaryAdhesionEnergyParameter = labelledCellBoundaryAdhesionEnergyParameter;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void NagaiHondaDifferentialAdhesionForce<DIM>::OutputForceParameters(out_stream& rParamsFile)
 {
     // Output member variables

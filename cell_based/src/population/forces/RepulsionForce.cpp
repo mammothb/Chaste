@@ -35,13 +35,13 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include "RepulsionForce.hpp"
 
-template<unsigned DIM>
+template <unsigned DIM>
 RepulsionForce<DIM>::RepulsionForce()
    : GeneralisedLinearSpringForce<DIM>()
 {
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void RepulsionForce<DIM>::AddForceContribution(AbstractCellPopulation<DIM>& rCellPopulation)
 {
     // Throw an exception message if not using a NodeBasedCellPopulation
@@ -93,7 +93,7 @@ void RepulsionForce<DIM>::AddForceContribution(AbstractCellPopulation<DIM>& rCel
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void RepulsionForce<DIM>::OutputForceParameters(out_stream& rParamsFile)
 {
     // Call direct parent class

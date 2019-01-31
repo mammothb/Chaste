@@ -49,7 +49,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  *  Note: the X=0 surface is fixed in the deformation.
  */
-template<unsigned DIM>
+template <unsigned DIM>
 class CardiacElectroMechProbRegularGeom : public CardiacElectroMechanicsProblem<DIM>
 {
 public:

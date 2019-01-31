@@ -35,26 +35,26 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include "BuskeElasticForce.hpp"
 
-template<unsigned DIM>
+template <unsigned DIM>
 BuskeElasticForce<DIM>::BuskeElasticForce()
    : AbstractTwoBodyInteractionForce<DIM>(),
      mDeformationEnergyParameter(4.0/(3.0*5.0)) // Denoted by D in Buske et al (2011) (doi:10.1371/journal.pcbi.1001045).
 {
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 double BuskeElasticForce<DIM>::GetDeformationEnergyParameter()
 {
     return mDeformationEnergyParameter;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void BuskeElasticForce<DIM>::SetDeformationEnergyParameter(double deformationEnergyParameter)
 {
     mDeformationEnergyParameter = deformationEnergyParameter;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 c_vector<double, DIM> BuskeElasticForce<DIM>::CalculateForceBetweenNodes(unsigned nodeAGlobalIndex,
                                                                              unsigned nodeBGlobalIndex,
                                                                              AbstractCellPopulation<DIM>& rCellPopulation)
@@ -104,7 +104,7 @@ c_vector<double, DIM> BuskeElasticForce<DIM>::CalculateForceBetweenNodes(unsigne
     return force_between_nodes;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 double BuskeElasticForce<DIM>::GetMagnitudeOfForce(double distanceBetweenNodes, double radiusOfCellOne, double radiusOfCellTwo)
 {
     // Calculate contribution from deformation interaction energy
@@ -124,7 +124,7 @@ double BuskeElasticForce<DIM>::GetMagnitudeOfForce(double distanceBetweenNodes, 
     return dWDdd; //
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void BuskeElasticForce<DIM>::OutputForceParameters(out_stream& rParamsFile)
 {
     *rParamsFile << "\t\t\t<DeformationEnergyParameter>" << mDeformationEnergyParameter << "</DeformationEnergyParameter>\n";

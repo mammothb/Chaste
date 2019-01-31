@@ -50,7 +50,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  * In a distributed mesh, a set of quad points can still be accessed for a given
  * element but then any missing data is marked with DOUBLE_UNSET
  */
-template<unsigned DIM>
+template <unsigned DIM>
 class QuadraturePointsGroup
 {
 private:

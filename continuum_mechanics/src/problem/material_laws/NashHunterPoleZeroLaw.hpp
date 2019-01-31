@@ -44,7 +44,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  *  The stiffness are in KILOPASCALS
  */
-template<unsigned DIM>
+template <unsigned DIM>
 class NashHunterPoleZeroLaw : public PoleZeroMaterialLaw<DIM>
 {
 friend class TestMaterialLaws;

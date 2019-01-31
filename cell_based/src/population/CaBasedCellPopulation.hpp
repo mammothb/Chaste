@@ -46,7 +46,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include <boost/serialization/base_object.hpp>
 #include <boost/serialization/vector.hpp>
 
-template<unsigned DIM> class AbstractCaBasedDivisionRule; // Circular definition thing.
+template <unsigned DIM> class AbstractCaBasedDivisionRule; // Circular definition thing.
 
 /**
  * A facade class encapsulating a cell population under the Cellular
@@ -60,7 +60,7 @@ template<unsigned DIM> class AbstractCaBasedDivisionRule; // Circular definition
  *
  * Multiple cells can be associated at a single node.
  */
-template<unsigned DIM>
+template <unsigned DIM>
 class CaBasedCellPopulation : public AbstractOnLatticeCellPopulation<DIM>
 {
     friend class TestCaBasedCellPopulation;
@@ -102,7 +102,7 @@ private:
      * @param archive the archive
      * @param version the current version of this class
      */
-    template<class Archive>
+    template <class Archive>
     void serialize(Archive & archive, const unsigned int version)
     {
         archive & boost::serialization::base_object<AbstractOnLatticeCellPopulation<DIM> >(*this);
@@ -482,7 +482,7 @@ namespace serialization
 /**
  * Serialize information required to construct a CaBasedCellPopulation.
  */
-template<class Archive, unsigned DIM>
+template <class Archive, unsigned DIM>
 inline void save_construct_data(
     Archive & ar, const CaBasedCellPopulation<DIM> * t, const unsigned int file_version)
 {
@@ -495,7 +495,7 @@ inline void save_construct_data(
  * De-serialize constructor parameters and initialise a CaBasedCellPopulation.
  * Loads the mesh from separate files.
  */
-template<class Archive, unsigned DIM>
+template <class Archive, unsigned DIM>
 inline void load_construct_data(
     Archive & ar, CaBasedCellPopulation<DIM> * t, const unsigned int file_version)
 {

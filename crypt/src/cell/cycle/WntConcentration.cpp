@@ -35,10 +35,10 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "WntConcentration.hpp"
 
 /** Pointer to the single instance */
-template<unsigned DIM>
+template <unsigned DIM>
 WntConcentration<DIM>* WntConcentration<DIM>::mpInstance = nullptr;
 
-template<unsigned DIM>
+template <unsigned DIM>
 WntConcentration<DIM>* WntConcentration<DIM>::Instance()
 {
     if (mpInstance == nullptr)
@@ -48,7 +48,7 @@ WntConcentration<DIM>* WntConcentration<DIM>::Instance()
     return mpInstance;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 WntConcentration<DIM>::WntConcentration()
     : mCryptLength(DOUBLE_UNSET),
       mLengthSet(false),
@@ -65,12 +65,12 @@ WntConcentration<DIM>::WntConcentration()
     assert(mpInstance == nullptr);
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 WntConcentration<DIM>::~WntConcentration()
 {
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void WntConcentration<DIM>::Destroy()
 {
     if (mpInstance)
@@ -80,7 +80,7 @@ void WntConcentration<DIM>::Destroy()
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 double WntConcentration<DIM>::GetWntLevel(CellPtr pCell)
 {
     if (mUseConstantWntValueForTesting)  // to test a cell and cell-cycle models without a cell population
@@ -108,7 +108,7 @@ double WntConcentration<DIM>::GetWntLevel(CellPtr pCell)
     return GetWntLevel(height);
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 c_vector<double, DIM> WntConcentration<DIM>::GetWntGradient(CellPtr pCell)
 {
     if (mUseConstantWntValueForTesting)  // to test a cell and cell-cycle models without a cell population
@@ -124,25 +124,25 @@ c_vector<double, DIM> WntConcentration<DIM>::GetWntGradient(CellPtr pCell)
     return GetWntGradient(location_of_cell);
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void WntConcentration<DIM>::SetCellPopulation(AbstractCellPopulation<DIM>& rCellPopulation)
 {
     mpCellPopulation = &rCellPopulation;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 AbstractCellPopulation<DIM>& WntConcentration<DIM>::rGetCellPopulation()
 {
     return *mpCellPopulation;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 double WntConcentration<DIM>::GetCryptLength()
 {
     return mCryptLength;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void WntConcentration<DIM>::SetCryptLength(double cryptLength)
 {
     assert(cryptLength > 0.0);
@@ -155,13 +155,13 @@ void WntConcentration<DIM>::SetCryptLength(double cryptLength)
     mLengthSet = true;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 WntConcentrationType WntConcentration<DIM>::GetType()
 {
     return mWntType;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void WntConcentration<DIM>::SetType(WntConcentrationType type)
 {
     if (mTypeSet==true)
@@ -172,7 +172,7 @@ void WntConcentration<DIM>::SetType(WntConcentrationType type)
     mTypeSet = true;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 double WntConcentration<DIM>::GetWntLevel(double height)
 {
     if (mWntType == NONE)
@@ -215,7 +215,7 @@ double WntConcentration<DIM>::GetWntLevel(double height)
     return wnt_level;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 c_vector<double, DIM> WntConcentration<DIM>::GetWntGradient(c_vector<double, DIM>& rLocation)
 {
     c_vector<double, DIM> wnt_gradient = zero_vector<double>(DIM);
@@ -256,7 +256,7 @@ c_vector<double, DIM> WntConcentration<DIM>::GetWntGradient(c_vector<double, DIM
     return wnt_gradient;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 bool WntConcentration<DIM>::IsWntSetUp()
 {
     bool result = false;
@@ -267,7 +267,7 @@ bool WntConcentration<DIM>::IsWntSetUp()
     return result;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void WntConcentration<DIM>::SetConstantWntValueForTesting(double value)
 {
     if (value < 0)
@@ -282,39 +282,39 @@ void WntConcentration<DIM>::SetConstantWntValueForTesting(double value)
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 double WntConcentration<DIM>::GetWntConcentrationParameter()
 {
     return mWntConcentrationParameter;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void WntConcentration<DIM>::SetWntConcentrationParameter(double wntConcentrationParameter)
 {
     assert(wntConcentrationParameter > 0.0);
     mWntConcentrationParameter = wntConcentrationParameter;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 double WntConcentration<DIM>::GetCryptProjectionParameterA()
 {
     return mCryptProjectionParameterA;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 double WntConcentration<DIM>::GetCryptProjectionParameterB()
 {
     return mCryptProjectionParameterB;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void WntConcentration<DIM>::SetCryptProjectionParameterA(double cryptProjectionParameterA)
 {
     assert(cryptProjectionParameterA >= 0.0);
     mCryptProjectionParameterA = cryptProjectionParameterA;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void WntConcentration<DIM>::SetCryptProjectionParameterB(double cryptProjectionParameterB)
 {
     assert(cryptProjectionParameterB >= 0.0);

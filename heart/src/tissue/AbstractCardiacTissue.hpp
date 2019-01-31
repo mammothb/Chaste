@@ -89,7 +89,7 @@ private:
      * @param archive
      * @param version
      */
-    template<class Archive>
+    template <class Archive>
     void save(Archive & archive, const unsigned int version) const
     {
         if (version >= 3)
@@ -158,7 +158,7 @@ private:
      * @param archive
      * @param version
      */
-    template<class Archive>
+    template <class Archive>
     void load(Archive & archive, const unsigned int version)
     {
         // archive & mpMesh; Archived in save/load_constructs at the bottom of Mono/BidomainTissue.hpp
@@ -517,7 +517,7 @@ public:
      * @param archive  the process-specific archive to write cells to.
      * @param version
      */
-    template<class Archive>
+    template <class Archive>
     void SaveCardiacCells(Archive & archive, const unsigned int version) const
     {
         const std::vector<AbstractCardiacCellInterface*> & r_cells_distributed = rGetCellsDistributed();
@@ -559,7 +559,7 @@ public:
      * @param archive  the process-specific archive to load from
      * @param version  archive version
      */
-    template<class Archive>
+    template <class Archive>
     void LoadCardiacCells(Archive & archive, const unsigned int version)
     {
         // Note that p_factory loaded from this archive might not be the same as our mesh's factory,

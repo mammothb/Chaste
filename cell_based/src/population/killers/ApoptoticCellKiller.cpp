@@ -36,13 +36,13 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "ApoptoticCellKiller.hpp"
 #include "ApoptoticCellProperty.hpp"
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 ApoptoticCellKiller<SPACE_DIM>::ApoptoticCellKiller(AbstractCellPopulation<SPACE_DIM>* pCellPopulation)
     : AbstractCellKiller<SPACE_DIM>(pCellPopulation)
 {
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 void ApoptoticCellKiller<SPACE_DIM>::CheckAndLabelSingleCellForApoptosis(CellPtr pCell)
 {
     if (pCell->HasCellProperty<ApoptoticCellProperty>() && !(pCell->HasApoptosisBegun()))
@@ -51,7 +51,7 @@ void ApoptoticCellKiller<SPACE_DIM>::CheckAndLabelSingleCellForApoptosis(CellPtr
     }
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 void ApoptoticCellKiller<SPACE_DIM>::CheckAndLabelCellsForApoptosisOrDeath()
 {
     for (typename AbstractCellPopulation<SPACE_DIM>::Iterator cell_iter = this->mpCellPopulation->Begin();
@@ -62,7 +62,7 @@ void ApoptoticCellKiller<SPACE_DIM>::CheckAndLabelCellsForApoptosisOrDeath()
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void ApoptoticCellKiller<DIM>::OutputCellKillerParameters(out_stream& rParamsFile)
 {
     // No parameters to output, so just call method on direct parent class

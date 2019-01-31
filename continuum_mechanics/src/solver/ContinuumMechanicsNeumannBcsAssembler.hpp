@@ -66,7 +66,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *  to the spatial part of the RHS vector, ie to b1.
  *
  */
-template<unsigned DIM>
+template <unsigned DIM>
 class ContinuumMechanicsNeumannBcsAssembler : public AbstractFeAssemblerInterface<true,false>
 {
     /** Number of vertices per (boundary) element. */
@@ -151,7 +151,7 @@ public:
 };
 
 
-template<unsigned DIM>
+template <unsigned DIM>
 void ContinuumMechanicsNeumannBcsAssembler<DIM>::DoAssemble()
 {
     if (this->mVectorToAssemble==NULL)
@@ -200,7 +200,7 @@ void ContinuumMechanicsNeumannBcsAssembler<DIM>::DoAssemble()
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void ContinuumMechanicsNeumannBcsAssembler<DIM>::AssembleOnBoundaryElement(BoundaryElement<DIM-1,DIM>& rBoundaryElement,
                                                                            c_vector<double,STENCIL_SIZE>& rBelem,
                                                                            unsigned boundaryConditionIndex)

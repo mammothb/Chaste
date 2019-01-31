@@ -35,7 +35,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include "NashHunterPoleZeroLaw.hpp"
 
-template<>
+template <>
 NashHunterPoleZeroLaw<3>::NashHunterPoleZeroLaw()
         : PoleZeroMaterialLaw<3>()
 {
@@ -77,7 +77,7 @@ NashHunterPoleZeroLaw<3>::NashHunterPoleZeroLaw()
     this->SetParameters(k,a,b);
 }
 
-template<>
+template <>
 NashHunterPoleZeroLaw<2>::NashHunterPoleZeroLaw()
         : PoleZeroMaterialLaw<2>()
 {

@@ -37,7 +37,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "RandomNumberGenerator.hpp"
 #include "UblasCustomFunctions.hpp"
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 VertexMesh<ELEMENT_DIM, SPACE_DIM>::VertexMesh(std::vector<Node<SPACE_DIM>*> nodes,
                                                std::vector<VertexElement<ELEMENT_DIM,SPACE_DIM>*> vertexElements)
     : mpDelaunayMesh(nullptr)
@@ -100,7 +100,7 @@ VertexMesh<ELEMENT_DIM, SPACE_DIM>::VertexMesh(std::vector<Node<SPACE_DIM>*> nod
     this->mMeshChangesDuringSimulation = false;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 VertexMesh<ELEMENT_DIM, SPACE_DIM>::VertexMesh(std::vector<Node<SPACE_DIM>*> nodes,
                            std::vector<VertexElement<ELEMENT_DIM-1, SPACE_DIM>*> faces,
                            std::vector<VertexElement<ELEMENT_DIM, SPACE_DIM>*> vertexElements)
@@ -148,7 +148,7 @@ VertexMesh<ELEMENT_DIM, SPACE_DIM>::VertexMesh(std::vector<Node<SPACE_DIM>*> nod
  * @param rMesh a tetrahedral mesh
  * @param isPeriodic a boolean that indicates whether the mesh is periodic or not
  */
-template<>
+template <>
 VertexMesh<2,2>::VertexMesh(TetrahedralMesh<2,2>& rMesh, bool isPeriodic)
     : mpDelaunayMesh(&rMesh)
 {
@@ -237,7 +237,7 @@ VertexMesh<2,2>::VertexMesh(TetrahedralMesh<2,2>& rMesh, bool isPeriodic)
  *
  * @param rMesh a tetrahedral mesh
  */
-template<>
+template <>
 VertexMesh<3,3>::VertexMesh(TetrahedralMesh<3,3>& rMesh)
     : mpDelaunayMesh(&rMesh)
 {
@@ -380,7 +380,7 @@ VertexMesh<3,3>::VertexMesh(TetrahedralMesh<3,3>& rMesh)
     this->mMeshChangesDuringSimulation = false;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void VertexMesh<ELEMENT_DIM, SPACE_DIM>::GenerateVerticesFromElementCircumcentres(TetrahedralMesh<ELEMENT_DIM, SPACE_DIM>& rMesh)
 {
     c_matrix<double, SPACE_DIM, ELEMENT_DIM> jacobian;
@@ -405,7 +405,7 @@ void VertexMesh<ELEMENT_DIM, SPACE_DIM>::GenerateVerticesFromElementCircumcentre
     }
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 double VertexMesh<ELEMENT_DIM, SPACE_DIM>::GetEdgeLength(unsigned elementIndex1, unsigned elementIndex2)
 {
     assert(SPACE_DIM == 2);    // LCOV_EXCL_LINE - code will be removed at compile time
@@ -440,7 +440,7 @@ double VertexMesh<ELEMENT_DIM, SPACE_DIM>::GetEdgeLength(unsigned elementIndex1,
     return edge_length;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 double VertexMesh<ELEMENT_DIM, SPACE_DIM>::GetElongationShapeFactorOfElement(unsigned index)
 {
     assert(SPACE_DIM == 2);    // LCOV_EXCL_LINE - code will be removed at compile time
@@ -457,7 +457,7 @@ double VertexMesh<ELEMENT_DIM, SPACE_DIM>::GetElongationShapeFactorOfElement(uns
     return elongation_shape_factor;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 VertexMesh<ELEMENT_DIM, SPACE_DIM>::VertexMesh()
 {
     mpDelaunayMesh = nullptr;
@@ -465,27 +465,27 @@ VertexMesh<ELEMENT_DIM, SPACE_DIM>::VertexMesh()
     Clear();
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 VertexMesh<ELEMENT_DIM, SPACE_DIM>::~VertexMesh()
 {
     Clear();
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 unsigned VertexMesh<ELEMENT_DIM, SPACE_DIM>::SolveNodeMapping(unsigned index) const
 {
     assert(index < this->mNodes.size());
     return index;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 unsigned VertexMesh<ELEMENT_DIM, SPACE_DIM>::SolveElementMapping(unsigned index) const
 {
     assert(index < this->mElements.size());
     return index;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 unsigned VertexMesh<ELEMENT_DIM, SPACE_DIM>::SolveBoundaryElementMapping(unsigned index) const
 {
     ///\todo sort out boundary elements in a vertex mesh (#1263)
@@ -493,7 +493,7 @@ unsigned VertexMesh<ELEMENT_DIM, SPACE_DIM>::SolveBoundaryElementMapping(unsigne
     return index;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 unsigned VertexMesh<ELEMENT_DIM, SPACE_DIM>::GetDelaunayNodeIndexCorrespondingToVoronoiElementIndex(unsigned elementIndex)
 {
     unsigned node_index = UNSIGNED_UNSET;
@@ -519,7 +519,7 @@ unsigned VertexMesh<ELEMENT_DIM, SPACE_DIM>::GetDelaunayNodeIndexCorrespondingTo
     return node_index;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 unsigned VertexMesh<ELEMENT_DIM, SPACE_DIM>::GetVoronoiElementIndexCorrespondingToDelaunayNodeIndex(unsigned nodeIndex)
 {
     unsigned element_index = UNSIGNED_UNSET;
@@ -545,7 +545,7 @@ unsigned VertexMesh<ELEMENT_DIM, SPACE_DIM>::GetVoronoiElementIndexCorresponding
     return element_index;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 unsigned VertexMesh<ELEMENT_DIM, SPACE_DIM>::GetRosetteRankOfElement(unsigned index)
 {
     assert(SPACE_DIM == 2 || SPACE_DIM == 3);    // LCOV_EXCL_LINE - code will be removed at compile time
@@ -569,7 +569,7 @@ unsigned VertexMesh<ELEMENT_DIM, SPACE_DIM>::GetRosetteRankOfElement(unsigned in
     return rosette_rank;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void VertexMesh<ELEMENT_DIM, SPACE_DIM>::Clear()
 {
     // Delete elements
@@ -594,45 +594,45 @@ void VertexMesh<ELEMENT_DIM, SPACE_DIM>::Clear()
     this->mNodes.clear();
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 unsigned VertexMesh<ELEMENT_DIM, SPACE_DIM>::GetNumNodes() const
 {
     return this->mNodes.size();
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 unsigned VertexMesh<ELEMENT_DIM, SPACE_DIM>::GetNumElements() const
 {
     return mElements.size();
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 unsigned VertexMesh<ELEMENT_DIM, SPACE_DIM>::GetNumAllElements() const
 {
     return mElements.size();
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 unsigned VertexMesh<ELEMENT_DIM, SPACE_DIM>::GetNumFaces() const
 {
     return mFaces.size();
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 VertexElement<ELEMENT_DIM, SPACE_DIM>* VertexMesh<ELEMENT_DIM, SPACE_DIM>::GetElement(unsigned index) const
 {
     assert(index < mElements.size());
     return mElements[index];
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 VertexElement<ELEMENT_DIM-1, SPACE_DIM>* VertexMesh<ELEMENT_DIM, SPACE_DIM>::GetFace(unsigned index) const
 {
     assert(index < mFaces.size());
     return mFaces[index];
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 c_vector<double, SPACE_DIM> VertexMesh<ELEMENT_DIM, SPACE_DIM>::GetCentroidOfElement(unsigned index)
 {
     VertexElement<ELEMENT_DIM, SPACE_DIM>* p_element = GetElement(index);
@@ -703,7 +703,7 @@ c_vector<double, SPACE_DIM> VertexMesh<ELEMENT_DIM, SPACE_DIM>::GetCentroidOfEle
     return centroid;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 std::set<unsigned> VertexMesh<ELEMENT_DIM, SPACE_DIM>::GetNeighbouringNodeIndices(unsigned nodeIndex)
 {
     // Create a set of neighbouring node indices
@@ -733,7 +733,7 @@ std::set<unsigned> VertexMesh<ELEMENT_DIM, SPACE_DIM>::GetNeighbouringNodeIndice
     return neighbouring_node_indices;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 std::set<unsigned> VertexMesh<ELEMENT_DIM, SPACE_DIM>::GetNeighbouringNodeNotAlsoInElement(unsigned nodeIndex, unsigned elemIndex)
 {
     // Get a pointer to this element
@@ -773,7 +773,7 @@ std::set<unsigned> VertexMesh<ELEMENT_DIM, SPACE_DIM>::GetNeighbouringNodeNotAls
     return neighbouring_node_indices_not_in_this_element;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 std::set<unsigned> VertexMesh<ELEMENT_DIM, SPACE_DIM>::GetNeighbouringElementIndices(unsigned elementIndex)
 {
     // Get a pointer to this element
@@ -808,7 +808,7 @@ std::set<unsigned> VertexMesh<ELEMENT_DIM, SPACE_DIM>::GetNeighbouringElementInd
 }
 
 /// \cond Get Doxygen to ignore, since it's confused by these templates
-template<>
+template <>
 void VertexMesh<1,1>::ConstructFromMeshReader(AbstractMeshReader<1,1>& rMeshReader)
 /// \endcond Get Doxygen to ignore, since it's confused by these templates
 {
@@ -816,7 +816,7 @@ void VertexMesh<1,1>::ConstructFromMeshReader(AbstractMeshReader<1,1>& rMeshRead
 }
 
 /// \cond Get Doxygen to ignore, since it's confused by these templates
-template<>
+template <>
 void VertexMesh<1,2>::ConstructFromMeshReader(AbstractMeshReader<1,2>& rMeshReader)
 /// \endcond Get Doxygen to ignore, since it's confused by these templates
 {
@@ -824,7 +824,7 @@ void VertexMesh<1,2>::ConstructFromMeshReader(AbstractMeshReader<1,2>& rMeshRead
 }
 
 /// \cond Get Doxygen to ignore, since it's confused by these templates
-template<>
+template <>
 void VertexMesh<1,3>::ConstructFromMeshReader(AbstractMeshReader<1,3>& rMeshReader)
 /// \endcond Get Doxygen to ignore, since it's confused by these templates
 {
@@ -832,7 +832,7 @@ void VertexMesh<1,3>::ConstructFromMeshReader(AbstractMeshReader<1,3>& rMeshRead
 }
 
 /// \cond Get Doxygen to ignore, since it's confused by these templates
-template<>
+template <>
 void VertexMesh<2,3>::ConstructFromMeshReader(AbstractMeshReader<2,3>& rMeshReader)
 /// \endcond Get Doxygen to ignore, since it's confused by these templates
 {
@@ -840,7 +840,7 @@ void VertexMesh<2,3>::ConstructFromMeshReader(AbstractMeshReader<2,3>& rMeshRead
 }
 
 /// \cond Get Doxygen to ignore, since it's confused by these templates
-template<>
+template <>
 void VertexMesh<2,2>::ConstructFromMeshReader(AbstractMeshReader<2,2>& rMeshReader)
 /// \endcond Get Doxygen to ignore, since it's confused by these templates
 {
@@ -898,7 +898,7 @@ void VertexMesh<2,2>::ConstructFromMeshReader(AbstractMeshReader<2,2>& rMeshRead
 }
 
 /// \cond Get Doxygen to ignore, since it's confused by these templates
-template<>
+template <>
 void VertexMesh<3,3>::ConstructFromMeshReader(AbstractMeshReader<3,3>& rMeshReader)
 /// \endcond Get Doxygen to ignore, since it's confused by these templates
 {
@@ -1030,7 +1030,7 @@ c_vector<double, SPACE_DIM> VertexMesh<ELEMENT_DIM, SPACE_DIM>::GetVectorFromAto
     return vector;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 double VertexMesh<ELEMENT_DIM, SPACE_DIM>::GetVolumeOfElement(unsigned index)
 {
     assert(SPACE_DIM == 2 || SPACE_DIM == 3);    // LCOV_EXCL_LINE - code will be removed at compile time
@@ -1088,7 +1088,7 @@ double VertexMesh<ELEMENT_DIM, SPACE_DIM>::GetVolumeOfElement(unsigned index)
     return fabs(element_volume);
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 double VertexMesh<ELEMENT_DIM, SPACE_DIM>::GetSurfaceAreaOfElement(unsigned index)
 {
     assert(SPACE_DIM == 2 || SPACE_DIM == 3);    // LCOV_EXCL_LINE - code will be removed at compile time
@@ -1124,7 +1124,7 @@ double VertexMesh<ELEMENT_DIM, SPACE_DIM>::GetSurfaceAreaOfElement(unsigned inde
 //////////////////////////////////////////////////////////////////////
 //                        2D-specific methods                       //
 //////////////////////////////////////////////////////////////////////
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 bool VertexMesh<ELEMENT_DIM, SPACE_DIM>::ElementIncludesPoint(const c_vector<double, SPACE_DIM>& rTestPoint, unsigned elementIndex)
 {
     assert(SPACE_DIM == 2);                // LCOV_EXCL_LINE - code will be removed at compile time
@@ -1243,7 +1243,7 @@ bool VertexMesh<ELEMENT_DIM, SPACE_DIM>::ElementIncludesPoint(const c_vector<dou
     return element_includes_point;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 unsigned VertexMesh<ELEMENT_DIM, SPACE_DIM>::GetLocalIndexForElementEdgeClosestToPoint(const c_vector<double, SPACE_DIM>& rTestPoint, unsigned elementIndex)
 {
     // Make sure that we are in the correct dimension - this code will be eliminated at compile time
@@ -1307,7 +1307,7 @@ unsigned VertexMesh<ELEMENT_DIM, SPACE_DIM>::GetLocalIndexForElementEdgeClosestT
     return min_distance_edge_index;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 c_vector<double, 3> VertexMesh<ELEMENT_DIM, SPACE_DIM>::CalculateMomentsOfElement(unsigned index)
 {
     assert(SPACE_DIM == 2);    // LCOV_EXCL_LINE - code will be removed at compile time
@@ -1414,7 +1414,7 @@ c_vector<double, SPACE_DIM> VertexMesh<ELEMENT_DIM, SPACE_DIM>::GetShortAxisOfEl
     return short_axis;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 c_vector<double, SPACE_DIM> VertexMesh<ELEMENT_DIM, SPACE_DIM>::GetAreaGradientOfElementAtNode(VertexElement<ELEMENT_DIM,SPACE_DIM>* pElement, unsigned localIndex)
 {
     assert(SPACE_DIM == 2);    // LCOV_EXCL_LINE - code will be removed at compile time
@@ -1437,7 +1437,7 @@ c_vector<double, SPACE_DIM> VertexMesh<ELEMENT_DIM, SPACE_DIM>::GetAreaGradientO
     return area_gradient;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 c_vector<double, SPACE_DIM> VertexMesh<ELEMENT_DIM, SPACE_DIM>::GetPreviousEdgeGradientOfElementAtNode(VertexElement<ELEMENT_DIM,SPACE_DIM>* pElement, unsigned localIndex)
 {
     assert(SPACE_DIM == 2);    // LCOV_EXCL_LINE - code will be removed at compile time
@@ -1458,7 +1458,7 @@ c_vector<double, SPACE_DIM> VertexMesh<ELEMENT_DIM, SPACE_DIM>::GetPreviousEdgeG
     return previous_edge_gradient;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 c_vector<double, SPACE_DIM> VertexMesh<ELEMENT_DIM, SPACE_DIM>::GetNextEdgeGradientOfElementAtNode(VertexElement<ELEMENT_DIM,SPACE_DIM>* pElement, unsigned localIndex)
 {
     assert(SPACE_DIM == 2);     // LCOV_EXCL_LINE - code will be removed at compile time
@@ -1476,7 +1476,7 @@ c_vector<double, SPACE_DIM> VertexMesh<ELEMENT_DIM, SPACE_DIM>::GetNextEdgeGradi
     return next_edge_gradient;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 c_vector<double, SPACE_DIM> VertexMesh<ELEMENT_DIM, SPACE_DIM>::GetPerimeterGradientOfElementAtNode(VertexElement<ELEMENT_DIM,SPACE_DIM>* pElement, unsigned localIndex)
 {
     assert(SPACE_DIM==2); // LCOV_EXCL_LINE
@@ -1491,7 +1491,7 @@ c_vector<double, SPACE_DIM> VertexMesh<ELEMENT_DIM, SPACE_DIM>::GetPerimeterGrad
 //                        3D-specific methods                       //
 //////////////////////////////////////////////////////////////////////
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 double VertexMesh<ELEMENT_DIM, SPACE_DIM>::CalculateUnitNormalToFaceWithArea(VertexElement<ELEMENT_DIM-1, SPACE_DIM>* pFace, c_vector<double, SPACE_DIM>& rNormal)
 {
     assert(SPACE_DIM == 3);    // LCOV_EXCL_LINE - code will be removed at compile time
@@ -1520,7 +1520,7 @@ double VertexMesh<ELEMENT_DIM, SPACE_DIM>::CalculateUnitNormalToFaceWithArea(Ver
     return magnitude/2.0;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 double VertexMesh<ELEMENT_DIM, SPACE_DIM>::CalculateAreaOfFace(VertexElement<ELEMENT_DIM-1, SPACE_DIM>* pFace)
 {
     assert(SPACE_DIM == 3);    // LCOV_EXCL_LINE - code will be removed at compile time
@@ -1532,7 +1532,7 @@ double VertexMesh<ELEMENT_DIM, SPACE_DIM>::CalculateAreaOfFace(VertexElement<ELE
 
 /// Specialization to avoid compiler error about zero-sized arrays
 #if defined(__xlC__)
-template<>
+template <>
 double VertexMesh<1,1>::CalculateAreaOfFace(VertexElement<0,1>* pFace)
 {
     NEVER_REACHED;

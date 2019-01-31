@@ -158,7 +158,7 @@ private:
      * @param archive
      * @param version
      */
-    template<class Archive>
+    template <class Archive>
     void serialize(Archive & archive, const unsigned int version)
     {
         //MatNullSpace mMatNullSpace; // Gets re-created by calling code on load
@@ -536,7 +536,7 @@ public:
      *
      * N.B. Values which are not local (ie the row is not owned) will be skipped.
      */
-    template<size_t MATRIX_SIZE>
+    template <size_t MATRIX_SIZE>
     void AddLhsMultipleValues(unsigned* matrixRowAndColIndices, c_matrix<double, MATRIX_SIZE, MATRIX_SIZE>& rSmallMatrix)
     {
         PetscMatTools::AddMultipleValues(mLhsMatrix, matrixRowAndColIndices, rSmallMatrix);
@@ -551,7 +551,7 @@ public:
      *
      * N.B. Values which are not local (ie the row is not owned) will be skipped.
      */
-    template<size_t VECTOR_SIZE>
+    template <size_t VECTOR_SIZE>
     void AddRhsMultipleValues(unsigned* vectorIndices, c_vector<double, VECTOR_SIZE>& smallVector)
     {
         PetscVecTools::AddMultipleValues(mRhsVector, vectorIndices, smallVector);
@@ -585,7 +585,7 @@ namespace boost
 {
 namespace serialization
 {
-template<class Archive>
+template <class Archive>
 inline void save_construct_data(
     Archive & ar, const LinearSystem * t, const unsigned int file_version)
 {
@@ -611,7 +611,7 @@ inline void save_construct_data(
  * Allow us to not need a default constructor, by specifying how Boost should
  * instantiate an instance (using existing constructor)
  */
-template<class Archive>
+template <class Archive>
 inline void load_construct_data(
     Archive & ar, LinearSystem * t, const unsigned int file_version)
 {

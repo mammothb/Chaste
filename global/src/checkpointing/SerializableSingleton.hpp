@@ -76,7 +76,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  * Note that immediately after a load the wrapper pointer loaded into becomes invalid; call
  * GetSerializationWrapper again if you need a new wrapper for a subsequent save.
  */
-template<class SINGLETON_CLASS>
+template <class SINGLETON_CLASS>
 class SerializableSingleton : private boost::noncopyable
 {
 public:
@@ -97,7 +97,7 @@ private:
      * @param archive the archive
      * @param version the current version of this class
      */
-    template<class Archive>
+    template <class Archive>
     void save(Archive & archive, const unsigned int version) const
     {
         SINGLETON_CLASS* p_instance = SINGLETON_CLASS::Instance();
@@ -111,7 +111,7 @@ private:
      * @param archive the archive
      * @param version the saved version of this class
      */
-    template<class Archive>
+    template <class Archive>
     void load(Archive & archive, const unsigned int version)
     {
         SINGLETON_CLASS* p_instance = SINGLETON_CLASS::Instance();

@@ -48,7 +48,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  * it is specific to 3D, it is actually also implemented in 2D, for which it is really
  * a circle geometry boundary condition.
  */
-template<unsigned DIM>
+template <unsigned DIM>
 class SphereGeometryBoundaryCondition : public AbstractCellPopulationBoundaryCondition<DIM>
 {
 private:
@@ -70,7 +70,7 @@ private:
      * @param archive the archive
      * @param version the current version of this class
      */
-    template<class Archive>
+    template <class Archive>
     void serialize(Archive & archive, const unsigned int version)
     {
         archive & boost::serialization::base_object<AbstractCellPopulationBoundaryCondition<DIM> >(*this);
@@ -139,7 +139,7 @@ namespace serialization
 /**
  * Serialize information required to construct a SphereGeometryBoundaryCondition.
  */
-template<class Archive, unsigned DIM>
+template <class Archive, unsigned DIM>
 inline void save_construct_data(
     Archive & ar, const SphereGeometryBoundaryCondition<DIM>* t, const unsigned int file_version)
 {
@@ -162,7 +162,7 @@ inline void save_construct_data(
 /**
  * De-serialize constructor parameters and initialize a SphereGeometryBoundaryCondition.
  */
-template<class Archive, unsigned DIM>
+template <class Archive, unsigned DIM>
 inline void load_construct_data(
     Archive & ar, SphereGeometryBoundaryCondition<DIM>* t, const unsigned int file_version)
 {

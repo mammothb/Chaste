@@ -35,7 +35,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include "GeneralisedLinearSpringForce.hpp"
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 GeneralisedLinearSpringForce<ELEMENT_DIM,SPACE_DIM>::GeneralisedLinearSpringForce()
    : AbstractTwoBodyInteractionForce<ELEMENT_DIM,SPACE_DIM>(),
      mMeinekeSpringStiffness(15.0),        // denoted by mu in Meineke et al, 2001 (doi:10.1046/j.0960-7722.2001.00216.x)
@@ -48,7 +48,7 @@ GeneralisedLinearSpringForce<ELEMENT_DIM,SPACE_DIM>::GeneralisedLinearSpringForc
     }
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 double GeneralisedLinearSpringForce<ELEMENT_DIM,SPACE_DIM>::VariableSpringConstantMultiplicationFactor(unsigned nodeAGlobalIndex,
                                                                                      unsigned nodeBGlobalIndex,
                                                                                      AbstractCellPopulation<ELEMENT_DIM,SPACE_DIM>& rCellPopulation,
@@ -57,12 +57,12 @@ double GeneralisedLinearSpringForce<ELEMENT_DIM,SPACE_DIM>::VariableSpringConsta
     return 1.0;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 GeneralisedLinearSpringForce<ELEMENT_DIM,SPACE_DIM>::~GeneralisedLinearSpringForce()
 {
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 c_vector<double, SPACE_DIM> GeneralisedLinearSpringForce<ELEMENT_DIM,SPACE_DIM>::CalculateForceBetweenNodes(unsigned nodeAGlobalIndex,
                                                                                     unsigned nodeBGlobalIndex,
                                                                                     AbstractCellPopulation<ELEMENT_DIM,SPACE_DIM>& rCellPopulation)
@@ -227,32 +227,32 @@ c_vector<double, SPACE_DIM> GeneralisedLinearSpringForce<ELEMENT_DIM,SPACE_DIM>:
     }
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 double GeneralisedLinearSpringForce<ELEMENT_DIM,SPACE_DIM>::GetMeinekeSpringStiffness()
 {
     return mMeinekeSpringStiffness;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 double GeneralisedLinearSpringForce<ELEMENT_DIM,SPACE_DIM>::GetMeinekeDivisionRestingSpringLength()
 {
     return mMeinekeDivisionRestingSpringLength;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 double GeneralisedLinearSpringForce<ELEMENT_DIM,SPACE_DIM>::GetMeinekeSpringGrowthDuration()
 {
     return mMeinekeSpringGrowthDuration;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void GeneralisedLinearSpringForce<ELEMENT_DIM,SPACE_DIM>::SetMeinekeSpringStiffness(double springStiffness)
 {
     assert(springStiffness > 0.0);
     mMeinekeSpringStiffness = springStiffness;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void GeneralisedLinearSpringForce<ELEMENT_DIM,SPACE_DIM>::SetMeinekeDivisionRestingSpringLength(double divisionRestingSpringLength)
 {
     assert(divisionRestingSpringLength <= 1.0);
@@ -261,7 +261,7 @@ void GeneralisedLinearSpringForce<ELEMENT_DIM,SPACE_DIM>::SetMeinekeDivisionRest
     mMeinekeDivisionRestingSpringLength = divisionRestingSpringLength;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void GeneralisedLinearSpringForce<ELEMENT_DIM,SPACE_DIM>::SetMeinekeSpringGrowthDuration(double springGrowthDuration)
 {
     assert(springGrowthDuration >= 0.0);
@@ -269,7 +269,7 @@ void GeneralisedLinearSpringForce<ELEMENT_DIM,SPACE_DIM>::SetMeinekeSpringGrowth
     mMeinekeSpringGrowthDuration = springGrowthDuration;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void GeneralisedLinearSpringForce<ELEMENT_DIM,SPACE_DIM>::OutputForceParameters(out_stream& rParamsFile)
 {
     *rParamsFile << "\t\t\t<MeinekeSpringStiffness>" << mMeinekeSpringStiffness << "</MeinekeSpringStiffness>\n";

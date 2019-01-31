@@ -329,7 +329,7 @@ void DynamicallyLoadableLr91::VerifyStateVariables()
     // LCOV_EXCL_STOP
 }
 
-template<>
+template <>
 void OdeSystemInformation<DynamicallyLoadableLr91>::Initialise(void)
 {
     // State variables

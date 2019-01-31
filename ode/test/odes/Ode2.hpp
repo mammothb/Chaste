@@ -58,7 +58,7 @@ public:
     }
 };
 
-template<>
+template <>
 void OdeSystemInformation<Ode2>::Initialise()
 {
     // These two lines are commented out, to show that variable names & units can

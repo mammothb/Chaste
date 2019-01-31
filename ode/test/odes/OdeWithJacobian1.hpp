@@ -63,7 +63,7 @@ public:
     }
 };
 
-template<>
+template <>
 void OdeSystemInformation<OdeWithJacobian1>::Initialise()
 {
     this->mVariableNames.push_back("Variable_1");

@@ -35,12 +35,12 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include "PoleZeroMaterialLaw.hpp"
 
-template<unsigned DIM>
+template <unsigned DIM>
 PoleZeroMaterialLaw<DIM>::PoleZeroMaterialLaw()
 {
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void PoleZeroMaterialLaw<DIM>::SetParameters(std::vector<std::vector<double> > k,
                                              std::vector<std::vector<double> > a,
                                              std::vector<std::vector<double> > b)
@@ -81,7 +81,7 @@ void PoleZeroMaterialLaw<DIM>::SetParameters(std::vector<std::vector<double> > k
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 PoleZeroMaterialLaw<DIM>::PoleZeroMaterialLaw(std::vector<std::vector<double> > k,
                                               std::vector<std::vector<double> > a,
                                               std::vector<std::vector<double> > b)
@@ -89,7 +89,7 @@ PoleZeroMaterialLaw<DIM>::PoleZeroMaterialLaw(std::vector<std::vector<double> > 
     SetParameters(k,a,b);
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void PoleZeroMaterialLaw<DIM>::ComputeStressAndStressDerivative(c_matrix<double,DIM,DIM>& rC,
                                                                 c_matrix<double,DIM,DIM>& rInvC,
                                                                 double                    pressure,
@@ -172,13 +172,13 @@ void PoleZeroMaterialLaw<DIM>::ComputeStressAndStressDerivative(c_matrix<double,
     this->TransformStressAndStressDerivative(rT, rDTdE, computeDTdE);
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 double PoleZeroMaterialLaw<DIM>::GetZeroStrainPressure()
 {
     return 0.0;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void PoleZeroMaterialLaw<DIM>::ScaleMaterialParameters(double scaleFactor)
 {
     assert(scaleFactor > 0.0);

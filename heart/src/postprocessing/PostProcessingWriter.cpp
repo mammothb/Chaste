@@ -48,7 +48,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include <iostream>
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 PostProcessingWriter<ELEMENT_DIM, SPACE_DIM>::PostProcessingWriter(AbstractTetrahedralMesh<ELEMENT_DIM,SPACE_DIM>& rMesh,
                                                                    const FileFinder& rDirectory,
                                                                    const std::string& rHdf5FileName,
@@ -68,7 +68,7 @@ PostProcessingWriter<ELEMENT_DIM, SPACE_DIM>::PostProcessingWriter(AbstractTetra
     assert(mpDataReader->GetNumberOfRows() == mrMesh.GetNumNodes());
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void PostProcessingWriter<ELEMENT_DIM, SPACE_DIM>::WritePostProcessingFiles()
 {
     //Check that post-processing is really needed
@@ -156,14 +156,14 @@ void PostProcessingWriter<ELEMENT_DIM, SPACE_DIM>::WritePostProcessingFiles()
     }
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 PostProcessingWriter<ELEMENT_DIM, SPACE_DIM>::~PostProcessingWriter()
 {
     delete mpDataReader;
     delete mpCalculator;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void PostProcessingWriter<ELEMENT_DIM, SPACE_DIM>::WriteOutputDataToHdf5(const std::vector<std::vector<double> >& rDataPayload,
                                                                          const std::string& rDatasetName,
                                                                          const std::string& rDatasetUnit,
@@ -244,7 +244,7 @@ void PostProcessingWriter<ELEMENT_DIM, SPACE_DIM>::WriteOutputDataToHdf5(const s
     writer.Close();
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void PostProcessingWriter<ELEMENT_DIM, SPACE_DIM>::WriteApdMapFile(double repolarisationPercentage, double threshold)
 {
     std::vector<std::vector<double> > local_output_data = mpCalculator->CalculateAllActionPotentialDurationsForNodeRange(repolarisationPercentage, mLo, mHi, threshold);
@@ -258,7 +258,7 @@ void PostProcessingWriter<ELEMENT_DIM, SPACE_DIM>::WriteApdMapFile(double repola
                           "msec");
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void PostProcessingWriter<ELEMENT_DIM, SPACE_DIM>::WriteUpstrokeTimeMap(double threshold)
 {
     std::vector<std::vector<double> > output_data;
@@ -284,7 +284,7 @@ void PostProcessingWriter<ELEMENT_DIM, SPACE_DIM>::WriteUpstrokeTimeMap(double t
                           "msec");
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void PostProcessingWriter<ELEMENT_DIM, SPACE_DIM>::WriteMaxUpstrokeVelocityMap(double threshold)
 {
     std::vector<std::vector<double> > output_data;
@@ -310,7 +310,7 @@ void PostProcessingWriter<ELEMENT_DIM, SPACE_DIM>::WriteMaxUpstrokeVelocityMap(d
                           "mV_per_msec");
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void PostProcessingWriter<ELEMENT_DIM, SPACE_DIM>::WriteConductionVelocityMap(unsigned originNode, std::vector<double> distancesFromOriginNode)
 {
     //Fill in data
@@ -336,7 +336,7 @@ void PostProcessingWriter<ELEMENT_DIM, SPACE_DIM>::WriteConductionVelocityMap(un
     WriteOutputDataToHdf5(output_data, filename_stream.str(), "cm_per_msec");
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void PostProcessingWriter<ELEMENT_DIM, SPACE_DIM>::WriteAboveThresholdDepolarisationFile(double threshold )
 {
     std::vector<std::vector<double> > output_data;
@@ -390,7 +390,7 @@ void PostProcessingWriter<ELEMENT_DIM, SPACE_DIM>::WriteAboveThresholdDepolarisa
                                  ".dat");
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 std::string PostProcessingWriter<ELEMENT_DIM, SPACE_DIM>::ConvertToHdf5FriendlyString(double threshold)
 {
     std::stringstream dataset_stream;
@@ -415,7 +415,7 @@ std::string PostProcessingWriter<ELEMENT_DIM, SPACE_DIM>::ConvertToHdf5FriendlyS
     return dataset_stream.str();
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void PostProcessingWriter<ELEMENT_DIM, SPACE_DIM>::WriteVariablesOverTimeAtNodes(std::vector<unsigned>& rNodeIndices)
 {
     std::vector<std::string> variable_names = mpDataReader->GetVariableNames();
@@ -462,7 +462,7 @@ void PostProcessingWriter<ELEMENT_DIM, SPACE_DIM>::WriteVariablesOverTimeAtNodes
     }
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void PostProcessingWriter<ELEMENT_DIM, SPACE_DIM>::WriteGenericFileToMeshalyzer(std::vector<std::vector<double> >& rDataPayload, const std::string& rFolder, const std::string& rFileName)
 {
     OutputFileHandler output_file_handler(HeartConfig::Instance()->GetOutputDirectory() + "/" + rFolder, false);

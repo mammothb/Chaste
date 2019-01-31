@@ -50,7 +50,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  * A simple cell factory for bath problems, applying a SimpleStimulus for
  * 0.5ms at a single point.
  */
-template<unsigned DIM, class CELLTYPE=CellLuoRudy1991FromCellML>
+template <unsigned DIM, class CELLTYPE=CellLuoRudy1991FromCellML>
 class BathCellFactory : public AbstractCardiacCellFactory<DIM>
 {
 private:
@@ -120,7 +120,7 @@ public:
  * @param centreY Y co-ord of tissue centre
  * @param radius radius of tissue
  */
-template<class MeshType>
+template <class MeshType>
 void SetCircularTissueIn2dMesh(MeshType* pMesh,
                                double centreX, double centreY, double radius)
 {
@@ -147,7 +147,7 @@ void SetCircularTissueIn2dMesh(MeshType* pMesh,
  * @param radius radius of tissue
  * @return the new mesh
  */
-template<class MeshType>
+template <class MeshType>
 MeshType* Load2dMeshAndSetCircularTissue(const std::string& rMeshPath,
                                          double centreX, double centreY, double radius)
 {
@@ -169,7 +169,7 @@ MeshType* Load2dMeshAndSetCircularTissue(const std::string& rMeshPath,
  * @param radius radius of tissue
  * @return the new mesh
  */
-template<>
+template <>
 DistributedTetrahedralMesh<2,2>* Load2dMeshAndSetCircularTissue(const std::string& rMeshPath,
                                                                 double centreX, double centreY, double radius)
 {

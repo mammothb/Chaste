@@ -54,7 +54,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  * Returns 1.0 everywhere so that the total integral over the mesh of
  * this integrand is just the volume of the mesh. For testing.
  */
-template<unsigned DIM>
+template <unsigned DIM>
 class VolumeCalculator : public AbstractFunctionalCalculator<DIM,DIM,1>
 {
     double GetIntegrand(ChastePoint<DIM>& rX,

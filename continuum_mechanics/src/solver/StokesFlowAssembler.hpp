@@ -58,7 +58,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *  [U1 V1 P1 , .. , Un Vn, Pn]
  *  where n is the total number of nodes.
  */
-template<unsigned DIM>
+template <unsigned DIM>
 class StokesFlowAssembler : public AbstractContinuumMechanicsAssembler<DIM,true,true>
 {
 friend class TestStokesFlowAssembler;

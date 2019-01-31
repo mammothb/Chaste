@@ -47,7 +47,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #undef REAL
 #undef VOID
 
-template<unsigned DIM>
+template <unsigned DIM>
 void QuadraticMesh<DIM>::CountVertices()
 {
     mNumVertices = 0;
@@ -61,7 +61,7 @@ void QuadraticMesh<DIM>::CountVertices()
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 QuadraticMesh<DIM>::QuadraticMesh(double spaceStep, double width, double height, double depth)
 {
     this->ConstructRegularSlabMesh(spaceStep, width, height, depth);
@@ -72,7 +72,7 @@ QuadraticMesh<DIM>::QuadraticMesh(double spaceStep, double width, double height,
 // 'linear' here refers to the fact it creates a 1d mesh
 // on a line
 //////////////////////////////////////////////////////////
-template<unsigned DIM>
+template <unsigned DIM>
 void QuadraticMesh<DIM>::ConstructLinearMesh(unsigned numElemX)
 {
     assert(DIM==1); // LCOV_EXCL_LINE
@@ -99,7 +99,7 @@ void QuadraticMesh<DIM>::ConstructLinearMesh(unsigned numElemX)
     this->RefreshMesh();
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void QuadraticMesh<DIM>::ConstructRectangularMesh(unsigned numElemX, unsigned numElemY, bool stagger)
 {
     assert(DIM==2); // LCOV_EXCL_LINE
@@ -192,7 +192,7 @@ void QuadraticMesh<DIM>::ConstructRectangularMesh(unsigned numElemX, unsigned nu
     this->RefreshMesh();
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 Node<DIM>* QuadraticMesh<DIM>::MakeNewInternalNode(unsigned& rIndex, c_vector<double, DIM>& rLocation, c_vector<double, DIM>& rTop)
 {
     bool boundary = false;
@@ -221,7 +221,7 @@ Node<DIM>* QuadraticMesh<DIM>::MakeNewInternalNode(unsigned& rIndex, c_vector<do
     return p_node;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 unsigned QuadraticMesh<DIM>::LookupInternalNode(unsigned globalIndex1, unsigned globalIndex2, std::map<std::pair<unsigned, unsigned>, unsigned>& rEdgeMap)
 {
     unsigned node_index = 0u;
@@ -239,7 +239,7 @@ unsigned QuadraticMesh<DIM>::LookupInternalNode(unsigned globalIndex1, unsigned 
     return node_index;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void QuadraticMesh<DIM>::ConstructCuboid(unsigned numElemX, unsigned numElemY, unsigned numElemZ)
 {
     assert(DIM==3); // LCOV_EXCL_LINE
@@ -400,13 +400,13 @@ void QuadraticMesh<DIM>::ConstructCuboid(unsigned numElemX, unsigned numElemY, u
     this->RefreshMesh();
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 unsigned QuadraticMesh<DIM>::GetNumVertices() const
 {
     return mNumVertices;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void QuadraticMesh<DIM>::ConstructFromLinearMeshReader(AbstractMeshReader<DIM, DIM>& rMeshReader)
 {
     assert(DIM != 1); // LCOV_EXCL_LINE
@@ -455,7 +455,7 @@ void QuadraticMesh<DIM>::ConstructFromLinearMeshReader(AbstractMeshReader<DIM, D
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void QuadraticMesh<DIM>::ConstructFromMeshReader(AbstractMeshReader<DIM, DIM>& rAbsMeshReader)
 {
     //Some mesh readers will let you read with non-linear elements

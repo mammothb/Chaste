@@ -37,10 +37,10 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "NodeBasedCellPopulation.hpp"
 
 //Static constant is instantiated here.
-template<unsigned DIM>
+template <unsigned DIM>
 const double DiffusionForce<DIM>::msBoltzmannConstant = 4.97033568e-7;
 
-template<unsigned DIM>
+template <unsigned DIM>
 DiffusionForce<DIM>::DiffusionForce()
     : AbstractForce<DIM>(),
       mAbsoluteTemperature(296.0), // default to room temperature
@@ -48,44 +48,44 @@ DiffusionForce<DIM>::DiffusionForce()
 {
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 DiffusionForce<DIM>::~DiffusionForce()
 {
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void DiffusionForce<DIM>::SetAbsoluteTemperature(double newValue)
 {
     assert(newValue > 0.0);
     mAbsoluteTemperature = newValue;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 double DiffusionForce<DIM>::GetAbsoluteTemperature()
 {
     return mAbsoluteTemperature;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void DiffusionForce<DIM>::SetViscosity(double newValue)
 {
     assert(newValue > 0.0);
     mViscosity = newValue;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 double DiffusionForce<DIM>::GetViscosity()
 {
     return mViscosity;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 double DiffusionForce<DIM>::GetDiffusionScalingConstant()
 {
     return msBoltzmannConstant*mAbsoluteTemperature/(6.0*mViscosity*M_PI);
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void DiffusionForce<DIM>::AddForceContribution(AbstractCellPopulation<DIM>& rCellPopulation)
 {
     double dt = SimulationTime::Instance()->GetTimeStep();
@@ -139,7 +139,7 @@ void DiffusionForce<DIM>::AddForceContribution(AbstractCellPopulation<DIM>& rCel
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void DiffusionForce<DIM>::OutputForceParameters(out_stream& rParamsFile)
 {
     *rParamsFile << "\t\t\t<AbsoluteTemperature>" << mAbsoluteTemperature << "</AbsoluteTemperature> \n";

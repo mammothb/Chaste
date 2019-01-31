@@ -87,7 +87,7 @@ public:
     }
 };
 
-template<>
+template <>
 void OdeSystemInformation<OdeSystemForCoupledHeatEquation>::Initialise()
 {
     this->mVariableNames.push_back("v");

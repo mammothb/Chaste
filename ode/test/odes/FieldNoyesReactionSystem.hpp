@@ -64,7 +64,7 @@ public:
     }
 };
 
-template<>
+template <>
 void OdeSystemInformation<FieldNoyesReactionSystem>::Initialise()
 {
     this->mVariableNames.push_back("Variable_1");

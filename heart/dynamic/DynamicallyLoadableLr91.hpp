@@ -58,7 +58,7 @@ private:
      * @param archive
      * @param version
      */
-    template<class Archive>
+    template <class Archive>
     void serialize(Archive & archive, const unsigned int version)
     {
         archive & boost::serialization::base_object<AbstractCardiacCell>(*this);
@@ -157,7 +157,7 @@ namespace serialization
  * Allow us to not need a default constructor, by specifying how Boost should
  * instantiate a DynamicallyLoadableLr91 instance.
  */
-template<class Archive>
+template <class Archive>
 inline void save_construct_data(
     Archive & ar, const DynamicallyLoadableLr91 * t, const unsigned int file_version)
 {
@@ -173,7 +173,7 @@ inline void save_construct_data(
  *
  * NB this constructor allocates memory for the other member variables too.
  */
-template<class Archive>
+template <class Archive>
 inline void load_construct_data(
     Archive & ar, DynamicallyLoadableLr91 * t, const unsigned int file_version)
 {

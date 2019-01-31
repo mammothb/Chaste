@@ -35,17 +35,17 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include "AbstractCaBasedDivisionRule.hpp"
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 AbstractCaBasedDivisionRule<SPACE_DIM>::AbstractCaBasedDivisionRule()
 {
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 AbstractCaBasedDivisionRule<SPACE_DIM>::~AbstractCaBasedDivisionRule()
 {
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 void AbstractCaBasedDivisionRule<SPACE_DIM>::OutputCellCaBasedDivisionRuleInfo(out_stream& rParamsFile)
 {
     std::string cell_division_rule_type = GetIdentifier();
@@ -55,7 +55,7 @@ void AbstractCaBasedDivisionRule<SPACE_DIM>::OutputCellCaBasedDivisionRuleInfo(o
     *rParamsFile << "\t\t\t</" << cell_division_rule_type << ">\n";
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 void AbstractCaBasedDivisionRule<SPACE_DIM>::OutputCellCaBasedDivisionRuleParameters(out_stream& rParamsFile)
 {
 }

@@ -61,7 +61,7 @@ typedef enum CmguiMeshWriteType_
  *
  *  Inherits from CmguiMeshWriter
  */
-template<unsigned DIM>
+template <unsigned DIM>
 class CmguiDeformedSolutionsWriter : public CmguiMeshWriter<DIM, DIM>
 {
 private:

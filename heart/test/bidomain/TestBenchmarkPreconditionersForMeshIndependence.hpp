@@ -52,7 +52,7 @@ static const double mesh_size = 0.01; //0.07;
  * MultiMeshSolver
  * Runs simulations over multiple meshes for a particular cell type, mono/bidomain and dimension
  */
-template<class CELL, class CARDIAC_PROBLEM, unsigned DIM, unsigned PROBLEM_DIM>
+template <class CELL, class CARDIAC_PROBLEM, unsigned DIM, unsigned PROBLEM_DIM>
 class MultiMeshSolver
 {
 private:

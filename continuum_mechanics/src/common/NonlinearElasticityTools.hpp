@@ -41,7 +41,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 /**
  *  A class of helper methods for problems which use NonlinearElasticitySolver.
  */
-template<unsigned DIM>
+template <unsigned DIM>
 class NonlinearElasticityTools
 {
 public:

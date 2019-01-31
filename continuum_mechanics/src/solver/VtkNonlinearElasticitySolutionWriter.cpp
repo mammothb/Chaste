@@ -36,7 +36,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "VtkNonlinearElasticitySolutionWriter.hpp"
 #include "VtkMeshWriter.hpp"
 
-template<unsigned DIM>
+template <unsigned DIM>
 void VtkNonlinearElasticitySolutionWriter<DIM>::Write()
 {
     if (mpSolver->mOutputDirectory=="")

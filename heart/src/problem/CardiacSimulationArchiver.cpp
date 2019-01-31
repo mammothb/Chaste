@@ -51,7 +51,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "BidomainProblem.hpp"
 #include "BidomainWithBathProblem.hpp"
 
-template<class PROBLEM_CLASS>
+template <class PROBLEM_CLASS>
 void CardiacSimulationArchiver<PROBLEM_CLASS>::Save(PROBLEM_CLASS& rSimulationToArchive,
                                                     const std::string& rDirectory,
                                                     bool clearDirectory)
@@ -99,21 +99,21 @@ void CardiacSimulationArchiver<PROBLEM_CLASS>::Save(PROBLEM_CLASS& rSimulationTo
     PetscTools::Barrier("CardiacSimulationArchiver::Save");
 }
 
-template<class PROBLEM_CLASS>
+template <class PROBLEM_CLASS>
 PROBLEM_CLASS* CardiacSimulationArchiver<PROBLEM_CLASS>::Load(const std::string& rDirectory)
 {
     FileFinder directory(rDirectory, RelativeTo::ChasteTestOutput);
     return CardiacSimulationArchiver<PROBLEM_CLASS>::Migrate(directory);
 }
 
-template<class PROBLEM_CLASS>
+template <class PROBLEM_CLASS>
 PROBLEM_CLASS* CardiacSimulationArchiver<PROBLEM_CLASS>::Load(const FileFinder& rDirectory)
 {
     return CardiacSimulationArchiver<PROBLEM_CLASS>::Migrate(rDirectory);
 }
 
 
-template<class PROBLEM_CLASS>
+template <class PROBLEM_CLASS>
 PROBLEM_CLASS* CardiacSimulationArchiver<PROBLEM_CLASS>::Migrate(const FileFinder& rDirectory)
 {
     // Check the directory exists

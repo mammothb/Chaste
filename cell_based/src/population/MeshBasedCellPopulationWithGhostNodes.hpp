@@ -52,7 +52,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  * class deals with these ghost nodes, hiding the 'ghost nodes' concept from the
  * OffLatticeSimulation class, so the latter only ever deals with real cells.
  */
-template<unsigned DIM>
+template <unsigned DIM>
 class MeshBasedCellPopulationWithGhostNodes : public MeshBasedCellPopulation<DIM>
 {
 private:
@@ -81,7 +81,7 @@ private:
      * @param archive the archive
      * @param version the current version of this class
      */
-    template<class Archive>
+    template <class Archive>
     void serialize(Archive & archive, const unsigned int version)
     {
         // This needs to be first so that MeshBasedCellPopulation::Validate() doesn't go mental.
@@ -263,7 +263,7 @@ namespace serialization
 /**
  * Serialize information required to construct a MeshBasedCellPopulationWithGhostNodes.
  */
-template<class Archive, unsigned DIM>
+template <class Archive, unsigned DIM>
 inline void save_construct_data(
     Archive & ar, const MeshBasedCellPopulationWithGhostNodes<DIM> * t, const unsigned int file_version)
 {
@@ -276,7 +276,7 @@ inline void save_construct_data(
  * De-serialize constructor parameters and initialise a MeshBasedCellPopulationWithGhostNodes.
  * Loads the mesh from separate files.
  */
-template<class Archive, unsigned DIM>
+template <class Archive, unsigned DIM>
 inline void load_construct_data(
     Archive & ar, MeshBasedCellPopulationWithGhostNodes<DIM> * t, const unsigned int file_version)
 {

@@ -42,7 +42,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *  Class for write mechanics solutions to .vtu file (for visualisation in Paraview), including
  *  displacement, pressure if incompressible simulation, different strains, and (in future) stresses.
  */
-template<unsigned DIM>
+template <unsigned DIM>
 class VtkNonlinearElasticitySolutionWriter
 {
 friend class TestVtkNonlinearElasticitySolutionWriter;

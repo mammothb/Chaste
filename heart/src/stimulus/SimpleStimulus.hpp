@@ -56,7 +56,7 @@ class SimpleStimulus : public AbstractStimulusFunction
      * @param archive
      * @param version
      */
-    template<class Archive>
+    template <class Archive>
     void serialize(Archive & archive, const unsigned int version)
     {
         // This calls serialize on the base class.
@@ -123,7 +123,7 @@ namespace serialization
  * Allow us to not need a default constructor, by specifying how Boost should
  * instantiate a SimpleStimulus instance (using existing constructor)
  */
-template<class Archive>
+template <class Archive>
 inline void load_construct_data(
     Archive & ar, SimpleStimulus * t, const unsigned int file_version)
 {

@@ -43,7 +43,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ///////////////////////////////////////////////////////////////////////////////////
 // Implementation
 ///////////////////////////////////////////////////////////////////////////////////
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 TrianglesMeshWriter<ELEMENT_DIM, SPACE_DIM>::TrianglesMeshWriter(
     const std::string& rDirectory,
     const std::string& rBaseName,
@@ -52,18 +52,18 @@ TrianglesMeshWriter<ELEMENT_DIM, SPACE_DIM>::TrianglesMeshWriter(
 {
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 TrianglesMeshWriter<ELEMENT_DIM, SPACE_DIM>::~TrianglesMeshWriter()
 {
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void TrianglesMeshWriter<ELEMENT_DIM, SPACE_DIM>::SetWriteFilesAsBinary()
 {
     this->mFilesAreBinary=true;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void TrianglesMeshWriter<ELEMENT_DIM, SPACE_DIM>::WriteFiles()
 {
     std::string comment = "#\n# " + ChasteBuildInfo::GetProvenanceString();
@@ -279,7 +279,7 @@ void TrianglesMeshWriter<ELEMENT_DIM, SPACE_DIM>::WriteFiles()
     MeshEventHandler::EndEvent(MeshEventHandler::FACE);
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void TrianglesMeshWriter<ELEMENT_DIM, SPACE_DIM>::WriteElementsAsFaces()
 {
     std::string comment = "#\n# " + ChasteBuildInfo::GetProvenanceString();
@@ -326,7 +326,7 @@ void TrianglesMeshWriter<ELEMENT_DIM, SPACE_DIM>::WriteElementsAsFaces()
     p_element_file->close();
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void TrianglesMeshWriter<ELEMENT_DIM, SPACE_DIM>::WriteFacesAsEdges()
 {
     std::string comment = "#\n# " + ChasteBuildInfo::GetProvenanceString();
@@ -370,8 +370,8 @@ void TrianglesMeshWriter<ELEMENT_DIM, SPACE_DIM>::WriteFacesAsEdges()
     p_face_file->close();
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
-template<class T_DATA>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <class T_DATA>
 void TrianglesMeshWriter<ELEMENT_DIM, SPACE_DIM>::WriteItem(out_stream &pFile, unsigned itemNumber,
                                                             const std::vector<T_DATA> &dataPacket)
 {
@@ -380,8 +380,8 @@ void TrianglesMeshWriter<ELEMENT_DIM, SPACE_DIM>::WriteItem(out_stream &pFile, u
     WriteItem(pFile, itemNumber, dataPacket, std::vector<double>());
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
-template<class T_DATA>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <class T_DATA>
 void TrianglesMeshWriter<ELEMENT_DIM, SPACE_DIM>::WriteItem(out_stream &pFile, unsigned itemNumber,
                                                             const std::vector<T_DATA> &dataPacket,
                                                             const std::vector<double> &rAttributes)

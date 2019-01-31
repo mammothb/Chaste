@@ -209,7 +209,7 @@ class TestSolvingCoupledNonlinearPdes : public CxxTest::TestSuite
 {
 private:
 
-    template<int DIM>
+    template <int DIM>
     void runTestSimpleCoupledNonlinearPde()
     {
         std::string file;

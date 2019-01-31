@@ -38,7 +38,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "UblasIncludes.hpp"
 #include <boost/numeric/ublas/vector_proxy.hpp>
 
-template<unsigned ELEM_DIM, unsigned SPACE_DIM>
+template <unsigned ELEM_DIM, unsigned SPACE_DIM>
 BidomainCorrectionTermAssembler<ELEM_DIM,SPACE_DIM>::BidomainCorrectionTermAssembler(
      AbstractTetrahedralMesh<ELEM_DIM,SPACE_DIM>* pMesh,
      BidomainTissue<SPACE_DIM>* pTissue)
@@ -48,7 +48,7 @@ BidomainCorrectionTermAssembler<ELEM_DIM,SPACE_DIM>::BidomainCorrectionTermAssem
     assert(mpConfig->GetUseStateVariableInterpolation());
 }
 
-template<unsigned ELEM_DIM, unsigned SPACE_DIM>
+template <unsigned ELEM_DIM, unsigned SPACE_DIM>
 c_vector<double,2*(ELEM_DIM+1)> BidomainCorrectionTermAssembler<ELEM_DIM,SPACE_DIM>::ComputeVectorTerm(
     c_vector<double, ELEM_DIM+1> &rPhi,
     c_matrix<double, SPACE_DIM, ELEM_DIM+1> &rGradPhi /* not used */,

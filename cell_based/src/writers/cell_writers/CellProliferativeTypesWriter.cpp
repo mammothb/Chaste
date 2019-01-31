@@ -40,14 +40,14 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "CellLabel.hpp"
 #include "WildTypeCellMutationState.hpp"
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 CellProliferativeTypesWriter<ELEMENT_DIM, SPACE_DIM>::CellProliferativeTypesWriter()
     : AbstractCellWriter<ELEMENT_DIM, SPACE_DIM>("results.vizcelltypes")
 {
     this->mVtkCellDataName = "Cell types";
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 double CellProliferativeTypesWriter<ELEMENT_DIM, SPACE_DIM>::GetCellDataForVtkOutput(CellPtr pCell, AbstractCellPopulation<ELEMENT_DIM, SPACE_DIM>* pCellPopulation)
 {
     double colour = pCell->GetCellProliferativeType()->GetColour();
@@ -72,7 +72,7 @@ double CellProliferativeTypesWriter<ELEMENT_DIM, SPACE_DIM>::GetCellDataForVtkOu
     return colour;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void CellProliferativeTypesWriter<ELEMENT_DIM, SPACE_DIM>::VisitCell(CellPtr pCell, AbstractCellPopulation<ELEMENT_DIM, SPACE_DIM>* pCellPopulation)
 {
     unsigned colour = pCell->GetCellProliferativeType()->GetColour();

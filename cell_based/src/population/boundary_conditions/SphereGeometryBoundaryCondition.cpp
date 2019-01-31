@@ -36,7 +36,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "SphereGeometryBoundaryCondition.hpp"
 #include "NodeBasedCellPopulation.hpp"
 
-template<unsigned DIM>
+template <unsigned DIM>
 SphereGeometryBoundaryCondition<DIM>::SphereGeometryBoundaryCondition(AbstractCellPopulation<DIM>* pCellPopulation,
                                                                       c_vector<double, DIM> centre,
                                                                       double radius,
@@ -59,19 +59,19 @@ SphereGeometryBoundaryCondition<DIM>::SphereGeometryBoundaryCondition(AbstractCe
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 const c_vector<double, DIM>& SphereGeometryBoundaryCondition<DIM>::rGetCentreOfSphere() const
 {
     return mCentreOfSphere;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 double SphereGeometryBoundaryCondition<DIM>::GetRadiusOfSphere() const
 {
     return mRadiusOfSphere;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void SphereGeometryBoundaryCondition<DIM>::ImposeBoundaryCondition(const std::map<Node<DIM>*, c_vector<double, DIM> >& rOldLocations)
 {
     // Iterate over the cell population
@@ -99,7 +99,7 @@ void SphereGeometryBoundaryCondition<DIM>::ImposeBoundaryCondition(const std::ma
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 bool SphereGeometryBoundaryCondition<DIM>::VerifyBoundaryCondition()
 {
     bool condition_satisfied = true;
@@ -124,7 +124,7 @@ bool SphereGeometryBoundaryCondition<DIM>::VerifyBoundaryCondition()
     return condition_satisfied;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void SphereGeometryBoundaryCondition<DIM>::OutputCellPopulationBoundaryConditionParameters(out_stream& rParamsFile)
 {
     *rParamsFile << "\t\t\t<CentreOfSphere>";

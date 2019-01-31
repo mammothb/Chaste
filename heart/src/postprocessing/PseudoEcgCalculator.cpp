@@ -40,7 +40,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "Version.hpp"
 #include <iostream>
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM, unsigned PROBLEM_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM, unsigned PROBLEM_DIM>
 double PseudoEcgCalculator<ELEMENT_DIM, SPACE_DIM, PROBLEM_DIM> ::GetIntegrand(ChastePoint<SPACE_DIM>& rX,
                                 c_vector<double,PROBLEM_DIM>& rU,
                                 c_matrix<double,PROBLEM_DIM,SPACE_DIM>& rGradU)
@@ -58,7 +58,7 @@ double PseudoEcgCalculator<ELEMENT_DIM, SPACE_DIM, PROBLEM_DIM> ::GetIntegrand(C
     return -mDiffusionCoefficient*integrand;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM, unsigned PROBLEM_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM, unsigned PROBLEM_DIM>
 PseudoEcgCalculator<ELEMENT_DIM, SPACE_DIM, PROBLEM_DIM>::PseudoEcgCalculator(AbstractTetrahedralMesh<ELEMENT_DIM,SPACE_DIM>& rMesh,
                                                                               const ChastePoint<SPACE_DIM>& rProbeElectrode,
                                                                               const FileFinder& rDirectory,
@@ -78,7 +78,7 @@ PseudoEcgCalculator<ELEMENT_DIM, SPACE_DIM, PROBLEM_DIM>::PseudoEcgCalculator(Ab
     assert(mNumberOfNodes == mrMesh.GetNumNodes());
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM, unsigned PROBLEM_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM, unsigned PROBLEM_DIM>
 bool PseudoEcgCalculator<ELEMENT_DIM, SPACE_DIM, PROBLEM_DIM>::ShouldSkipThisElement(Element<ELEMENT_DIM,SPACE_DIM>& rElement)
 {
     bool result = false; // Don't skip usually
@@ -90,20 +90,20 @@ bool PseudoEcgCalculator<ELEMENT_DIM, SPACE_DIM, PROBLEM_DIM>::ShouldSkipThisEle
     return result;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM, unsigned PROBLEM_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM, unsigned PROBLEM_DIM>
 PseudoEcgCalculator<ELEMENT_DIM, SPACE_DIM, PROBLEM_DIM>::~PseudoEcgCalculator()
 {
     delete mpDataReader;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM, unsigned PROBLEM_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM, unsigned PROBLEM_DIM>
 void PseudoEcgCalculator<ELEMENT_DIM, SPACE_DIM, PROBLEM_DIM>::SetDiffusionCoefficient(double diffusionCoefficient)
 {
     assert(diffusionCoefficient>=0);
     mDiffusionCoefficient = diffusionCoefficient;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM, unsigned PROBLEM_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM, unsigned PROBLEM_DIM>
 double PseudoEcgCalculator<ELEMENT_DIM, SPACE_DIM, PROBLEM_DIM>::ComputePseudoEcgAtOneTimeStep (unsigned timeStep)
 {
     Vec solution_at_one_time_step = PetscTools::CreateVec(mNumberOfNodes);
@@ -123,7 +123,7 @@ double PseudoEcgCalculator<ELEMENT_DIM, SPACE_DIM, PROBLEM_DIM>::ComputePseudoEc
     return pseudo_ecg_at_one_timestep;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM, unsigned PROBLEM_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM, unsigned PROBLEM_DIM>
 void PseudoEcgCalculator<ELEMENT_DIM, SPACE_DIM, PROBLEM_DIM>::WritePseudoEcg ()
 {
     // Cache the time values so that we can plot a decent x-axis

@@ -40,7 +40,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // Implementation
 ///////////////////////////////////////////////////////////////////////////////////
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 unsigned AbstractMeshReader<ELEMENT_DIM, SPACE_DIM>::GetNumElementAttributes() const
 {
     // By default returns 0.  If a concrete class does read attributes
@@ -48,13 +48,13 @@ unsigned AbstractMeshReader<ELEMENT_DIM, SPACE_DIM>::GetNumElementAttributes() c
     return 0;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 unsigned AbstractMeshReader<ELEMENT_DIM, SPACE_DIM>::GetNumEdges() const
 {
     return GetNumFaces();
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 unsigned AbstractMeshReader<ELEMENT_DIM, SPACE_DIM>::GetNumFaceAttributes() const
 {
     // By default returns 0.  If a concrete class does read attributes
@@ -62,7 +62,7 @@ unsigned AbstractMeshReader<ELEMENT_DIM, SPACE_DIM>::GetNumFaceAttributes() cons
     return 0;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 std::vector<double> AbstractMeshReader<ELEMENT_DIM, SPACE_DIM>::GetNodeAttributes()
 {
     // By default returns an empty vector.  If a concrete class does read node attributes
@@ -71,85 +71,85 @@ std::vector<double> AbstractMeshReader<ELEMENT_DIM, SPACE_DIM>::GetNodeAttribute
     return empty;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 ElementData AbstractMeshReader<ELEMENT_DIM, SPACE_DIM>::GetNextEdgeData()
 {
     return GetNextFaceData();
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 std::vector<double> AbstractMeshReader<ELEMENT_DIM, SPACE_DIM>::GetNode(unsigned index)
 {
     EXCEPTION("Random access is only implemented in mesh readers for binary mesh files.");
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 ElementData AbstractMeshReader<ELEMENT_DIM, SPACE_DIM>::GetElementData(unsigned index)
 {
     EXCEPTION("Random access is only implemented in mesh readers for binary mesh files.");
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 ElementData AbstractMeshReader<ELEMENT_DIM, SPACE_DIM>::GetFaceData(unsigned index)
 {
     EXCEPTION("Random access is only implemented in mesh readers for binary mesh files.");
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 ElementData AbstractMeshReader<ELEMENT_DIM, SPACE_DIM>::GetEdgeData(unsigned index)
 {
     return GetFaceData(index);
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 std::vector<unsigned> AbstractMeshReader<ELEMENT_DIM, SPACE_DIM>::GetContainingElementIndices(unsigned index)
 {
     EXCEPTION("Ncl files are only implemented in mesh readers for binary mesh files.");
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 std::string AbstractMeshReader<ELEMENT_DIM, SPACE_DIM>::GetMeshFileBaseName()
 {
     return "";
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 unsigned AbstractMeshReader<ELEMENT_DIM, SPACE_DIM>::GetOrderOfElements()
 {
     return 1u;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 unsigned AbstractMeshReader<ELEMENT_DIM, SPACE_DIM>::GetOrderOfBoundaryElements()
 {
     return 1u;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 bool AbstractMeshReader<ELEMENT_DIM, SPACE_DIM>::GetReadContainingElementOfBoundaryElement()
 {
     return false;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 bool AbstractMeshReader<ELEMENT_DIM, SPACE_DIM>::IsFileFormatBinary()
 {
     return false;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 bool AbstractMeshReader<ELEMENT_DIM, SPACE_DIM>::HasNclFile()
 {
     return false;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 bool AbstractMeshReader<ELEMENT_DIM, SPACE_DIM>::HasNodePermutation()
 {
     return false;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 const std::vector<unsigned>& AbstractMeshReader<ELEMENT_DIM, SPACE_DIM>::rGetNodePermutation()
 {
     EXCEPTION("Node permutations aren't supported by this reader");
@@ -157,19 +157,19 @@ const std::vector<unsigned>& AbstractMeshReader<ELEMENT_DIM, SPACE_DIM>::rGetNod
 
 // Cable elements aren't supported in most formats
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 unsigned AbstractMeshReader<ELEMENT_DIM, SPACE_DIM>::GetNumCableElements() const
 {
     return 0u;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 unsigned AbstractMeshReader<ELEMENT_DIM, SPACE_DIM>::GetNumCableElementAttributes() const
 {
     return 0u;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 ElementData AbstractMeshReader<ELEMENT_DIM, SPACE_DIM>::GetNextCableElementData()
 {
     EXCEPTION("Cable elements are not supported by this mesh format.");
@@ -178,28 +178,28 @@ ElementData AbstractMeshReader<ELEMENT_DIM, SPACE_DIM>::GetNextCableElementData(
 
 // Iterator-related methods
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 typename AbstractMeshReader<ELEMENT_DIM, SPACE_DIM>::ElementIterator
     AbstractMeshReader<ELEMENT_DIM, SPACE_DIM>::GetElementIteratorBegin()
 {
     return ElementIterator(0u, this);
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 typename AbstractMeshReader<ELEMENT_DIM, SPACE_DIM>::ElementIterator
     AbstractMeshReader<ELEMENT_DIM, SPACE_DIM>::GetElementIteratorBegin(const std::set<unsigned>& rIndices)
 {
     return ElementIterator(rIndices, this);
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 typename AbstractMeshReader<ELEMENT_DIM, SPACE_DIM>::ElementIterator
     AbstractMeshReader<ELEMENT_DIM, SPACE_DIM>::GetElementIteratorEnd()
 {
     return ElementIterator(GetNumElements(), this);
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 AbstractMeshReader<ELEMENT_DIM, SPACE_DIM>::ElementIterator::ElementIterator(const std::set<unsigned>& rIndices,
                                                                              AbstractMeshReader<ELEMENT_DIM, SPACE_DIM>* pReader)
     : mpIndices(&rIndices),
@@ -217,7 +217,7 @@ AbstractMeshReader<ELEMENT_DIM, SPACE_DIM>::ElementIterator::ElementIterator(con
     }
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void AbstractMeshReader<ELEMENT_DIM, SPACE_DIM>::ElementIterator::increment()
 {
     unsigned next_index;
@@ -244,7 +244,7 @@ void AbstractMeshReader<ELEMENT_DIM, SPACE_DIM>::ElementIterator::increment()
     CacheData(next_index);
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void AbstractMeshReader<ELEMENT_DIM, SPACE_DIM>::ElementIterator::CacheData(unsigned index, bool firstRead)
 {
     assert(mpReader);
@@ -274,28 +274,28 @@ void AbstractMeshReader<ELEMENT_DIM, SPACE_DIM>::ElementIterator::CacheData(unsi
     mIndex = index;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 typename AbstractMeshReader<ELEMENT_DIM, SPACE_DIM>::NodeIterator
     AbstractMeshReader<ELEMENT_DIM, SPACE_DIM>::GetNodeIteratorBegin()
 {
     return NodeIterator(0u, this);
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 typename AbstractMeshReader<ELEMENT_DIM, SPACE_DIM>::NodeIterator
     AbstractMeshReader<ELEMENT_DIM, SPACE_DIM>::GetNodeIteratorBegin(const std::set<unsigned>& rIndices)
 {
     return NodeIterator(rIndices, this);
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 typename AbstractMeshReader<ELEMENT_DIM, SPACE_DIM>::NodeIterator
     AbstractMeshReader<ELEMENT_DIM, SPACE_DIM>::GetNodeIteratorEnd()
 {
     return NodeIterator(GetNumNodes(), this);
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 AbstractMeshReader<ELEMENT_DIM, SPACE_DIM>::NodeIterator::NodeIterator(const std::set<unsigned>& rIndices,
                                                                              AbstractMeshReader<ELEMENT_DIM, SPACE_DIM>* pReader)
     : mpIndices(&rIndices),
@@ -313,7 +313,7 @@ AbstractMeshReader<ELEMENT_DIM, SPACE_DIM>::NodeIterator::NodeIterator(const std
     }
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void AbstractMeshReader<ELEMENT_DIM, SPACE_DIM>::NodeIterator::increment()
 {
     unsigned next_index;
@@ -340,7 +340,7 @@ void AbstractMeshReader<ELEMENT_DIM, SPACE_DIM>::NodeIterator::increment()
     CacheData(next_index);
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void AbstractMeshReader<ELEMENT_DIM, SPACE_DIM>::NodeIterator::CacheData(unsigned index, bool firstRead)
 {
     assert(mpReader);

@@ -41,13 +41,13 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "PottsBasedCellPopulation.hpp"
 #include "VertexBasedCellPopulation.hpp"
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 CellPopulationElementWriter<ELEMENT_DIM, SPACE_DIM>::CellPopulationElementWriter()
     : AbstractCellPopulationWriter<ELEMENT_DIM, SPACE_DIM>("results.vizelements")
 {
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void CellPopulationElementWriter<ELEMENT_DIM, SPACE_DIM>::Visit(MeshBasedCellPopulation<ELEMENT_DIM, SPACE_DIM>* pCellPopulation)
 {
     for (typename MutableMesh<ELEMENT_DIM,SPACE_DIM>::ElementIterator elem_iter = static_cast<MutableMesh<ELEMENT_DIM,SPACE_DIM>&>((pCellPopulation->rGetMesh())).GetElementIteratorBegin();
@@ -85,19 +85,19 @@ void CellPopulationElementWriter<ELEMENT_DIM, SPACE_DIM>::Visit(MeshBasedCellPop
     }
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void CellPopulationElementWriter<ELEMENT_DIM, SPACE_DIM>::Visit(CaBasedCellPopulation<SPACE_DIM>* pCellPopulation)
 {
     EXCEPTION("CellPopulationElementWriter cannot be used with a CaBasedCellPopulation");
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void CellPopulationElementWriter<ELEMENT_DIM, SPACE_DIM>::Visit(NodeBasedCellPopulation<SPACE_DIM>* pCellPopulation)
 {
     EXCEPTION("CellPopulationElementWriter cannot be used with a NodeBasedCellPopulation");
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void CellPopulationElementWriter<ELEMENT_DIM, SPACE_DIM>::Visit(PottsBasedCellPopulation<SPACE_DIM>* pCellPopulation)
 {
     // Loop over cells and find associated elements so in the same order as the cells in output files
@@ -133,7 +133,7 @@ void CellPopulationElementWriter<ELEMENT_DIM, SPACE_DIM>::Visit(PottsBasedCellPo
     }
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void CellPopulationElementWriter<ELEMENT_DIM, SPACE_DIM>::Visit(VertexBasedCellPopulation<SPACE_DIM>* pCellPopulation)
 {
     // Loop over cells and find associated elements so in the same order as the cells in output files

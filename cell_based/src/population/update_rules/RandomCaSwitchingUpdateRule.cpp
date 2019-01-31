@@ -35,19 +35,19 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include "RandomCaSwitchingUpdateRule.hpp"
 
-template<unsigned DIM>
+template <unsigned DIM>
 RandomCaSwitchingUpdateRule<DIM>::RandomCaSwitchingUpdateRule()
     : AbstractCaSwitchingUpdateRule<DIM>(),
       mSwitchingParameter(0.5)
 {
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 RandomCaSwitchingUpdateRule<DIM>::~RandomCaSwitchingUpdateRule()
 {
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 double RandomCaSwitchingUpdateRule<DIM>::EvaluateSwitchingProbability(unsigned currentNodeIndex,
                                                                       unsigned neighbourNodeIndex,
                                                                       CaBasedCellPopulation<DIM>& rCellPopulation,
@@ -57,19 +57,19 @@ double RandomCaSwitchingUpdateRule<DIM>::EvaluateSwitchingProbability(unsigned c
     return mSwitchingParameter*dt;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 double RandomCaSwitchingUpdateRule<DIM>::GetSwitchingParameter()
 {
     return mSwitchingParameter;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void RandomCaSwitchingUpdateRule<DIM>::SetSwitchingParameter(double switchingParameter)
 {
     mSwitchingParameter = switchingParameter;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void RandomCaSwitchingUpdateRule<DIM>::OutputUpdateRuleParameters(out_stream& rParamsFile)
 {
     *rParamsFile << "\t\t\t<SwitchingParameter>" << mSwitchingParameter << "</SwitchingParameter>\n";

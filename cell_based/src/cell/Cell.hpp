@@ -101,7 +101,7 @@ private:
      * @param archive the archive
      * @param version the current version of this class
      */
-    template<class Archive>
+    template <class Archive>
     void serialize(Archive & archive, const unsigned int version)
     {
         // These first four are also dealt with by {load,save}_construct_data
@@ -313,7 +313,7 @@ public:
      * directly, to ensure that the cell property keeps correct track of the
      * number of cells with it (if this is done).
      */
-    template<typename CLASS>
+    template <typename CLASS>
     void RemoveCellProperty()
     {
         bool cell_has_property = false;
@@ -340,7 +340,7 @@ public:
      * @return whether the cell property collection contains a property that has the exact type CLASS.
      * Just calls mCellPropertyCollection.HasProperty().
      */
-    template<typename CLASS>
+    template <typename CLASS>
     bool HasCellProperty() const
     {
         return mCellPropertyCollection.HasProperty<CLASS>();
@@ -429,7 +429,7 @@ namespace serialization
 /**
  * Serialize information required to construct a Cell.
  */
-template<class Archive>
+template <class Archive>
 inline void save_construct_data(
     Archive & ar, const Cell * t, const unsigned int file_version)
 {
@@ -450,7 +450,7 @@ inline void save_construct_data(
 /**
  * De-serialize constructor parameters and initialize a Cell.
  */
-template<class Archive>
+template <class Archive>
 inline void load_construct_data(
     Archive & ar, Cell * t, const unsigned int file_version)
 {

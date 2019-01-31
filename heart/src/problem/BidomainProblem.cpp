@@ -96,7 +96,7 @@ void BidomainProblem<DIM>::AnalyseMeshForBath()
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 Vec BidomainProblem<DIM>::CreateInitialCondition()
 {
     Vec init_cond = AbstractCardiacProblem<DIM,DIM,2>::CreateInitialCondition();
@@ -121,7 +121,7 @@ Vec BidomainProblem<DIM>::CreateInitialCondition()
     return init_cond;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 AbstractCardiacTissue<DIM> * BidomainProblem<DIM>::CreateCardiacTissue()
 {
     AnalyseMeshForBath();
@@ -129,7 +129,7 @@ AbstractCardiacTissue<DIM> * BidomainProblem<DIM>::CreateCardiacTissue()
     return mpBidomainTissue;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 AbstractDynamicLinearPdeSolver<DIM, DIM, 2>* BidomainProblem<DIM>::CreateSolver()
 {
     /*
@@ -160,7 +160,7 @@ AbstractDynamicLinearPdeSolver<DIM, DIM, 2>* BidomainProblem<DIM>::CreateSolver(
     return mpSolver;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 BidomainProblem<DIM>::BidomainProblem(
             AbstractCardiacCellFactory<DIM>* pCellFactory, bool hasBath)
     : AbstractCardiacProblem<DIM,DIM, 2>(pCellFactory),
@@ -171,7 +171,7 @@ BidomainProblem<DIM>::BidomainProblem(
     mFixedExtracellularPotentialNodes.resize(0);
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 BidomainProblem<DIM>::BidomainProblem()
     : AbstractCardiacProblem<DIM, DIM, 2>(),
       mpBidomainTissue(NULL),
@@ -180,7 +180,7 @@ BidomainProblem<DIM>::BidomainProblem()
     mFixedExtracellularPotentialNodes.resize(0);
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void BidomainProblem<DIM>::SetFixedExtracellularPotentialNodes(std::vector<unsigned> nodes)
 {
     mFixedExtracellularPotentialNodes.resize(nodes.size());
@@ -192,20 +192,20 @@ void BidomainProblem<DIM>::SetFixedExtracellularPotentialNodes(std::vector<unsig
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void BidomainProblem<DIM>::SetNodeForAverageOfPhiZeroed(unsigned node)
 {
     mRowForAverageOfPhiZeroed = 2*node+1;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 BidomainTissue<DIM>* BidomainProblem<DIM>::GetBidomainTissue()
 {
     assert(mpBidomainTissue!=NULL);
     return mpBidomainTissue;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void BidomainProblem<DIM>::WriteInfo(double time)
 {
     if (PetscTools::AmMaster())
@@ -229,7 +229,7 @@ void BidomainProblem<DIM>::WriteInfo(double time)
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void BidomainProblem<DIM>::DefineWriterColumns(bool extending)
 {
     AbstractCardiacProblem<DIM,DIM,2>::DefineWriterColumns(extending);
@@ -244,7 +244,7 @@ void BidomainProblem<DIM>::DefineWriterColumns(bool extending)
     AbstractCardiacProblem<DIM,DIM,2>::DefineExtraVariablesWriterColumns(extending);
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void BidomainProblem<DIM>::WriteOneStep(double time, Vec voltageVec)
 {
     this->mpWriter->PutUnlimitedVariable(time);
@@ -255,7 +255,7 @@ void BidomainProblem<DIM>::WriteOneStep(double time, Vec voltageVec)
     AbstractCardiacProblem<DIM,DIM,2>::WriteExtraVariablesOneStep();
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void BidomainProblem<DIM>::PreSolveChecks()
 {
     AbstractCardiacProblem<DIM,DIM, 2>::PreSolveChecks();
@@ -275,7 +275,7 @@ void BidomainProblem<DIM>::PreSolveChecks()
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void BidomainProblem<DIM>::SetElectrodes()
 {
     if (!mHasBath)
@@ -292,7 +292,7 @@ void BidomainProblem<DIM>::SetElectrodes()
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void BidomainProblem<DIM>::AtBeginningOfTimestep(double time)
 {
     if (mpElectrodes && mpElectrodes->SwitchOn(time))
@@ -333,7 +333,7 @@ void BidomainProblem<DIM>::AtBeginningOfTimestep(double time)
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void BidomainProblem<DIM>::OnEndOfTimestep(double time)
 {
     if (mpElectrodes && mpElectrodes->SwitchOff(time))
@@ -369,7 +369,7 @@ void BidomainProblem<DIM>::OnEndOfTimestep(double time)
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void BidomainProblem<DIM>::SetUpAdditionalStoppingTimes(std::vector<double>& rAdditionalStoppingTimes)
 {
     if (mpElectrodes)
@@ -379,7 +379,7 @@ void BidomainProblem<DIM>::SetUpAdditionalStoppingTimes(std::vector<double>& rAd
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 bool BidomainProblem<DIM>::GetHasBath()
 {
     return mHasBath;

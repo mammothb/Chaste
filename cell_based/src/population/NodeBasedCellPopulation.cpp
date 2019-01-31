@@ -37,7 +37,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "MathsCustomFunctions.hpp"
 #include "VtkMeshWriter.hpp"
 
-template<unsigned DIM>
+template <unsigned DIM>
 NodeBasedCellPopulation<DIM>::NodeBasedCellPopulation(NodesOnlyMesh<DIM>& rMesh,
                                       std::vector<CellPtr>& rCells,
                                       const std::vector<unsigned> locationIndices,
@@ -57,7 +57,7 @@ NodeBasedCellPopulation<DIM>::NodeBasedCellPopulation(NodesOnlyMesh<DIM>& rMesh,
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 NodeBasedCellPopulation<DIM>::NodeBasedCellPopulation(NodesOnlyMesh<DIM>& rMesh)
     : AbstractCentreBasedCellPopulation<DIM>(rMesh),
       mDeleteMesh(true),
@@ -68,7 +68,7 @@ NodeBasedCellPopulation<DIM>::NodeBasedCellPopulation(NodesOnlyMesh<DIM>& rMesh)
     mpNodesOnlyMesh = static_cast<NodesOnlyMesh<DIM>* >(&(this->mrMesh));
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 NodeBasedCellPopulation<DIM>::~NodeBasedCellPopulation()
 {
     Clear();
@@ -78,19 +78,19 @@ NodeBasedCellPopulation<DIM>::~NodeBasedCellPopulation()
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 NodesOnlyMesh<DIM>& NodeBasedCellPopulation<DIM>::rGetMesh()
 {
     return *mpNodesOnlyMesh;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 const NodesOnlyMesh<DIM>& NodeBasedCellPopulation<DIM>::rGetMesh() const
 {
     return *mpNodesOnlyMesh;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 TetrahedralMesh<DIM, DIM>* NodeBasedCellPopulation<DIM>::GetTetrahedralMeshForPdeModifier()
 {
     // Note that this code does not yet work in parallel.
@@ -109,13 +109,13 @@ TetrahedralMesh<DIM, DIM>* NodeBasedCellPopulation<DIM>::GetTetrahedralMeshForPd
     return new MutableMesh<DIM,DIM>(temp_nodes);
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void NodeBasedCellPopulation<DIM>::Clear()
 {
     mNodePairs.clear();
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void NodeBasedCellPopulation<DIM>::Validate()
 {
     for (typename AbstractMesh<DIM,DIM>::NodeIterator node_iter = this->mrMesh.GetNodeIteratorBegin();
@@ -133,19 +133,19 @@ void NodeBasedCellPopulation<DIM>::Validate()
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 Node<DIM>* NodeBasedCellPopulation<DIM>::GetNode(unsigned index)
 {
     return mpNodesOnlyMesh->GetNodeOrHaloNode(index);
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void NodeBasedCellPopulation<DIM>::SetNode(unsigned nodeIndex, ChastePoint<DIM>& rNewLocation)
 {
     mpNodesOnlyMesh->SetNode(nodeIndex, rNewLocation, false);
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void NodeBasedCellPopulation<DIM>::Update(bool hasHadBirthsOrDeaths)
 {
     UpdateCellProcessLocation();
@@ -191,7 +191,7 @@ void NodeBasedCellPopulation<DIM>::Update(bool hasHadBirthsOrDeaths)
     PetscTools::Barrier("Update");
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void NodeBasedCellPopulation<DIM>::UpdateMapsAfterRemesh(NodeMap& map)
 {
     if (!map.IsIdentityMap())
@@ -223,7 +223,7 @@ void NodeBasedCellPopulation<DIM>::UpdateMapsAfterRemesh(NodeMap& map)
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 unsigned NodeBasedCellPopulation<DIM>::RemoveDeadCells()
 {
     unsigned num_removed = 0;
@@ -254,19 +254,19 @@ unsigned NodeBasedCellPopulation<DIM>::RemoveDeadCells()
     return num_removed;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 unsigned NodeBasedCellPopulation<DIM>::AddNode(Node<DIM>* pNewNode)
 {
     return mpNodesOnlyMesh->AddNode(pNewNode);
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 unsigned NodeBasedCellPopulation<DIM>::GetNumNodes()
 {
     return mpNodesOnlyMesh->GetNumNodes();
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 CellPtr NodeBasedCellPopulation<DIM>::GetCellUsingLocationIndex(unsigned index)
 {
     std::map<unsigned, CellPtr>::iterator iter = mLocationHaloCellMap.find(index);
@@ -280,18 +280,18 @@ CellPtr NodeBasedCellPopulation<DIM>::GetCellUsingLocationIndex(unsigned index)
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void NodeBasedCellPopulation<DIM>::UpdateParticlesAfterReMesh(NodeMap& rMap)
 {
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 std::vector< std::pair<Node<DIM>*, Node<DIM>* > >& NodeBasedCellPopulation<DIM>::rGetNodePairs()
 {
     return mNodePairs;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void NodeBasedCellPopulation<DIM>::OutputCellPopulationParameters(out_stream& rParamsFile)
 {
     *rParamsFile << "\t\t<MechanicsCutOffLength>" << mpNodesOnlyMesh->GetMaximumInteractionDistance() << "</MechanicsCutOffLength>\n";
@@ -301,61 +301,61 @@ void NodeBasedCellPopulation<DIM>::OutputCellPopulationParameters(out_stream& rP
     AbstractCentreBasedCellPopulation<DIM>::OutputCellPopulationParameters(rParamsFile);
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void NodeBasedCellPopulation<DIM>::AcceptPopulationWriter(boost::shared_ptr<AbstractCellPopulationWriter<DIM, DIM> > pPopulationWriter)
 {
     pPopulationWriter->Visit(this);
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void NodeBasedCellPopulation<DIM>::AcceptPopulationCountWriter(boost::shared_ptr<AbstractCellPopulationCountWriter<DIM, DIM> > pPopulationCountWriter)
 {
     pPopulationCountWriter->Visit(this);
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void NodeBasedCellPopulation<DIM>::AcceptCellWriter(boost::shared_ptr<AbstractCellWriter<DIM, DIM> > pCellWriter, CellPtr pCell)
 {
     pCellWriter->VisitCell(pCell, this);
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 double NodeBasedCellPopulation<DIM>::GetMechanicsCutOffLength()
 {
     return mpNodesOnlyMesh->GetMaximumInteractionDistance();
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 bool NodeBasedCellPopulation<DIM>::GetUseVariableRadii()
 {
     return mUseVariableRadii;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void NodeBasedCellPopulation<DIM>::SetUseVariableRadii(bool useVariableRadii)
 {
     mUseVariableRadii = useVariableRadii;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void NodeBasedCellPopulation<DIM>::SetLoadBalanceMesh(bool loadBalanceMesh)
 {
     mLoadBalanceMesh = loadBalanceMesh;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void NodeBasedCellPopulation<DIM>::SetLoadBalanceFrequency(unsigned loadBalanceFrequency)
 {
     mLoadBalanceFrequency = loadBalanceFrequency;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 double NodeBasedCellPopulation<DIM>::GetWidth(const unsigned& rDimension)
 {
     return mpNodesOnlyMesh->GetWidth(rDimension);
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 c_vector<double, DIM> NodeBasedCellPopulation<DIM>::GetSizeOfCellPopulation()
 {
     c_vector<double, DIM> local_size = AbstractCellPopulation<DIM, DIM>::GetSizeOfCellPopulation();
@@ -369,7 +369,7 @@ c_vector<double, DIM> NodeBasedCellPopulation<DIM>::GetSizeOfCellPopulation()
     return global_size;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 std::set<unsigned> NodeBasedCellPopulation<DIM>::GetNodesWithinNeighbourhoodRadius(unsigned index, double neighbourhoodRadius)
 {
     // Check neighbourhoodRadius is less than the interaction radius. If not you wont return all the correct nodes
@@ -425,7 +425,7 @@ std::set<unsigned> NodeBasedCellPopulation<DIM>::GetNodesWithinNeighbourhoodRadi
     return neighbouring_node_indices;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 std::set<unsigned> NodeBasedCellPopulation<DIM>::GetNeighbouringNodeIndices(unsigned index)
 {
     std::set<unsigned> neighbouring_node_indices;
@@ -491,7 +491,7 @@ std::set<unsigned> NodeBasedCellPopulation<DIM>::GetNeighbouringNodeIndices(unsi
     return neighbouring_node_indices;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 double NodeBasedCellPopulation<DIM>::GetVolumeOfCell(CellPtr pCell)
 {
     // Not implemented or tested in 1D
@@ -581,7 +581,7 @@ double NodeBasedCellPopulation<DIM>::GetVolumeOfCell(CellPtr pCell)
     return cell_volume;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void NodeBasedCellPopulation<DIM>::WriteVtkResultsToFile(const std::string& rDirectory)
 {
 #ifdef CHASTE_VTK
@@ -694,7 +694,7 @@ void NodeBasedCellPopulation<DIM>::WriteVtkResultsToFile(const std::string& rDir
 #endif //CHASTE_VTK
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 CellPtr NodeBasedCellPopulation<DIM>::AddCell(CellPtr pNewCell, CellPtr pParentCell)
 {
     assert(pNewCell);
@@ -716,7 +716,7 @@ CellPtr NodeBasedCellPopulation<DIM>::AddCell(CellPtr pNewCell, CellPtr pParentC
     return p_created_cell;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void NodeBasedCellPopulation<DIM>::AddMovedCell(CellPtr pCell, boost::shared_ptr<Node<DIM> > pNode)
 {
     // Create a new node
@@ -729,7 +729,7 @@ void NodeBasedCellPopulation<DIM>::AddMovedCell(CellPtr pCell, boost::shared_ptr
     this->AddCellUsingLocationIndex(pNode->GetIndex(), pCell);
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void NodeBasedCellPopulation<DIM>::DeleteMovedCell(unsigned index)
 {
     mpNodesOnlyMesh->DeleteMovedNode(index);
@@ -750,7 +750,7 @@ void NodeBasedCellPopulation<DIM>::DeleteMovedCell(unsigned index)
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void NodeBasedCellPopulation<DIM>::SendCellsToNeighbourProcesses()
 {
     MPI_Status status;
@@ -767,7 +767,7 @@ void NodeBasedCellPopulation<DIM>::SendCellsToNeighbourProcesses()
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void NodeBasedCellPopulation<DIM>::NonBlockingSendCellsToNeighbourProcesses()
 {
     if (!PetscTools::AmTopMost())
@@ -795,7 +795,7 @@ void NodeBasedCellPopulation<DIM>::NonBlockingSendCellsToNeighbourProcesses()
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void NodeBasedCellPopulation<DIM>::GetReceivedCells()
 {
     if (!PetscTools::AmTopMost())
@@ -808,7 +808,7 @@ void NodeBasedCellPopulation<DIM>::GetReceivedCells()
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 std::pair<CellPtr, Node<DIM>* > NodeBasedCellPopulation<DIM>::GetCellNodePair(unsigned nodeIndex)
 {
     Node<DIM>* p_node = this->GetNode(nodeIndex);
@@ -820,7 +820,7 @@ std::pair<CellPtr, Node<DIM>* > NodeBasedCellPopulation<DIM>::GetCellNodePair(un
     return new_pair;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void NodeBasedCellPopulation<DIM>::AddNodeAndCellToSendRight(unsigned nodeIndex)
 {
     std::pair<CellPtr, Node<DIM>* > pair = GetCellNodePair(nodeIndex);
@@ -828,7 +828,7 @@ void NodeBasedCellPopulation<DIM>::AddNodeAndCellToSendRight(unsigned nodeIndex)
     mCellsToSendRight.push_back(pair);
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void NodeBasedCellPopulation<DIM>::AddNodeAndCellToSendLeft(unsigned nodeIndex)
 {
     std::pair<CellPtr, Node<DIM>* > pair = GetCellNodePair(nodeIndex);
@@ -836,7 +836,7 @@ void NodeBasedCellPopulation<DIM>::AddNodeAndCellToSendLeft(unsigned nodeIndex)
     mCellsToSendLeft.push_back(pair);
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void NodeBasedCellPopulation<DIM>::AddReceivedCells()
 {
     if (!PetscTools::AmMaster())
@@ -862,7 +862,7 @@ void NodeBasedCellPopulation<DIM>::AddReceivedCells()
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void NodeBasedCellPopulation<DIM>::UpdateCellProcessLocation()
 {
     mpNodesOnlyMesh->ResizeBoxCollection();
@@ -902,7 +902,7 @@ void NodeBasedCellPopulation<DIM>::UpdateCellProcessLocation()
     UpdateMapsAfterRemesh(map);
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void NodeBasedCellPopulation<DIM>::RefreshHaloCells()
 {
     mpNodesOnlyMesh->ClearHaloNodes();
@@ -920,7 +920,7 @@ void NodeBasedCellPopulation<DIM>::RefreshHaloCells()
     NonBlockingSendCellsToNeighbourProcesses();
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void NodeBasedCellPopulation<DIM>::AddCellsToSendRight(std::vector<unsigned>& cellLocationIndices)
 {
     mCellsToSendRight.clear();
@@ -931,7 +931,7 @@ void NodeBasedCellPopulation<DIM>::AddCellsToSendRight(std::vector<unsigned>& ce
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void NodeBasedCellPopulation<DIM>::AddCellsToSendLeft(std::vector<unsigned>& cellLocationIndices)
 {
     mCellsToSendLeft.clear();
@@ -942,7 +942,7 @@ void NodeBasedCellPopulation<DIM>::AddCellsToSendLeft(std::vector<unsigned>& cel
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void NodeBasedCellPopulation<DIM>::AddReceivedHaloCells()
 {
     GetReceivedCells();
@@ -972,7 +972,7 @@ void NodeBasedCellPopulation<DIM>::AddReceivedHaloCells()
     mpNodesOnlyMesh->AddHaloNodesToBoxes();
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void NodeBasedCellPopulation<DIM>::AddHaloCell(CellPtr pCell, boost::shared_ptr<Node<DIM> > pNode)
 {
     mHaloCells.push_back(pCell);

@@ -39,7 +39,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "AveragedSourceEllipticPde.hpp"
 #include "AveragedSourceParabolicPde.hpp"
 
-template<unsigned DIM>
+template <unsigned DIM>
 AbstractPdeModifier<DIM>::AbstractPdeModifier(boost::shared_ptr<AbstractLinearPde<DIM,DIM> > pPde,
                                               boost::shared_ptr<AbstractBoundaryCondition<DIM> > pBoundaryCondition,
                                               bool isNeumannBoundaryCondition,
@@ -60,7 +60,7 @@ AbstractPdeModifier<DIM>::AbstractPdeModifier(boost::shared_ptr<AbstractLinearPd
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 AbstractPdeModifier<DIM>::~AbstractPdeModifier()
 {
     if (mDeleteFeMesh and mpFeMesh!=nullptr)
@@ -73,44 +73,44 @@ AbstractPdeModifier<DIM>::~AbstractPdeModifier()
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 boost::shared_ptr<AbstractLinearPde<DIM,DIM> > AbstractPdeModifier<DIM>::GetPde()
 {
     return mpPde;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 boost::shared_ptr<AbstractBoundaryCondition<DIM> > AbstractPdeModifier<DIM>::GetBoundaryCondition()
 {
     return mpBoundaryCondition;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 bool AbstractPdeModifier<DIM>::IsNeumannBoundaryCondition()
 {
     return mIsNeumannBoundaryCondition;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void AbstractPdeModifier<DIM>::SetDependentVariableName(const std::string& rName)
 {
     mDependentVariableName = rName;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 std::string& AbstractPdeModifier<DIM>::rGetDependentVariableName()
 {
     return mDependentVariableName;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 bool AbstractPdeModifier<DIM>::HasAveragedSourcePde()
 {
     return ((boost::dynamic_pointer_cast<AveragedSourceEllipticPde<DIM> >(mpPde) != nullptr) ||
             (boost::dynamic_pointer_cast<AveragedSourceParabolicPde<DIM> >(mpPde) != nullptr));
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void AbstractPdeModifier<DIM>::SetUpSourceTermsForAveragedSourcePde(TetrahedralMesh<DIM,DIM>* pMesh, std::map<CellPtr, unsigned>* pCellPdeElementMap)
 {
     assert(HasAveragedSourcePde());
@@ -124,25 +124,25 @@ void AbstractPdeModifier<DIM>::SetUpSourceTermsForAveragedSourcePde(TetrahedralM
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 Vec AbstractPdeModifier<DIM>::GetSolution()
 {
     return mSolution;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 Vec AbstractPdeModifier<DIM>::GetSolution() const
 {
     return mSolution;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 TetrahedralMesh<DIM,DIM>* AbstractPdeModifier<DIM>::GetFeMesh() const
 {
     return mpFeMesh;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void AbstractPdeModifier<DIM>::SetupSolve(AbstractCellPopulation<DIM,DIM>& rCellPopulation, std::string outputDirectory)
 {
     // Cache the output directory
@@ -158,7 +158,7 @@ void AbstractPdeModifier<DIM>::SetupSolve(AbstractCellPopulation<DIM,DIM>& rCell
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void AbstractPdeModifier<DIM>::UpdateAtEndOfOutputTimeStep(AbstractCellPopulation<DIM,DIM>& rCellPopulation)
 {
     if (mOutputSolutionAtPdeNodes)
@@ -210,7 +210,7 @@ void AbstractPdeModifier<DIM>::UpdateAtEndOfOutputTimeStep(AbstractCellPopulatio
 #endif //CHASTE_VTK
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void AbstractPdeModifier<DIM>::UpdateAtEndOfSolve(AbstractCellPopulation<DIM,DIM>& rCellPopulation)
 {
     if (mOutputSolutionAtPdeNodes)
@@ -222,25 +222,25 @@ void AbstractPdeModifier<DIM>::UpdateAtEndOfSolve(AbstractCellPopulation<DIM,DIM
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 bool AbstractPdeModifier<DIM>::GetOutputGradient()
 {
     return mOutputGradient;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void AbstractPdeModifier<DIM>::SetOutputGradient(bool outputGradient)
 {
     mOutputGradient = outputGradient;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void AbstractPdeModifier<DIM>::SetOutputSolutionAtPdeNodes(bool outputSolutionAtPdeNodes)
 {
     mOutputSolutionAtPdeNodes = outputSolutionAtPdeNodes;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void AbstractPdeModifier<DIM>::OutputSimulationModifierParameters(out_stream& rParamsFile)
 {
     // No parameters to output, so just call method on direct parent class

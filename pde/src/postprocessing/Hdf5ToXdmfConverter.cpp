@@ -58,7 +58,7 @@ Hdf5ToXdmfConverter<ELEMENT_DIM, SPACE_DIM>::Hdf5ToXdmfConverter(const FileFinde
 
 #ifndef _MSC_VER
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void Hdf5ToXdmfConverter<ELEMENT_DIM, SPACE_DIM>::AddDataOnNodes(XERCES_CPP_NAMESPACE_QUALIFIER DOMElement* pGridElement,
                                                                  XERCES_CPP_NAMESPACE_QUALIFIER DOMDocument* pDomDocument,
                                                                  unsigned timeStep)

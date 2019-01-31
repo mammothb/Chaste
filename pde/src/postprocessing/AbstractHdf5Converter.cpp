@@ -46,7 +46,7 @@ herr_t op_func (hid_t loc_id,
                 void *operator_data);
 
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 AbstractHdf5Converter<ELEMENT_DIM, SPACE_DIM>::AbstractHdf5Converter(const FileFinder& rInputDirectory,
                                                                      const std::string& rFileBaseName,
                                                                      AbstractTetrahedralMesh<ELEMENT_DIM, SPACE_DIM>* pMesh,
@@ -68,7 +68,7 @@ AbstractHdf5Converter<ELEMENT_DIM, SPACE_DIM>::AbstractHdf5Converter(const FileF
     MoveOntoNextDataset();
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void AbstractHdf5Converter<ELEMENT_DIM, SPACE_DIM>::WriteInfoFile()
 {
     // Note that we don't want the child processes to write info files
@@ -105,19 +105,19 @@ void AbstractHdf5Converter<ELEMENT_DIM, SPACE_DIM>::WriteInfoFile()
     }
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 AbstractHdf5Converter<ELEMENT_DIM,SPACE_DIM>::~AbstractHdf5Converter()
 {
     delete mpOutputFileHandler;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 std::string AbstractHdf5Converter<ELEMENT_DIM,SPACE_DIM>::GetSubdirectory()
 {
     return mRelativeSubdirectory;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 bool AbstractHdf5Converter<ELEMENT_DIM,SPACE_DIM>::MoveOntoNextDataset()
 {
     // If we are already at the end just return false.
@@ -153,7 +153,7 @@ bool AbstractHdf5Converter<ELEMENT_DIM,SPACE_DIM>::MoveOntoNextDataset()
     return true;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void AbstractHdf5Converter<ELEMENT_DIM,SPACE_DIM>::GenerateListOfDatasets(const FileFinder& rH5Folder,
                                                                           const std::string& rFileName)
 {

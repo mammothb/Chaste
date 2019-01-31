@@ -58,7 +58,7 @@ class ChasteCuboid : public AbstractChasteRegion<SPACE_DIM>
      * @param archive
      * @param version
      */
-    template<class Archive>
+    template <class Archive>
     void serialize(Archive & archive, const unsigned int version)
     {
         archive & boost::serialization::base_object<AbstractChasteRegion<SPACE_DIM> >(*this);
@@ -115,7 +115,7 @@ namespace boost
 namespace serialization
 {
 
-template<class Archive, unsigned SPACE_DIM>
+template <class Archive, unsigned SPACE_DIM>
 inline void save_construct_data(
     Archive & ar, const ChasteCuboid<SPACE_DIM> * t, const unsigned int file_version)
 {
@@ -129,7 +129,7 @@ inline void save_construct_data(
  * Allow us to not need a default constructor, by specifying how Boost should
  * instantiate an instance (using existing constructor)
  */
-template<class Archive, unsigned SPACE_DIM>
+template <class Archive, unsigned SPACE_DIM>
 inline void load_construct_data(
     Archive & ar, ChasteCuboid<SPACE_DIM> * t, const unsigned int file_version)
 {

@@ -69,7 +69,7 @@ double FakeBathCell::GetIntracellularCalciumConcentration()
     return 0.0;
 }
 
-template<>
+template <>
 void OdeSystemInformation<FakeBathCell>::Initialise(void)
 {
     // State variables

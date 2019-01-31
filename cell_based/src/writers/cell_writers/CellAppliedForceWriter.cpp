@@ -37,7 +37,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "NodeBasedCellPopulation.hpp"
 #include "UblasVectorInclude.hpp"
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 CellAppliedForceWriter<ELEMENT_DIM, SPACE_DIM>::CellAppliedForceWriter()
     : AbstractCellWriter<ELEMENT_DIM, SPACE_DIM>("cellappliedforce.dat")
 {
@@ -46,7 +46,7 @@ CellAppliedForceWriter<ELEMENT_DIM, SPACE_DIM>::CellAppliedForceWriter()
     this->mOutputVectorData = true;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 c_vector<double, SPACE_DIM> CellAppliedForceWriter<ELEMENT_DIM, SPACE_DIM>::GetVectorCellDataForVtkOutput(CellPtr pCell, AbstractCellPopulation<ELEMENT_DIM, SPACE_DIM>* pCellPopulation)
 {
     c_vector<double, SPACE_DIM> applied_force = scalar_vector<double>(SPACE_DIM, DOUBLE_UNSET);
@@ -60,7 +60,7 @@ c_vector<double, SPACE_DIM> CellAppliedForceWriter<ELEMENT_DIM, SPACE_DIM>::GetV
     return applied_force;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void CellAppliedForceWriter<ELEMENT_DIM, SPACE_DIM>::VisitCell(CellPtr pCell, AbstractCellPopulation<ELEMENT_DIM, SPACE_DIM>* pCellPopulation)
 {
     unsigned location_index = pCellPopulation->GetLocationIndexUsingCell(pCell);

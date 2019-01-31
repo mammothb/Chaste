@@ -40,7 +40,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "DistributedTetrahedralMesh.hpp"
 #include "Version.hpp"
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 XdmfMeshWriter<ELEMENT_DIM, SPACE_DIM>::XdmfMeshWriter(const std::string& rDirectory,
                                                        const std::string& rBaseName,
                                                        const bool clearOutputDir)
@@ -50,7 +50,7 @@ XdmfMeshWriter<ELEMENT_DIM, SPACE_DIM>::XdmfMeshWriter(const std::string& rDirec
 {
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void XdmfMeshWriter<ELEMENT_DIM, SPACE_DIM>::WriteFilesUsingMesh(AbstractTetrahedralMesh<ELEMENT_DIM, SPACE_DIM>& rMesh,
                                                                  bool keepOriginalElementIndexing)
 {
@@ -179,7 +179,7 @@ void XdmfMeshWriter<ELEMENT_DIM, SPACE_DIM>::WriteFilesUsingMesh(AbstractTetrahe
 #endif
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void XdmfMeshWriter<ELEMENT_DIM, SPACE_DIM>::WriteFiles()
 {
 #ifdef _MSC_VER
@@ -243,7 +243,7 @@ void XdmfMeshWriter<ELEMENT_DIM, SPACE_DIM>::WriteFiles()
 #endif
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void XdmfMeshWriter<ELEMENT_DIM, SPACE_DIM>::WriteXdmfMasterFile(unsigned numberOfChunks)
 {
 #ifndef _MSC_VER

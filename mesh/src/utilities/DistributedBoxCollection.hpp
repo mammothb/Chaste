@@ -50,7 +50,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 /**
  * A collection of 'boxes' partitioning the domain with information on which nodes are located in which box.
  */
-template<unsigned DIM>
+template <unsigned DIM>
 class DistributedBoxCollection
 {
 private:
@@ -133,7 +133,7 @@ private:
      * @param archive the archive.
      * @param version the version number.
      */
-    template<class Archive>
+    template <class Archive>
     void serialize(Archive & archive, const unsigned int version)
     {
         //All methods over-ridden below.
@@ -397,7 +397,7 @@ namespace serialization
 /**
  * Save information needed to reconstruct a box collection on load.
  */
-template<class Archive, unsigned DIM>
+template <class Archive, unsigned DIM>
 inline void save_construct_data(
     Archive & ar, const DistributedBoxCollection<DIM> * t, const unsigned int file_version)
 {
@@ -431,7 +431,7 @@ inline void save_construct_data(
 /**
  * De-serialize constructor parameters and initialize a DistributedBoxCollection.
  */
-template<class Archive, unsigned DIM>
+template <class Archive, unsigned DIM>
 inline void load_construct_data(
     Archive & ar, DistributedBoxCollection<DIM> * t, const unsigned int file_version)
 {

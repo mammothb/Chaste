@@ -95,7 +95,7 @@ private:
      * Compare two meshes to see if they are 'the same'.  Doesn't check everything,
      * but is fairly thorough.  Used for testing serialization.
      */
-    template<unsigned DIM>
+    template <unsigned DIM>
     void CompareMeshes(MutableMesh<DIM,DIM>* pMesh1,
                        MutableMesh<DIM,DIM>* pMesh2)
     {

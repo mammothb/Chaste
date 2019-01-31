@@ -38,7 +38,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "IsNan.hpp"
 #include "HeartConfig.hpp"
 
-template<unsigned DIM>
+template <unsigned DIM>
 Electrodes<DIM>::Electrodes(AbstractTetrahedralMesh<DIM,DIM>& rMesh)
     : mpMesh(&rMesh),
       mLeftElectrodeArea(0.0),
@@ -129,14 +129,14 @@ Electrodes<DIM>::Electrodes(AbstractTetrahedralMesh<DIM,DIM>& rMesh)
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 boost::shared_ptr<BoundaryConditionsContainer<DIM,DIM,2> > Electrodes<DIM>::GetBoundaryConditionsContainer()
 {
     //assert(mAreActive);
     return mpBoundaryConditionsContainer;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 bool Electrodes<DIM>::SwitchOff(double time)
 {
     // This smidge has to be the same as the one below
@@ -151,7 +151,7 @@ bool Electrodes<DIM>::SwitchOff(double time)
     return false;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 bool Electrodes<DIM>::SwitchOn(double time)
 {
     // This smidge has to be the same as the one above.
@@ -166,7 +166,7 @@ bool Electrodes<DIM>::SwitchOn(double time)
     return false;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void Electrodes<DIM>::ComputeElectrodesAreasAndCheckEquality(unsigned dimensionIndex, double lowerValue, double upperValue)
 {
     //

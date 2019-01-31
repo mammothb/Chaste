@@ -147,7 +147,7 @@ public:
      *
      * N.B. Values which are not local (ie the row is not owned) will be skipped.
      */
-    template<size_t VECTOR_SIZE>
+    template <size_t VECTOR_SIZE>
     static void AddMultipleValues(Vec vector, unsigned* vectorIndices, c_vector<double, VECTOR_SIZE>& smallVector)
     {
         PetscInt indices_owned[VECTOR_SIZE];

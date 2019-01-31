@@ -40,7 +40,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "PottsBasedCellPopulation.hpp"
 #include "VertexBasedCellPopulation.hpp"
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 RadialCellDataDistributionWriter<ELEMENT_DIM, SPACE_DIM>::RadialCellDataDistributionWriter()
     : AbstractCellPopulationWriter<ELEMENT_DIM, SPACE_DIM>("radial_dist.dat"),
       mVariableName(""),
@@ -48,7 +48,7 @@ RadialCellDataDistributionWriter<ELEMENT_DIM, SPACE_DIM>::RadialCellDataDistribu
 {
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void RadialCellDataDistributionWriter<ELEMENT_DIM, SPACE_DIM>::VisitAnyPopulation(AbstractCellPopulation<SPACE_DIM, SPACE_DIM>* pCellPopulation)
 {
     // Calculate the centre of the cell population
@@ -104,7 +104,7 @@ void RadialCellDataDistributionWriter<ELEMENT_DIM, SPACE_DIM>::VisitAnyPopulatio
     }
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void RadialCellDataDistributionWriter<ELEMENT_DIM, SPACE_DIM>::Visit(MeshBasedCellPopulation<ELEMENT_DIM, SPACE_DIM>* pCellPopulation)
 {
     // Calculate the centre of the cell population
@@ -160,49 +160,49 @@ void RadialCellDataDistributionWriter<ELEMENT_DIM, SPACE_DIM>::Visit(MeshBasedCe
     }
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void RadialCellDataDistributionWriter<ELEMENT_DIM, SPACE_DIM>::Visit(CaBasedCellPopulation<SPACE_DIM>* pCellPopulation)
 {
     VisitAnyPopulation(pCellPopulation);
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void RadialCellDataDistributionWriter<ELEMENT_DIM, SPACE_DIM>::Visit(NodeBasedCellPopulation<SPACE_DIM>* pCellPopulation)
 {
     VisitAnyPopulation(pCellPopulation);
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void RadialCellDataDistributionWriter<ELEMENT_DIM, SPACE_DIM>::Visit(PottsBasedCellPopulation<SPACE_DIM>* pCellPopulation)
 {
     VisitAnyPopulation(pCellPopulation);
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void RadialCellDataDistributionWriter<ELEMENT_DIM, SPACE_DIM>::Visit(VertexBasedCellPopulation<SPACE_DIM>* pCellPopulation)
 {
     VisitAnyPopulation(pCellPopulation);
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void RadialCellDataDistributionWriter<ELEMENT_DIM, SPACE_DIM>::SetVariableName(std::string variableName)
 {
     mVariableName = variableName;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 std::string RadialCellDataDistributionWriter<ELEMENT_DIM, SPACE_DIM>::GetVariableName() const
 {
     return mVariableName;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void RadialCellDataDistributionWriter<ELEMENT_DIM, SPACE_DIM>::SetNumRadialBins(unsigned numRadialBins)
 {
     mNumRadialBins = numRadialBins;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 unsigned RadialCellDataDistributionWriter<ELEMENT_DIM, SPACE_DIM>::GetNumRadialBins() const
 {
     return mNumRadialBins;

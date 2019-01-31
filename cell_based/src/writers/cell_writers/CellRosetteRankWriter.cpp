@@ -37,14 +37,14 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "AbstractCellPopulation.hpp"
 #include "VertexBasedCellPopulation.hpp"
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 CellRosetteRankWriter<ELEMENT_DIM, SPACE_DIM>::CellRosetteRankWriter()
     : AbstractCellWriter<ELEMENT_DIM, SPACE_DIM>("cellrosetterank.dat")
 {
     this->mVtkCellDataName = "Cell rosette rank";
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 double CellRosetteRankWriter<ELEMENT_DIM, SPACE_DIM>::GetCellDataForVtkOutput(CellPtr pCell, AbstractCellPopulation<ELEMENT_DIM, SPACE_DIM>* pCellPopulation)
 {
     // We first need to test that the cell population is vertex-based
@@ -61,7 +61,7 @@ double CellRosetteRankWriter<ELEMENT_DIM, SPACE_DIM>::GetCellDataForVtkOutput(Ce
     return double(rosette_rank);
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void CellRosetteRankWriter<ELEMENT_DIM, SPACE_DIM>::VisitCell(CellPtr pCell, AbstractCellPopulation<ELEMENT_DIM, SPACE_DIM>* pCellPopulation)
 {
     unsigned location_index = pCellPopulation->GetLocationIndexUsingCell(pCell);

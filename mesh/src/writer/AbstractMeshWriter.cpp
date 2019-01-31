@@ -37,7 +37,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "AbstractMeshWriter.hpp"
 #include "PetscTools.hpp"
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 AbstractMeshWriter<ELEMENT_DIM, SPACE_DIM>::AbstractMeshWriter(const std::string& rDirectory,
                                                                const std::string& rBaseName,
                                                                const bool clearOutputDir)
@@ -47,71 +47,71 @@ AbstractMeshWriter<ELEMENT_DIM, SPACE_DIM>::AbstractMeshWriter(const std::string
     mpOutputFileHandler = new OutputFileHandler(rDirectory, clearOutputDir);
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 AbstractMeshWriter<ELEMENT_DIM, SPACE_DIM>::~AbstractMeshWriter()
 {
     delete mpOutputFileHandler;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 std::string AbstractMeshWriter<ELEMENT_DIM, SPACE_DIM>::GetOutputDirectory()
 {
     return mpOutputFileHandler->GetOutputDirectoryFullPath();
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 unsigned AbstractMeshWriter<ELEMENT_DIM, SPACE_DIM>::GetNumNodes()
 {
     return mNumNodes;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 unsigned AbstractMeshWriter<ELEMENT_DIM, SPACE_DIM>::GetNumElements()
 {
     return mNumElements;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 unsigned AbstractMeshWriter<ELEMENT_DIM, SPACE_DIM>::GetNumBoundaryFaces()
 {
     return mNumBoundaryElements;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 unsigned AbstractMeshWriter<ELEMENT_DIM, SPACE_DIM>::GetNumCableElements()
 {
     return mNumCableElements;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 std::vector<double> AbstractMeshWriter<ELEMENT_DIM, SPACE_DIM>::GetNextNode()
 {
     assert(mpMeshReader != nullptr);
     return mpMeshReader->GetNextNode();
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 ElementData AbstractMeshWriter<ELEMENT_DIM, SPACE_DIM>::GetNextElement()
 {
     assert(mpMeshReader != nullptr);
     return mpMeshReader->GetNextElementData();
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 ElementData AbstractMeshWriter<ELEMENT_DIM, SPACE_DIM>::GetNextBoundaryElement()
 {
     assert(mpMeshReader != nullptr);
     return mpMeshReader->GetNextFaceData();
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 ElementData AbstractMeshWriter<ELEMENT_DIM, SPACE_DIM>::GetNextCableElement()
 {
     assert(mpMeshReader != nullptr);
     return mpMeshReader->GetNextCableElementData();
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void AbstractMeshWriter<ELEMENT_DIM, SPACE_DIM>::WriteFilesUsingMeshReader(AbstractMeshReader<ELEMENT_DIM, SPACE_DIM>& rMeshReader)
 {
     mpMeshReader = &rMeshReader;

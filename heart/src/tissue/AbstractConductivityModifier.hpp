@@ -43,7 +43,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *  rCalculateModifiedConductivityTensor() should take in a conductivity and return a modified
  *  conductivity (with some dependence e.g. on tissue deformation in cardiac electromechanics).
  */
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 class AbstractConductivityModifier
 {
 private:

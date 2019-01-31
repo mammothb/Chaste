@@ -50,7 +50,7 @@ static const char* CABLE_FILE_EXTENSION = ".cable";
 // Implementation
 ///////////////////////////////////////////////////////////////////////////////////
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 TrianglesMeshReader<ELEMENT_DIM, SPACE_DIM>::TrianglesMeshReader(std::string pathBaseName,
                                                                  unsigned orderOfElements,
                                                                  unsigned orderOfBoundaryElements,
@@ -116,7 +116,7 @@ TrianglesMeshReader<ELEMENT_DIM, SPACE_DIM>::TrianglesMeshReader(std::string pat
     ReadHeaders();
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 TrianglesMeshReader<ELEMENT_DIM, SPACE_DIM>::~TrianglesMeshReader()
 {
     delete[] mNodeFileReadBuffer;
@@ -124,49 +124,49 @@ TrianglesMeshReader<ELEMENT_DIM, SPACE_DIM>::~TrianglesMeshReader()
     delete[] mFaceFileReadBuffer;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 unsigned TrianglesMeshReader<ELEMENT_DIM, SPACE_DIM>::GetNumElements() const
 {
     return mNumElements;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 unsigned TrianglesMeshReader<ELEMENT_DIM, SPACE_DIM>::GetNumNodes() const
 {
     return mNumNodes;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 unsigned TrianglesMeshReader<ELEMENT_DIM, SPACE_DIM>::GetNumFaces() const
 {
     return mNumFaces;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 unsigned TrianglesMeshReader<ELEMENT_DIM, SPACE_DIM>::GetNumCableElements() const
 {
     return mNumCableElements;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 unsigned TrianglesMeshReader<ELEMENT_DIM, SPACE_DIM>::GetNumElementAttributes() const
 {
     return mNumElementAttributes;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 unsigned TrianglesMeshReader<ELEMENT_DIM, SPACE_DIM>::GetNumFaceAttributes() const
 {
     return mNumFaceAttributes;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 unsigned TrianglesMeshReader<ELEMENT_DIM, SPACE_DIM>::GetNumCableElementAttributes() const
 {
     return mNumCableElementAttributes;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void TrianglesMeshReader<ELEMENT_DIM, SPACE_DIM>::Reset()
 {
     CloseFiles();
@@ -183,7 +183,7 @@ void TrianglesMeshReader<ELEMENT_DIM, SPACE_DIM>::Reset()
     ReadHeaders();
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 std::vector<double> TrianglesMeshReader<ELEMENT_DIM, SPACE_DIM>::GetNextNode()
 {
     std::vector<double> ret_coords(SPACE_DIM);
@@ -195,7 +195,7 @@ std::vector<double> TrianglesMeshReader<ELEMENT_DIM, SPACE_DIM>::GetNextNode()
     return ret_coords;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 ElementData TrianglesMeshReader<ELEMENT_DIM, SPACE_DIM>::GetNextElementData()
 {
     ElementData element_data;
@@ -228,7 +228,7 @@ ElementData TrianglesMeshReader<ELEMENT_DIM, SPACE_DIM>::GetNextElementData()
     return element_data;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 ElementData TrianglesMeshReader<ELEMENT_DIM, SPACE_DIM>::GetNextCableElementData()
 {
     ElementData element_data;
@@ -261,7 +261,7 @@ ElementData TrianglesMeshReader<ELEMENT_DIM, SPACE_DIM>::GetNextCableElementData
     return element_data;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 ElementData TrianglesMeshReader<ELEMENT_DIM, SPACE_DIM>::GetNextFaceData()
 {
     ElementData face_data;
@@ -329,7 +329,7 @@ ElementData TrianglesMeshReader<ELEMENT_DIM, SPACE_DIM>::GetNextFaceData()
     return face_data;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 std::vector<double> TrianglesMeshReader<ELEMENT_DIM, SPACE_DIM>::GetNode(unsigned index)
 {
     if (!mFilesAreBinary)
@@ -364,7 +364,7 @@ std::vector<double> TrianglesMeshReader<ELEMENT_DIM, SPACE_DIM>::GetNode(unsigne
     return GetNextNode();
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 ElementData TrianglesMeshReader<ELEMENT_DIM, SPACE_DIM>::GetElementData(unsigned index)
 {
     if (!mFilesAreBinary)
@@ -393,7 +393,7 @@ ElementData TrianglesMeshReader<ELEMENT_DIM, SPACE_DIM>::GetElementData(unsigned
     return GetNextElementData();
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 ElementData TrianglesMeshReader<ELEMENT_DIM, SPACE_DIM>::GetFaceData(unsigned index)
 {
     if (!mFilesAreBinary)
@@ -426,7 +426,7 @@ ElementData TrianglesMeshReader<ELEMENT_DIM, SPACE_DIM>::GetFaceData(unsigned in
     return GetNextFaceData();
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 std::vector<unsigned> TrianglesMeshReader<ELEMENT_DIM, SPACE_DIM>::GetContainingElementIndices(unsigned index)
 {
     if (!mFilesAreBinary)
@@ -482,7 +482,7 @@ std::vector<unsigned> TrianglesMeshReader<ELEMENT_DIM, SPACE_DIM>::GetContaining
     return containing_element_indices;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void TrianglesMeshReader<ELEMENT_DIM, SPACE_DIM>::OpenFiles()
 {
     OpenNodeFile();
@@ -492,7 +492,7 @@ void TrianglesMeshReader<ELEMENT_DIM, SPACE_DIM>::OpenFiles()
     OpenCableElementsFile();
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void TrianglesMeshReader<ELEMENT_DIM, SPACE_DIM>::OpenNodeFile()
 {
     // Nodes definition
@@ -504,7 +504,7 @@ void TrianglesMeshReader<ELEMENT_DIM, SPACE_DIM>::OpenNodeFile()
     }
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void TrianglesMeshReader<ELEMENT_DIM, SPACE_DIM>::OpenElementsFile()
 {
     // Elements definition
@@ -536,7 +536,7 @@ void TrianglesMeshReader<ELEMENT_DIM, SPACE_DIM>::OpenElementsFile()
     }
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void TrianglesMeshReader<ELEMENT_DIM, SPACE_DIM>::OpenFacesFile()
 {
     // Faces/edges definition
@@ -562,7 +562,7 @@ void TrianglesMeshReader<ELEMENT_DIM, SPACE_DIM>::OpenFacesFile()
     }
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void TrianglesMeshReader<ELEMENT_DIM, SPACE_DIM>::OpenNclFile()
 {
     std::string file_name = mFilesBaseName + NCL_FILE_EXTENSION;
@@ -571,7 +571,7 @@ void TrianglesMeshReader<ELEMENT_DIM, SPACE_DIM>::OpenNclFile()
     mNclFileAvailable = mNclFile.is_open();
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void TrianglesMeshReader<ELEMENT_DIM, SPACE_DIM>::OpenCableElementsFile()
 {
     std::string file_name = mFilesBaseName + CABLE_FILE_EXTENSION;
@@ -583,13 +583,13 @@ void TrianglesMeshReader<ELEMENT_DIM, SPACE_DIM>::OpenCableElementsFile()
     }
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 std::vector<double> TrianglesMeshReader<ELEMENT_DIM, SPACE_DIM>::GetNodeAttributes()
 {
     return mNodeAttributes;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void TrianglesMeshReader<ELEMENT_DIM, SPACE_DIM>::ReadHeaders()
 {
     /*
@@ -827,7 +827,7 @@ void TrianglesMeshReader<ELEMENT_DIM, SPACE_DIM>::ReadHeaders()
     }
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void TrianglesMeshReader<ELEMENT_DIM, SPACE_DIM>::CloseFiles()
 {
     mNodesFile.close();
@@ -837,7 +837,7 @@ void TrianglesMeshReader<ELEMENT_DIM, SPACE_DIM>::CloseFiles()
     mCableElementsFile.close();
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void TrianglesMeshReader<ELEMENT_DIM, SPACE_DIM>::GetNextLineFromStream(std::ifstream& rFileStream, std::string& rRawLine)
 {
     bool line_is_blank;
@@ -859,8 +859,8 @@ void TrianglesMeshReader<ELEMENT_DIM, SPACE_DIM>::GetNextLineFromStream(std::ifs
     while (line_is_blank);
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
-template<class T_DATA>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <class T_DATA>
 void TrianglesMeshReader<ELEMENT_DIM, SPACE_DIM>::GetNextItemFromStream(std::ifstream& rFileStream, unsigned expectedItemNumber,
                                std::vector<T_DATA>& rDataPacket, const unsigned& rNumAttributes, std::vector<double>& rAttributes)
 {
@@ -923,13 +923,13 @@ void TrianglesMeshReader<ELEMENT_DIM, SPACE_DIM>::GetNextItemFromStream(std::ifs
     }
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 std::string TrianglesMeshReader<ELEMENT_DIM, SPACE_DIM>::GetMeshFileBaseName()
 {
     return mFilesBaseName;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void TrianglesMeshReader<ELEMENT_DIM, SPACE_DIM>::GetOneDimBoundary()
 {
     assert(ELEMENT_DIM == 1);    // LCOV_EXCL_LINE
@@ -974,7 +974,7 @@ void TrianglesMeshReader<ELEMENT_DIM, SPACE_DIM>::GetOneDimBoundary()
     GetNextLineFromStream(mElementsFile, buffer);
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void TrianglesMeshReader<ELEMENT_DIM, SPACE_DIM>::EnsureIndexingFromZero(std::vector<unsigned>& rNodeIndices)
 {
     if (!mIndexFromZero) // If node indices do not start at zero move them all down one so they do
@@ -986,19 +986,19 @@ void TrianglesMeshReader<ELEMENT_DIM, SPACE_DIM>::EnsureIndexingFromZero(std::ve
     }
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 bool TrianglesMeshReader<ELEMENT_DIM, SPACE_DIM>::IsFileFormatBinary()
 {
     return mFilesAreBinary;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 bool TrianglesMeshReader<ELEMENT_DIM, SPACE_DIM>::HasNclFile()
 {
     return mNclFileAvailable;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void TrianglesMeshReader<ELEMENT_DIM, SPACE_DIM>::SetReadBufferSize(unsigned bufferSize)
 {
     mNodeFileReadBuffer = new char[bufferSize];
@@ -1010,7 +1010,7 @@ void TrianglesMeshReader<ELEMENT_DIM, SPACE_DIM>::SetReadBufferSize(unsigned buf
     mFacesFile.rdbuf()->pubsetbuf(mFaceFileReadBuffer, bufferSize);
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void TrianglesMeshReader<ELEMENT_DIM, SPACE_DIM>::SetNodePermutation(std::vector<unsigned>& rPermutationVector)
 {
     if (!mFilesAreBinary)
@@ -1028,7 +1028,7 @@ void TrianglesMeshReader<ELEMENT_DIM, SPACE_DIM>::SetNodePermutation(std::vector
     }
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 bool TrianglesMeshReader<ELEMENT_DIM, SPACE_DIM>::HasNodePermutation()
 {
     return(mNodePermutationDefined);
@@ -1037,7 +1037,7 @@ bool TrianglesMeshReader<ELEMENT_DIM, SPACE_DIM>::HasNodePermutation()
 /**
 * @return the node permutation if a node permutation has been applied to this reader (or an empty permutation)
 */
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 const std::vector<unsigned>& TrianglesMeshReader<ELEMENT_DIM, SPACE_DIM>::rGetNodePermutation()
 {
     return mPermutationVector;

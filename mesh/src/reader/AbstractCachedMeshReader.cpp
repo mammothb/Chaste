@@ -42,7 +42,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // Implementation
 ///////////////////////////////////////////////////////////////////////////////////
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 AbstractCachedMeshReader<ELEMENT_DIM, SPACE_DIM>::AbstractCachedMeshReader()
     : mNumNodeAttributes(0),
       mMaxNodeBdyMarker(0),
@@ -54,7 +54,7 @@ AbstractCachedMeshReader<ELEMENT_DIM, SPACE_DIM>::AbstractCachedMeshReader()
     // We have initialized all numeric variables to zero
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 std::vector<std::string> AbstractCachedMeshReader<ELEMENT_DIM, SPACE_DIM>::GetRawDataFromFile(
         const std::string& rFileName)
 {
@@ -100,7 +100,7 @@ std::vector<std::string> AbstractCachedMeshReader<ELEMENT_DIM, SPACE_DIM>::GetRa
     return raw_data;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 unsigned AbstractCachedMeshReader<ELEMENT_DIM, SPACE_DIM>::GetMaxNodeIndex()
 {
     // Initialize an interator for the vector of nodes
@@ -124,7 +124,7 @@ unsigned AbstractCachedMeshReader<ELEMENT_DIM, SPACE_DIM>::GetMaxNodeIndex()
     return max_node_index;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 unsigned AbstractCachedMeshReader<ELEMENT_DIM, SPACE_DIM>::GetMinNodeIndex()
 {
     // Initialize an interator for the vector of nodes
@@ -148,7 +148,7 @@ unsigned AbstractCachedMeshReader<ELEMENT_DIM, SPACE_DIM>::GetMinNodeIndex()
     return min_node_index;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 std::vector<double> AbstractCachedMeshReader<ELEMENT_DIM, SPACE_DIM>::GetNextNode()
 {
     // Checks that there are still some nodes left to read. If not throws an
@@ -165,7 +165,7 @@ std::vector<double> AbstractCachedMeshReader<ELEMENT_DIM, SPACE_DIM>::GetNextNod
     return next_node;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 ElementData AbstractCachedMeshReader<ELEMENT_DIM, SPACE_DIM>::GetNextElementData()
 {
     // Checks that there are still some elements left to read. If not throws an
@@ -184,7 +184,7 @@ ElementData AbstractCachedMeshReader<ELEMENT_DIM, SPACE_DIM>::GetNextElementData
     return ret;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void AbstractCachedMeshReader<ELEMENT_DIM, SPACE_DIM>::Reset()
 {
     mpElementIterator = mElementData.begin();
@@ -192,7 +192,7 @@ void AbstractCachedMeshReader<ELEMENT_DIM, SPACE_DIM>::Reset()
     mpNodeIterator = mNodeData.begin();
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 ElementData AbstractCachedMeshReader<ELEMENT_DIM, SPACE_DIM>::GetNextFaceData()
 {
     // Checks that there are still some faces left to read. If not throws an
@@ -211,19 +211,19 @@ ElementData AbstractCachedMeshReader<ELEMENT_DIM, SPACE_DIM>::GetNextFaceData()
     return ret;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 unsigned AbstractCachedMeshReader<ELEMENT_DIM, SPACE_DIM>::GetNumElements() const
 {
     return mElementData.size();
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 unsigned AbstractCachedMeshReader<ELEMENT_DIM, SPACE_DIM>::GetNumNodes() const
 {
     return mNodeData.size();
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 unsigned AbstractCachedMeshReader<ELEMENT_DIM, SPACE_DIM>::GetNumFaces() const
 {
     return mFaceData.size();

@@ -37,7 +37,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "ReplicatableVector.hpp"
 #include "LinearBasisFunction.hpp"
 
-template<unsigned DIM>
+template <unsigned DIM>
 AbstractBoxDomainPdeModifier<DIM>::AbstractBoxDomainPdeModifier(boost::shared_ptr<AbstractLinearPde<DIM,DIM> > pPde,
                                                                 boost::shared_ptr<AbstractBoundaryCondition<DIM> > pBoundaryCondition,
                                                                 bool isNeumannBoundaryCondition,
@@ -60,30 +60,30 @@ AbstractBoxDomainPdeModifier<DIM>::AbstractBoxDomainPdeModifier(boost::shared_pt
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 AbstractBoxDomainPdeModifier<DIM>::~AbstractBoxDomainPdeModifier()
 {
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 double AbstractBoxDomainPdeModifier<DIM>::GetStepSize()
 {
      return mStepSize;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void AbstractBoxDomainPdeModifier<DIM>::SetBcsOnBoxBoundary(bool setBcsOnBoxBoundary)
 {
     mSetBcsOnBoxBoundary = setBcsOnBoxBoundary;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 bool AbstractBoxDomainPdeModifier<DIM>::AreBcsSetOnBoxBoundary()
 {
     return mSetBcsOnBoxBoundary;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void AbstractBoxDomainPdeModifier<DIM>::SetupSolve(AbstractCellPopulation<DIM,DIM>& rCellPopulation, std::string outputDirectory)
 {
     AbstractPdeModifier<DIM>::SetupSolve(rCellPopulation, outputDirectory);
@@ -91,7 +91,7 @@ void AbstractBoxDomainPdeModifier<DIM>::SetupSolve(AbstractCellPopulation<DIM,DI
     InitialiseCellPdeElementMap(rCellPopulation);
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void AbstractBoxDomainPdeModifier<DIM>::GenerateFeMesh(boost::shared_ptr<ChasteCuboid<DIM> > pMeshCuboid, double stepSize)
 {
     // Create a regular coarse tetrahedral mesh
@@ -128,7 +128,7 @@ void AbstractBoxDomainPdeModifier<DIM>::GenerateFeMesh(boost::shared_ptr<ChasteC
     this->mpFeMesh->Translate(centre_of_cuboid - centre_of_coarse_mesh);
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void AbstractBoxDomainPdeModifier<DIM>::UpdateCellData(AbstractCellPopulation<DIM,DIM>& rCellPopulation)
 {
     // Store the PDE solution in an accessible form
@@ -201,7 +201,7 @@ void AbstractBoxDomainPdeModifier<DIM>::UpdateCellData(AbstractCellPopulation<DI
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void AbstractBoxDomainPdeModifier<DIM>::InitialiseCellPdeElementMap(AbstractCellPopulation<DIM,DIM>& rCellPopulation)
 {
     mCellPdeElementMap.clear();
@@ -217,7 +217,7 @@ void AbstractBoxDomainPdeModifier<DIM>::InitialiseCellPdeElementMap(AbstractCell
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void AbstractBoxDomainPdeModifier<DIM>::UpdateCellPdeElementMap(AbstractCellPopulation<DIM,DIM>& rCellPopulation)
 {
     // Find the element of mpCoarsePdeMesh that contains each cell and populate mCellPdeElementMap
@@ -231,7 +231,7 @@ void AbstractBoxDomainPdeModifier<DIM>::UpdateCellPdeElementMap(AbstractCellPopu
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void AbstractBoxDomainPdeModifier<DIM>::OutputSimulationModifierParameters(out_stream& rParamsFile)
 {
     // No parameters to output, so just call method on direct parent class

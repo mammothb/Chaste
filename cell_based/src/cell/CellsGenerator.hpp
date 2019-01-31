@@ -48,7 +48,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  * It is templated over types of cell-cycle model and spatial dimension.
  */
-template<class CELL_CYCLE_MODEL, unsigned DIM>
+template <class CELL_CYCLE_MODEL, unsigned DIM>
 class CellsGenerator
 {
 public:
@@ -94,7 +94,7 @@ public:
                                       boost::shared_ptr<AbstractCellProperty> pCellProliferativeType=boost::shared_ptr<AbstractCellProperty>());
 };
 
-template<class CELL_CYCLE_MODEL, unsigned DIM>
+template <class CELL_CYCLE_MODEL, unsigned DIM>
 void CellsGenerator<CELL_CYCLE_MODEL,DIM>::GenerateBasic(std::vector<CellPtr>& rCells,
                                                          unsigned numCells,
                                                          const std::vector<unsigned> locationIndices,
@@ -145,7 +145,7 @@ void CellsGenerator<CELL_CYCLE_MODEL,DIM>::GenerateBasic(std::vector<CellPtr>& r
     }
 }
 
-template<class CELL_CYCLE_MODEL, unsigned DIM>
+template <class CELL_CYCLE_MODEL, unsigned DIM>
 void CellsGenerator<CELL_CYCLE_MODEL,DIM>::GenerateBasicRandom(std::vector<CellPtr>& rCells,
                                                                unsigned numCells,
                                                                boost::shared_ptr<AbstractCellProperty> pCellProliferativeType)
@@ -184,7 +184,7 @@ void CellsGenerator<CELL_CYCLE_MODEL,DIM>::GenerateBasicRandom(std::vector<CellP
     }
 }
 
-template<class CELL_CYCLE_MODEL, unsigned DIM>
+template <class CELL_CYCLE_MODEL, unsigned DIM>
 void CellsGenerator<CELL_CYCLE_MODEL,DIM>::GenerateGivenLocationIndices(std::vector<CellPtr>& rCells,
                                                                         const std::vector<unsigned> locationIndices,
                                                                         boost::shared_ptr<AbstractCellProperty> pCellProliferativeType)

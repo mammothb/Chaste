@@ -44,7 +44,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "ExecutableSupport.hpp"
 #include "AbstractPdeModifier.hpp"
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 AbstractCellBasedSimulation<ELEMENT_DIM,SPACE_DIM>::AbstractCellBasedSimulation(AbstractCellPopulation<ELEMENT_DIM,SPACE_DIM>& rCellPopulation,
                                               bool deleteCellPopulationInDestructor,
                                               bool initialiseCells)
@@ -78,7 +78,7 @@ AbstractCellBasedSimulation<ELEMENT_DIM,SPACE_DIM>::AbstractCellBasedSimulation(
     mDt = rCellPopulation.GetDefaultTimeStep();
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 AbstractCellBasedSimulation<ELEMENT_DIM,SPACE_DIM>::~AbstractCellBasedSimulation()
 {
     if (mDeleteCellPopulationInDestructor)
@@ -87,7 +87,7 @@ AbstractCellBasedSimulation<ELEMENT_DIM,SPACE_DIM>::~AbstractCellBasedSimulation
     }
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 unsigned AbstractCellBasedSimulation<ELEMENT_DIM,SPACE_DIM>::DoCellBirth()
 {
     if (mNoBirth)
@@ -159,7 +159,7 @@ unsigned AbstractCellBasedSimulation<ELEMENT_DIM,SPACE_DIM>::DoCellBirth()
     return num_births_this_step;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 unsigned AbstractCellBasedSimulation<ELEMENT_DIM,SPACE_DIM>::DoCellRemoval()
 {
     unsigned num_deaths_this_step = 0;
@@ -180,113 +180,113 @@ unsigned AbstractCellBasedSimulation<ELEMENT_DIM,SPACE_DIM>::DoCellRemoval()
     return num_deaths_this_step;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void AbstractCellBasedSimulation<ELEMENT_DIM,SPACE_DIM>::SetDt(double dt)
 {
     assert(dt > 0);
     mDt = dt;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 double AbstractCellBasedSimulation<ELEMENT_DIM,SPACE_DIM>::GetDt()
 {
     return mDt;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 unsigned AbstractCellBasedSimulation<ELEMENT_DIM,SPACE_DIM>::GetNumBirths()
 {
     return mNumBirths;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 unsigned AbstractCellBasedSimulation<ELEMENT_DIM,SPACE_DIM>::GetNumDeaths()
 {
     return mNumDeaths;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void AbstractCellBasedSimulation<ELEMENT_DIM,SPACE_DIM>::SetEndTime(double endTime)
 {
     assert(endTime > 0);
     mEndTime = endTime;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void AbstractCellBasedSimulation<ELEMENT_DIM,SPACE_DIM>::SetOutputDirectory(std::string outputDirectory)
 {
     mOutputDirectory = outputDirectory;
     mSimulationOutputDirectory = mOutputDirectory;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 std::string AbstractCellBasedSimulation<ELEMENT_DIM,SPACE_DIM>::GetOutputDirectory()
 {
     return mOutputDirectory;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void AbstractCellBasedSimulation<ELEMENT_DIM,SPACE_DIM>::SetSamplingTimestepMultiple(unsigned samplingTimestepMultiple)
 {
     assert(samplingTimestepMultiple > 0);
     mSamplingTimestepMultiple = samplingTimestepMultiple;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 AbstractCellPopulation<ELEMENT_DIM,SPACE_DIM>& AbstractCellBasedSimulation<ELEMENT_DIM,SPACE_DIM>::rGetCellPopulation()
 {
     return mrCellPopulation;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 const AbstractCellPopulation<ELEMENT_DIM,SPACE_DIM>& AbstractCellBasedSimulation<ELEMENT_DIM,SPACE_DIM>::rGetCellPopulation() const
 {
     return mrCellPopulation;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void AbstractCellBasedSimulation<ELEMENT_DIM,SPACE_DIM>::SetUpdateCellPopulationRule(bool updateCellPopulation)
 {
     mUpdateCellPopulation = updateCellPopulation;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 bool AbstractCellBasedSimulation<ELEMENT_DIM,SPACE_DIM>::GetUpdateCellPopulationRule()
 {
     return mUpdateCellPopulation;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void AbstractCellBasedSimulation<ELEMENT_DIM,SPACE_DIM>::SetNoBirth(bool noBirth)
 {
     mNoBirth = noBirth;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void AbstractCellBasedSimulation<ELEMENT_DIM,SPACE_DIM>::AddCellKiller(boost::shared_ptr<AbstractCellKiller<SPACE_DIM> > pCellKiller)
 {
     mCellKillers.push_back(pCellKiller);
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void AbstractCellBasedSimulation<ELEMENT_DIM,SPACE_DIM>::RemoveAllCellKillers()
 {
     mCellKillers.clear();
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void AbstractCellBasedSimulation<ELEMENT_DIM,SPACE_DIM>::AddSimulationModifier(boost::shared_ptr<AbstractCellBasedSimulationModifier<ELEMENT_DIM,SPACE_DIM> > pSimulationModifier)
 {
     mSimulationModifiers.push_back(pSimulationModifier);
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 std::vector<boost::shared_ptr<AbstractCellBasedSimulationModifier<ELEMENT_DIM, SPACE_DIM> > >* AbstractCellBasedSimulation<ELEMENT_DIM,SPACE_DIM>::GetSimulationModifiers()
 {
     return &mSimulationModifiers;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 std::vector<double> AbstractCellBasedSimulation<ELEMENT_DIM,SPACE_DIM>::GetNodeLocation(const unsigned& rNodeIndex)
 {
     std::vector<double> location;
@@ -297,7 +297,7 @@ std::vector<double> AbstractCellBasedSimulation<ELEMENT_DIM,SPACE_DIM>::GetNodeL
     return location;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void AbstractCellBasedSimulation<ELEMENT_DIM,SPACE_DIM>::Solve()
 {
     CellBasedEventHandler::BeginEvent(CellBasedEventHandler::EVERYTHING);
@@ -562,13 +562,13 @@ void AbstractCellBasedSimulation<ELEMENT_DIM,SPACE_DIM>::Solve()
     CellBasedEventHandler::EndEvent(CellBasedEventHandler::EVERYTHING);
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 bool AbstractCellBasedSimulation<ELEMENT_DIM,SPACE_DIM>::StoppingEventHasOccurred()
 {
     return false;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void AbstractCellBasedSimulation<ELEMENT_DIM,SPACE_DIM>::UpdateCellPopulation()
 {
     // Remove dead cells
@@ -603,31 +603,31 @@ void AbstractCellBasedSimulation<ELEMENT_DIM,SPACE_DIM>::UpdateCellPopulation()
     CellBasedEventHandler::EndEvent(CellBasedEventHandler::UPDATECELLPOPULATION);
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 bool AbstractCellBasedSimulation<ELEMENT_DIM,SPACE_DIM>::GetOutputDivisionLocations()
 {
     return mOutputDivisionLocations;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void AbstractCellBasedSimulation<ELEMENT_DIM,SPACE_DIM>::SetOutputDivisionLocations(bool outputDivisionLocations)
 {
     mOutputDivisionLocations = outputDivisionLocations;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 bool AbstractCellBasedSimulation<ELEMENT_DIM,SPACE_DIM>::GetOutputCellVelocities()
 {
     return mOutputCellVelocities;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void AbstractCellBasedSimulation<ELEMENT_DIM,SPACE_DIM>::SetOutputCellVelocities(bool outputCellVelocities)
 {
     mOutputCellVelocities = outputCellVelocities;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void AbstractCellBasedSimulation<ELEMENT_DIM,SPACE_DIM>::OutputSimulationSetup()
 {
     OutputFileHandler output_file_handler(this->mSimulationOutputDirectory + "/", false);
@@ -690,7 +690,7 @@ void AbstractCellBasedSimulation<ELEMENT_DIM,SPACE_DIM>::OutputSimulationSetup()
     }
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void AbstractCellBasedSimulation<ELEMENT_DIM,SPACE_DIM>::OutputSimulationParameters(out_stream& rParamsFile)
 {
     *rParamsFile << "\t\t<Dt>" << mDt << "</Dt>\n";

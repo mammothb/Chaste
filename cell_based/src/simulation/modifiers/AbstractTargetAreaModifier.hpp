@@ -44,7 +44,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  * A modifier class in which the target area property of each cell is updated.
  * It is used to implement growth in vertex-based simulations.
  */
-template<unsigned DIM>
+template <unsigned DIM>
 class AbstractTargetAreaModifier : public AbstractCellBasedSimulationModifier<DIM,DIM>
 {
     /** Needed for serialization. */
@@ -56,7 +56,7 @@ class AbstractTargetAreaModifier : public AbstractCellBasedSimulationModifier<DI
      * @param archive  The boost archive.
      * @param version  The current version of this class.
      */
-    template<class Archive>
+    template <class Archive>
     void serialize(Archive & archive, const unsigned int version)
     {
         archive & boost::serialization::base_object<AbstractCellBasedSimulationModifier<DIM,DIM> >(*this);

@@ -43,7 +43,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 /**
  * A container for attributes associated with the Node class.
  */
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 class NodeAttributes
 {
 private:
@@ -78,7 +78,7 @@ private:
      * @param archive the archive
      * @param version the current version of this class
      */
-    template<class Archive>
+    template <class Archive>
     void serialize(Archive & archive, const unsigned int version)
     {
         archive & mAttributes;

@@ -56,7 +56,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "BidomainProblem.hpp"
 
 
-template<unsigned DIM, unsigned ELEC_PROB_DIM>
+template <unsigned DIM, unsigned ELEC_PROB_DIM>
 void CardiacElectroMechanicsProblem<DIM,ELEC_PROB_DIM>::DetermineWatchedNodes()
 {
   assert(mIsWatchedLocation);
@@ -141,7 +141,7 @@ void CardiacElectroMechanicsProblem<DIM,ELEC_PROB_DIM>::DetermineWatchedNodes()
   mpWatchedLocationFile = handler.OpenOutputFile("watched.txt");
 }
 
-template<unsigned DIM, unsigned ELEC_PROB_DIM>
+template <unsigned DIM, unsigned ELEC_PROB_DIM>
 void CardiacElectroMechanicsProblem<DIM, ELEC_PROB_DIM>::
     WriteWatchedLocationData(double time, Vec voltage)
 {
@@ -171,7 +171,7 @@ void CardiacElectroMechanicsProblem<DIM, ELEC_PROB_DIM>::
   mpWatchedLocationFile->flush();
 }
 
-template<unsigned DIM, unsigned ELEC_PROB_DIM>
+template <unsigned DIM, unsigned ELEC_PROB_DIM>
 c_matrix<double, DIM, DIM>& CardiacElectroMechanicsProblem<DIM, ELEC_PROB_DIM>::
     rCalculateModifiedConductivityTensor(
     unsigned elementIndex
@@ -196,7 +196,7 @@ c_matrix<double, DIM, DIM>& CardiacElectroMechanicsProblem<DIM, ELEC_PROB_DIM>::
 /**
  * Helper "function" for the constructor, to create the electrics sub-problem without dynamic_cast.
  */
-template<unsigned DIM, unsigned PROBLEM_DIM>
+template <unsigned DIM, unsigned PROBLEM_DIM>
 class CreateElectricsProblem
 {
  public:
@@ -214,7 +214,7 @@ class CreateElectricsProblem
 /**
  * Specialization for monodomain problems
  */
-template<unsigned DIM>
+template <unsigned DIM>
 class CreateElectricsProblem<DIM, 1u>
 {
  public:
@@ -239,7 +239,7 @@ class CreateElectricsProblem<DIM, 1u>
 /**
  * Specialization for bidomain problems
  */
-template<unsigned DIM>
+template <unsigned DIM>
 class CreateElectricsProblem<DIM, 2u>
 {
  public:
@@ -265,7 +265,7 @@ class CreateElectricsProblem<DIM, 2u>
 };
 
 
-template<unsigned DIM, unsigned ELEC_PROB_DIM>
+template <unsigned DIM, unsigned ELEC_PROB_DIM>
 CardiacElectroMechanicsProblem<DIM, ELEC_PROB_DIM>::
     CardiacElectroMechanicsProblem(
     CompressibilityType compressibilityType
@@ -336,7 +336,7 @@ CardiacElectroMechanicsProblem<DIM, ELEC_PROB_DIM>::
   // mpImpactRegion=NULL;
 }
 
-template<unsigned DIM, unsigned ELEC_PROB_DIM>
+template <unsigned DIM, unsigned ELEC_PROB_DIM>
 CardiacElectroMechanicsProblem<DIM, ELEC_PROB_DIM>::
     ~CardiacElectroMechanicsProblem()
 {
@@ -355,7 +355,7 @@ CardiacElectroMechanicsProblem<DIM, ELEC_PROB_DIM>::
   LogFile::Close();
 }
 
-template<unsigned DIM, unsigned ELEC_PROB_DIM>
+template <unsigned DIM, unsigned ELEC_PROB_DIM>
 void CardiacElectroMechanicsProblem<DIM, ELEC_PROB_DIM>::Initialise()
 {
   assert(mpElectricsMesh != NULL);
@@ -511,7 +511,7 @@ void CardiacElectroMechanicsProblem<DIM, ELEC_PROB_DIM>::Initialise()
   }
 }
 
-template<unsigned DIM, unsigned ELEC_PROB_DIM>
+template <unsigned DIM, unsigned ELEC_PROB_DIM>
 void CardiacElectroMechanicsProblem<DIM, ELEC_PROB_DIM>::Solve()
 {
   // initialise the meshes and mechanics solver
@@ -1003,7 +1003,7 @@ void CardiacElectroMechanicsProblem<DIM, ELEC_PROB_DIM>::Solve()
   MechanicsEventHandler::EndEvent(MechanicsEventHandler::ALL);
 }
 
-template<unsigned DIM, unsigned ELEC_PROB_DIM>
+template <unsigned DIM, unsigned ELEC_PROB_DIM>
 double CardiacElectroMechanicsProblem<DIM, ELEC_PROB_DIM>::Max(
     std::vector<double>& vec)
 {
@@ -1014,13 +1014,13 @@ double CardiacElectroMechanicsProblem<DIM, ELEC_PROB_DIM>::Max(
   return max;
 }
 
-template<unsigned DIM, unsigned ELEC_PROB_DIM>
+template <unsigned DIM, unsigned ELEC_PROB_DIM>
 void CardiacElectroMechanicsProblem<DIM, ELEC_PROB_DIM>::SetNoElectricsOutput()
 {
   mNoElectricsOutput = true;
 }
 
-template<unsigned DIM, unsigned ELEC_PROB_DIM>
+template <unsigned DIM, unsigned ELEC_PROB_DIM>
 void CardiacElectroMechanicsProblem<DIM, ELEC_PROB_DIM>::SetWatchedPosition(
     c_vector<double, DIM> watchedLocation)
 {
@@ -1028,7 +1028,7 @@ void CardiacElectroMechanicsProblem<DIM, ELEC_PROB_DIM>::SetWatchedPosition(
   mWatchedLocation = watchedLocation;
 }
 
-template<unsigned DIM, unsigned ELEC_PROB_DIM>
+template <unsigned DIM, unsigned ELEC_PROB_DIM>
 void CardiacElectroMechanicsProblem<DIM, ELEC_PROB_DIM>::
     SetOutputDeformationGradientsAndStress(double timeStep)
 {
@@ -1041,7 +1041,7 @@ void CardiacElectroMechanicsProblem<DIM, ELEC_PROB_DIM>::
   }
 }
 
-template<unsigned DIM, unsigned ELEC_PROB_DIM>
+template <unsigned DIM, unsigned ELEC_PROB_DIM>
 std::vector<c_vector<double, DIM> >&
     CardiacElectroMechanicsProblem<DIM, ELEC_PROB_DIM>::rGetDeformedPosition()
 {

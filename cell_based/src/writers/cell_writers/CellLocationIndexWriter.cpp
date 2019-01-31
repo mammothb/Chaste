@@ -36,21 +36,21 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "CellLocationIndexWriter.hpp"
 #include "AbstractCellPopulation.hpp"
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 CellLocationIndexWriter<ELEMENT_DIM, SPACE_DIM>::CellLocationIndexWriter()
     : AbstractCellWriter<ELEMENT_DIM, SPACE_DIM>("results.vizlocationindices")
 {
     this->mVtkCellDataName = "Location indices";
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 double CellLocationIndexWriter<ELEMENT_DIM, SPACE_DIM>::GetCellDataForVtkOutput(CellPtr pCell, AbstractCellPopulation<ELEMENT_DIM, SPACE_DIM>* pCellPopulation)
 {
     // The method GetCellDataForVtkOutput() is not suitable for this class, so we simply return zero
     return 0.0;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void CellLocationIndexWriter<ELEMENT_DIM, SPACE_DIM>::VisitCell(CellPtr pCell, AbstractCellPopulation<ELEMENT_DIM, SPACE_DIM>* pCellPopulation)
 {
     unsigned location_index = pCellPopulation->GetLocationIndexUsingCell(pCell);

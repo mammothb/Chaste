@@ -35,7 +35,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include "SurfaceAreaConstraintPottsUpdateRule.hpp"
 
-template<unsigned DIM>
+template <unsigned DIM>
 SurfaceAreaConstraintPottsUpdateRule<DIM>::SurfaceAreaConstraintPottsUpdateRule()
     : AbstractPottsUpdateRule<DIM>(),
       mDeformationEnergyParameter(0.5), // Educated guess
@@ -44,12 +44,12 @@ SurfaceAreaConstraintPottsUpdateRule<DIM>::SurfaceAreaConstraintPottsUpdateRule(
     /// \todo Default values don't apply in 3D.
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 SurfaceAreaConstraintPottsUpdateRule<DIM>::~SurfaceAreaConstraintPottsUpdateRule()
 {
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 double SurfaceAreaConstraintPottsUpdateRule<DIM>::EvaluateHamiltonianContribution(unsigned currentNodeIndex,
                                                                         unsigned targetNodeIndex,
                                                                         PottsBasedCellPopulation<DIM>& rCellPopulation)
@@ -172,32 +172,32 @@ double SurfaceAreaConstraintPottsUpdateRule<DIM>::EvaluateHamiltonianContributio
     return delta_H;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 double SurfaceAreaConstraintPottsUpdateRule<DIM>::GetDeformationEnergyParameter()
 {
     return mDeformationEnergyParameter;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void SurfaceAreaConstraintPottsUpdateRule<DIM>::SetDeformationEnergyParameter(double deformationEnergyParameter)
 {
     mDeformationEnergyParameter = deformationEnergyParameter;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 double SurfaceAreaConstraintPottsUpdateRule<DIM>::GetMatureCellTargetSurfaceArea() const
 {
     return mMatureCellTargetSurfaceArea;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void SurfaceAreaConstraintPottsUpdateRule<DIM>::SetMatureCellTargetSurfaceArea(double matureCellTargetSurfaceArea)
 {
     assert(matureCellTargetSurfaceArea >= 0.0);
     mMatureCellTargetSurfaceArea = matureCellTargetSurfaceArea;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void SurfaceAreaConstraintPottsUpdateRule<DIM>::OutputUpdateRuleParameters(out_stream& rParamsFile)
 {
     *rParamsFile << "\t\t\t<DeformationEnergyParameter>" << mDeformationEnergyParameter << "</DeformationEnergyParameter>\n";

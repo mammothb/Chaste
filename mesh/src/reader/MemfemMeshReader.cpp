@@ -42,7 +42,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // Implementation
 ///////////////////////////////////////////////////////////////////////////////////
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 MemfemMeshReader<ELEMENT_DIM, SPACE_DIM>::MemfemMeshReader(const std::string& rPathBaseName)
 {
     // Open node file and store the lines as a vector of strings (minus the comments)
@@ -114,7 +114,7 @@ template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 MemfemMeshReader<ELEMENT_DIM, SPACE_DIM>::~MemfemMeshReader()
 {}
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 std::vector<std::vector<double> > MemfemMeshReader<ELEMENT_DIM, SPACE_DIM>::TokenizeStringsToDoubles(
     const std::vector<std::string>& rRawData)
 {

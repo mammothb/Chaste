@@ -51,7 +51,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  * to the new boundary plane. This will be the opposite to the current behaviour
  * in 2D.
  */
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 class AbstractVertexBasedDivisionRule : public Identifiable
 {
 private:
@@ -63,7 +63,7 @@ private:
      * @param archive the archive
      * @param version the current version of this class
      */
-    template<class Archive>
+    template <class Archive>
     void serialize(Archive & archive, const unsigned int version)
     {
     }

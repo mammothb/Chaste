@@ -64,7 +64,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  * in this case, these values are used to prescribe target area growth as described earlier,
  * regardless of whether a phase-based cell-cycle model is present.
  */
-template<unsigned DIM>
+template <unsigned DIM>
 class TargetAreaLinearGrowthModifier : public AbstractTargetAreaModifier<DIM>
 {
     /** Needed for serialization. */
@@ -76,7 +76,7 @@ class TargetAreaLinearGrowthModifier : public AbstractTargetAreaModifier<DIM>
      * @param archive  The boost archive.
      * @param version  The current version of this class.
      */
-    template<class Archive>
+    template <class Archive>
     void serialize(Archive & archive, const unsigned int version)
     {
         archive & boost::serialization::base_object<AbstractTargetAreaModifier<DIM> >(*this);

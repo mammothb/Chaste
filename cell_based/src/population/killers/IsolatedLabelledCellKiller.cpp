@@ -37,7 +37,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "VertexBasedCellPopulation.hpp"
 #include "CellLabel.hpp"
 
-template<unsigned DIM>
+template <unsigned DIM>
 IsolatedLabelledCellKiller<DIM>::IsolatedLabelledCellKiller(AbstractCellPopulation<DIM>* pCellPopulation)
     : AbstractCellKiller<DIM>(pCellPopulation)
 {
@@ -47,7 +47,7 @@ IsolatedLabelledCellKiller<DIM>::IsolatedLabelledCellKiller(AbstractCellPopulati
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void IsolatedLabelledCellKiller<DIM>::CheckAndLabelCellsForApoptosisOrDeath()
 {
     MutableVertexMesh<DIM, DIM>& vertex_mesh = static_cast<VertexBasedCellPopulation<DIM>*>(this->mpCellPopulation)->rGetMesh();
@@ -93,7 +93,7 @@ void IsolatedLabelledCellKiller<DIM>::CheckAndLabelCellsForApoptosisOrDeath()
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void IsolatedLabelledCellKiller<DIM>::OutputCellKillerParameters(out_stream& rParamsFile)
 {
     // There are no member variables, so just call method on direct parent class

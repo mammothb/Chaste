@@ -53,7 +53,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  * cell in order to test it.  So all tests occur when testing particular cardiac
  * cells, e.g. the LuoRudy1991BackwardEuler.
  */
-template<unsigned SIZE, typename CELLTYPE>
+template <unsigned SIZE, typename CELLTYPE>
 class CardiacNewtonSolver
 {
 public:

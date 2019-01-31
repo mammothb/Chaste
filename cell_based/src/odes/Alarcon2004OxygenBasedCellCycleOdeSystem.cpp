@@ -160,7 +160,7 @@ bool Alarcon2004OxygenBasedCellCycleOdeSystem::CalculateStoppingEvent(double tim
     return (rY[0] < mxThreshold && rY[1] > myThreshold);
 }
 
-template<>
+template <>
 void CellwiseOdeSystemInformation<Alarcon2004OxygenBasedCellCycleOdeSystem>::Initialise()
 {
     this->mVariableNames.push_back("Cdh1_APC_complexes");

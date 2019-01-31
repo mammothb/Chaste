@@ -36,7 +36,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "DifferentialAdhesionGeneralisedLinearSpringForce.hpp"
 #include "CellLabel.hpp"
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 DifferentialAdhesionGeneralisedLinearSpringForce<ELEMENT_DIM, SPACE_DIM>::DifferentialAdhesionGeneralisedLinearSpringForce()
    : GeneralisedLinearSpringForce<ELEMENT_DIM, SPACE_DIM>(),
      mHomotypicLabelledSpringConstantMultiplier(1.0),
@@ -44,7 +44,7 @@ DifferentialAdhesionGeneralisedLinearSpringForce<ELEMENT_DIM, SPACE_DIM>::Differ
 {
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 double DifferentialAdhesionGeneralisedLinearSpringForce<ELEMENT_DIM, SPACE_DIM>::VariableSpringConstantMultiplicationFactor(
     unsigned nodeAGlobalIndex,
     unsigned nodeBGlobalIndex,
@@ -86,33 +86,33 @@ double DifferentialAdhesionGeneralisedLinearSpringForce<ELEMENT_DIM, SPACE_DIM>:
     }
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 double DifferentialAdhesionGeneralisedLinearSpringForce<ELEMENT_DIM, SPACE_DIM>::GetHomotypicLabelledSpringConstantMultiplier()
 {
     return mHomotypicLabelledSpringConstantMultiplier;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void DifferentialAdhesionGeneralisedLinearSpringForce<ELEMENT_DIM, SPACE_DIM>::SetHomotypicLabelledSpringConstantMultiplier(double labelledSpringConstantMultiplier)
 {
     assert(labelledSpringConstantMultiplier > 0.0);
     mHomotypicLabelledSpringConstantMultiplier = labelledSpringConstantMultiplier;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 double DifferentialAdhesionGeneralisedLinearSpringForce<ELEMENT_DIM, SPACE_DIM>::GetHeterotypicSpringConstantMultiplier()
 {
     return mHeterotypicSpringConstantMultiplier;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void DifferentialAdhesionGeneralisedLinearSpringForce<ELEMENT_DIM, SPACE_DIM>::SetHeterotypicSpringConstantMultiplier(double heterotypicSpringConstantMultiplier)
 {
     assert(heterotypicSpringConstantMultiplier > 0.0);
     mHeterotypicSpringConstantMultiplier = heterotypicSpringConstantMultiplier;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void DifferentialAdhesionGeneralisedLinearSpringForce<ELEMENT_DIM, SPACE_DIM>::OutputForceParameters(out_stream& rParamsFile)
 {
     *rParamsFile << "\t\t\t<HomotypicLabelledSpringConstantMultiplier>" << mHomotypicLabelledSpringConstantMultiplier << "</HomotypicLabelledSpringConstantMultiplier>\n";

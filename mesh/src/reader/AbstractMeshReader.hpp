@@ -72,7 +72,7 @@ struct ElementData
  *
  * A derived class FemlabMeshReader reads 2D data from Femlab or Matlab PDEToolbox
  */
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 class AbstractMeshReader
 {
 

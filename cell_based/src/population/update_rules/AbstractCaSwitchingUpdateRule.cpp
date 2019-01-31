@@ -35,18 +35,18 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include "AbstractCaSwitchingUpdateRule.hpp"
 
-template<unsigned DIM>
+template <unsigned DIM>
 AbstractCaSwitchingUpdateRule<DIM>::AbstractCaSwitchingUpdateRule()
 : AbstractUpdateRule<DIM>()
 {
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 AbstractCaSwitchingUpdateRule<DIM>::~AbstractCaSwitchingUpdateRule()
 {
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void AbstractCaSwitchingUpdateRule<DIM>::OutputUpdateRuleParameters(out_stream& rParamsFile)
 {
     // Call method on direct parent class

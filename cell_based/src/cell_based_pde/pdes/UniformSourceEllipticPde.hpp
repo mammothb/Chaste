@@ -56,7 +56,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  * terms of the PDE; here, the cell population just defines the spatial domain
  * on which to solve the PDE.
  */
-template<unsigned DIM>
+template <unsigned DIM>
 class UniformSourceEllipticPde : public AbstractLinearEllipticPde<DIM,DIM>
 {
     friend class TestCellBasedEllipticPdes;
@@ -71,7 +71,7 @@ private:
      * @param archive the archive
      * @param version the current version of this class
      */
-    template<class Archive>
+    template <class Archive>
     void serialize(Archive & archive, const unsigned int version)
     {
        archive & boost::serialization::base_object<AbstractLinearEllipticPde<DIM, DIM> >(*this);

@@ -35,13 +35,13 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include "AbstractMaterialLaw.hpp"
 
-template<unsigned DIM>
+template <unsigned DIM>
 AbstractMaterialLaw<DIM>::AbstractMaterialLaw()
     : mpChangeOfBasisMatrix(nullptr)
 {
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void AbstractMaterialLaw<DIM>::ComputeCauchyStress(c_matrix<double,DIM,DIM>& rF,
                                                    double pressure,
                                                    c_matrix<double,DIM,DIM>& rSigma)
@@ -79,7 +79,7 @@ void AbstractMaterialLaw<DIM>::ComputeCauchyStress(c_matrix<double,DIM,DIM>& rF,
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void AbstractMaterialLaw<DIM>::Compute1stPiolaKirchoffStress(c_matrix<double,DIM,DIM>& rF,
                                                              double pressure,
                                                              c_matrix<double,DIM,DIM>& rS)
@@ -96,7 +96,7 @@ void AbstractMaterialLaw<DIM>::Compute1stPiolaKirchoffStress(c_matrix<double,DIM
     rS = prod(T, trans(rF));
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void AbstractMaterialLaw<DIM>::Compute2ndPiolaKirchoffStress(c_matrix<double,DIM,DIM>& rC,
                                                              double pressure,
                                                              c_matrix<double,DIM,DIM>& rT)
@@ -109,26 +109,26 @@ void AbstractMaterialLaw<DIM>::Compute2ndPiolaKirchoffStress(c_matrix<double,DIM
 }
 
 // LCOV_EXCL_START
-template<unsigned DIM>
+template <unsigned DIM>
 void AbstractMaterialLaw<DIM>::ScaleMaterialParameters(double scaleFactor)
 {
     EXCEPTION("[the material law you are using]::ScaleMaterialParameters() has not been implemented\n");
 }
 // LCOV_EXCL_STOP
 
-template<unsigned DIM>
+template <unsigned DIM>
 void AbstractMaterialLaw<DIM>::SetChangeOfBasisMatrix(c_matrix<double,DIM,DIM>& rChangeOfBasisMatrix)
 {
     mpChangeOfBasisMatrix = &rChangeOfBasisMatrix;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void AbstractMaterialLaw<DIM>::ResetToNoChangeOfBasisMatrix()
 {
     mpChangeOfBasisMatrix = nullptr;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void AbstractMaterialLaw<DIM>::ComputeTransformedDeformationTensor(c_matrix<double,DIM,DIM>& rC, c_matrix<double,DIM,DIM>& rInvC,
                                                                    c_matrix<double,DIM,DIM>& rCTransformed, c_matrix<double,DIM,DIM>& rInvCTransformed)
 {
@@ -149,7 +149,7 @@ void AbstractMaterialLaw<DIM>::ComputeTransformedDeformationTensor(c_matrix<doub
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void AbstractMaterialLaw<DIM>::TransformStressAndStressDerivative(c_matrix<double,DIM,DIM>& rT,
                                                                   FourthOrderTensor<DIM,DIM,DIM,DIM>& rDTdE,
                                                                   bool transformDTdE)

@@ -77,7 +77,7 @@ typedef struct DataAtQuadraturePoint_
  *  child classes hold the contraction models and need to implement a method for getting the active tension from
  *  the model.
  */
-template<class ELASTICITY_SOLVER, unsigned DIM>
+template <class ELASTICITY_SOLVER, unsigned DIM>
 class AbstractCardiacMechanicsSolver : public ELASTICITY_SOLVER, public AbstractCardiacMechanicsSolverInterface<DIM>
 {
 protected:

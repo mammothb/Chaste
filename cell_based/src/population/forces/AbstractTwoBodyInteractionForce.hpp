@@ -42,7 +42,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 /**
  * An abstract class for two-body force laws.
  */
-template<unsigned  ELEMENT_DIM, unsigned SPACE_DIM=ELEMENT_DIM>
+template <unsigned  ELEMENT_DIM, unsigned SPACE_DIM=ELEMENT_DIM>
 class AbstractTwoBodyInteractionForce : public AbstractForce<ELEMENT_DIM, SPACE_DIM>
 {
 private:
@@ -55,7 +55,7 @@ private:
      * @param archive the archive
      * @param version the current version of this class
      */
-    template<class Archive>
+    template <class Archive>
     void serialize(Archive & archive, const unsigned int version)
     {
         archive & boost::serialization::base_object<AbstractForce<ELEMENT_DIM,SPACE_DIM> >(*this);

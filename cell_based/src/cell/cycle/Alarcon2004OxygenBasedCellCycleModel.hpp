@@ -61,7 +61,7 @@ private:
      * @param archive the archive
      * @param version the archive version
      */
-    template<class Archive>
+    template <class Archive>
     void serialize(Archive & archive, const unsigned int version)
     {
         archive & boost::serialization::base_object<AbstractOdeBasedPhaseBasedCellCycleModel>(*this);

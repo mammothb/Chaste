@@ -43,13 +43,13 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "PetscTools.hpp"
 
 // Area of the septum considered to belong to the each ventricle (relative to 1)
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 const double HeartGeometryInformation<SPACE_DIM>::LEFT_SEPTUM_SIZE = 2.0/3.0;
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 const double HeartGeometryInformation<SPACE_DIM>::RIGHT_SEPTUM_SIZE = 1.0/3.0;
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 HeartGeometryInformation<SPACE_DIM>::HeartGeometryInformation(AbstractTetrahedralMesh<SPACE_DIM,SPACE_DIM>& rMesh,
                                                               const std::string& rEpiFile,
                                                               const std::string& rEndoFile,
@@ -68,7 +68,7 @@ HeartGeometryInformation<SPACE_DIM>::HeartGeometryInformation(AbstractTetrahedra
     mNumberOfSurfacesProvided = 2;
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 HeartGeometryInformation<SPACE_DIM>::HeartGeometryInformation (AbstractTetrahedralMesh<SPACE_DIM,SPACE_DIM>& rMesh,
                                                                const std::string& rEpiFile,
                                                                const std::string& rLVFile,
@@ -104,7 +104,7 @@ HeartGeometryInformation<SPACE_DIM>::HeartGeometryInformation (AbstractTetrahedr
     mNumberOfSurfacesProvided = 3;
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 HeartGeometryInformation<SPACE_DIM>::HeartGeometryInformation (std::string nodeHeterogeneityFileName)
 {
     mpMesh = NULL;
@@ -152,7 +152,7 @@ HeartGeometryInformation<SPACE_DIM>::HeartGeometryInformation (std::string nodeH
     heterogeneity_file.close();
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 void HeartGeometryInformation<SPACE_DIM>::ProcessLine(
         const std::string& rLineFromFile,
         std::set<unsigned>& rSurfaceNodeIndexSet,
@@ -172,7 +172,7 @@ void HeartGeometryInformation<SPACE_DIM>::ProcessLine(
     }
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 void HeartGeometryInformation<SPACE_DIM>::GetNodesAtSurface(
         const std::string& rSurfaceFileName,
         std::vector<unsigned>& rSurfaceNodes,
@@ -232,7 +232,7 @@ void HeartGeometryInformation<SPACE_DIM>::GetNodesAtSurface(
     }
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 HeartRegionType HeartGeometryInformation<SPACE_DIM>::GetHeartRegion(unsigned nodeIndex) const
 {
 
@@ -266,7 +266,7 @@ HeartRegionType HeartGeometryInformation<SPACE_DIM>::GetHeartRegion(unsigned nod
     return UNKNOWN; // LCOV_EXCL_LINE
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 double HeartGeometryInformation<SPACE_DIM>::GetDistanceToEndo(unsigned nodeIndex)
 {
     // General case where you provide 3 surfaces: LV, RV, epicardium
@@ -321,13 +321,13 @@ double HeartGeometryInformation<SPACE_DIM>::GetDistanceToEndo(unsigned nodeIndex
     return 0.0; // LCOV_EXCL_LINE
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 double HeartGeometryInformation<SPACE_DIM>::GetDistanceToEpi(unsigned nodeIndex)
 {
     return mDistMapEpicardium[nodeIndex];
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 double HeartGeometryInformation<SPACE_DIM>::CalculateRelativeWallPosition(unsigned nodeIndex)
 {
 
@@ -342,7 +342,7 @@ double HeartGeometryInformation<SPACE_DIM>::CalculateRelativeWallPosition(unsign
     return relative_position;
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 void HeartGeometryInformation<SPACE_DIM>::DetermineLayerForEachNode(double epiFraction, double endoFraction)
 {
     if (epiFraction+endoFraction>1)
@@ -374,7 +374,7 @@ void HeartGeometryInformation<SPACE_DIM>::DetermineLayerForEachNode(double epiFr
     }
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 void HeartGeometryInformation<SPACE_DIM>::WriteLayerForEachNode(std::string outputDir, std::string file)
 {
     OutputFileHandler handler(outputDir,false);
@@ -404,7 +404,7 @@ void HeartGeometryInformation<SPACE_DIM>::WriteLayerForEachNode(std::string outp
     PetscTools::Barrier("HeartGeometryInformation::WriteLayerForEachNode"); // Make other processes wait until we're done
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 ChasteCuboid<SPACE_DIM> HeartGeometryInformation<SPACE_DIM>::CalculateBoundingBoxOfSurface(
         const std::vector<unsigned>& rSurfaceNodes)
 {

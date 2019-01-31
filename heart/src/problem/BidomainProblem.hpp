@@ -61,7 +61,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  * where V_j is the voltage at node j and phi_j is the
  * extracellular potential at node j.
  */
-template<unsigned DIM>
+template <unsigned DIM>
 class BidomainProblem : public AbstractCardiacProblem<DIM,DIM, 2>
 {
     /** Needed for serialization. */
@@ -76,7 +76,7 @@ class BidomainProblem : public AbstractCardiacProblem<DIM,DIM, 2>
      * @param archive
      * @param version
      */
-    template<class Archive>
+    template <class Archive>
     void save(Archive & archive, const unsigned int version) const
     {
         archive & boost::serialization::base_object<AbstractCardiacProblem<DIM, DIM, 2> >(*this);
@@ -93,7 +93,7 @@ class BidomainProblem : public AbstractCardiacProblem<DIM,DIM, 2>
      * @param archive
      * @param version
      */
-    template<class Archive>
+    template <class Archive>
     void load(Archive & archive, const unsigned int version)
     {
         archive & boost::serialization::base_object<AbstractCardiacProblem<DIM, DIM, 2> >(*this);
@@ -275,7 +275,7 @@ public:
      *
      * This gets called by AbstractCardiacProblem::LoadExtraArchive when it's done the generic stuff.
      */
-    template<class Archive>
+    template <class Archive>
     void LoadExtraArchiveForBidomain(Archive & archive, unsigned version);
 
     /**
@@ -294,8 +294,8 @@ public:
 EXPORT_TEMPLATE_CLASS_SAME_DIMS(BidomainProblem)
 
 
-template<unsigned DIM>
-template<class Archive>
+template <unsigned DIM>
+template <class Archive>
 void BidomainProblem<DIM>::LoadExtraArchiveForBidomain(Archive & archive, unsigned version)
 {
     // Not all bidomain problems have electrodes...

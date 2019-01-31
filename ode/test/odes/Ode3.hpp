@@ -59,7 +59,7 @@ public:
     }
 };
 
-template<>
+template <>
 void OdeSystemInformation<Ode3>::Initialise()
 {
     this->mVariableNames.push_back("Variable_1");

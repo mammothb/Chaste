@@ -35,17 +35,17 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include "AbstractCentreBasedDivisionRule.hpp"
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 AbstractCentreBasedDivisionRule<ELEMENT_DIM, SPACE_DIM>::AbstractCentreBasedDivisionRule()
 {
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 AbstractCentreBasedDivisionRule<ELEMENT_DIM, SPACE_DIM>::~AbstractCentreBasedDivisionRule()
 {
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void AbstractCentreBasedDivisionRule<ELEMENT_DIM, SPACE_DIM>::OutputCellCentreBasedDivisionRuleInfo(out_stream& rParamsFile)
 {
     std::string cell_division_rule_type = GetIdentifier();
@@ -55,7 +55,7 @@ void AbstractCentreBasedDivisionRule<ELEMENT_DIM, SPACE_DIM>::OutputCellCentreBa
     *rParamsFile << "\t\t\t</" << cell_division_rule_type << ">\n";
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void AbstractCentreBasedDivisionRule<ELEMENT_DIM, SPACE_DIM>::OutputCellCentreBasedDivisionRuleParameters(out_stream& rParamsFile)
 {
 }

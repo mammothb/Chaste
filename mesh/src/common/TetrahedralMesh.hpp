@@ -60,7 +60,7 @@ struct triangulateio; /**< Forward declaration for triangle helper methods (used
 /**
  * A concrete tetrahedral mesh class.
  */
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 class TetrahedralMesh : public AbstractTetrahedralMesh< ELEMENT_DIM, SPACE_DIM>
 {
     friend class TestTetrahedralMesh; // to give access to private methods (not variables)
@@ -74,7 +74,7 @@ private:
      * @param archive the archive
      * @param version the current version of this class
      */
-    template<class Archive>
+    template <class Archive>
     void serialize(Archive & archive, const unsigned int version)
     {
        archive & boost::serialization::base_object<AbstractTetrahedralMesh<ELEMENT_DIM, SPACE_DIM> >(*this);

@@ -36,7 +36,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "VolumeDependentAveragedSourceEllipticPde.hpp"
 #include "ApoptoticCellProperty.hpp"
 
-template<unsigned DIM>
+template <unsigned DIM>
 VolumeDependentAveragedSourceEllipticPde<DIM>::VolumeDependentAveragedSourceEllipticPde(AbstractCellPopulation<DIM>& rCellPopulation, double coefficient)
     : AveragedSourceEllipticPde<DIM>(rCellPopulation, coefficient)
 {
@@ -44,7 +44,7 @@ VolumeDependentAveragedSourceEllipticPde<DIM>::VolumeDependentAveragedSourceElli
     mpStaticCastCellPopulation = static_cast<NodeBasedCellPopulation<DIM>*>(&(this->mrCellPopulation));
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void VolumeDependentAveragedSourceEllipticPde<DIM>::SetupSourceTerms(TetrahedralMesh<DIM,DIM>& rCoarseMesh,  std::map< CellPtr, unsigned >* pCellPdeElementMap) // must be called before solve
 {
     // Allocate memory

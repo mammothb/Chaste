@@ -36,7 +36,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "OperatorSplittingMonodomainSolver.hpp"
 
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void OperatorSplittingMonodomainSolver<ELEMENT_DIM,SPACE_DIM>::SetupLinearSystem(Vec currentSolution, bool computeMatrix)
 {
     assert(this->mpLinearSystem->rGetLhsMatrix() != NULL);
@@ -105,7 +105,7 @@ void OperatorSplittingMonodomainSolver<ELEMENT_DIM,SPACE_DIM>::SetupLinearSystem
     this->mpLinearSystem->FinaliseRhsVector();
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void OperatorSplittingMonodomainSolver<ELEMENT_DIM,SPACE_DIM>::PrepareForSetupLinearSystem(Vec currentSolution)
 {
     double time = PdeSimulationTime::GetTime();
@@ -113,7 +113,7 @@ void OperatorSplittingMonodomainSolver<ELEMENT_DIM,SPACE_DIM>::PrepareForSetupLi
     mpMonodomainTissue->SolveCellSystems(currentSolution, time, time+dt/2.0, true);
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void OperatorSplittingMonodomainSolver<ELEMENT_DIM,SPACE_DIM>::FollowingSolveLinearSystem(Vec currentSolution)
 {
     // solve cell models for second half timestep
@@ -122,7 +122,7 @@ void OperatorSplittingMonodomainSolver<ELEMENT_DIM,SPACE_DIM>::FollowingSolveLin
     mpMonodomainTissue->SolveCellSystems(currentSolution, time + dt/2, PdeSimulationTime::GetNextTime(), true);
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void OperatorSplittingMonodomainSolver<ELEMENT_DIM,SPACE_DIM>::InitialiseForSolve(Vec initialSolution)
 {
     if (this->mpLinearSystem != NULL)
@@ -163,7 +163,7 @@ void OperatorSplittingMonodomainSolver<ELEMENT_DIM,SPACE_DIM>::InitialiseForSolv
                          local_size, local_size);
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 OperatorSplittingMonodomainSolver<ELEMENT_DIM,SPACE_DIM>::OperatorSplittingMonodomainSolver(
             AbstractTetrahedralMesh<ELEMENT_DIM,SPACE_DIM>* pMesh,
             MonodomainTissue<ELEMENT_DIM,SPACE_DIM>* pTissue,
@@ -184,7 +184,7 @@ OperatorSplittingMonodomainSolver<ELEMENT_DIM,SPACE_DIM>::OperatorSplittingMonod
     mVecForConstructingRhs = NULL;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 OperatorSplittingMonodomainSolver<ELEMENT_DIM,SPACE_DIM>::~OperatorSplittingMonodomainSolver()
 {
     delete mpMonodomainAssembler;

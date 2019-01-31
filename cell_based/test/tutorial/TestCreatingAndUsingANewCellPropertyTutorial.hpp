@@ -119,7 +119,7 @@ private:
      * archive the cell property using the serialization code defined in the base class
      * {{{AbstractCellProperty}}}, then archive the member variable {{{mColour}}}. */
     friend class boost::serialization::access;
-    template<class Archive>
+    template <class Archive>
     void serialize(Archive & archive, const unsigned int version)
     {
         archive & boost::serialization::base_object<AbstractCellProperty>(*this);
@@ -179,7 +179,7 @@ private:
      * using the serialization code defined in the base class {{{AbstractForce}}},
      * then archive the member variable. */
     friend class boost::serialization::access;
-    template<class Archive>
+    template <class Archive>
     void serialize(Archive & archive, const unsigned int version)
     {
         archive & boost::serialization::base_object<AbstractForce<2> >(*this);

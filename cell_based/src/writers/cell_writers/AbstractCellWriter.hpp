@@ -43,12 +43,12 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "UblasVectorInclude.hpp"
 
 // Forward declaration prevents circular include chain
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM> class AbstractCellPopulation;
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM> class AbstractCellPopulation;
 
 /**
  * An abstract class for a writer that visits individual cells of a population and writes their data.
  */
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 class AbstractCellWriter : public AbstractCellBasedWriter<ELEMENT_DIM, SPACE_DIM>
 {
 private:
@@ -62,7 +62,7 @@ private:
      * @param archive the archive
      * @param version the current version of this class
      */
-    template<class Archive>
+    template <class Archive>
     void serialize(Archive & archive, const unsigned int version)
     {
         archive & boost::serialization::base_object<AbstractCellBasedWriter<ELEMENT_DIM, SPACE_DIM> >(*this);

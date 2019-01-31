@@ -35,7 +35,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include "ExponentialMaterialLaw.hpp"
 
-template<unsigned DIM>
+template <unsigned DIM>
 ExponentialMaterialLaw<DIM>::ExponentialMaterialLaw(double a, double b)
     : mA(a),
       mB(b)
@@ -47,45 +47,45 @@ ExponentialMaterialLaw<DIM>::ExponentialMaterialLaw(double a, double b)
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 double ExponentialMaterialLaw<DIM>::GetA()
 {
     return mA;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 double ExponentialMaterialLaw<DIM>::GetB()
 {
     return mB;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 double ExponentialMaterialLaw<DIM>::Get_dW_dI1(double I1, double I2)
 {
     return mA * mB * exp(mB*(I1-DIM));
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 double ExponentialMaterialLaw<DIM>::Get_dW_dI2(double I1, double I2)
 {
     assert(DIM == 3); // LCOV_EXCL_LINE
     return 0.0;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 double ExponentialMaterialLaw<DIM>::Get_d2W_dI1(double I1, double I2)
 {
     return mA * mB * mB * exp(mB*(I1-DIM));
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 double ExponentialMaterialLaw<DIM>::Get_d2W_dI2(double I1, double I2)
 {
     assert(DIM == 3); // LCOV_EXCL_LINE
     return 0.0;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 double ExponentialMaterialLaw<DIM>::Get_d2W_dI1I2(double I1, double I2)
 {
     assert(DIM == 3); // LCOV_EXCL_LINE

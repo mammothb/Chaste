@@ -39,7 +39,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 /**
  * Convenience collection of iterators, primarily to get compilation to happen.
  */
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 struct MeshPottsWriterIterators
 {
     /** Iterator over nodes */
@@ -52,7 +52,7 @@ struct MeshPottsWriterIterators
 // Implementation
 ///////////////////////////////////////////////////////////////////////////////////
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 PottsMeshWriter<SPACE_DIM>::PottsMeshWriter(const std::string& rDirectory,
                                             const std::string& rBaseName,
                                             const bool clearOutputDir)
@@ -66,7 +66,7 @@ PottsMeshWriter<SPACE_DIM>::PottsMeshWriter(const std::string& rDirectory,
     mpIters->pElemIter = nullptr;
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 PottsMeshWriter<SPACE_DIM>::~PottsMeshWriter()
 {
     if (mpIters->pNodeIter)
@@ -83,7 +83,7 @@ PottsMeshWriter<SPACE_DIM>::~PottsMeshWriter()
     }
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 std::vector<double> PottsMeshWriter<SPACE_DIM>::GetNextNode()
 {
     if (mpMesh)
@@ -110,7 +110,7 @@ std::vector<double> PottsMeshWriter<SPACE_DIM>::GetNextNode()
     }
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 ElementData PottsMeshWriter<SPACE_DIM>::GetNextElement()
 {
     if (mpMesh)
@@ -138,7 +138,7 @@ ElementData PottsMeshWriter<SPACE_DIM>::GetNextElement()
 }
 
 ///\todo Mesh should be const (#1663)
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 void PottsMeshWriter<SPACE_DIM>::WriteFilesUsingMesh(PottsMesh<SPACE_DIM>& rMesh)
 {
     this->mpMeshReader = nullptr;
@@ -167,7 +167,7 @@ void PottsMeshWriter<SPACE_DIM>::WriteFilesUsingMesh(PottsMesh<SPACE_DIM>& rMesh
     WriteFiles();
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 void PottsMeshWriter<SPACE_DIM>::WriteFiles()
 {
     std::string comment = "# " + ChasteBuildInfo::GetProvenanceString();

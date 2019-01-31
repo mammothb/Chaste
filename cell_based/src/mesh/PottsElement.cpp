@@ -36,19 +36,19 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "RandomNumberGenerator.hpp"
 
 
-template<unsigned DIM>
+template <unsigned DIM>
 PottsElement<DIM>::PottsElement(unsigned index, const std::vector<Node<DIM>*>& rNodes)
     : MutableElement<DIM,DIM>(index, rNodes)
 {
     this->RegisterWithNodes();
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 PottsElement<DIM>::~PottsElement()
 {
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void PottsElement<DIM>::AddNode(Node<DIM>* pNode,  const unsigned& rIndex)
 {
     // Add element to this node
@@ -58,7 +58,7 @@ void PottsElement<DIM>::AddNode(Node<DIM>* pNode,  const unsigned& rIndex)
     this->mNodes.push_back(pNode);
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 double PottsElement<DIM>::GetAspectRatio()
 {
     assert(DIM == 2); // LCOV_EXCL_LINE

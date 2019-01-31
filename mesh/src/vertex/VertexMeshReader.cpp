@@ -38,7 +38,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include <sstream>
 
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 VertexMeshReader<ELEMENT_DIM, SPACE_DIM>::VertexMeshReader(std::string pathBaseName)
     : mFilesBaseName(pathBaseName),
       mIndexFromZero(false), // initially assume that nodes are not numbered from zero
@@ -52,32 +52,32 @@ VertexMeshReader<ELEMENT_DIM, SPACE_DIM>::VertexMeshReader(std::string pathBaseN
     ReadHeaders();
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 unsigned VertexMeshReader<ELEMENT_DIM, SPACE_DIM>::GetNumElements() const
 {
     return mNumElements;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 unsigned VertexMeshReader<ELEMENT_DIM, SPACE_DIM>::GetNumNodes() const
 {
     return mNumNodes;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 unsigned VertexMeshReader<ELEMENT_DIM, SPACE_DIM>::GetNumElementAttributes() const
 {
     return mNumElementAttributes;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 unsigned VertexMeshReader<ELEMENT_DIM, SPACE_DIM>::GetNumFaces() const
 {
     /// \todo Implement this method (#1076)
     return 0;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 ElementData VertexMeshReader<ELEMENT_DIM, SPACE_DIM>::GetNextFaceData()
 {
     /// \todo Implement this method (#1076, #1377)
@@ -87,14 +87,14 @@ ElementData VertexMeshReader<ELEMENT_DIM, SPACE_DIM>::GetNextFaceData()
     return ret;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 unsigned VertexMeshReader<ELEMENT_DIM, SPACE_DIM>::GetNumEdges() const
 {
     /// \todo Implement this method (#1076)
     return 0;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void VertexMeshReader<ELEMENT_DIM, SPACE_DIM>::Reset()
 {
     CloseFiles();
@@ -105,7 +105,7 @@ void VertexMeshReader<ELEMENT_DIM, SPACE_DIM>::Reset()
     mElementsRead = 0;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 std::vector<double> VertexMeshReader<ELEMENT_DIM, SPACE_DIM>::GetNextNode()
 {
     std::vector<double> node_data;
@@ -135,7 +135,7 @@ std::vector<double> VertexMeshReader<ELEMENT_DIM, SPACE_DIM>::GetNextNode()
     return node_data;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 ElementData VertexMeshReader<ELEMENT_DIM, SPACE_DIM>::GetNextElementData()
 {
     // Create data structure for this element
@@ -181,7 +181,7 @@ ElementData VertexMeshReader<ELEMENT_DIM, SPACE_DIM>::GetNextElementData()
     return element_data;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 VertexElementData VertexMeshReader<ELEMENT_DIM, SPACE_DIM>::GetNextElementDataWithFaces()
 {
     // Create data structure for this element
@@ -258,14 +258,14 @@ VertexElementData VertexMeshReader<ELEMENT_DIM, SPACE_DIM>::GetNextElementDataWi
     return element_data;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void VertexMeshReader<ELEMENT_DIM, SPACE_DIM>::OpenFiles()
 {
     OpenNodeFile();
     OpenElementsFile();
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void VertexMeshReader<ELEMENT_DIM, SPACE_DIM>::OpenNodeFile()
 {
     // Nodes definition
@@ -277,7 +277,7 @@ void VertexMeshReader<ELEMENT_DIM, SPACE_DIM>::OpenNodeFile()
     }
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void VertexMeshReader<ELEMENT_DIM, SPACE_DIM>::OpenElementsFile()
 {
     // Elements definition
@@ -291,7 +291,7 @@ void VertexMeshReader<ELEMENT_DIM, SPACE_DIM>::OpenElementsFile()
     }
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void VertexMeshReader<ELEMENT_DIM, SPACE_DIM>::ReadHeaders()
 {
     std::string buffer;
@@ -320,14 +320,14 @@ void VertexMeshReader<ELEMENT_DIM, SPACE_DIM>::ReadHeaders()
     element_buffer_stream >> mNumElements >> mNumElementAttributes;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void VertexMeshReader<ELEMENT_DIM, SPACE_DIM>::CloseFiles()
 {
     mNodesFile.close();
     mElementsFile.close();
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void VertexMeshReader<ELEMENT_DIM, SPACE_DIM>::GetNextLineFromStream(std::ifstream& fileStream, std::string& rawLine)
 {
     bool line_is_blank;

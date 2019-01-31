@@ -48,14 +48,14 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #undef VOID
 
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 MutableMesh<ELEMENT_DIM, SPACE_DIM>::MutableMesh()
     : mAddedNodes(false)
 {
     this->mMeshChangesDuringSimulation = true;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 MutableMesh<ELEMENT_DIM, SPACE_DIM>::MutableMesh(std::vector<Node<SPACE_DIM> *> nodes)
 {
     this->mMeshChangesDuringSimulation = true;
@@ -70,13 +70,13 @@ MutableMesh<ELEMENT_DIM, SPACE_DIM>::MutableMesh(std::vector<Node<SPACE_DIM> *> 
     ReMesh(node_map);
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 MutableMesh<ELEMENT_DIM, SPACE_DIM>::~MutableMesh()
 {
     Clear();
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 unsigned MutableMesh<ELEMENT_DIM, SPACE_DIM>::AddNode(Node<SPACE_DIM>* pNewNode)
 {
     if (mDeletedNodeIndices.empty())
@@ -96,7 +96,7 @@ unsigned MutableMesh<ELEMENT_DIM, SPACE_DIM>::AddNode(Node<SPACE_DIM>* pNewNode)
     return pNewNode->GetIndex();
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 unsigned MutableMesh<ELEMENT_DIM, SPACE_DIM>::AddElement(Element<ELEMENT_DIM,SPACE_DIM>* pNewElement)
 {
     unsigned new_elt_index;
@@ -131,19 +131,19 @@ void MutableMesh<ELEMENT_DIM, SPACE_DIM>::Clear()
     TetrahedralMesh<ELEMENT_DIM, SPACE_DIM>::Clear();
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 unsigned MutableMesh<ELEMENT_DIM, SPACE_DIM>::GetNumBoundaryElements() const
 {
     return this->mBoundaryElements.size() - mDeletedBoundaryElementIndices.size();
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 unsigned MutableMesh<ELEMENT_DIM, SPACE_DIM>::GetNumElements() const
 {
     return this->mElements.size() - mDeletedElementIndices.size();
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 unsigned MutableMesh<ELEMENT_DIM, SPACE_DIM>::GetNumNodes() const
 {
     return this->mNodes.size() - mDeletedNodeIndices.size();
@@ -155,7 +155,7 @@ unsigned MutableMesh<ELEMENT_DIM, SPACE_DIM>::GetNumNodes() const
  * @param updatedPoint point determining the scale factor
  * @param boundaryNodeIndex index of the boundary node
  */
-template<>
+template <>
 void MutableMesh<1, 1>::RescaleMeshFromBoundaryNode(ChastePoint<1> updatedPoint, unsigned boundaryNodeIndex)
 {
     assert(this->GetNode(boundaryNodeIndex)->IsBoundaryNode());
@@ -170,7 +170,7 @@ void MutableMesh<1, 1>::RescaleMeshFromBoundaryNode(ChastePoint<1> updatedPoint,
     this->RefreshMesh();
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void MutableMesh<ELEMENT_DIM, SPACE_DIM>::SetNode(unsigned index,
         ChastePoint<SPACE_DIM> point,
         bool concreteMove)
@@ -227,7 +227,7 @@ void MutableMesh<ELEMENT_DIM, SPACE_DIM>::SetNode(unsigned index,
     }
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void MutableMesh<ELEMENT_DIM, SPACE_DIM>::DeleteNode(unsigned index)
 {
     if (this->mNodes[index]->IsDeleted())
@@ -263,7 +263,7 @@ void MutableMesh<ELEMENT_DIM, SPACE_DIM>::DeleteNode(unsigned index)
     MoveMergeNode(index, target_index);
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void MutableMesh<ELEMENT_DIM, SPACE_DIM>::DeleteElement(unsigned index)
 {
     assert(!this->mElements[index]->IsDeleted());
@@ -294,14 +294,14 @@ void MutableMesh<ELEMENT_DIM, SPACE_DIM>::DeleteElement(unsigned index)
     }
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void MutableMesh<ELEMENT_DIM, SPACE_DIM>::DeleteNodePriorToReMesh(unsigned index)
 {
     this->mNodes[index]->MarkAsDeleted();
     mDeletedNodeIndices.push_back(index);
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void MutableMesh<ELEMENT_DIM, SPACE_DIM>::MoveMergeNode(unsigned index,
         unsigned targetIndex,
         bool concreteMove)
@@ -455,7 +455,7 @@ void MutableMesh<ELEMENT_DIM, SPACE_DIM>::MoveMergeNode(unsigned index,
     }
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 unsigned MutableMesh<ELEMENT_DIM, SPACE_DIM>::RefineElement(
     Element<ELEMENT_DIM,SPACE_DIM>* pElement,
     ChastePoint<SPACE_DIM> point)
@@ -511,7 +511,7 @@ unsigned MutableMesh<ELEMENT_DIM, SPACE_DIM>::RefineElement(
     return new_node_index;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void MutableMesh<ELEMENT_DIM, SPACE_DIM>::DeleteBoundaryNodeAt(unsigned index)
 {
     if (!this->mNodes[index]->IsBoundaryNode() )

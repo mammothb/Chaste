@@ -57,7 +57,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  * are written in the same directory as the .h5 file. All paths are relative
  * to the CHASTE_TEST_OUTPUT directory.
  */
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 class Hdf5ToMeshalyzerConverter : public AbstractHdf5Converter<ELEMENT_DIM, SPACE_DIM>
 {
 private:

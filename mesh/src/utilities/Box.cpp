@@ -34,31 +34,31 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 #include "Box.hpp"
 
-template<unsigned DIM>
+template <unsigned DIM>
 void Box<DIM>::AddNode(Node<DIM>* pNode)
 {
     mNodesContained.insert(pNode);
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void Box<DIM>::RemoveNode(Node<DIM>* pNode)
 {
     mNodesContained.erase(pNode);
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void Box<DIM>::ClearNodes()
 {
     mNodesContained = std::set< Node<DIM>* >();
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 std::set< Node<DIM>* >& Box<DIM>::rGetNodesContained()
 {
     return mNodesContained;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void Box<DIM>::AddElement(Element<DIM,DIM>* pElement)
 {
     mElementsContained.insert(pElement);
@@ -66,7 +66,7 @@ void Box<DIM>::AddElement(Element<DIM,DIM>* pElement)
 
 ///\todo #2308 there are no methods to remove or clear elements
 
-template<unsigned DIM>
+template <unsigned DIM>
 std::set< Element<DIM,DIM>* >& Box<DIM>::rGetElementsContained()
 {
     return mElementsContained;

@@ -196,10 +196,10 @@ public:
 /**
  * Use template specialization to set the appropriate conductivities for the problem.
  */
-template<class CARDIAC_PROBLEM, unsigned DIM>
+template <class CARDIAC_PROBLEM, unsigned DIM>
 void SetConductivities(CARDIAC_PROBLEM& rCardiacProblem);
 
-template<unsigned DIM>
+template <unsigned DIM>
 void SetConductivities(BidomainProblem<DIM>& rProblem)
 {
     c_vector<double, DIM> conductivities;
@@ -216,7 +216,7 @@ void SetConductivities(BidomainProblem<DIM>& rProblem)
     HeartConfig::Instance()->SetExtracellularConductivities(conductivities);
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void SetConductivities(MonodomainProblem<DIM>& rProblem)
 {
     c_vector<double, DIM> conductivities;
@@ -231,7 +231,7 @@ void SetConductivities(MonodomainProblem<DIM>& rProblem)
  * AbstractConvergenceTester
  * Run convergence for a particular cell type, mono/bidomain and dimension
  */
-template<class CELL, class CARDIAC_PROBLEM, unsigned DIM, unsigned PROBLEM_DIM>
+template <class CELL, class CARDIAC_PROBLEM, unsigned DIM, unsigned PROBLEM_DIM>
 class AbstractConvergenceTester : public AbstractUntemplatedConvergenceTester
 {
 public:

@@ -53,7 +53,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  * Contains a group of cells and maintains the associations between cells and
  * nodes in the mesh.
  */
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM=ELEMENT_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM=ELEMENT_DIM>
 class MeshBasedCellPopulation : public AbstractCentreBasedCellPopulation<ELEMENT_DIM, SPACE_DIM>
 {
     friend class TestMeshBasedCellPopulation;
@@ -71,7 +71,7 @@ private:
      * @param archive the archive
      * @param version the current version of this class
      */
-    template<class Archive>
+    template <class Archive>
     void serialize(Archive & archive, const unsigned int version)
     {
         archive & boost::serialization::base_object<AbstractCentreBasedCellPopulation<ELEMENT_DIM, SPACE_DIM> >(*this);
@@ -606,7 +606,7 @@ namespace serialization
 /**
  * Serialize information required to construct a MeshBasedCellPopulation.
  */
-template<class Archive, unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <class Archive, unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 inline void save_construct_data(
     Archive & ar, const MeshBasedCellPopulation<ELEMENT_DIM, SPACE_DIM> * t, const unsigned int file_version)
 {
@@ -619,7 +619,7 @@ inline void save_construct_data(
  * De-serialize constructor parameters and initialise a MeshBasedCellPopulation.
  * Loads the mesh from separate files.
  */
-template<class Archive,  unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <class Archive,  unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 inline void load_construct_data(
     Archive & ar, MeshBasedCellPopulation<ELEMENT_DIM, SPACE_DIM> * t, const unsigned int file_version)
 {

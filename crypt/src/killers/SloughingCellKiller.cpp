@@ -36,7 +36,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "AbstractCentreBasedCellPopulation.hpp"
 #include "Exception.hpp"
 
-template<unsigned DIM>
+template <unsigned DIM>
 SloughingCellKiller<DIM>::SloughingCellKiller(AbstractCellPopulation<DIM>* pCrypt, double sloughHeight, bool sloughSides, double sloughWidth)
     : AbstractCellKiller<DIM>(pCrypt),
       mSloughSides(sloughSides)
@@ -48,25 +48,25 @@ SloughingCellKiller<DIM>::SloughingCellKiller(AbstractCellPopulation<DIM>* pCryp
     mSloughWidth = sloughWidth;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 bool SloughingCellKiller<DIM>::GetSloughSides() const
 {
     return mSloughSides;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 double SloughingCellKiller<DIM>::GetSloughHeight() const
 {
     return mSloughHeight;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 double SloughingCellKiller<DIM>::GetSloughWidth() const
 {
     return mSloughWidth;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void SloughingCellKiller<DIM>::CheckAndLabelCellsForApoptosisOrDeath()
 {
     switch (DIM)
@@ -115,7 +115,7 @@ void SloughingCellKiller<DIM>::CheckAndLabelCellsForApoptosisOrDeath()
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void SloughingCellKiller<DIM>::OutputCellKillerParameters(out_stream& rParamsFile)
 {
     *rParamsFile << "\t\t\t<SloughLength>" << mSloughHeight << "</SloughLength>\n";

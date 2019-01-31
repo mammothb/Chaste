@@ -54,7 +54,7 @@ class TestMutableMesh : public CxxTest::TestSuite
 {
 private:
 
-    template<unsigned DIM>
+    template <unsigned DIM>
     void EdgeIteratorTest(std::string meshFilename)
     {
         // Create a simple mesh

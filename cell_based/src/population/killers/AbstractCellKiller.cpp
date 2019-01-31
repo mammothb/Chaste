@@ -35,24 +35,24 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include "AbstractCellKiller.hpp"
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 AbstractCellKiller<SPACE_DIM>::AbstractCellKiller(AbstractCellPopulation<SPACE_DIM>* pCellPopulation)
         : mpCellPopulation(pCellPopulation)
 {
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 AbstractCellKiller<SPACE_DIM>::~AbstractCellKiller()
 {
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 const AbstractCellPopulation<SPACE_DIM>* AbstractCellKiller<SPACE_DIM>::GetCellPopulation() const
 {
     return mpCellPopulation;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void AbstractCellKiller<DIM>::OutputCellKillerInfo(out_stream& rParamsFile)
 {
     std::string cell_killer_type = GetIdentifier();
@@ -62,7 +62,7 @@ void AbstractCellKiller<DIM>::OutputCellKillerInfo(out_stream& rParamsFile)
     *rParamsFile << "\t\t</" << cell_killer_type << ">\n";
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void AbstractCellKiller<DIM>::OutputCellKillerParameters(out_stream& rParamsFile)
 {
     // No parameters to output

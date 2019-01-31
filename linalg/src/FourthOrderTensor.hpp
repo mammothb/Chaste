@@ -47,7 +47,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  * A class of fourth order tensors (i.e. tensors with four indices), over arbitrary dimension.
  */
-template<unsigned DIM1, unsigned DIM2, unsigned DIM3, unsigned DIM4>
+template <unsigned DIM1, unsigned DIM2, unsigned DIM3, unsigned DIM4>
 class FourthOrderTensor
 {
 private:
@@ -84,7 +84,7 @@ public:
      * @param rMatrix A matrix
      * @param rTensor A fourth order tensor
      */
-    template<unsigned CONTRACTED_DIM>
+    template <unsigned CONTRACTED_DIM>
     void SetAsContractionOnFirstDimension(const c_matrix<double,DIM1,CONTRACTED_DIM>& rMatrix, FourthOrderTensor<CONTRACTED_DIM,DIM2,DIM3,DIM4>& rTensor);
 
 
@@ -96,7 +96,7 @@ public:
      * @param rMatrix A matrix
      * @param rTensor A fourth order tensor
      */
-    template<unsigned CONTRACTED_DIM>
+    template <unsigned CONTRACTED_DIM>
     void SetAsContractionOnSecondDimension(const c_matrix<double,DIM2,CONTRACTED_DIM>& rMatrix, FourthOrderTensor<DIM1,CONTRACTED_DIM,DIM3,DIM4>& rTensor);
 
     /**
@@ -107,7 +107,7 @@ public:
      * @param rMatrix A matrix
      * @param rTensor A fourth order tensor
      */
-    template<unsigned CONTRACTED_DIM>
+    template <unsigned CONTRACTED_DIM>
     void SetAsContractionOnThirdDimension(const c_matrix<double,DIM3,CONTRACTED_DIM>& rMatrix, FourthOrderTensor<DIM1,DIM2,CONTRACTED_DIM,DIM4>& rTensor);
 
     /**
@@ -118,7 +118,7 @@ public:
      * @param rMatrix A matrix
      * @param rTensor A fourth order tensor
      */
-    template<unsigned CONTRACTED_DIM>
+    template <unsigned CONTRACTED_DIM>
     void SetAsContractionOnFourthDimension(const c_matrix<double,DIM4,CONTRACTED_DIM>& rMatrix, FourthOrderTensor<DIM1,DIM2,DIM3,CONTRACTED_DIM>& rTensor);
 
     /**
@@ -149,15 +149,15 @@ public:
 // Implementation (lots of possibilities for the dimensions so no point with explicit instantiation)
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-template<unsigned DIM1, unsigned DIM2, unsigned DIM3, unsigned DIM4>
+template <unsigned DIM1, unsigned DIM2, unsigned DIM3, unsigned DIM4>
 FourthOrderTensor<DIM1,DIM2,DIM3,DIM4>::FourthOrderTensor()
 {
     unsigned size = DIM1*DIM2*DIM3*DIM4;
     mData.resize(size, 0.0);
 }
 
-template<unsigned DIM1, unsigned DIM2, unsigned DIM3, unsigned DIM4>
-template<unsigned CONTRACTED_DIM>
+template <unsigned DIM1, unsigned DIM2, unsigned DIM3, unsigned DIM4>
+template <unsigned CONTRACTED_DIM>
 void FourthOrderTensor<DIM1,DIM2,DIM3,DIM4>::SetAsContractionOnFirstDimension(const c_matrix<double,DIM1,CONTRACTED_DIM>& rMatrix, FourthOrderTensor<CONTRACTED_DIM,DIM2,DIM3,DIM4>& rTensor)
 {
     Zero();
@@ -199,8 +199,8 @@ void FourthOrderTensor<DIM1,DIM2,DIM3,DIM4>::SetAsContractionOnFirstDimension(co
     }
 }
 
-template<unsigned DIM1, unsigned DIM2, unsigned DIM3, unsigned DIM4>
-template<unsigned CONTRACTED_DIM>
+template <unsigned DIM1, unsigned DIM2, unsigned DIM3, unsigned DIM4>
+template <unsigned CONTRACTED_DIM>
 void FourthOrderTensor<DIM1,DIM2,DIM3,DIM4>::SetAsContractionOnSecondDimension(const c_matrix<double,DIM2,CONTRACTED_DIM>& rMatrix, FourthOrderTensor<DIM1,CONTRACTED_DIM,DIM3,DIM4>& rTensor)
 {
     Zero();
@@ -245,8 +245,8 @@ void FourthOrderTensor<DIM1,DIM2,DIM3,DIM4>::SetAsContractionOnSecondDimension(c
     }
 }
 
-template<unsigned DIM1, unsigned DIM2, unsigned DIM3, unsigned DIM4>
-template<unsigned CONTRACTED_DIM>
+template <unsigned DIM1, unsigned DIM2, unsigned DIM3, unsigned DIM4>
+template <unsigned CONTRACTED_DIM>
 void FourthOrderTensor<DIM1,DIM2,DIM3,DIM4>::SetAsContractionOnThirdDimension(const c_matrix<double,DIM3,CONTRACTED_DIM>& rMatrix, FourthOrderTensor<DIM1,DIM2,CONTRACTED_DIM,DIM4>& rTensor)
 {
     Zero();
@@ -292,8 +292,8 @@ void FourthOrderTensor<DIM1,DIM2,DIM3,DIM4>::SetAsContractionOnThirdDimension(co
     }
 }
 
-template<unsigned DIM1, unsigned DIM2, unsigned DIM3, unsigned DIM4>
-template<unsigned CONTRACTED_DIM>
+template <unsigned DIM1, unsigned DIM2, unsigned DIM3, unsigned DIM4>
+template <unsigned CONTRACTED_DIM>
 void FourthOrderTensor<DIM1,DIM2,DIM3,DIM4>::SetAsContractionOnFourthDimension(const c_matrix<double,DIM4,CONTRACTED_DIM>& rMatrix, FourthOrderTensor<DIM1,DIM2,DIM3,CONTRACTED_DIM>& rTensor)
 {
     Zero();
@@ -337,7 +337,7 @@ void FourthOrderTensor<DIM1,DIM2,DIM3,DIM4>::SetAsContractionOnFourthDimension(c
     }
 }
 
-template<unsigned DIM1, unsigned DIM2, unsigned DIM3, unsigned DIM4>
+template <unsigned DIM1, unsigned DIM2, unsigned DIM3, unsigned DIM4>
 double& FourthOrderTensor<DIM1,DIM2,DIM3,DIM4>::operator()(unsigned M, unsigned N, unsigned P, unsigned Q)
 {
     assert(M<DIM1);
@@ -348,7 +348,7 @@ double& FourthOrderTensor<DIM1,DIM2,DIM3,DIM4>::operator()(unsigned M, unsigned 
     return mData[GetVectorIndex(M,N,P,Q)];
 }
 
-template<unsigned DIM1, unsigned DIM2, unsigned DIM3, unsigned DIM4>
+template <unsigned DIM1, unsigned DIM2, unsigned DIM3, unsigned DIM4>
 void FourthOrderTensor<DIM1,DIM2,DIM3,DIM4>::Zero()
 {
     for (unsigned i=0; i<mData.size(); i++)

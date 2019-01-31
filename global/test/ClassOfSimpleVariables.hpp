@@ -46,7 +46,7 @@ private:
     friend class boost::serialization::access;
     friend class TestObjectCommunicator;
 
-    template<class Archive>
+    template <class Archive>
     void serialize(Archive & archive, const unsigned int version)
     {
         // If Archive is an output archive, then & resolves to <<

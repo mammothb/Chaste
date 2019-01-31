@@ -36,14 +36,14 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "CellBetaCateninWriter.hpp"
 #include "AbstractCellPopulation.hpp"
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 CellBetaCateninWriter<ELEMENT_DIM, SPACE_DIM>::CellBetaCateninWriter()
     : AbstractCellWriter<ELEMENT_DIM, SPACE_DIM>("results.vizbetacatenin")
 {
     this->mVtkCellDataName = "Beta catenin";
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 double CellBetaCateninWriter<ELEMENT_DIM, SPACE_DIM>::GetCellDataForVtkOutput(CellPtr pCell, AbstractCellPopulation<ELEMENT_DIM, SPACE_DIM>* pCellPopulation)
 {
     AbstractVanLeeuwen2009WntSwatCellCycleModel* p_model = dynamic_cast<AbstractVanLeeuwen2009WntSwatCellCycleModel*>(pCell->GetCellCycleModel());
@@ -52,7 +52,7 @@ double CellBetaCateninWriter<ELEMENT_DIM, SPACE_DIM>::GetCellDataForVtkOutput(Ce
     return b_cat_cytoplasm;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void CellBetaCateninWriter<ELEMENT_DIM, SPACE_DIM>::VisitCell(CellPtr pCell, AbstractCellPopulation<ELEMENT_DIM, SPACE_DIM>* pCellPopulation)
 {
     assert(SPACE_DIM == 2); // LCOV_EXCL_LINE

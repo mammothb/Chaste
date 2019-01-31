@@ -83,7 +83,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *  where n is the total number of nodes.
  *
  */
-template<unsigned DIM, bool CAN_ASSEMBLE_VECTOR, bool CAN_ASSEMBLE_MATRIX>
+template <unsigned DIM, bool CAN_ASSEMBLE_VECTOR, bool CAN_ASSEMBLE_MATRIX>
 class AbstractContinuumMechanicsAssembler : public AbstractFeAssemblerInterface<CAN_ASSEMBLE_VECTOR,CAN_ASSEMBLE_MATRIX>
 {
 protected:
@@ -324,7 +324,7 @@ public:
 
 
 //// add this method when needed..
-//template<unsigned DIM, bool CAN_ASSEMBLE_VECTOR, bool CAN_ASSEMBLE_MATRIX>
+//template <unsigned DIM, bool CAN_ASSEMBLE_VECTOR, bool CAN_ASSEMBLE_MATRIX>
 //void AbstractContinuumMechanicsAssembler<DIM,CAN_ASSEMBLE_VECTOR,CAN_ASSEMBLE_MATRIX>::SetCurrentSolution(Vec currentSolution)
 //{
 //    assert(currentSolution != NULL);
@@ -340,7 +340,7 @@ public:
 //    assert(mCurrentSolutionOrGuessReplicated.GetSize() > 0);
 //}
 
-template<unsigned DIM, bool CAN_ASSEMBLE_VECTOR, bool CAN_ASSEMBLE_MATRIX>
+template <unsigned DIM, bool CAN_ASSEMBLE_VECTOR, bool CAN_ASSEMBLE_MATRIX>
 void AbstractContinuumMechanicsAssembler<DIM,CAN_ASSEMBLE_VECTOR,CAN_ASSEMBLE_MATRIX>::DoAssemble()
 {
     assert(this->mAssembleMatrix || this->mAssembleVector);
@@ -438,7 +438,7 @@ void AbstractContinuumMechanicsAssembler<DIM,CAN_ASSEMBLE_VECTOR,CAN_ASSEMBLE_MA
     }
 }
 
-template<unsigned DIM, bool CAN_ASSEMBLE_VECTOR, bool CAN_ASSEMBLE_MATRIX>
+template <unsigned DIM, bool CAN_ASSEMBLE_VECTOR, bool CAN_ASSEMBLE_MATRIX>
 void AbstractContinuumMechanicsAssembler<DIM,CAN_ASSEMBLE_VECTOR,CAN_ASSEMBLE_MATRIX>::AssembleOnElement(Element<DIM, DIM>& rElement,
                                                                                                          c_matrix<double, STENCIL_SIZE, STENCIL_SIZE >& rAElem,
                                                                                                          c_vector<double, STENCIL_SIZE>& rBElem)

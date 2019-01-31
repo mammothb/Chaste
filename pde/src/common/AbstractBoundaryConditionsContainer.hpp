@@ -50,7 +50,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  * Helper struct storing an operator for computing whether one node
  * has a lower index than another.
  */
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 struct LessThanNode
 {
     /**
@@ -68,7 +68,7 @@ struct LessThanNode
 /**
  * Abstract boundary conditions container.
  */
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM, unsigned PROBLEM_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM, unsigned PROBLEM_DIM>
 class AbstractBoundaryConditionsContainer : boost::noncopyable
 {
 protected:

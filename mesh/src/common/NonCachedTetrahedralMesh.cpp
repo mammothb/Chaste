@@ -36,13 +36,13 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "NonCachedTetrahedralMesh.hpp"
 #include "Exception.hpp"
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void NonCachedTetrahedralMesh<ELEMENT_DIM, SPACE_DIM>::RefreshJacobianCachedData()
 {
     // Don't do any caching
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void NonCachedTetrahedralMesh<ELEMENT_DIM, SPACE_DIM>::GetJacobianForElement(unsigned elementIndex, c_matrix<double, SPACE_DIM, SPACE_DIM>& rJacobian, double& rJacobianDeterminant) const
 {
     EXCEPTION("Use GetInverseJacobianForElement to retrieve Jacobian data instead.");
@@ -59,7 +59,7 @@ void NonCachedTetrahedralMesh<ELEMENT_DIM, SPACE_DIM>::GetInverseJacobianForElem
     this->mElements[this->SolveElementMapping(elementIndex)]->CalculateInverseJacobian(rJacobian, rJacobianDeterminant, rInverseJacobian);
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void NonCachedTetrahedralMesh<ELEMENT_DIM, SPACE_DIM>::GetWeightedDirectionForElement(unsigned elementIndex, c_vector<double, SPACE_DIM>& rWeightedDirection, double& rJacobianDeterminant) const
 {
     // See comment in AbstractTetrahedralMesh::GetWeightedDirectionForBoundaryElement()

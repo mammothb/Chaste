@@ -399,7 +399,7 @@ cp -r /tmp/$USER/testoutput/SaveMonodomain/ ~/eclipse/workspace/Chaste/apps/text
 
 private:
     // Helper functions for the migration tests defined below.
-    template<class Problem, unsigned DIM>
+    template <class Problem, unsigned DIM>
     Problem* DoMigrateAndBasicTests(const FileFinder& rArchiveDirectory,
                                     const std::string& rRefArchiveDir, // relative to CHASTE_TEST_OUTPUT
                                     const std::string& rNewArchiveDir, // relative to CHASTE_TEST_OUTPUT
@@ -525,7 +525,7 @@ cp /tmp/$USER/testoutput/TestLoadAsSequentialWithBathAndDistributedMesh/archive.
         }
     }
 
-    template<class Problem>
+    template <class Problem>
     void DoSimulationsAfterMigrationAndCompareResults(Problem* pProblem, // the loaded problem
                                                       const FileFinder& rArchiveDirectory, // where the archive was stored
                                                       const std::string& rRefArchiveDir, // relative to CHASTE_TEST_OUTPUT
@@ -841,7 +841,7 @@ cp  /tmp/$USER/testoutput/TestCreateArchiveForLoadAsSequentialWithBathAndDistrib
     }
 
 private:
-    template<class Problem, unsigned DIM>
+    template <class Problem, unsigned DIM>
     Problem* DoMigrateFromSequentialAndBasicTests(
             const FileFinder& rArchiveDirectory,
             const std::string& rRefArchiveDir,

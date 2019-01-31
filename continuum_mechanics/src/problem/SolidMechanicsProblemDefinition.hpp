@@ -46,7 +46,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *  the body force (per unit mass) (usually acceleration due to gravity or zero), the traction
  *  boundary conditions, and the density.
  */
-template<unsigned DIM>
+template <unsigned DIM>
 class SolidMechanicsProblemDefinition : public ContinuumMechanicsProblemDefinition<DIM>
 {
 private:

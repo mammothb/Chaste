@@ -51,7 +51,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  * AbstractCvodeSystem, which require similar functionality but use different vector
  * types.
  */
-template<typename VECTOR>
+template <typename VECTOR>
 class AbstractParameterisedSystem : public AbstractUntemplatedParameterisedSystem
 {
 friend class TestAbstractCvodeSystem;

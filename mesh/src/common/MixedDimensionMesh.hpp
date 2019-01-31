@@ -47,7 +47,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  * Could be used for Purkinje or blood vessels, etc.
  */
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 class MixedDimensionMesh : public DistributedTetrahedralMesh<ELEMENT_DIM, SPACE_DIM>
 {
 public:
@@ -140,7 +140,7 @@ private:
      * @param archive the archive
      * @param version the current version of this class
      */
-    template<class Archive>
+    template <class Archive>
     void serialize(Archive & archive, const unsigned int version)
     {
         archive & boost::serialization::base_object<DistributedTetrahedralMesh<ELEMENT_DIM, SPACE_DIM> >(*this);
@@ -177,7 +177,7 @@ namespace serialization
 /**
  * Record number of processors when saving...
  */
-template<class Archive, unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <class Archive, unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 inline void save_construct_data(
     Archive & ar, const MixedDimensionMesh<ELEMENT_DIM, SPACE_DIM> * t, const unsigned int file_version)
 {
@@ -191,7 +191,7 @@ inline void save_construct_data(
  * De-serialize constructor parameters and initialise a MixedDimensionMesh,
  * checking the number of processors is the same.
  */
-template<class Archive, unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <class Archive, unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 inline void load_construct_data(
     Archive & ar, MixedDimensionMesh<ELEMENT_DIM, SPACE_DIM> * t, const unsigned int file_version)
 {

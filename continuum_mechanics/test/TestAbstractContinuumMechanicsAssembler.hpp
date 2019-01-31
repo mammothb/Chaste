@@ -58,7 +58,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // correctly.
 
 
-template<unsigned DIM>
+template <unsigned DIM>
 class SimpleAssembler : public AbstractContinuumMechanicsAssembler<DIM,true,true>
 {
 private:
@@ -188,7 +188,7 @@ public:
     }
 };
 
-template<unsigned DIM>
+template <unsigned DIM>
 class MyMatrixAssembler : public AbstractContinuumMechanicsAssembler<DIM,false,true>
 {
 private:

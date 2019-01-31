@@ -46,7 +46,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *  div(sigma_e grad phi_e) dot n = g3.
  *
  */
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 class ExtendedBidomainNeumannSurfaceTermAssembler : public AbstractFeSurfaceIntegralAssembler<ELEMENT_DIM,SPACE_DIM,3>
 {
 protected:
@@ -89,7 +89,7 @@ public:
 
 
 // LCOV_EXCL_START //no non-zero Neumann BC allowed at the moment in extended bidomain problems
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 c_vector<double, 3*ELEMENT_DIM> ExtendedBidomainNeumannSurfaceTermAssembler<ELEMENT_DIM,SPACE_DIM>::ComputeVectorSurfaceTerm(
     const BoundaryElement<ELEMENT_DIM-1,SPACE_DIM> &rSurfaceElement,
     c_vector<double,ELEMENT_DIM> &rPhi,

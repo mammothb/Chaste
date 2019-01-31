@@ -44,7 +44,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 /**
  * A concrete mesh writer class that writes Triangle output files.
  */
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 class TrianglesMeshWriter : public AbstractTetrahedralMeshWriter<ELEMENT_DIM, SPACE_DIM>
 {
 public:
@@ -92,7 +92,7 @@ public:
      * @param rAttributes A vector of attributes (double precision).
      */
 
-     template<class  T_DATA>
+     template <class  T_DATA>
      void WriteItem(out_stream &pFile, unsigned itemNumber, const std::vector<T_DATA> &dataPacket, const std::vector<double> &rAttributes);
 
      /**
@@ -103,7 +103,7 @@ public:
       * @param itemNumber Index of the element, node or face
       * @param dataPacket List of unsigneds (for node indices) or doubles (for node locations)
       */
-      template<class  T_DATA>
+      template <class  T_DATA>
       void WriteItem(out_stream &pFile, unsigned itemNumber, const std::vector<T_DATA> &dataPacket);
 
 

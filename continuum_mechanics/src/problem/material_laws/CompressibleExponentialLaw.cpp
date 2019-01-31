@@ -35,7 +35,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include "CompressibleExponentialLaw.hpp"
 
-template<unsigned DIM>
+template <unsigned DIM>
 CompressibleExponentialLaw<DIM>::CompressibleExponentialLaw()
 {
     mA = 0.88;  // kPa
@@ -75,7 +75,7 @@ CompressibleExponentialLaw<DIM>::CompressibleExponentialLaw()
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void CompressibleExponentialLaw<DIM>::ComputeStressAndStressDerivative(c_matrix<double,DIM,DIM>& rC,
                                                                        c_matrix<double,DIM,DIM>& rInvC,
                                                                        double                pressure /* not used */,

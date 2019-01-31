@@ -59,7 +59,7 @@ public:
     }
 };
 
-template<>
+template <>
 void OdeSystemInformation<RkfTestOde>::Initialise()
 {
     this->mVariableNames.push_back("Variable_1");

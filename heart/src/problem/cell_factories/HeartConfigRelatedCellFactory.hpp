@@ -92,7 +92,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  * cell model parameters), and the ability to dynamically convert CellML files into C++ code,
  * compile this, and load the resulting model.
  */
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 class HeartConfigRelatedCellFactory : public AbstractCardiacCellFactory<SPACE_DIM>
 {
 private:

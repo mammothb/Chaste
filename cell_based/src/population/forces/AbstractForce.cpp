@@ -35,17 +35,17 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include "AbstractForce.hpp"
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 AbstractForce<ELEMENT_DIM, SPACE_DIM>::AbstractForce()
 {
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 AbstractForce<ELEMENT_DIM, SPACE_DIM>::~AbstractForce()
 {
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void AbstractForce<ELEMENT_DIM, SPACE_DIM>::OutputForceInfo(out_stream& rParamsFile)
 {
     std::string force_type = GetIdentifier();
@@ -55,13 +55,13 @@ void AbstractForce<ELEMENT_DIM, SPACE_DIM>::OutputForceInfo(out_stream& rParamsF
     *rParamsFile << "\t\t</" << force_type << ">\n";
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void AbstractForce<ELEMENT_DIM, SPACE_DIM>::OutputForceParameters(out_stream& rParamsFile)
 {
     // No parameters to output
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void AbstractForce<ELEMENT_DIM, SPACE_DIM>::WriteDataToVisualizerSetupFile(out_stream& pVizSetupFile)
 {
     // Nothing to output

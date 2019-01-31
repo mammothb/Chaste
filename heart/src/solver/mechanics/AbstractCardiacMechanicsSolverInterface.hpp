@@ -51,7 +51,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  * templating over solver.
  *
  */
-template<unsigned DIM>
+template <unsigned DIM>
 class AbstractCardiacMechanicsSolverInterface
 {
 public:

@@ -46,7 +46,7 @@ class ParameterisedCvode : public AbstractCvodeSystem
 {
     friend class boost::serialization::access;
 
-    template<class Archive>
+    template <class Archive>
     void serialize(Archive & archive, const unsigned int version)
     {
         archive & boost::serialization::base_object<AbstractCvodeSystem>(*this);

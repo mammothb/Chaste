@@ -37,21 +37,21 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "AbstractCellPopulation.hpp"
 #include "AbstractPhaseBasedCellCycleModel.hpp"
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 CellProliferativePhasesWriter<ELEMENT_DIM, SPACE_DIM>::CellProliferativePhasesWriter()
     : AbstractCellWriter<ELEMENT_DIM, SPACE_DIM>("results.vizcellphases")
 {
     this->mVtkCellDataName = "Cycle phases";
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 double CellProliferativePhasesWriter<ELEMENT_DIM, SPACE_DIM>::GetCellDataForVtkOutput(CellPtr pCell, AbstractCellPopulation<ELEMENT_DIM, SPACE_DIM>* pCellPopulation)
 {
     double phase = static_cast<AbstractPhaseBasedCellCycleModel*>(pCell->GetCellCycleModel())->GetCurrentCellCyclePhase();
     return phase;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void CellProliferativePhasesWriter<ELEMENT_DIM, SPACE_DIM>::VisitCell(CellPtr pCell, AbstractCellPopulation<ELEMENT_DIM, SPACE_DIM>* pCellPopulation)
 {
     double phase = static_cast<AbstractPhaseBasedCellCycleModel*>(pCell->GetCellCycleModel())->GetCurrentCellCyclePhase();

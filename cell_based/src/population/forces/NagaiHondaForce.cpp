@@ -35,7 +35,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include "NagaiHondaForce.hpp"
 
-template<unsigned DIM>
+template <unsigned DIM>
 NagaiHondaForce<DIM>::NagaiHondaForce()
    : AbstractForce<DIM>(),
      mNagaiHondaDeformationEnergyParameter(100.0), // This is 1.0 in the Nagai & Honda paper.
@@ -48,12 +48,12 @@ NagaiHondaForce<DIM>::NagaiHondaForce()
 {
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 NagaiHondaForce<DIM>::~NagaiHondaForce()
 {
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void NagaiHondaForce<DIM>::AddForceContribution(AbstractCellPopulation<DIM>& rCellPopulation)
 {
     // Throw an exception message if not using a VertexBasedCellPopulation
@@ -162,7 +162,7 @@ void NagaiHondaForce<DIM>::AddForceContribution(AbstractCellPopulation<DIM>& rCe
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 double NagaiHondaForce<DIM>::GetAdhesionParameter(Node<DIM>* pNodeA, Node<DIM>* pNodeB, VertexBasedCellPopulation<DIM>& rVertexCellPopulation)
 {
     // Find the indices of the elements owned by each node
@@ -191,55 +191,55 @@ double NagaiHondaForce<DIM>::GetAdhesionParameter(Node<DIM>* pNodeA, Node<DIM>* 
     return adhesion_parameter;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 double NagaiHondaForce<DIM>::GetNagaiHondaDeformationEnergyParameter()
 {
     return mNagaiHondaDeformationEnergyParameter;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 double NagaiHondaForce<DIM>::GetNagaiHondaMembraneSurfaceEnergyParameter()
 {
     return mNagaiHondaMembraneSurfaceEnergyParameter;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 double NagaiHondaForce<DIM>::GetNagaiHondaCellCellAdhesionEnergyParameter()
 {
     return mNagaiHondaCellCellAdhesionEnergyParameter;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 double NagaiHondaForce<DIM>::GetNagaiHondaCellBoundaryAdhesionEnergyParameter()
 {
     return mNagaiHondaCellBoundaryAdhesionEnergyParameter;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void NagaiHondaForce<DIM>::SetNagaiHondaDeformationEnergyParameter(double deformationEnergyParameter)
 {
     mNagaiHondaDeformationEnergyParameter = deformationEnergyParameter;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void NagaiHondaForce<DIM>::SetNagaiHondaMembraneSurfaceEnergyParameter(double membraneSurfaceEnergyParameter)
 {
     mNagaiHondaMembraneSurfaceEnergyParameter = membraneSurfaceEnergyParameter;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void NagaiHondaForce<DIM>::SetNagaiHondaCellCellAdhesionEnergyParameter(double cellCellAdhesionEnergyParameter)
 {
     mNagaiHondaCellCellAdhesionEnergyParameter = cellCellAdhesionEnergyParameter;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void NagaiHondaForce<DIM>::SetNagaiHondaCellBoundaryAdhesionEnergyParameter(double cellBoundaryAdhesionEnergyParameter)
 {
     mNagaiHondaCellBoundaryAdhesionEnergyParameter = cellBoundaryAdhesionEnergyParameter;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void NagaiHondaForce<DIM>::OutputForceParameters(out_stream& rParamsFile)
 {
     *rParamsFile << "\t\t\t<NagaiHondaDeformationEnergyParameter>" << mNagaiHondaDeformationEnergyParameter << "</NagaiHondaDeformationEnergyParameter>\n";

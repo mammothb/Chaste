@@ -45,7 +45,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  * This class will "visit" all the locally owned elements and concentrate
  * data back to the master.
  */
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM, unsigned DATA_SIZE>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM, unsigned DATA_SIZE>
 class AbstractPerElementWriter
 {
 private:

@@ -46,7 +46,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // on tests that use a dynamically loaded CVODE model
 #include "AbstractCvodeCell.hpp"
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 HeartConfigRelatedCellFactory<SPACE_DIM>::HeartConfigRelatedCellFactory()
     : AbstractCardiacCellFactory<SPACE_DIM>(),
       mDefaultIonicModel(HeartConfig::Instance()->GetDefaultIonicModel())
@@ -75,7 +75,7 @@ HeartConfigRelatedCellFactory<SPACE_DIM>::HeartConfigRelatedCellFactory()
     PreconvertCellmlFiles();
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 void HeartConfigRelatedCellFactory<SPACE_DIM>::PreconvertCellmlFiles()
 {
     if (mDefaultIonicModel.Dynamic().present())
@@ -91,7 +91,7 @@ void HeartConfigRelatedCellFactory<SPACE_DIM>::PreconvertCellmlFiles()
     }
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 DynamicCellModelLoaderPtr HeartConfigRelatedCellFactory<SPACE_DIM>::LoadDynamicModel(
         const cp::ionic_model_selection_type& rModel,
         bool isCollective)
@@ -102,12 +102,12 @@ DynamicCellModelLoaderPtr HeartConfigRelatedCellFactory<SPACE_DIM>::LoadDynamicM
     return converter.Convert(file_finder, isCollective);
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 HeartConfigRelatedCellFactory<SPACE_DIM>::~HeartConfigRelatedCellFactory()
 {
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 AbstractCardiacCellInterface* HeartConfigRelatedCellFactory<SPACE_DIM>::CreateCellWithIntracellularStimulus(
         boost::shared_ptr<AbstractStimulusFunction> intracellularStimulus,
         unsigned nodeIndex)
@@ -246,7 +246,7 @@ AbstractCardiacCellInterface* HeartConfigRelatedCellFactory<SPACE_DIM>::CreateCe
     return p_cell;
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 void HeartConfigRelatedCellFactory<SPACE_DIM>::SetCellParameters(AbstractCardiacCellInterface* pCell,
                                                                  unsigned nodeIndex)
 {
@@ -312,7 +312,7 @@ void HeartConfigRelatedCellFactory<SPACE_DIM>::SetCellParameters(AbstractCardiac
     }
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 void HeartConfigRelatedCellFactory<SPACE_DIM>::SetCellIntracellularStimulus(AbstractCardiacCellInterface* pCell,
                                                                             unsigned nodeIndex)
 {
@@ -330,7 +330,7 @@ void HeartConfigRelatedCellFactory<SPACE_DIM>::SetCellIntracellularStimulus(Abst
     pCell->SetIntracellularStimulusFunction(node_specific_stimulus);
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 AbstractCardiacCellInterface* HeartConfigRelatedCellFactory<SPACE_DIM>::CreateCardiacCellForTissueNode(Node<SPACE_DIM>* pNode)
 {
     boost::shared_ptr<MultiStimulus> node_specific_stimulus(new MultiStimulus());
@@ -351,14 +351,14 @@ AbstractCardiacCellInterface* HeartConfigRelatedCellFactory<SPACE_DIM>::CreateCa
 }
 
 // LCOV_EXCL_START
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 void HeartConfigRelatedCellFactory<SPACE_DIM>::FillInCellularTransmuralAreas()
 {
     NEVER_REACHED;
 }
 // LCOV_EXCL_STOP
 
-template<>
+template <>
 void HeartConfigRelatedCellFactory<3u>::FillInCellularTransmuralAreas()
 {
     std::string mesh_file_name = HeartConfig::Instance()->GetMeshName();

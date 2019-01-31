@@ -47,7 +47,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 /**
  * Class which specifies and solves a monodomain problem with Purkinje fibres.
  */
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM = ELEMENT_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM = ELEMENT_DIM>
 class MonodomainPurkinjeProblem : public AbstractCardiacProblem<ELEMENT_DIM, SPACE_DIM, 2>
 {
 
@@ -59,7 +59,7 @@ class MonodomainPurkinjeProblem : public AbstractCardiacProblem<ELEMENT_DIM, SPA
      * @param version
      * \todo Serialization of Purkinje problems is untested
      */
-    template<class Archive>
+    template <class Archive>
     void serialize(Archive & archive, const unsigned int version)  // LCOV_EXCL_LINE
     {
         NEVER_REACHED; // If you remove this NEVER_REACHED, then:

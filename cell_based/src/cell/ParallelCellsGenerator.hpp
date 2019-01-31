@@ -46,7 +46,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  * A helper class for generating a vector of cells and a NodesOnlyMesh from an
  * archive file without loading all cells to memory on each processor.
  */
-template<class CELL_CYCLE_MODEL, unsigned DIM>
+template <class CELL_CYCLE_MODEL, unsigned DIM>
 class ParallelCellsGenerator
 {
     friend class TestParallelCellsGenerator;    // For testing.
@@ -77,7 +77,7 @@ public:
 };
 
 // Implementation
-template<class CELL_CYCLE_MODEL, unsigned DIM>
+template <class CELL_CYCLE_MODEL, unsigned DIM>
 void ParallelCellsGenerator<CELL_CYCLE_MODEL, DIM>::GenerateParallelCells(std::string archivePath, std::vector<CellPtr>& cells, NodesOnlyMesh<DIM>& mesh, boost::shared_ptr<AbstractCellProperty> pCellProliferativeType)
 {
     // Get a bounding box for the archived nodes
@@ -140,7 +140,7 @@ void ParallelCellsGenerator<CELL_CYCLE_MODEL, DIM>::GenerateParallelCells(std::s
     mesh.ReMesh(map);
 }
 
-template<class CELL_CYCLE_MODEL, unsigned DIM>
+template <class CELL_CYCLE_MODEL, unsigned DIM>
 c_vector<double, 2*DIM> ParallelCellsGenerator<CELL_CYCLE_MODEL, DIM>::GetArchiveBoundingBox(std::string archivePath)
 {
     c_vector<double, 2*DIM> bounding_box;

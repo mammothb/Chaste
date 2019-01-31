@@ -42,7 +42,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *  This class does nothing, it is identical to AbstractMaterialLaw. This class just exists to
  *  make things look symmetric and less odd in the solvers.
  */
-template<unsigned DIM>
+template <unsigned DIM>
 class AbstractCompressibleMaterialLaw : public AbstractMaterialLaw<DIM>
 {
 public:

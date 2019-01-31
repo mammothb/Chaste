@@ -50,7 +50,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  * DIM is the dimension of the quadratic mesh (element dimension == space dimension for mechanics at present).
  */
-template<unsigned DIM>
+template <unsigned DIM>
 class AbstractContractionCellFactory
 {
 private:

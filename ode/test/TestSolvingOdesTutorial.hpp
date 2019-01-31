@@ -112,7 +112,7 @@ public:
  * ODE system.  Note that we use the ODE system class that we have just defined
  * as a template parameter
  */
-template<>
+template <>
 void OdeSystemInformation<MyOde>::Initialise()
 {
     this->mVariableNames.push_back("y");
@@ -167,7 +167,7 @@ public:
 
 /* This time we do need to define the ODE system information.
  */
-template<>
+template <>
 void OdeSystemInformation<MyOdeUsingStateVariables>::Initialise()
 {
     this->mVariableNames.push_back("y");
@@ -198,7 +198,7 @@ public:
 
 /* Again we need to define the ODE system information.
  */
-template<>
+template <>
 void OdeSystemInformation<My2dOde>::Initialise()
 {
     this->mVariableNames.push_back("y");

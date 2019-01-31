@@ -35,7 +35,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include "VolumeConstraintPottsUpdateRule.hpp"
 
-template<unsigned DIM>
+template <unsigned DIM>
 VolumeConstraintPottsUpdateRule<DIM>::VolumeConstraintPottsUpdateRule()
     : AbstractPottsUpdateRule<DIM>(),
       mDeformationEnergyParameter(0.5), // Educated guess
@@ -44,12 +44,12 @@ VolumeConstraintPottsUpdateRule<DIM>::VolumeConstraintPottsUpdateRule()
         /// \todo Default values don't apply in 3D.
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 VolumeConstraintPottsUpdateRule<DIM>::~VolumeConstraintPottsUpdateRule()
 {
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 double VolumeConstraintPottsUpdateRule<DIM>::EvaluateHamiltonianContribution(unsigned currentNodeIndex,
                                                                         unsigned targetNodeIndex,
                                                                         PottsBasedCellPopulation<DIM>& rCellPopulation)
@@ -98,32 +98,32 @@ double VolumeConstraintPottsUpdateRule<DIM>::EvaluateHamiltonianContribution(uns
     return delta_H;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 double VolumeConstraintPottsUpdateRule<DIM>::GetDeformationEnergyParameter()
 {
     return mDeformationEnergyParameter;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void VolumeConstraintPottsUpdateRule<DIM>::SetDeformationEnergyParameter(double deformationEnergyParameter)
 {
     mDeformationEnergyParameter = deformationEnergyParameter;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 double VolumeConstraintPottsUpdateRule<DIM>::GetMatureCellTargetVolume() const
 {
     return mMatureCellTargetVolume;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void VolumeConstraintPottsUpdateRule<DIM>::SetMatureCellTargetVolume(double matureCellTargetVolume)
 {
     assert(matureCellTargetVolume >= 0.0);
     mMatureCellTargetVolume = matureCellTargetVolume;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void VolumeConstraintPottsUpdateRule<DIM>::OutputUpdateRuleParameters(out_stream& rParamsFile)
 {
     *rParamsFile << "\t\t\t<DeformationEnergyParameter>" << mDeformationEnergyParameter << "</DeformationEnergyParameter>\n";

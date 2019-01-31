@@ -35,7 +35,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include "TargetedCellKiller.hpp"
 
-template<unsigned DIM>
+template <unsigned DIM>
 TargetedCellKiller<DIM>::TargetedCellKiller(AbstractCellPopulation<DIM>* pCellPopulation, unsigned targetedIndex, bool bloodLust)
 : AbstractCellKiller<DIM>(pCellPopulation),
   mTargetIndex(targetedIndex),
@@ -43,19 +43,19 @@ TargetedCellKiller<DIM>::TargetedCellKiller(AbstractCellPopulation<DIM>* pCellPo
 {
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 unsigned TargetedCellKiller<DIM>::GetTargetIndex() const
 {
     return mTargetIndex;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 unsigned TargetedCellKiller<DIM>::GetBloodLust() const
 {
     return mBloodLust;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void TargetedCellKiller<DIM>::CheckAndLabelCellsForApoptosisOrDeath()
 {
     if (!mBloodLust || this->mpCellPopulation->GetNumRealCells()==0 || this->mpCellPopulation->GetNumRealCells()<mTargetIndex+1)
@@ -66,7 +66,7 @@ void TargetedCellKiller<DIM>::CheckAndLabelCellsForApoptosisOrDeath()
     mBloodLust = false;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void TargetedCellKiller<DIM>::OutputCellKillerParameters(out_stream& rParamsFile)
 {
     *rParamsFile << "\t\t\t<TargetIndex>" << mTargetIndex << "</TargetIndex>\n";

@@ -71,7 +71,7 @@ std::vector<double> ParameterisedOde::ComputeDerivedQuantities(double time,
 CHASTE_CLASS_EXPORT(ParameterisedOde)
 
 
-template<>
+template <>
 void OdeSystemInformation<ParameterisedOde>::Initialise()
 {
     this->mSystemName = "ParameterisedOde";

@@ -111,7 +111,7 @@ private:
      * @param archive the archive
      * @param version the current version of this class
      */
-    template<class Archive>
+    template <class Archive>
     void serialize(Archive & archive, const unsigned int version)
     {
         // Nothing to do - all done in load_construct_data
@@ -304,7 +304,7 @@ namespace boost
 namespace serialization
 {
 
-template<class Archive>
+template <class Archive>
 inline void save_construct_data(
     Archive & ar, const DistributedVectorFactory * t, const unsigned int file_version)
 {
@@ -323,7 +323,7 @@ inline void save_construct_data(
  * Allow us to not need a default constructor, by specifying how Boost should
  * instantiate an instance (using existing constructor).
  */
-template<class Archive>
+template <class Archive>
 inline void load_construct_data(
     Archive & ar, DistributedVectorFactory * t, const unsigned int file_version)
 {

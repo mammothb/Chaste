@@ -58,7 +58,7 @@ public:
     }
 };
 
-template<>
+template <>
 void OdeSystemInformation<VanDerPolOde>::Initialise()
 {
     this->mVariableNames.push_back("x");

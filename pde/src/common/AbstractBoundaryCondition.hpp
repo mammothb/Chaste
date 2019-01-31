@@ -45,7 +45,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 /**
  * Abstract base class for boundary conditions.
  */
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 class AbstractBoundaryCondition
 {
 private:
@@ -58,7 +58,7 @@ private:
      * @param archive
      * @param version
      */
-    template<class Archive>
+    template <class Archive>
     void serialize(Archive & archive, const unsigned int version)
     {
     }

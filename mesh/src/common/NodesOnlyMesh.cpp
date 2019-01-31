@@ -37,7 +37,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "NodesOnlyMesh.hpp"
 #include "ChasteCuboid.hpp"
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 NodesOnlyMesh<SPACE_DIM>::NodesOnlyMesh()
         : MutableMesh<SPACE_DIM, SPACE_DIM>(),
           mMaximumInteractionDistance(1.0),
@@ -49,14 +49,14 @@ NodesOnlyMesh<SPACE_DIM>::NodesOnlyMesh()
 {
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 NodesOnlyMesh<SPACE_DIM>::~NodesOnlyMesh()
 {
     Clear();
     ClearBoxCollection();
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 void NodesOnlyMesh<SPACE_DIM>::ConstructNodesWithoutMesh(const std::vector<Node<SPACE_DIM>*>& rNodes, double maxInteractionDistance)
 {
     assert(maxInteractionDistance > 0.0 && maxInteractionDistance < DBL_MAX);
@@ -98,7 +98,7 @@ void NodesOnlyMesh<SPACE_DIM>::ConstructNodesWithoutMesh(const std::vector<Node<
     }
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 void NodesOnlyMesh<SPACE_DIM>::ConstructNodesWithoutMesh(const std::vector<boost::shared_ptr<Node<SPACE_DIM> > >& rNodes, double maxInteractionDistance)
 {
     // This is not efficient. It should replace the corresponding raw ptr method if SetUpBoxCollection and Chaste Cuboid methods are changed to take shared ptrs.
@@ -111,19 +111,19 @@ void NodesOnlyMesh<SPACE_DIM>::ConstructNodesWithoutMesh(const std::vector<boost
     ConstructNodesWithoutMesh(temp_nodes, maxInteractionDistance);
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 void NodesOnlyMesh<SPACE_DIM>::ConstructNodesWithoutMesh(const AbstractMesh<SPACE_DIM,SPACE_DIM>& rGeneratingMesh, double maxInteractionDistance)
 {
     ConstructNodesWithoutMesh(rGeneratingMesh.mNodes, maxInteractionDistance);
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 std::vector<bool>& NodesOnlyMesh<SPACE_DIM>::rGetInitiallyOwnedNodes()
 {
     return mLocalInitialNodes;
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 unsigned NodesOnlyMesh<SPACE_DIM>::SolveNodeMapping(unsigned index) const
 {
     std::map<unsigned, unsigned>::const_iterator node_position = mNodesMapping.find(index);
@@ -136,7 +136,7 @@ unsigned NodesOnlyMesh<SPACE_DIM>::SolveNodeMapping(unsigned index) const
     return node_position->second;
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 void NodesOnlyMesh<SPACE_DIM>::Clear()
 {
     // Call Clear() on the parent class
@@ -148,7 +148,7 @@ void NodesOnlyMesh<SPACE_DIM>::Clear()
     mIndexCounter = 0;
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 DistributedBoxCollection<SPACE_DIM>* NodesOnlyMesh<SPACE_DIM>::GetBoxCollection()
 {
     return mpBoxCollection;
@@ -175,37 +175,37 @@ Node<SPACE_DIM>* NodesOnlyMesh<SPACE_DIM>::GetNodeOrHaloNode(unsigned index) con
     return p_node;
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 bool NodesOnlyMesh<SPACE_DIM>::IsOwned(c_vector<double, SPACE_DIM>& location)
 {
     return mpBoxCollection->IsOwned(location);
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 unsigned NodesOnlyMesh<SPACE_DIM>::GetNumNodes() const
 {
     return this->mNodes.size() - this->mDeletedNodeIndices.size();
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 unsigned NodesOnlyMesh<SPACE_DIM>::GetMaximumNodeIndex()
 {
     return std::max(mIndexCounter* PetscTools::GetNumProcs() + PetscTools::GetMyRank(), mMaxAddedNodeIndex);
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 void NodesOnlyMesh<SPACE_DIM>::SetMaximumInteractionDistance(double maxDistance)
 {
     mMaximumInteractionDistance = maxDistance;
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 double NodesOnlyMesh<SPACE_DIM>::GetMaximumInteractionDistance()
 {
     return mMaximumInteractionDistance;
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 double NodesOnlyMesh<SPACE_DIM>::GetWidth(const unsigned& rDimension) const
 {
     double local_width = AbstractMesh<SPACE_DIM, SPACE_DIM>::GetWidth(rDimension);
@@ -216,13 +216,13 @@ double NodesOnlyMesh<SPACE_DIM>::GetWidth(const unsigned& rDimension) const
     return global_width;
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 void NodesOnlyMesh<SPACE_DIM>::SetCalculateNodeNeighbours(bool calculateNodeNeighbours)
 {
     mCalculateNodeNeighbours = calculateNodeNeighbours;
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 void NodesOnlyMesh<SPACE_DIM>::CalculateInteriorNodePairs(std::vector<std::pair<Node<SPACE_DIM>*, Node<SPACE_DIM>*> >& rNodePairs)
 {
     assert(mpBoxCollection);
@@ -230,7 +230,7 @@ void NodesOnlyMesh<SPACE_DIM>::CalculateInteriorNodePairs(std::vector<std::pair<
     mpBoxCollection->CalculateInteriorNodePairs(this->mNodes, rNodePairs);
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 void NodesOnlyMesh<SPACE_DIM>::CalculateBoundaryNodePairs(std::vector<std::pair<Node<SPACE_DIM>*, Node<SPACE_DIM>*> >& rNodePairs)
 {
     assert(mpBoxCollection);
@@ -238,7 +238,7 @@ void NodesOnlyMesh<SPACE_DIM>::CalculateBoundaryNodePairs(std::vector<std::pair<
     mpBoxCollection->CalculateBoundaryNodePairs(this->mNodes, rNodePairs);
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 void NodesOnlyMesh<SPACE_DIM>::ReMesh(NodeMap& map)
 {
     map.ResetToIdentity();
@@ -253,7 +253,7 @@ void NodesOnlyMesh<SPACE_DIM>::ReMesh(NodeMap& map)
     this->SetMeshHasChangedSinceLoading();
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 void NodesOnlyMesh<SPACE_DIM>::RemoveDeletedNodes(NodeMap& map)
 {
     typename std::vector<Node<SPACE_DIM>* >::iterator node_iter = this->mNodes.begin();
@@ -276,7 +276,7 @@ void NodesOnlyMesh<SPACE_DIM>::RemoveDeletedNodes(NodeMap& map)
     }
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 void NodesOnlyMesh<SPACE_DIM>::UpdateNodeIndices()
 {
     mNodesMapping.clear();
@@ -287,7 +287,7 @@ void NodesOnlyMesh<SPACE_DIM>::UpdateNodeIndices()
     }
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 void NodesOnlyMesh<SPACE_DIM>::CalculateNodesOutsideLocalDomain()
 {
     mNodesToSendRight.clear();
@@ -313,31 +313,31 @@ void NodesOnlyMesh<SPACE_DIM>::CalculateNodesOutsideLocalDomain()
     }
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 std::vector<unsigned>& NodesOnlyMesh<SPACE_DIM>::rGetNodesToSendLeft()
 {
     return mNodesToSendLeft;
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 std::vector<unsigned>& NodesOnlyMesh<SPACE_DIM>::rGetNodesToSendRight()
 {
     return mNodesToSendRight;
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 std::vector<unsigned>& NodesOnlyMesh<SPACE_DIM>::rGetHaloNodesToSendRight()
 {
     return mpBoxCollection->rGetHaloNodesRight();
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 std::vector<unsigned>& NodesOnlyMesh<SPACE_DIM>::rGetHaloNodesToSendLeft()
 {
     return mpBoxCollection->rGetHaloNodesLeft();
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 void NodesOnlyMesh<SPACE_DIM>::AddNodeWithFixedIndex(Node<SPACE_DIM>* pNewNode)
 {
     unsigned location_in_nodes_vector = 0;
@@ -366,14 +366,14 @@ void NodesOnlyMesh<SPACE_DIM>::AddNodeWithFixedIndex(Node<SPACE_DIM>* pNewNode)
     pNewNode->SetRadius(0.5);
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 void NodesOnlyMesh<SPACE_DIM>::AddHaloNode(boost::shared_ptr<Node<SPACE_DIM> > pNewNode)
 {
     mHaloNodes.push_back(pNewNode);
     mHaloNodesMapping[pNewNode->GetIndex()] = mHaloNodes.size() - 1;
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 void NodesOnlyMesh<SPACE_DIM>::ClearHaloNodes()
 {
     mHaloNodes.clear();
@@ -381,7 +381,7 @@ void NodesOnlyMesh<SPACE_DIM>::ClearHaloNodes()
     mHaloNodesMapping.clear();
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 unsigned NodesOnlyMesh<SPACE_DIM>::AddNode(Node<SPACE_DIM>* pNewNode)
 {
     unsigned fresh_global_index = GetNextAvailableIndex();
@@ -392,7 +392,7 @@ unsigned NodesOnlyMesh<SPACE_DIM>::AddNode(Node<SPACE_DIM>* pNewNode)
     return fresh_global_index;
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 void NodesOnlyMesh<SPACE_DIM>::SetNode(unsigned nodeIndex, ChastePoint<SPACE_DIM> point, bool concreteMove)
 {
     // concreteMove should always be false for a NodesOnlyMesh as there are no elements to check
@@ -402,7 +402,7 @@ void NodesOnlyMesh<SPACE_DIM>::SetNode(unsigned nodeIndex, ChastePoint<SPACE_DIM
     this->GetNode(nodeIndex)->SetPoint(point);
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 void NodesOnlyMesh<SPACE_DIM>::AddMovedNode(boost::shared_ptr<Node<SPACE_DIM> > pMovedNode)
 {
     // Make a deep copy of this node pointer so that it isn't accidentally deleted.
@@ -432,7 +432,7 @@ void NodesOnlyMesh<SPACE_DIM>::AddMovedNode(boost::shared_ptr<Node<SPACE_DIM> > 
     AddNodeWithFixedIndex(p_node);
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 void NodesOnlyMesh<SPACE_DIM>::DeleteNode(unsigned index)
 {
     if (this->GetNode(index)->IsDeleted())
@@ -447,7 +447,7 @@ void NodesOnlyMesh<SPACE_DIM>::DeleteNode(unsigned index)
     mDeletedGlobalNodeIndices.push_back(index);
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 void NodesOnlyMesh<SPACE_DIM>::DeleteMovedNode(unsigned index)
 {
     DeleteNode(index);
@@ -456,7 +456,7 @@ void NodesOnlyMesh<SPACE_DIM>::DeleteMovedNode(unsigned index)
     mDeletedGlobalNodeIndices.pop_back();
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 void NodesOnlyMesh<SPACE_DIM>::SetMinimumNodeDomainBoundarySeparation(double separation)
 {
     assert(!(separation < 0.0));
@@ -464,7 +464,7 @@ void NodesOnlyMesh<SPACE_DIM>::SetMinimumNodeDomainBoundarySeparation(double sep
     mMinimumNodeDomainBoundarySeparation = separation;
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 unsigned NodesOnlyMesh<SPACE_DIM>::GetNextAvailableIndex()
 {
     unsigned index;
@@ -484,7 +484,7 @@ unsigned NodesOnlyMesh<SPACE_DIM>::GetNextAvailableIndex()
     return index;
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 void NodesOnlyMesh<SPACE_DIM>::EnlargeBoxCollection()
 {
     assert(mpBoxCollection);
@@ -506,7 +506,7 @@ void NodesOnlyMesh<SPACE_DIM>::EnlargeBoxCollection()
     SetUpBoxCollection(mMaximumInteractionDistance, new_domain_size, new_local_rows);
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 bool NodesOnlyMesh<SPACE_DIM>::IsANodeCloseToDomainBoundary()
 {
     assert(mpBoxCollection);
@@ -546,7 +546,7 @@ bool NodesOnlyMesh<SPACE_DIM>::IsANodeCloseToDomainBoundary()
     return (is_any_node_close > 0);
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 void NodesOnlyMesh<SPACE_DIM>::ClearBoxCollection()
 {
     if (mpBoxCollection)
@@ -556,13 +556,13 @@ void NodesOnlyMesh<SPACE_DIM>::ClearBoxCollection()
     mpBoxCollection = nullptr;
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 void NodesOnlyMesh<SPACE_DIM>::SetInitialBoxCollection(const c_vector<double, 2*SPACE_DIM> domainSize, double maxInteractionDistance)
 {
     this->SetUpBoxCollection(maxInteractionDistance, domainSize);
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 void NodesOnlyMesh<SPACE_DIM>::SetUpBoxCollection(const std::vector<Node<SPACE_DIM>* >& rNodes)
 {
     ClearBoxCollection();
@@ -579,7 +579,7 @@ void NodesOnlyMesh<SPACE_DIM>::SetUpBoxCollection(const std::vector<Node<SPACE_D
     SetUpBoxCollection(mMaximumInteractionDistance, domain_size);
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 void NodesOnlyMesh<SPACE_DIM>::SetUpBoxCollection(double cutOffLength, c_vector<double, 2*SPACE_DIM> domainSize, int numLocalRows, bool isPeriodic)
 {
      ClearBoxCollection();
@@ -589,7 +589,7 @@ void NodesOnlyMesh<SPACE_DIM>::SetUpBoxCollection(double cutOffLength, c_vector<
      mpBoxCollection->SetCalculateNodeNeighbours(mCalculateNodeNeighbours);
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 void NodesOnlyMesh<SPACE_DIM>::AddNodesToBoxes()
 {
      // Put the nodes in the boxes.
@@ -602,7 +602,7 @@ void NodesOnlyMesh<SPACE_DIM>::AddNodesToBoxes()
      }
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 void NodesOnlyMesh<SPACE_DIM>::AddHaloNodesToBoxes()
 {
     // Add halo nodes
@@ -615,7 +615,7 @@ void NodesOnlyMesh<SPACE_DIM>::AddHaloNodesToBoxes()
     }
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 void NodesOnlyMesh<SPACE_DIM>::UpdateBoxCollection()
 {
     assert(mpBoxCollection);
@@ -628,7 +628,7 @@ void NodesOnlyMesh<SPACE_DIM>::UpdateBoxCollection()
     mpBoxCollection->UpdateHaloBoxes();
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 void NodesOnlyMesh<SPACE_DIM>::ResizeBoxCollection()
 {
     if (!mpBoxCollection)
@@ -642,7 +642,7 @@ void NodesOnlyMesh<SPACE_DIM>::ResizeBoxCollection()
     }
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 void NodesOnlyMesh<SPACE_DIM>::LoadBalanceMesh()
 {
     std::vector<int> local_node_distribution = mpBoxCollection->CalculateNumberOfNodesInEachStrip();
@@ -661,7 +661,7 @@ void NodesOnlyMesh<SPACE_DIM>::LoadBalanceMesh()
     SetUpBoxCollection(mMaximumInteractionDistance, current_domain_size, new_rows);
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 void NodesOnlyMesh<SPACE_DIM>::ConstructFromMeshReader(AbstractMeshReader<SPACE_DIM, SPACE_DIM>& rMeshReader)
 {
     TetrahedralMesh<SPACE_DIM, SPACE_DIM>::ConstructFromMeshReader(rMeshReader);
@@ -673,7 +673,7 @@ void NodesOnlyMesh<SPACE_DIM>::ConstructFromMeshReader(AbstractMeshReader<SPACE_
     }
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 std::vector<unsigned> NodesOnlyMesh<SPACE_DIM>::GetAllNodeIndices() const
 {
     std::vector<unsigned> indices(GetNumNodes()); // GetNumNodes = mNodes - mDeletedNodes

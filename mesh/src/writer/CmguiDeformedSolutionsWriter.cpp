@@ -36,7 +36,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "CmguiDeformedSolutionsWriter.hpp"
 #include "Exception.hpp"
 
-template<unsigned DIM>
+template <unsigned DIM>
 CmguiDeformedSolutionsWriter<DIM>::CmguiDeformedSolutionsWriter(std::string outputDirectory,
                                                                 std::string baseName,
                                                                 AbstractTetrahedralMesh<DIM,DIM>& rQuadraticMesh,
@@ -122,7 +122,7 @@ CmguiDeformedSolutionsWriter<DIM>::CmguiDeformedSolutionsWriter(std::string outp
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void CmguiDeformedSolutionsWriter<DIM>::WriteInitialMesh(std::string fileName)
 {
     std::string saved_base_name = this->mBaseName;
@@ -138,7 +138,7 @@ void CmguiDeformedSolutionsWriter<DIM>::WriteInitialMesh(std::string fileName)
     this->mBaseName = saved_base_name;
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void CmguiDeformedSolutionsWriter<DIM>::WriteDeformationPositions(std::vector<c_vector<double,DIM> >& rDeformedPositions,
                                                                   unsigned counter)
 {
@@ -169,7 +169,7 @@ void CmguiDeformedSolutionsWriter<DIM>::WriteDeformationPositions(std::vector<c_
     p_node_file->close();
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void CmguiDeformedSolutionsWriter<DIM>::WriteCmguiScript(std::string fieldBaseName, std::string undeformedBaseName)
 {
     std::string field_string = "";
@@ -208,7 +208,7 @@ void CmguiDeformedSolutionsWriter<DIM>::WriteCmguiScript(std::string fieldBaseNa
     p_script_file->close();
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void CmguiDeformedSolutionsWriter<DIM>::ConvertOutput(std::string inputDirectory,
                                                       std::string inputFileBaseName,
                                                       unsigned finalCounter)

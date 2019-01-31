@@ -49,7 +49,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "OutputFileHandler.hpp"
 
 
-template<unsigned DIM>
+template <unsigned DIM>
 class CableTestProblemRhsAssembler :  public AbstractFeCableIntegralAssembler<DIM,DIM,1,true,false,NORMAL>
 {
 private:
@@ -72,7 +72,7 @@ public:
 };
 
 // solver
-template<unsigned DIM>
+template <unsigned DIM>
 class CableTestProblemSolver: public AbstractStaticLinearPdeSolver<DIM,DIM,1>
 {
 private:

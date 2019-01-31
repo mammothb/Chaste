@@ -45,7 +45,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 /**
  * A ChastePoint class, templated over spatial dimension.
  */
-template<unsigned DIM>
+template <unsigned DIM>
 class ChastePoint
 {
     /** Needed for serialization. */
@@ -56,7 +56,7 @@ class ChastePoint
      * @param archive
      * @param version
      */
-    template<class Archive>
+    template <class Archive>
     void serialize(Archive & archive, const unsigned int version)
     {
         //archive & mLocation; //earlier versions of boost are unable to do this. See #1709
@@ -152,7 +152,7 @@ namespace boost
 namespace serialization
 {
 
-template<class Archive, unsigned SPACE_DIM>
+template <class Archive, unsigned SPACE_DIM>
 inline void save_construct_data(
     Archive & ar, const ChastePoint<SPACE_DIM> * t, const unsigned int file_version)
 {
@@ -169,7 +169,7 @@ inline void save_construct_data(
  * Allow us to not need a default constructor, by specifying how Boost should
  * instantiate a ChastePoint instance (using existing constructor)
  */
-template<class Archive,unsigned SPACE_DIM>
+template <class Archive,unsigned SPACE_DIM>
 inline void load_construct_data(
     Archive & ar, ChastePoint<SPACE_DIM> * t, const unsigned int file_version)
 {
@@ -193,7 +193,7 @@ inline void load_construct_data(
  * We need to specialise the entire class to avoid nonsense methods
  * that don't make sense for 0d.
  */
-template<>
+template <>
 class ChastePoint<0>
 {
 public:

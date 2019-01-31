@@ -50,22 +50,22 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  * For classes templated over either 1 or 2 unsigned parameters, there
  * are helper macros TEMPLATED_CLASS_IS_ABSTRACT_1_UNSIGNED and
  * TEMPLATED_CLASS_IS_ABSTRACT_2_UNSIGNED.  For example, with a class
- *     template<unsigned SPACE_DIM, unsigned ELEMENT_DIM>
+ *     template <unsigned SPACE_DIM, unsigned ELEMENT_DIM>
  *     class AbstractTemplatedClass { ... };
  * use
  *     TEMPLATED_CLASS_IS_ABSTRACT_2_UNSIGNED(AbstractTemplatedClass)
  *
  * For a general templated class, you have to do a little extra work.
  * For example, with a class
- *     template<class C, unsigned U>
+ *     template <class C, unsigned U>
  *     class AbstractTemplatedClass { ... };
  * use
  *     namespace boost {
  *     namespace serialization {
- *     template<class C, unsigned U>
+ *     template <class C, unsigned U>
  *     struct is_abstract<AbstractTemplatedClass<C, U> >
  *         TEMPLATED_CLASS_IS_ABSTRACT_DEFN
- *     template<class C, unsigned U>
+ *     template <class C, unsigned U>
  *     struct is_abstract<const AbstractTemplatedClass<C, U> >
  *         TEMPLATED_CLASS_IS_ABSTRACT_DEFN
  *     }}
@@ -126,10 +126,10 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #define TEMPLATED_CLASS_IS_ABSTRACT_1_UNSIGNED(T) \
     namespace boost { \
     namespace serialization { \
-    template<unsigned U> \
+    template <unsigned U> \
     struct is_abstract<T<U> > \
         TEMPLATED_CLASS_IS_ABSTRACT_DEFN \
-    template<unsigned U> \
+    template <unsigned U> \
     struct is_abstract<const T<U> > \
         TEMPLATED_CLASS_IS_ABSTRACT_DEFN \
     }}
@@ -142,10 +142,10 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #define TEMPLATED_CLASS_IS_ABSTRACT_2_UNSIGNED(T) \
     namespace boost { \
     namespace serialization { \
-    template<unsigned U1, unsigned U2> \
+    template <unsigned U1, unsigned U2> \
     struct is_abstract<T<U1, U2> > \
         TEMPLATED_CLASS_IS_ABSTRACT_DEFN \
-    template<unsigned U1, unsigned U2> \
+    template <unsigned U1, unsigned U2> \
     struct is_abstract<const T<U1, U2> > \
         TEMPLATED_CLASS_IS_ABSTRACT_DEFN \
     }}
@@ -158,10 +158,10 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #define TEMPLATED_CLASS_IS_ABSTRACT_3_UNSIGNED(T) \
     namespace boost { \
     namespace serialization { \
-    template<unsigned U1, unsigned U2, unsigned U3> \
+    template <unsigned U1, unsigned U2, unsigned U3> \
     struct is_abstract<T<U1, U2, U3> > \
         TEMPLATED_CLASS_IS_ABSTRACT_DEFN \
-    template<unsigned U1, unsigned U2, unsigned U3> \
+    template <unsigned U1, unsigned U2, unsigned U3> \
     struct is_abstract<const T<U1, U2, U3> > \
         TEMPLATED_CLASS_IS_ABSTRACT_DEFN \
     }}

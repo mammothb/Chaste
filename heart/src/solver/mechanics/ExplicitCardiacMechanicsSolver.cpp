@@ -35,7 +35,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include "ExplicitCardiacMechanicsSolver.hpp"
 
-template<class ELASTICITY_SOLVER,unsigned DIM>
+template <class ELASTICITY_SOLVER,unsigned DIM>
 ExplicitCardiacMechanicsSolver<ELASTICITY_SOLVER,DIM>::ExplicitCardiacMechanicsSolver(QuadraticMesh<DIM>& rQuadMesh,
                                                                                       ElectroMechanicsProblemDefinition<DIM>& rProblemDefinition,
                                                                                       std::string outputDirectory)
@@ -46,12 +46,12 @@ ExplicitCardiacMechanicsSolver<ELASTICITY_SOLVER,DIM>::ExplicitCardiacMechanicsS
 
 }
 
-template<class ELASTICITY_SOLVER,unsigned DIM>
+template <class ELASTICITY_SOLVER,unsigned DIM>
 ExplicitCardiacMechanicsSolver<ELASTICITY_SOLVER,DIM>::~ExplicitCardiacMechanicsSolver()
 {
 }
 
-template<class ELASTICITY_SOLVER,unsigned DIM>
+template <class ELASTICITY_SOLVER,unsigned DIM>
 void ExplicitCardiacMechanicsSolver<ELASTICITY_SOLVER,DIM>::GetActiveTensionAndTensionDerivs(double currentFibreStretch,
                                                                                              unsigned currentQuadPointGlobalIndex,
                                                                                              bool assembleJacobian,
@@ -84,7 +84,7 @@ void ExplicitCardiacMechanicsSolver<ELASTICITY_SOLVER,DIM>::GetActiveTensionAndT
     }
 }
 
-template<class ELASTICITY_SOLVER,unsigned DIM>
+template <class ELASTICITY_SOLVER,unsigned DIM>
 void ExplicitCardiacMechanicsSolver<ELASTICITY_SOLVER,DIM>::Solve(double time, double nextTime, double odeTimestep)
 {
     assert(time < nextTime);

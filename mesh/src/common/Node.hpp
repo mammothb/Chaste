@@ -48,13 +48,13 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //#include <boost/serialization/vector.hpp>
 //#include <boost/serialization/set.hpp>
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 class AbstractTetrahedralMesh;
 
 /**
  * A node in a finite element mesh.
  */
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 class Node
 {
 private:
@@ -95,7 +95,7 @@ private:
      * @param archive the archive
      * @param version the current version of this class
      */
-    template<class Archive>
+    template <class Archive>
     void serialize(Archive & archive, const unsigned int version)
     {
         //archive & mLocation; //earlier versions of boost are unable to do this. See #1709
@@ -576,7 +576,7 @@ namespace serialization
 /**
  * Serialize information required to construct a Node.
  */
-template<class Archive, unsigned SPACE_DIM>
+template <class Archive, unsigned SPACE_DIM>
 inline void save_construct_data(
     Archive & ar, const Node<SPACE_DIM> * t, const unsigned int file_version)
 {
@@ -599,7 +599,7 @@ inline void save_construct_data(
 /**
  * De-serialize constructor parameters and initialize a Cell.
  */
-template<class Archive, unsigned SPACE_DIM>
+template <class Archive, unsigned SPACE_DIM>
 inline void load_construct_data(
     Archive & ar, Node<SPACE_DIM> * t, const unsigned int file_version)
 {

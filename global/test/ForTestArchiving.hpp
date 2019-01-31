@@ -49,7 +49,7 @@ public:
     virtual ~BaseClass();
     virtual void Hello()=0;
 
-    template<class Archive>
+    template <class Archive>
     void serialize(Archive & archive, const unsigned int version)
     {
         // If Archive is an output archive, then & resolves to <<
@@ -73,7 +73,7 @@ public:
 
     void Hello();
 
-    template<class Archive>
+    template <class Archive>
     void serialize(Archive & archive, const unsigned int version)
     {
         // If Archive is an output archive, then & resolves to <<
@@ -92,7 +92,7 @@ public:
 
     void Hello();
 
-    template<class Archive>
+    template <class Archive>
     void serialize(Archive & archive, const unsigned int version)
     {
         archive & boost::serialization::base_object<ChildClass>(*this);
@@ -131,7 +131,7 @@ public:
     ChildClass* mpChild;
     ParentClass(ChildClass* pChild);
 
-    template<class Archive>
+    template <class Archive>
     void serialize(Archive & archive, const unsigned int version)
     {
         // If Archive is an output archive, then & resolves to <<
@@ -148,7 +148,7 @@ namespace serialization
  * Allow us to not need a default constructor, by specifying how Boost should
  * instantiate an instance of ParentClass.
  */
-template<class Archive>
+template <class Archive>
 inline void save_construct_data(
     Archive & ar, const ParentClass * t, const unsigned int file_version)
 {
@@ -159,7 +159,7 @@ inline void save_construct_data(
  * Allow us to not need a default constructor, by specifying how Boost should
  * instantiate a ParentClass instance.
  */
-template<class Archive>
+template <class Archive>
 inline void load_construct_data(
     Archive & ar, ParentClass * t, const unsigned int file_version)
 {

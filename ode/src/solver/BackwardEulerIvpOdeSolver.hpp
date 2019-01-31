@@ -59,7 +59,7 @@ private:
      * @param archive the archive
      * @param version the current version of this class
      */
-    template<class Archive>
+    template <class Archive>
     void serialize(Archive & archive, const unsigned int version)
     {
         // This calls serialize on the base class.
@@ -226,7 +226,7 @@ namespace serialization
  * Allow us to not need a default constructor, by specifying how Boost should
  * instantiate a BackwardEulerIvpOdeSolver instance.
  */
-template<class Archive>
+template <class Archive>
 inline void save_construct_data(
     Archive & ar, const BackwardEulerIvpOdeSolver * t, const unsigned int file_version)
 {
@@ -240,7 +240,7 @@ inline void save_construct_data(
  *
  * NB this constructor allocates memory for the other member variables too.
  */
-template<class Archive>
+template <class Archive>
 inline void load_construct_data(
     Archive & ar, BackwardEulerIvpOdeSolver * t, const unsigned int file_version)
 {

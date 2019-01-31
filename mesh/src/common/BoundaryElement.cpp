@@ -42,14 +42,14 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ///////////////////////////////////////////////////////////////////////////////////
 
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 BoundaryElement<ELEMENT_DIM, SPACE_DIM>::BoundaryElement(unsigned index, const std::vector<Node<SPACE_DIM>*>& rNodes)
     : AbstractTetrahedralElement<ELEMENT_DIM, SPACE_DIM>(index, rNodes)
 {
     RegisterWithNodes();
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 BoundaryElement<ELEMENT_DIM, SPACE_DIM>::BoundaryElement(unsigned index, Node<SPACE_DIM>* pNode)
     : AbstractTetrahedralElement<ELEMENT_DIM,SPACE_DIM>(index)
 {
@@ -60,7 +60,7 @@ BoundaryElement<ELEMENT_DIM, SPACE_DIM>::BoundaryElement(unsigned index, Node<SP
     RegisterWithNodes();
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void BoundaryElement<ELEMENT_DIM, SPACE_DIM>::RegisterWithNodes()
 {
     for (unsigned i=0; i<this->mNodes.size(); i++)
@@ -69,7 +69,7 @@ void BoundaryElement<ELEMENT_DIM, SPACE_DIM>::RegisterWithNodes()
     }
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void BoundaryElement<ELEMENT_DIM, SPACE_DIM>::ResetIndex(unsigned index)
 {
     for (unsigned i=0; i<this->GetNumNodes(); i++)
@@ -80,7 +80,7 @@ void BoundaryElement<ELEMENT_DIM, SPACE_DIM>::ResetIndex(unsigned index)
     RegisterWithNodes();
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void BoundaryElement<ELEMENT_DIM, SPACE_DIM>::MarkAsDeleted()
 {
     this->mIsDeleted = true;
@@ -92,7 +92,7 @@ void BoundaryElement<ELEMENT_DIM, SPACE_DIM>::MarkAsDeleted()
     }
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void BoundaryElement<ELEMENT_DIM, SPACE_DIM>::UpdateNode(const unsigned& rIndex, Node<SPACE_DIM>* pNode)
 {
     assert(rIndex < this->mNodes.size());

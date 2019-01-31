@@ -35,7 +35,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include "ImplicitCardiacMechanicsSolver.hpp"
 
-template<class ELASTICITY_SOLVER,unsigned DIM>
+template <class ELASTICITY_SOLVER,unsigned DIM>
 ImplicitCardiacMechanicsSolver<ELASTICITY_SOLVER,DIM>::ImplicitCardiacMechanicsSolver(
                                   QuadraticMesh<DIM>& rQuadMesh,
                                   ElectroMechanicsProblemDefinition<DIM>& rProblemDefinition,
@@ -47,13 +47,13 @@ ImplicitCardiacMechanicsSolver<ELASTICITY_SOLVER,DIM>::ImplicitCardiacMechanicsS
 
 }
 
-template<class ELASTICITY_SOLVER,unsigned DIM>
+template <class ELASTICITY_SOLVER,unsigned DIM>
 ImplicitCardiacMechanicsSolver<ELASTICITY_SOLVER,DIM>::~ImplicitCardiacMechanicsSolver()
 {
 }
 
 
-template<class ELASTICITY_SOLVER,unsigned DIM>
+template <class ELASTICITY_SOLVER,unsigned DIM>
 void ImplicitCardiacMechanicsSolver<ELASTICITY_SOLVER,DIM>::Solve(double time, double nextTime, double odeTimestep)
 {
     // set the times, which are used in AssembleOnElement
@@ -85,7 +85,7 @@ void ImplicitCardiacMechanicsSolver<ELASTICITY_SOLVER,DIM>::Solve(double time, d
     }
 }
 
-template<class ELASTICITY_SOLVER,unsigned DIM>
+template <class ELASTICITY_SOLVER,unsigned DIM>
 void ImplicitCardiacMechanicsSolver<ELASTICITY_SOLVER,DIM>::GetActiveTensionAndTensionDerivs(double currentFibreStretch,
                                                                                              unsigned currentQuadPointGlobalIndex,
                                                                                              bool assembleJacobian,

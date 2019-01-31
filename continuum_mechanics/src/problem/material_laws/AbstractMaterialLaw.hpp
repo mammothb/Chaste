@@ -51,7 +51,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *  The law is given by a strain energy function W(E), where E is the strain, such
  *  that the (2nd Piola-Kirchhoff) stress T = dW/dE
  */
-template<unsigned DIM>
+template <unsigned DIM>
 class AbstractMaterialLaw
 {
 protected:

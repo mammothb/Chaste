@@ -67,7 +67,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  * may die, and one or more CellPopulationBoundaryConditions to specify
  * regions in space beyond which Cells may not move.
  */
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM=ELEMENT_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM=ELEMENT_DIM>
 class OffLatticeSimulation : public AbstractCellBasedSimulation<ELEMENT_DIM,SPACE_DIM>
 {
 private:
@@ -83,7 +83,7 @@ private:
      * @param archive the archive
      * @param version the current version of this class
      */
-    template<class Archive>
+    template <class Archive>
     void serialize(Archive & archive, const unsigned int version)
     {
         archive & boost::serialization::base_object<AbstractCellBasedSimulation<ELEMENT_DIM,SPACE_DIM> >(*this);
@@ -221,7 +221,7 @@ namespace serialization
 /**
  * Serialize information required to construct an OffLatticeSimulation.
  */
-template<class Archive, unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <class Archive, unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 inline void save_construct_data(
     Archive & ar, const OffLatticeSimulation<ELEMENT_DIM,SPACE_DIM> * t, const unsigned int file_version)
 {
@@ -233,7 +233,7 @@ inline void save_construct_data(
 /**
  * De-serialize constructor parameters and initialise an OffLatticeSimulation.
  */
-template<class Archive, unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <class Archive, unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 inline void load_construct_data(
     Archive & ar, OffLatticeSimulation<ELEMENT_DIM,SPACE_DIM> * t, const unsigned int file_version)
 {

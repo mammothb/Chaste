@@ -36,7 +36,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "ExclusionCaBasedDivisionRule.hpp"
 #include "RandomNumberGenerator.hpp"
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 bool ExclusionCaBasedDivisionRule<SPACE_DIM>::IsRoomToDivide(CellPtr pParentCell, CaBasedCellPopulation<SPACE_DIM>& rCellPopulation)
 {
     bool is_room = false;
@@ -62,7 +62,7 @@ bool ExclusionCaBasedDivisionRule<SPACE_DIM>::IsRoomToDivide(CellPtr pParentCell
     return is_room;
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 unsigned ExclusionCaBasedDivisionRule<SPACE_DIM>::CalculateDaughterNodeIndex(CellPtr pNewCell, CellPtr pParentCell, CaBasedCellPopulation<SPACE_DIM>& rCellPopulation)
 {
     if (!IsRoomToDivide(pParentCell,rCellPopulation))

@@ -35,7 +35,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include "T2SwapCellKiller.hpp"
 
-template<unsigned DIM>
+template <unsigned DIM>
 T2SwapCellKiller<DIM>::T2SwapCellKiller(AbstractCellPopulation<DIM>* pCellPopulation)
     : AbstractCellKiller<DIM>(pCellPopulation)
 {
@@ -46,7 +46,7 @@ T2SwapCellKiller<DIM>::T2SwapCellKiller(AbstractCellPopulation<DIM>* pCellPopula
     }
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void T2SwapCellKiller<DIM>::CheckAndLabelCellsForApoptosisOrDeath()
 {
     /*
@@ -88,7 +88,7 @@ void T2SwapCellKiller<DIM>::CheckAndLabelCellsForApoptosisOrDeath()
 
 }
 
-template<unsigned DIM>
+template <unsigned DIM>
 void T2SwapCellKiller<DIM>::OutputCellKillerParameters(out_stream& rParamsFile)
 {
     // No parameters to output, so just call method on direct parent class

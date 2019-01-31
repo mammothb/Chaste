@@ -47,7 +47,7 @@ class ParameterisedOde : public AbstractOdeSystem
 {
     friend class boost::serialization::access;
 
-    template<class Archive>
+    template <class Archive>
     void serialize(Archive & archive, const unsigned int version)
     {
         archive & boost::serialization::base_object<AbstractOdeSystem>(*this);

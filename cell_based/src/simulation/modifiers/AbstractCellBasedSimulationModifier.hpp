@@ -44,7 +44,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 /**
  * An abstract modifier class (to implement setup, update and finalise methods), for use in cell-based simulations.
  */
-template<unsigned  ELEMENT_DIM, unsigned SPACE_DIM=ELEMENT_DIM>
+template <unsigned  ELEMENT_DIM, unsigned SPACE_DIM=ELEMENT_DIM>
 class AbstractCellBasedSimulationModifier : public Identifiable
 {
     /** Needed for serialization. */
@@ -55,7 +55,7 @@ class AbstractCellBasedSimulationModifier : public Identifiable
      * @param archive the archive
      * @param version the current version of this class
      */
-    template<class Archive>
+    template <class Archive>
     void serialize(Archive & archive, const unsigned int version)
     {
     }

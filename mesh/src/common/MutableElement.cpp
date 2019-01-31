@@ -37,13 +37,13 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include <cassert>
 
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 MutableElement<ELEMENT_DIM, SPACE_DIM>::MutableElement(unsigned index)
     : AbstractElement<ELEMENT_DIM, SPACE_DIM>(index)
 {
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 MutableElement<ELEMENT_DIM, SPACE_DIM>::MutableElement(unsigned index,
                                                      const std::vector<Node<SPACE_DIM>*>& rNodes)
     : AbstractElement<ELEMENT_DIM, SPACE_DIM>(index, rNodes)
@@ -54,12 +54,12 @@ MutableElement<ELEMENT_DIM, SPACE_DIM>::MutableElement(unsigned index,
     }
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 MutableElement<ELEMENT_DIM, SPACE_DIM>::~MutableElement()
 {
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void MutableElement<ELEMENT_DIM, SPACE_DIM>::RegisterWithNodes()
 {
     for (unsigned i=0; i<this->mNodes.size(); i++)
@@ -68,7 +68,7 @@ void MutableElement<ELEMENT_DIM, SPACE_DIM>::RegisterWithNodes()
     }
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void MutableElement<ELEMENT_DIM, SPACE_DIM>::MarkAsDeleted()
 {
     // Mark element as deleted
@@ -92,7 +92,7 @@ void MutableElement<ELEMENT_DIM, SPACE_DIM>::ResetIndex(unsigned index)
     RegisterWithNodes();
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void MutableElement<ELEMENT_DIM, SPACE_DIM>::UpdateNode(const unsigned& rIndex, Node<SPACE_DIM>* pNode)
 {
     assert(rIndex < this->mNodes.size());
@@ -107,7 +107,7 @@ void MutableElement<ELEMENT_DIM, SPACE_DIM>::UpdateNode(const unsigned& rIndex, 
     this->mNodes[rIndex]->AddElement(this->mIndex);
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void MutableElement<ELEMENT_DIM, SPACE_DIM>::DeleteNode(const unsigned& rIndex)
 {
     assert(rIndex < this->mNodes.size());
@@ -119,7 +119,7 @@ void MutableElement<ELEMENT_DIM, SPACE_DIM>::DeleteNode(const unsigned& rIndex)
     this->mNodes.erase(this->mNodes.begin() + rIndex);
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void MutableElement<ELEMENT_DIM, SPACE_DIM>::AddNode(Node<SPACE_DIM>* pNode, const unsigned& rIndex)
 {
     /**
@@ -147,7 +147,7 @@ void MutableElement<ELEMENT_DIM, SPACE_DIM>::AddNode(Node<SPACE_DIM>* pNode, con
     }
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 unsigned MutableElement<ELEMENT_DIM, SPACE_DIM>::GetNodeLocalIndex(unsigned globalIndex) const
 {
     unsigned local_index = UINT_MAX;
@@ -161,7 +161,7 @@ unsigned MutableElement<ELEMENT_DIM, SPACE_DIM>::GetNodeLocalIndex(unsigned glob
     return local_index;
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 bool MutableElement<ELEMENT_DIM, SPACE_DIM>::IsElementOnBoundary() const
 {
     bool is_element_on_boundary = false;
@@ -186,7 +186,7 @@ bool MutableElement<ELEMENT_DIM, SPACE_DIM>::IsElementOnBoundary() const
  * Specialization for 1d elements so we don't get errors from Boost on some
  * compilers.
  */
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 MutableElement<1, SPACE_DIM>::MutableElement(unsigned index, const std::vector<Node<SPACE_DIM>*>& rNodes)
     : AbstractElement<1, SPACE_DIM>(index, rNodes)
 {
@@ -195,12 +195,12 @@ MutableElement<1, SPACE_DIM>::MutableElement(unsigned index, const std::vector<N
     assert(SPACE_DIM > 0);
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 MutableElement<1, SPACE_DIM>::~MutableElement()
 {
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 void MutableElement<1, SPACE_DIM>::RegisterWithNodes()
 {
     for (unsigned i=0; i<this->mNodes.size(); i++)
@@ -209,7 +209,7 @@ void MutableElement<1, SPACE_DIM>::RegisterWithNodes()
     }
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 void MutableElement<1, SPACE_DIM>::MarkAsDeleted()
 {
     // Mark element as deleted
@@ -233,7 +233,7 @@ void MutableElement<1, SPACE_DIM>::ResetIndex(unsigned index)
     RegisterWithNodes();
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 void MutableElement<1, SPACE_DIM>::UpdateNode(const unsigned& rIndex, Node<SPACE_DIM>* pNode)
 {
     assert(rIndex < this->mNodes.size());
@@ -248,7 +248,7 @@ void MutableElement<1, SPACE_DIM>::UpdateNode(const unsigned& rIndex, Node<SPACE
     this->mNodes[rIndex]->AddElement(this->mIndex);
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 void MutableElement<1, SPACE_DIM>::DeleteNode(const unsigned& rIndex)
 {
     assert(rIndex < this->mNodes.size());
@@ -260,7 +260,7 @@ void MutableElement<1, SPACE_DIM>::DeleteNode(const unsigned& rIndex)
     this->mNodes.erase(this->mNodes.begin() + rIndex);
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 void MutableElement<1, SPACE_DIM>::AddNode(Node<SPACE_DIM>* pNode, const unsigned& rIndex)
 {
     assert(rIndex < this->mNodes.size());
@@ -272,7 +272,7 @@ void MutableElement<1, SPACE_DIM>::AddNode(Node<SPACE_DIM>* pNode, const unsigne
     this->mNodes[rIndex+1]->AddElement(this->mIndex);
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 unsigned MutableElement<1, SPACE_DIM>::GetNodeLocalIndex(unsigned globalIndex) const
 {
     unsigned local_index = UINT_MAX;
@@ -286,7 +286,7 @@ unsigned MutableElement<1, SPACE_DIM>::GetNodeLocalIndex(unsigned globalIndex) c
     return local_index;
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 bool MutableElement<1, SPACE_DIM>::IsElementOnBoundary() const
 {
     bool is_element_on_boundary = false;

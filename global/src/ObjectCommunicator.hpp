@@ -53,7 +53,7 @@ const unsigned MAX_BUFFER_SIZE = 1000000;
  * PetSc MPI communication. The object is serialized in to a string of characters, and then
  * de-serialized on the receive process.
  */
-template<typename CLASS>
+template <typename CLASS>
 class ObjectCommunicator
 {
 private:
@@ -154,7 +154,7 @@ public:
 #include <cstring>
 
 // Implementation needs to be here, as CLASS could be anything
-template<typename CLASS>
+template <typename CLASS>
 ObjectCommunicator<CLASS>::ObjectCommunicator()
     : mIsWriting(false)
 {
@@ -162,7 +162,7 @@ ObjectCommunicator<CLASS>::ObjectCommunicator()
     mSendString.resize(PetscTools::GetNumProcs());
 }
 
-template<typename CLASS>
+template <typename CLASS>
 void ObjectCommunicator<CLASS>::SendObject(boost::shared_ptr<CLASS> const pObject, unsigned destinationProcess, unsigned tag)
 {
     // Create an output archive
@@ -183,7 +183,7 @@ void ObjectCommunicator<CLASS>::SendObject(boost::shared_ptr<CLASS> const pObjec
     MPI_Send(send_buf, string_length, MPI_BYTE, destinationProcess, tag, PetscTools::GetWorld());
 }
 
-template<typename CLASS>
+template <typename CLASS>
 void ObjectCommunicator<CLASS>::ISendObject(boost::shared_ptr<CLASS> const pObject, unsigned destinationProcess, unsigned tag)
 {
     MPI_Request request;
@@ -207,7 +207,7 @@ void ObjectCommunicator<CLASS>::ISendObject(boost::shared_ptr<CLASS> const pObje
     MPI_Request_free(&request); //This is evil because it allows for another non-blocking send to overwrite the buffer
 }
 
-template<typename CLASS>
+template <typename CLASS>
 boost::shared_ptr<CLASS> ObjectCommunicator<CLASS>::RecvObject(unsigned sourceProcess, unsigned tag, MPI_Status& status)
 {
     unsigned string_length = 0;
@@ -229,7 +229,7 @@ boost::shared_ptr<CLASS> ObjectCommunicator<CLASS>::RecvObject(unsigned sourcePr
     return p_recv_object;
 }
 
-template<typename CLASS>
+template <typename CLASS>
 void ObjectCommunicator<CLASS>::IRecvObject(unsigned sourceProcess, unsigned tag)
 {
     assert(!mIsWriting);    // Make sure the buffers are not already being used by a previous call to IRecvObject.
@@ -240,7 +240,7 @@ void ObjectCommunicator<CLASS>::IRecvObject(unsigned sourceProcess, unsigned tag
     MPI_Irecv(mRecvBuffer, MAX_BUFFER_SIZE, MPI_BYTE, sourceProcess, tag, PetscTools::GetWorld(), &mMpiRequest);
 }
 
-template<typename CLASS>
+template <typename CLASS>
 boost::shared_ptr<CLASS> ObjectCommunicator<CLASS>::GetRecvObject()
 {
     if (!mIsWriting)
@@ -272,7 +272,7 @@ boost::shared_ptr<CLASS> ObjectCommunicator<CLASS>::GetRecvObject()
     return p_recv_object;
 }
 
-template<typename CLASS>
+template <typename CLASS>
 boost::shared_ptr<CLASS> ObjectCommunicator<CLASS>::SendRecvObject(boost::shared_ptr<CLASS> const pSendObject, unsigned destinationProcess, unsigned sendTag, unsigned sourceProcess, unsigned sourceTag, MPI_Status& status)
 {
     // Create an output archive

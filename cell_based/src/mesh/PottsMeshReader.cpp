@@ -35,7 +35,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include "PottsMeshReader.hpp"
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 PottsMeshReader<SPACE_DIM>::PottsMeshReader(std::string pathBaseName)
     : mFilesBaseName(pathBaseName),
       mIndexFromZero(false), // initially assume that nodes are not numbered from zero
@@ -49,25 +49,25 @@ PottsMeshReader<SPACE_DIM>::PottsMeshReader(std::string pathBaseName)
     ReadHeaders();
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 unsigned PottsMeshReader<SPACE_DIM>::GetNumElements() const
 {
     return mNumElements;
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 unsigned PottsMeshReader<SPACE_DIM>::GetNumNodes() const
 {
     return mNumNodes;
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 unsigned PottsMeshReader<SPACE_DIM>::GetNumElementAttributes() const
 {
     return mNumElementAttributes;
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 ElementData PottsMeshReader<SPACE_DIM>::GetNextFaceData()
 {
     /// \todo Implement this method (#1663, #1377)
@@ -77,14 +77,14 @@ ElementData PottsMeshReader<SPACE_DIM>::GetNextFaceData()
     return ret;
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 unsigned PottsMeshReader<SPACE_DIM>::GetNumFaces() const
 {
     /// \todo Implement this method (#1663)
     return 0;
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 void PottsMeshReader<SPACE_DIM>::Reset()
 {
     CloseFiles();
@@ -95,7 +95,7 @@ void PottsMeshReader<SPACE_DIM>::Reset()
     mElementsRead = 0;
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 std::vector<double> PottsMeshReader<SPACE_DIM>::GetNextNode()
 {
     std::vector<double> node_data;
@@ -125,7 +125,7 @@ std::vector<double> PottsMeshReader<SPACE_DIM>::GetNextNode()
     return node_data;
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 ElementData PottsMeshReader<SPACE_DIM>::GetNextElementData()
 {
     // Create data structure for this element
@@ -173,14 +173,14 @@ ElementData PottsMeshReader<SPACE_DIM>::GetNextElementData()
     return element_data;
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 void PottsMeshReader<SPACE_DIM>::OpenFiles()
 {
     OpenNodeFile();
     OpenElementsFile();
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 void PottsMeshReader<SPACE_DIM>::OpenNodeFile()
 {
     // Nodes definition
@@ -192,7 +192,7 @@ void PottsMeshReader<SPACE_DIM>::OpenNodeFile()
     }
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 void PottsMeshReader<SPACE_DIM>::OpenElementsFile()
 {
     // Elements definition
@@ -206,7 +206,7 @@ void PottsMeshReader<SPACE_DIM>::OpenElementsFile()
     }
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 void PottsMeshReader<SPACE_DIM>::ReadHeaders()
 {
     std::string buffer;
@@ -235,14 +235,14 @@ void PottsMeshReader<SPACE_DIM>::ReadHeaders()
     element_buffer_stream >> mNumElements >> mNumElementAttributes;
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 void PottsMeshReader<SPACE_DIM>::CloseFiles()
 {
     mNodesFile.close();
     mElementsFile.close();
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 void PottsMeshReader<SPACE_DIM>::GetNextLineFromStream(std::ifstream& fileStream, std::string& rawLine)
 {
     bool line_is_blank;

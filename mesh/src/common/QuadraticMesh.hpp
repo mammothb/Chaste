@@ -47,7 +47,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 /**
  * A concrete quadratic mesh class that inherits from TetrahedralMesh.
  */
-template<unsigned DIM>
+template <unsigned DIM>
 class QuadraticMesh : public TetrahedralMesh<DIM, DIM>
 {
     friend class TestQuadraticMesh;
@@ -69,7 +69,7 @@ protected:
      * @param archive the archive
      * @param version the current version of this class
      */
-    template<class Archive>
+    template <class Archive>
     void serialize(Archive & archive, const unsigned int version)
     {
         archive & boost::serialization::base_object<TetrahedralMesh<DIM, DIM> >(*this);

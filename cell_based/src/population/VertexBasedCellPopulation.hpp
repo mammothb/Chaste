@@ -44,7 +44,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include <boost/serialization/set.hpp>
 #include <boost/serialization/vector.hpp>
 
-template<unsigned DIM>
+template <unsigned DIM>
 class AbstractVertexBasedDivisionRule; // Forward declaration to prevent circular include chain
 
 /**
@@ -54,7 +54,7 @@ class AbstractVertexBasedDivisionRule; // Forward declaration to prevent circula
  * between CellPtrs and elements in the MutableVertexMesh.
  *
  */
-template<unsigned DIM>
+template <unsigned DIM>
 class VertexBasedCellPopulation : public AbstractOffLatticeCellPopulation<DIM>
 {
 private:
@@ -120,7 +120,7 @@ private:
      * @param archive the archive
      * @param version the current version of this class
      */
-    template<class Archive>
+    template <class Archive>
     void serialize(Archive & archive, const unsigned int version)
     {
         archive & boost::serialization::base_object<AbstractOffLatticeCellPopulation<DIM> >(*this);
@@ -556,7 +556,7 @@ namespace serialization
 /**
  * Serialize information required to construct a VertexBasedCellPopulation.
  */
-template<class Archive, unsigned DIM>
+template <class Archive, unsigned DIM>
 inline void save_construct_data(
     Archive & ar, const VertexBasedCellPopulation<DIM> * t, const unsigned int file_version)
 {
@@ -569,7 +569,7 @@ inline void save_construct_data(
  * De-serialize constructor parameters and initialise a VertexBasedCellPopulation.
  * Loads the mesh from separate files.
  */
-template<class Archive, unsigned DIM>
+template <class Archive, unsigned DIM>
 inline void load_construct_data(
     Archive & ar, VertexBasedCellPopulation<DIM> * t, const unsigned int file_version)
 {

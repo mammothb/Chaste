@@ -36,7 +36,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include <cassert>
 
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 VertexElement<ELEMENT_DIM, SPACE_DIM>::VertexElement(unsigned index,
                                                      const std::vector<VertexElement<ELEMENT_DIM-1,SPACE_DIM>*>& rFaces,
                                                      const std::vector<bool>& rOrientations,
@@ -58,7 +58,7 @@ VertexElement<ELEMENT_DIM, SPACE_DIM>::VertexElement(unsigned index,
     }
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 VertexElement<ELEMENT_DIM, SPACE_DIM>::VertexElement(unsigned index,
                                                      const std::vector<VertexElement<ELEMENT_DIM-1,SPACE_DIM>*>& rFaces,
                                                      const std::vector<bool>& rOrientations)
@@ -91,20 +91,20 @@ VertexElement<ELEMENT_DIM, SPACE_DIM>::VertexElement(unsigned index,
     this->RegisterWithNodes();
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 VertexElement<ELEMENT_DIM, SPACE_DIM>::VertexElement(unsigned index)
     : MutableElement<ELEMENT_DIM, SPACE_DIM>(index)
 {
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 VertexElement<ELEMENT_DIM, SPACE_DIM>::VertexElement(unsigned index,
                                                      const std::vector<Node<SPACE_DIM>*>& rNodes)
     : MutableElement<ELEMENT_DIM, SPACE_DIM>(index, rNodes)
 {
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 VertexElement<ELEMENT_DIM, SPACE_DIM>::~VertexElement()
 {
 }
@@ -115,7 +115,7 @@ unsigned VertexElement<ELEMENT_DIM, SPACE_DIM>::GetNumFaces() const
     return mFaces.size();
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void VertexElement<ELEMENT_DIM, SPACE_DIM>::AddFace(VertexElement<ELEMENT_DIM-1,SPACE_DIM>* pFace)
 {
     // Add pFace to the end of mFaces
@@ -143,14 +143,14 @@ void VertexElement<ELEMENT_DIM, SPACE_DIM>::AddFace(VertexElement<ELEMENT_DIM-1,
     }
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 VertexElement<ELEMENT_DIM-1,  SPACE_DIM>* VertexElement<ELEMENT_DIM, SPACE_DIM>::GetFace(unsigned index) const
 {
     assert(index < mFaces.size());
     return mFaces[index];
 }
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 bool VertexElement<ELEMENT_DIM, SPACE_DIM>::FaceIsOrientatedClockwise(unsigned index) const
 {
     assert(index < mOrientations.size());
@@ -167,25 +167,25 @@ bool VertexElement<ELEMENT_DIM, SPACE_DIM>::FaceIsOrientatedClockwise(unsigned i
  * Specialization for 1d elements so we don't get errors from Boost on some
  * compilers.
  */
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 VertexElement<1, SPACE_DIM>::VertexElement(unsigned index, const std::vector<Node<SPACE_DIM>*>& rNodes)
     : MutableElement<1, SPACE_DIM>(index, rNodes)
 {
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 unsigned VertexElement<1, SPACE_DIM>::GetNumFaces() const
 {
     return 0;
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 VertexElement<0, SPACE_DIM>* VertexElement<1, SPACE_DIM>::GetFace(unsigned index) const
 {
     return nullptr;
 }
 
-template<unsigned SPACE_DIM>
+template <unsigned SPACE_DIM>
 bool VertexElement<1, SPACE_DIM>::FaceIsOrientatedClockwise(unsigned index) const
 {
     return false;

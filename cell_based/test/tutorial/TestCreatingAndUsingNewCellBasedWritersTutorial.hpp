@@ -95,7 +95,7 @@ private:
     unsigned mColour;
 
     friend class boost::serialization::access;
-    template<class Archive>
+    template <class Archive>
     void serialize(Archive & archive, const unsigned int version)
     {
         archive & boost::serialization::base_object<AbstractCellProperty>(*this);
@@ -134,7 +134,7 @@ public:
  */
 #include "AbstractCellWriter.hpp"
 
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 class CellMotilityWriter : public AbstractCellWriter<ELEMENT_DIM, SPACE_DIM>
 {
 private:
@@ -145,7 +145,7 @@ private:
      * after calling the base class serializer.
      */
     friend class boost::serialization::access;
-    template<class Archive>
+    template <class Archive>
     void serialize(Archive & archive, const unsigned int version)
     {
         archive & boost::serialization::base_object<AbstractCellWriter<ELEMENT_DIM, SPACE_DIM> >(*this);
