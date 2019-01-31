@@ -23,7 +23,7 @@ else()
     message(STATUS "Cannot find ReleaseVersion.txt or Git revision")
 endif()
 
-if (Chaste_UPDATE_PROVENANCE)
+if(Chaste_UPDATE_PROVENANCE)
     set(Chaste_REVISION ${Chaste_revision} CACHE STRING "Current Chaste Git Revision" FORCE)
 else()
     set(Chaste_REVISION ${Chaste_revision} CACHE STRING "Current Chaste Git Revision")
@@ -31,7 +31,7 @@ endif()
 
 
 #string(TIMESTAMP build_time)
-if (NOT EXISTS build_timestamp OR Chaste_UPDATE_PROVENANCE)
+if(NOT EXISTS build_timestamp OR Chaste_UPDATE_PROVENANCE)
     message(STATUS "updating buildtime...")
     execute_process(COMMAND ${timekeeper_exe})
 endif()
@@ -39,9 +39,9 @@ file(READ build_timestamp build_time)
 execute_process(COMMAND ${XSD_EXECUTABLE} "--version" ERROR_VARIABLE xsd_version_full)
 string(REGEX MATCH "^XML Schema Definition Compiler" xsd_version_2 "${xsd_version_full}")
 string(REGEX MATCH "^CodeSynthesis XSD XML Schema to C\\+\\+ compiler" xsd_version_3 "${xsd_version_full}")
-if (xsd_version_2) 
+if(xsd_version_2) 
     set(xsd_version "2")
-elseif (xsd_version_3)
+elseif(xsd_version_3)
     set(xsd_version "3")
 else()
     set(xsd_version "undertermined")
@@ -53,7 +53,7 @@ set(time_format "%a, %d %b %Y %H:%M:%S +0000")
 # Determine project versions (either the git hash or svn revision number), and whether there are uncommited revisions
 foreach(project ${Chaste_PROJECTS})
     # Project is a git repo
-    if (IS_DIRECTORY "${Chaste_SOURCE_DIR}/projects/${project}/.git")
+    if(IS_DIRECTORY "${Chaste_SOURCE_DIR}/projects/${project}/.git")
         # Determine the git hash as a string
         execute_process(
                 COMMAND git -C ${Chaste_SOURCE_DIR}/projects/${project} rev-parse --short HEAD
@@ -64,7 +64,7 @@ foreach(project ${Chaste_PROJECTS})
                 COMMAND git -C ${Chaste_SOURCE_DIR}/projects/${project} diff-index HEAD --
                 OUTPUT_VARIABLE diff_index_result
         )
-        if (diff_index_result STREQUAL "")
+        if(diff_index_result STREQUAL "")
             set(this_project_modified "False")
         else()
             set(this_project_modified "True")
@@ -77,7 +77,7 @@ foreach(project ${Chaste_PROJECTS})
                 OUTPUT_VARIABLE this_project_version
         )
         # Determine whether there are uncommitted revisions
-        if (${this_project_version} MATCHES "M")
+        if(${this_project_version} MATCHES "M")
             set(this_project_modified "True")
         else()
             set(this_project_modified "False")

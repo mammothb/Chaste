@@ -1,4 +1,4 @@
-macro (ENSURE_OUT_OF_SOURCE_BUILD)
+macro(ENSURE_OUT_OF_SOURCE_BUILD)
     get_filename_component(srcdir "${CMAKE_SOURCE_DIR}" REALPATH)
     get_filename_component(bindir "${CMAKE_BINARY_DIR}" REALPATH)
     
@@ -21,5 +21,5 @@ macro (ENSURE_OUT_OF_SOURCE_BUILD)
             message("* (if they are not removed, you will see this message again...)          *")
             message("**************************************************************************")
             message(FATAL_ERROR "Quitting configuration")
-    endif ()
-endmacro (ENSURE_OUT_OF_SOURCE_BUILD)
+    endif()
+endmacro(ENSURE_OUT_OF_SOURCE_BUILD)

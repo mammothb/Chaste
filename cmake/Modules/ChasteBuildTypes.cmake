@@ -22,10 +22,10 @@ MARK_AS_ADVANCED(
     CMAKE_EXE_LINKER_FLAGS_COVERAGE
     CMAKE_SHARED_LINKER_FLAGS_COVERAGE )
 
-if (NOT CMAKE_BUILD_TYPE)
+if(NOT CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE Debug
         CACHE STRING "Choose the type of build : None Debug Release RelWithDebInfo MinSizeRel Coverage."
         FORCE)
-endif (NOT CMAKE_BUILD_TYPE)
+endif(NOT CMAKE_BUILD_TYPE)
 
 message(STATUS "Current build type is : ${CMAKE_BUILD_TYPE}")

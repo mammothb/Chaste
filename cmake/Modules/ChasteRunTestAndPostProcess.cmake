@@ -15,7 +15,7 @@ endif( NOT output_file )
 separate_arguments( test_args )
 separate_arguments( post_args )
 
-if (env_var)
+if(env_var)
     set(ENV{${env_var}} ${env_var_value})
 endif()
 
@@ -42,7 +42,7 @@ else()
         OUTPUT_FILE ${output_file}
         RESULT_VARIABLE post_not_successful
         )
-    if (post_not_successful)
+    if(post_not_successful)
         message( SEND_ERROR "post_processing ${post_cmd} failed")
     endif()
 endif()
