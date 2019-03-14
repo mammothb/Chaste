@@ -43,282 +43,379 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "VectorHelperFunctions.hpp"
 
 OdeSolution::OdeSolution()
-    : mNumberOfTimeSteps(0u),
-      mpOdeSystemInformation()
-{
-}
+  : mNumberOfTimeSteps(0u),
+    mpOdeSystemInformation()
+{}
 
 
 unsigned OdeSolution::GetNumberOfTimeSteps() const
 {
-    return mNumberOfTimeSteps;
+  return mNumberOfTimeSteps;
 }
 
 
 void OdeSolution::SetNumberOfTimeSteps(unsigned numTimeSteps)
 {
-    mNumberOfTimeSteps = numTimeSteps;
-    mTimes.reserve(numTimeSteps+1);
-    mSolutions.reserve(numTimeSteps);
+  mNumberOfTimeSteps = numTimeSteps;
+  mTimes.reserve(numTimeSteps+1);
+  mSolutions.reserve(numTimeSteps);
 }
 
 
-void OdeSolution::SetOdeSystemInformation(boost::shared_ptr<const AbstractOdeSystemInformation> pOdeSystemInfo)
+void OdeSolution::SetOdeSystemInformation(
+    boost::shared_ptr<const AbstractOdeSystemInformation> pOdeSystemInfo)
 {
-    mpOdeSystemInformation = pOdeSystemInfo;
+  mpOdeSystemInformation = pOdeSystemInfo;
 }
 
 std::vector<double> OdeSolution::GetVariableAtIndex(unsigned index) const
 {
-    std::vector<double> answer;
-    answer.reserve(mTimes.size());
-    double temp_number;
-    for (unsigned i=0; i< mTimes.size(); ++i)
-    {
-        if (index < mSolutions[0].size())
-        {
-            temp_number = mSolutions[i][index];
-        }
-        else
-        {
-            unsigned offset = mSolutions[0].size();
-            if (index - offset < mParameters.size())
-            {
-                temp_number = mParameters[index - offset];
-            }
-            else
-            {
-                offset += mParameters.size();
-                if (index - offset < mDerivedQuantities[0].size())
-                {
-                    temp_number = mDerivedQuantities[i][index - offset];
-                }
-                else
-                {
-                    EXCEPTION("Invalid index passed to ""GetVariableAtIndex()"".");
-                }
-            }
-        }
-        answer.push_back(temp_number);
+  std::vector<double> answer;
+  answer.reserve(mTimes.size());
+  double temp_number;
+  for (unsigned i = 0; i < mTimes.size(); ++i) {
+    if (index < mSolutions[0].size()) {
+      temp_number = mSolutions[i][index];
     }
-    return answer;
+    else {
+      unsigned offset = mSolutions[0].size();
+      if (index - offset < mParameters.size()) {
+        temp_number = mParameters[index - offset];
+      }
+      else {
+        offset += mParameters.size();
+        if (index - offset < mDerivedQuantities[0].size()) {
+          temp_number = mDerivedQuantities[i][index - offset];
+        }
+        else {
+          EXCEPTION("Invalid index passed to ""GetVariableAtIndex()"".");
+        }
+      }
+    }
+    answer.push_back(temp_number);
+  }
+  return answer;
 }
 
-std::vector<double> OdeSolution::GetAnyVariable(const std::string& rName) const
+std::vector<double> OdeSolution::GetAnyVariable(
+    const std::string& rName) const
 {
-    return GetVariableAtIndex(mpOdeSystemInformation->GetAnyVariableIndex(rName));
+  return GetVariableAtIndex(
+      mpOdeSystemInformation->GetAnyVariableIndex(rName));
 }
 
 std::vector<double>& OdeSolution::rGetTimes()
 {
-    return mTimes;
+  return mTimes;
 }
 
 const std::vector<double>& OdeSolution::rGetTimes() const
 {
-    return mTimes;
+  return mTimes;
 }
 
 std::vector<std::vector<double> >& OdeSolution::rGetSolutions()
 {
-    return mSolutions;
+  return mSolutions;
 }
 
 const std::vector<std::vector<double> >& OdeSolution::rGetSolutions() const
 {
-    return mSolutions;
+  return mSolutions;
 }
 
 
 template <typename VECTOR>
-void OdeSolution::CalculateDerivedQuantitiesAndParameters(AbstractParameterisedSystem<VECTOR>* pOdeSystem)
+void OdeSolution::CalculateDerivedQuantitiesAndParameters(
+    AbstractParameterisedSystem<VECTOR>* pOdeSystem)
 {
-    assert(pOdeSystem->GetSystemInformation() == mpOdeSystemInformation); // Just in case...
-    rGetParameters(pOdeSystem);
-    rGetDerivedQuantities(pOdeSystem);
+  // Just in case...
+  assert(pOdeSystem->GetSystemInformation() == mpOdeSystemInformation);
+  rGetParameters(pOdeSystem);
+  rGetDerivedQuantities(pOdeSystem);
 }
 
 
 template <typename VECTOR>
-std::vector<double>& OdeSolution::rGetParameters(AbstractParameterisedSystem<VECTOR>* pOdeSystem)
+std::vector<double>& OdeSolution::rGetParameters(
+    AbstractParameterisedSystem<VECTOR>* pOdeSystem)
 {
-    mParameters.clear();
-    const unsigned num_params = pOdeSystem->GetNumberOfParameters();
-    if (num_params > 0)
-    {
-        mParameters.reserve(num_params);
-        for (unsigned i=0; i<num_params; ++i)
-        {
-            mParameters.push_back(pOdeSystem->GetParameter(i));
-        }
+  mParameters.clear();
+  const unsigned num_params = pOdeSystem->GetNumberOfParameters();
+  if (num_params > 0) {
+    mParameters.reserve(num_params);
+    for (unsigned i = 0; i < num_params; ++i) {
+      mParameters.push_back(pOdeSystem->GetParameter(i));
     }
-    return mParameters;
+  }
+  return mParameters;
 }
 
-
-std::vector<std::vector<double> >& OdeSolution::rGetDerivedQuantities(AbstractParameterisedSystem<std::vector<double> >* pOdeSystem)
+std::vector<std::vector<double>>& OdeSolution::rGetDerivedQuantities(
+    AbstractParameterisedSystem<std::vector<double>>* pOdeSystem)
 {
-    assert(pOdeSystem != nullptr);
-    if (mDerivedQuantities.empty() && pOdeSystem->GetNumberOfDerivedQuantities() > 0)
-    {
-        assert(mTimes.size() == mSolutions.size()); // Paranoia
-        mDerivedQuantities.reserve(mTimes.size());
-        for (unsigned i=0; i<mTimes.size(); i++)
-        {
-            mDerivedQuantities.push_back(pOdeSystem->ComputeDerivedQuantities(mTimes[i], mSolutions[i]));
-        }
+  assert(pOdeSystem != nullptr);
+  if (mDerivedQuantities.empty() &&
+      pOdeSystem->GetNumberOfDerivedQuantities() > 0) {
+    // Paranoia
+    assert(mTimes.size() == mSolutions.size());
+    mDerivedQuantities.reserve(mTimes.size());
+    for (unsigned i = 0; i < mTimes.size(); i++) {
+      mDerivedQuantities.push_back(pOdeSystem->ComputeDerivedQuantities(
+        mTimes[i], mSolutions[i]));
     }
-    return mDerivedQuantities;
+  }
+  return mDerivedQuantities;
 }
 
 #ifdef CHASTE_CVODE
-std::vector<std::vector<double> >& OdeSolution::rGetDerivedQuantities(AbstractParameterisedSystem<N_Vector>* pOdeSystem)
+std::vector<std::vector<double>>& OdeSolution::rGetDerivedQuantities(
+    AbstractParameterisedSystem<N_Vector>* pOdeSystem)
 {
-    assert(pOdeSystem != nullptr);
-    if (mDerivedQuantities.empty() && pOdeSystem->GetNumberOfDerivedQuantities() > 0)
-    {
-        const unsigned num_solutions = mSolutions.size();
-        assert(mTimes.size() == num_solutions); // Paranoia
-        mDerivedQuantities.resize(mTimes.size());
-        N_Vector state_vars = num_solutions > 0 ? N_VNew_Serial(mSolutions[0].size()) : nullptr;
-        for (unsigned i=0; i<num_solutions; i++)
-        {
-            CopyFromStdVector(mSolutions[i], state_vars);
-            N_Vector dqs = pOdeSystem->ComputeDerivedQuantities(mTimes[i], state_vars);
-            CopyToStdVector(dqs, mDerivedQuantities[i]);
-            DeleteVector(dqs);
-        }
-        DeleteVector(state_vars);
+  assert(pOdeSystem != nullptr);
+  if (mDerivedQuantities.empty() &&
+      pOdeSystem->GetNumberOfDerivedQuantities() > 0) {
+    const unsigned num_solutions = mSolutions.size();
+    // Paranoia
+    assert(mTimes.size() == num_solutions);
+    mDerivedQuantities.resize(mTimes.size());
+    N_Vector state_vars = num_solutions > 0 ?
+        N_VNew_Serial(mSolutions[0].size()) : nullptr;
+    for (unsigned i = 0; i < num_solutions; i++) {
+      CopyFromStdVector(mSolutions[i], state_vars);
+      N_Vector dqs = pOdeSystem->ComputeDerivedQuantities(mTimes[i],
+          state_vars);
+      CopyToStdVector(dqs, mDerivedQuantities[i]);
+      DeleteVector(dqs);
     }
-    assert(mDerivedQuantities.size()==mTimes.size());
-    return mDerivedQuantities;
+    DeleteVector(state_vars);
+  }
+  assert(mDerivedQuantities.size() == mTimes.size());
+  return mDerivedQuantities;
 }
-#endif // CHASTE_CVODE
+#endif  // CHASTE_CVODE
 
-
-void OdeSolution::WriteToFile(std::string directoryName,
-                              std::string baseResultsFilename,
-                              std::string timeUnits,
-                              unsigned stepsPerRow,
-                              bool cleanDirectory,
-                              unsigned precision,
-                              bool includeDerivedQuantities)
+void OdeSolution::WriteToFile(
+    std::string directoryName
+  , std::string baseResultsFilename
+  , std::string timeUnits
+  , unsigned stepsPerRow
+  , bool cleanDirectory
+  , unsigned precision
+  , bool includeDerivedQuantities)
 {
-    assert(stepsPerRow > 0);
-    assert(mTimes.size() > 0);
-    assert(mTimes.size() == mSolutions.size());
-    assert(mpOdeSystemInformation.get() != nullptr);
-    if (mpOdeSystemInformation->GetNumberOfParameters()==0 && mpOdeSystemInformation->GetNumberOfDerivedQuantities() == 0)
-    {
-        includeDerivedQuantities = false;
+  assert(stepsPerRow > 0);
+  assert(mTimes.size() > 0);
+  assert(mTimes.size() == mSolutions.size());
+  assert(mpOdeSystemInformation.get() != nullptr);
+  if (mpOdeSystemInformation->GetNumberOfParameters() == 0 &&
+      mpOdeSystemInformation->GetNumberOfDerivedQuantities() == 0) {
+    includeDerivedQuantities = false;
+  }
+
+  if (includeDerivedQuantities) {
+    if ((mDerivedQuantities.empty() ||
+        mDerivedQuantities.size() != mTimes.size()) && mParameters.empty()) {
+      EXCEPTION("You must first call "
+          "CalculateDerivedQuantitiesAndParameters()"
+          " in order to write derived quantities.");
     }
+  }
 
-    if (includeDerivedQuantities)
-    {
-        if ((mDerivedQuantities.empty() || mDerivedQuantities.size()!=mTimes.size()) && mParameters.empty())
-        {
-            EXCEPTION("You must first call ""CalculateDerivedQuantitiesAndParameters()"" in order to write derived quantities.");
-        }
+  // Write data to a file using ColumnDataWriter
+  ColumnDataWriter writer(directoryName, baseResultsFilename, cleanDirectory,
+      precision);
+
+  if (!PetscTools::AmMaster()) {
+    // Only the master actually writes to file
+    return;
+  }
+
+  int time_var_id = writer.DefineUnlimitedDimension("Time", timeUnits);
+
+  // Either: the ODE system should have no names&units defined, or it
+  // should the same number as the number of solutions per timestep.
+  assert(mpOdeSystemInformation->rGetStateVariableNames().size() == 0 ||
+      (mpOdeSystemInformation->rGetStateVariableNames().size() ==
+          mSolutions[0].size()));
+
+  unsigned num_vars = mSolutions[0].size();
+  unsigned num_params = mpOdeSystemInformation->GetNumberOfParameters();
+  unsigned num_derived_quantities =
+      mpOdeSystemInformation->GetNumberOfDerivedQuantities();
+
+  std::vector<int> var_ids;
+  var_ids.reserve(num_vars);
+  if (mpOdeSystemInformation->rGetStateVariableNames().size() > 0) {
+    for (unsigned i = 0; i < num_vars; i++) {
+      var_ids.push_back(writer.DefineVariable(
+          mpOdeSystemInformation->rGetStateVariableNames()[i],
+          mpOdeSystemInformation->rGetStateVariableUnits()[i]));
     }
-
-    // Write data to a file using ColumnDataWriter
-    ColumnDataWriter writer(directoryName, baseResultsFilename, cleanDirectory, precision);
-
-    if (!PetscTools::AmMaster())
-    {
-        //Only the master actually writes to file
-        return;
+  }
+  else {
+    for (unsigned i = 0; i < num_vars; i++) {
+      std::stringstream string_stream;
+      string_stream << "var_" << i;
+      var_ids.push_back(writer.DefineVariable(string_stream.str(), ""));
     }
+  }
 
-    int time_var_id = writer.DefineUnlimitedDimension("Time", timeUnits);
-
-    // Either: the ODE system should have no names&units defined, or it should
-    // the same number as the number of solutions per timestep.
-    assert(  mpOdeSystemInformation->rGetStateVariableNames().size()==0 ||
-            (mpOdeSystemInformation->rGetStateVariableNames().size()==mSolutions[0].size()) );
-
-    unsigned num_vars = mSolutions[0].size();
-    unsigned num_params = mpOdeSystemInformation->GetNumberOfParameters();
-    unsigned num_derived_quantities = mpOdeSystemInformation->GetNumberOfDerivedQuantities();
-
-    std::vector<int> var_ids;
-    var_ids.reserve(num_vars);
-    if (mpOdeSystemInformation->rGetStateVariableNames().size() > 0)
-    {
-        for (unsigned i=0; i<num_vars; i++)
-        {
-            var_ids.push_back(writer.DefineVariable(mpOdeSystemInformation->rGetStateVariableNames()[i],
-                                                    mpOdeSystemInformation->rGetStateVariableUnits()[i]));
-        }
+  if (includeDerivedQuantities) {
+    var_ids.reserve(num_vars + num_params + num_derived_quantities);
+    for (unsigned i = 0; i < num_params; ++i) {
+      var_ids.push_back(writer.DefineVariable(
+          mpOdeSystemInformation->rGetParameterNames()[i],
+          mpOdeSystemInformation->rGetParameterUnits()[i]));
     }
-    else
-    {
-        for (unsigned i=0; i<num_vars; i++)
-        {
-            std::stringstream string_stream;
-            string_stream << "var_" << i;
-            var_ids.push_back(writer.DefineVariable(string_stream.str(), ""));
-        }
+    for (unsigned i = 0; i < num_derived_quantities; i++) {
+      var_ids.push_back(writer.DefineVariable(
+          mpOdeSystemInformation->rGetDerivedQuantityNames()[i],
+          mpOdeSystemInformation->rGetDerivedQuantityUnits()[i]));
     }
+  }
 
-    if (includeDerivedQuantities)
-    {
-        var_ids.reserve(num_vars + num_params + num_derived_quantities);
-        for (unsigned i=0; i<num_params; ++i)
-        {
-            var_ids.push_back(writer.DefineVariable(mpOdeSystemInformation->rGetParameterNames()[i],
-                                                    mpOdeSystemInformation->rGetParameterUnits()[i]));
-        }
-        for (unsigned i=0; i<num_derived_quantities; i++)
-        {
-            var_ids.push_back(writer.DefineVariable(mpOdeSystemInformation->rGetDerivedQuantityNames()[i],
-                                                    mpOdeSystemInformation->rGetDerivedQuantityUnits()[i]));
-        }
+  if (mSolverName != "") {
+    writer.SetCommentForInfoFile("ODE SOLVER: " + mSolverName);
+  }
+
+  writer.EndDefineMode();
+
+  for (unsigned i = 0; i < mSolutions.size(); i += stepsPerRow) {
+    writer.PutVariable(time_var_id, mTimes[i]);
+    for (unsigned j = 0; j < num_vars; j++) {
+      writer.PutVariable(var_ids[j], mSolutions[i][j]);
     }
-
-    if (mSolverName != "")
-    {
-        writer.SetCommentForInfoFile("ODE SOLVER: " + mSolverName);
+    if (includeDerivedQuantities) {
+      for (unsigned j = 0; j < num_params; ++j) {
+        writer.PutVariable(var_ids[j + num_vars], mParameters[j]);
+      }
+      for (unsigned j = 0; j < num_derived_quantities; j++) {
+        writer.PutVariable(var_ids[j + num_params + num_vars],
+            mDerivedQuantities[i][j]);
+      }
     }
+    writer.AdvanceAlongUnlimitedDimension();
+  }
+  writer.Close();
+}
 
-    writer.EndDefineMode();
+void OdeSolution::WriteToStream(
+    boost::shared_ptr<std::stringstream> pStream
+  , std::string timeUnits
+  , unsigned stepsPerRow
+  , bool cleanDirectory
+  , unsigned precision
+  , bool includeDerivedQuantities)
+{
+  assert(stepsPerRow > 0);
+  assert(mTimes.size() > 0);
+  assert(mTimes.size() == mSolutions.size());
+  assert(mpOdeSystemInformation.get() != nullptr);
+  if (mpOdeSystemInformation->GetNumberOfParameters() == 0 &&
+      mpOdeSystemInformation->GetNumberOfDerivedQuantities() == 0) {
+    includeDerivedQuantities = false;
+  }
 
-    for (unsigned i=0; i<mSolutions.size(); i+=stepsPerRow)
-    {
-        writer.PutVariable(time_var_id, mTimes[i]);
-        for (unsigned j=0; j<num_vars; j++)
-        {
-            writer.PutVariable(var_ids[j], mSolutions[i][j]);
-        }
-        if (includeDerivedQuantities)
-        {
-            for (unsigned j=0; j<num_params; ++j)
-            {
-                writer.PutVariable(var_ids[j+num_vars], mParameters[j]);
-            }
-            for (unsigned j=0; j<num_derived_quantities; j++)
-            {
-                writer.PutVariable(var_ids[j+num_params+num_vars], mDerivedQuantities[i][j]);
-            }
-        }
-        writer.AdvanceAlongUnlimitedDimension();
+  if (includeDerivedQuantities) {
+    if ((mDerivedQuantities.empty() ||
+        mDerivedQuantities.size() != mTimes.size()) && mParameters.empty()) {
+      EXCEPTION("You must first call "
+          "CalculateDerivedQuantitiesAndParameters()"
+          " in order to write derived quantities.");
     }
-    writer.Close();
+  }
+
+  // Write data to a file using ColumnDataWriter
+  ColumnDataWriter writer(pStream, cleanDirectory, precision);
+
+  if (!PetscTools::AmMaster()) {
+    // Only the master actually writes to file
+    return;
+  }
+
+  int time_var_id = writer.DefineUnlimitedDimension("Time", timeUnits);
+
+  // Either: the ODE system should have no names&units defined, or it
+  // should the same number as the number of solutions per timestep.
+  assert(mpOdeSystemInformation->rGetStateVariableNames().size() == 0 ||
+      (mpOdeSystemInformation->rGetStateVariableNames().size() ==
+          mSolutions[0].size()));
+
+  unsigned num_vars = mSolutions[0].size();
+  unsigned num_params = mpOdeSystemInformation->GetNumberOfParameters();
+  unsigned num_derived_quantities =
+      mpOdeSystemInformation->GetNumberOfDerivedQuantities();
+
+  std::vector<int> var_ids;
+  var_ids.reserve(num_vars);
+  if (mpOdeSystemInformation->rGetStateVariableNames().size() > 0) {
+    for (unsigned i = 0; i < num_vars; i++) {
+      var_ids.push_back(writer.DefineVariable(
+          mpOdeSystemInformation->rGetStateVariableNames()[i],
+          mpOdeSystemInformation->rGetStateVariableUnits()[i]));
+    }
+  }
+  else {
+    for (unsigned i = 0; i < num_vars; i++) {
+      std::stringstream string_stream;
+      string_stream << "var_" << i;
+      var_ids.push_back(writer.DefineVariable(string_stream.str(), ""));
+    }
+  }
+
+  if (includeDerivedQuantities) {
+    var_ids.reserve(num_vars + num_params + num_derived_quantities);
+    for (unsigned i = 0; i < num_params; ++i) {
+      var_ids.push_back(writer.DefineVariable(
+          mpOdeSystemInformation->rGetParameterNames()[i],
+          mpOdeSystemInformation->rGetParameterUnits()[i]));
+    }
+    for (unsigned i = 0; i < num_derived_quantities; i++) {
+      var_ids.push_back(writer.DefineVariable(
+          mpOdeSystemInformation->rGetDerivedQuantityNames()[i],
+          mpOdeSystemInformation->rGetDerivedQuantityUnits()[i]));
+    }
+  }
+
+  writer.EndDefineMode();
+
+  for (unsigned i = 0; i < mSolutions.size(); i += stepsPerRow) {
+    writer.PutVariable(time_var_id, mTimes[i]);
+    for (unsigned j = 0; j < num_vars; j++) {
+      writer.PutVariable(var_ids[j], mSolutions[i][j]);
+    }
+    if (includeDerivedQuantities) {
+      for (unsigned j = 0; j < num_params; ++j) {
+        writer.PutVariable(var_ids[j + num_vars], mParameters[j]);
+      }
+      for (unsigned j = 0; j < num_derived_quantities; j++) {
+        writer.PutVariable(var_ids[j + num_params + num_vars],
+            mDerivedQuantities[i][j]);
+      }
+    }
+    writer.AdvanceAlongUnlimitedDimension();
+  }
+  writer.Close();
 }
 
 // Explicit instantiation
-
 /**
  * \cond
- * Get Doxygen to ignore, since it's confused by explicit instantiation of templated methods
+ * Get Doxygen to ignore, since it's confused by explicit instantiation
+ * of templated methods
  */
-template std::vector<double>& OdeSolution::rGetParameters(AbstractParameterisedSystem<std::vector<double> >* pOdeSystem);
-template void OdeSolution::CalculateDerivedQuantitiesAndParameters(AbstractParameterisedSystem<std::vector<double> >* pOdeSystem);
+template std::vector<double>& OdeSolution::rGetParameters(
+    AbstractParameterisedSystem<std::vector<double>>* pOdeSystem);
+template void OdeSolution::CalculateDerivedQuantitiesAndParameters(
+    AbstractParameterisedSystem<std::vector<double>>* pOdeSystem);
 
 #ifdef CHASTE_CVODE
-template std::vector<double>& OdeSolution::rGetParameters(AbstractParameterisedSystem<N_Vector>* pOdeSystem);
-template void OdeSolution::CalculateDerivedQuantitiesAndParameters(AbstractParameterisedSystem<N_Vector>* pOdeSystem);
-#endif // CHASTE_CVODE
+template std::vector<double>& OdeSolution::rGetParameters(
+    AbstractParameterisedSystem<N_Vector>* pOdeSystem);
+template void OdeSolution::CalculateDerivedQuantitiesAndParameters(
+    AbstractParameterisedSystem<N_Vector>* pOdeSystem);
+#endif  // CHASTE_CVODE
 
 /**
  * \endcond

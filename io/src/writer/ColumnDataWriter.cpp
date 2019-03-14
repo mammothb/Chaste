@@ -49,467 +49,526 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "Version.hpp"
 
 
-ColumnDataWriter::ColumnDataWriter(const std::string& rDirectory,
-                                   const std::string& rBaseName,
-                                   bool cleanDirectory,
-                                   unsigned precision)
-    : mOutputFileHandler(rDirectory, cleanDirectory),
-      mDirectory(rDirectory),
-      mBaseName(rBaseName),
-      mIsInDefineMode(true),
-      mIsFixedDimensionSet(false),
-      mIsUnlimitedDimensionSet(false),
-      mUnlimitedDimensionPosition(0),
-      mFixedDimensionSize(-1),
-      mpCurrentOutputFile(nullptr),
-      mpCurrentAncillaryFile(nullptr),
-      mpUnlimitedDimensionVariable(nullptr),
-      mpFixedDimensionVariable(nullptr),
-      mFieldWidth(precision+8),
-      mPrecision(precision),
-      mHasPutVariable(false),
-      mNeedAdvanceAlongUnlimitedDimension(false),
-      mCommentForInfoFile("")
+ColumnDataWriter::ColumnDataWriter(
+    const std::string& rDirectory
+  , const std::string& rBaseName
+  , bool cleanDirectory
+  , unsigned precision)
+  : mOutputFileHandler(rDirectory, cleanDirectory),
+    mDirectory(rDirectory),
+    mBaseName(rBaseName),
+    mIsStreamMode(false),
+    mIsInDefineMode(true),
+    mIsFixedDimensionSet(false),
+    mIsUnlimitedDimensionSet(false),
+    mUnlimitedDimensionPosition(0),
+    mFixedDimensionSize(-1),
+    mpCurrentOutputFile(nullptr),
+    mpCurrentAncillaryFile(nullptr),
+    mpStream(nullptr),
+    mpUnlimitedDimensionVariable(nullptr),
+    mpFixedDimensionVariable(nullptr),
+    mFieldWidth(precision+8),
+    mPrecision(precision),
+    mHasPutVariable(false),
+    mNeedAdvanceAlongUnlimitedDimension(false),
+    mCommentForInfoFile("")
 {
-    if (mPrecision<2 || mPrecision>20)
-    {
-        EXCEPTION("Precision must be between 2 and 20 (inclusive)");
-    }
+  if (mPrecision < 2 || mPrecision > 20) {
+    EXCEPTION("Precision must be between 2 and 20 (inclusive)");
+  }
+}
+
+ColumnDataWriter::ColumnDataWriter(
+    boost::shared_ptr<std::stringstream> pStream
+  , bool cleanDirectory
+  , unsigned precision)
+  : mIsStreamMode(true),
+    mIsInDefineMode(true),
+    mIsFixedDimensionSet(false),
+    mIsUnlimitedDimensionSet(false),
+    mUnlimitedDimensionPosition(0),
+    mFixedDimensionSize(-1),
+    mpCurrentOutputFile(nullptr),
+    mpCurrentAncillaryFile(nullptr),
+    mpStream(pStream),
+    mpUnlimitedDimensionVariable(nullptr),
+    mpFixedDimensionVariable(nullptr),
+    mFieldWidth(precision+8),
+    mPrecision(precision),
+    mHasPutVariable(false),
+    mNeedAdvanceAlongUnlimitedDimension(false),
+    mCommentForInfoFile("")
+{
+  if (mPrecision < 2 || mPrecision > 20) {
+    EXCEPTION("Precision must be between 2 and 20 (inclusive)");
+  }
 }
 
 ColumnDataWriter::~ColumnDataWriter()
 {
-    // Close any open output files
-    Close();
+  // Close any open output files
+  Close();
 
-    // Delete memory allocated for variables
-    if (mpUnlimitedDimensionVariable != nullptr)
-    {
-        delete mpUnlimitedDimensionVariable;
-    }
-    if (mpFixedDimensionVariable != nullptr)
-    {
-        delete mpFixedDimensionVariable;
-    }
+  // Delete memory allocated for variables
+  if (mpUnlimitedDimensionVariable != nullptr) {
+    delete mpUnlimitedDimensionVariable;
+  }
+  if (mpFixedDimensionVariable != nullptr) {
+    delete mpFixedDimensionVariable;
+  }
 }
 
 std::string ColumnDataWriter::GetOutputDirectory()
 {
-    return mOutputFileHandler.GetOutputDirectoryFullPath();
+  return mOutputFileHandler.GetOutputDirectoryFullPath();
 }
 
 void ColumnDataWriter::Close()
 {
-    if (mpCurrentOutputFile.get() != nullptr)
-    {
-        mpCurrentOutputFile->close();
-        mpCurrentOutputFile = out_stream(nullptr);
-    }
+  if (mpCurrentOutputFile.get() != nullptr) {
+    mpCurrentOutputFile->close();
+    mpCurrentOutputFile = out_stream(nullptr);
+  }
 
-    if (mpCurrentAncillaryFile.get() != nullptr)
-    {
-        mpCurrentAncillaryFile->close();
-        mpCurrentAncillaryFile = out_stream(nullptr);
-    }
+  if (mpCurrentAncillaryFile.get() != nullptr) {
+    mpCurrentAncillaryFile->close();
+    mpCurrentAncillaryFile = out_stream(nullptr);
+  }
+
+  if (mpStream.get() != nullptr) {
+    // go to the end of the current line
+    mpStream->seekp(mRowStartPosition + mRowWidth);
+    *mpStream << std::endl;
+  }
 }
 
 void ColumnDataWriter::CheckVariableName(const std::string& rName)
 {
-    if (rName.length() == 0)
-    {
-        EXCEPTION("Variable name not allowed: may not be blank.");
-    }
-    CheckUnitsName(rName);
+  if (rName.length() == 0) {
+    EXCEPTION("Variable name not allowed: may not be blank.");
+  }
+  CheckUnitsName(rName);
 }
 
 void ColumnDataWriter::CheckUnitsName(const std::string& rName)
 {
-    for (unsigned i=0; i<rName.length(); i++)
-    {
-        if (!isalnum(rName[i]) && !(rName[i]=='_'))
-        {
-            std::string error = "Variable name/units '" + rName + "' not allowed: may only contain alphanumeric characters or '_'.";
-            EXCEPTION(error);
-        }
+  for (unsigned i = 0; i < rName.length(); i++) {
+    if (!isalnum(rName[i]) && !(rName[i] == '_')) {
+      std::string error = "Variable name/units '" + rName +
+          "' not allowed: may only contain alphanumeric characters or '_'.";
+      EXCEPTION(error);
     }
+  }
 }
 
-int ColumnDataWriter::DefineUnlimitedDimension(const std::string& rDimensionName,
-                                               const std::string& rDimensionUnits)
+int ColumnDataWriter::DefineUnlimitedDimension(
+    const std::string& rDimensionName
+  , const std::string& rDimensionUnits)
 {
-    if (mIsUnlimitedDimensionSet)
-    {
-        EXCEPTION("Unlimited dimension already set. Cannot be defined twice");
-    }
+  if (mIsUnlimitedDimensionSet) {
+    EXCEPTION("Unlimited dimension already set. Cannot be defined twice");
+  }
 
-    if (!mIsInDefineMode)
-    {
-        EXCEPTION("Cannot define variables when not in Define mode");
-    }
+  if (!mIsInDefineMode) {
+    EXCEPTION("Cannot define variables when not in Define mode");
+  }
 
-    CheckVariableName(rDimensionName);
-    CheckUnitsName(rDimensionUnits);
+  CheckVariableName(rDimensionName);
+  CheckUnitsName(rDimensionUnits);
 
-    mUnlimitedDimensionName = rDimensionName;
-    mUnlimitedDimensionUnits = rDimensionUnits;
+  mUnlimitedDimensionName = rDimensionName;
+  mUnlimitedDimensionUnits = rDimensionUnits;
 
-    mpUnlimitedDimensionVariable = new DataWriterVariable;
-    mpUnlimitedDimensionVariable->mVariableName = rDimensionName;
-    mpUnlimitedDimensionVariable->mVariableUnits = rDimensionUnits;
+  mpUnlimitedDimensionVariable = new DataWriterVariable;
+  mpUnlimitedDimensionVariable->mVariableName = rDimensionName;
+  mpUnlimitedDimensionVariable->mVariableUnits = rDimensionUnits;
 
-    mIsUnlimitedDimensionSet = true;
+  mIsUnlimitedDimensionSet = true;
 
-    return UNLIMITED_DIMENSION_VAR_ID;
+  return UNLIMITED_DIMENSION_VAR_ID;
 }
 
-int ColumnDataWriter::DefineFixedDimension(const std::string& rDimensionName,
-                                           const std::string& rDimensionUnits,
-                                           long dimensionSize)
+int ColumnDataWriter::DefineFixedDimension(
+    const std::string& rDimensionName
+  , const std::string& rDimensionUnits
+  , long dimensionSize)
 {
-    if (!mIsInDefineMode)
-    {
-        EXCEPTION("Cannot define variables when not in Define mode");
-    }
-    if (dimensionSize < 1)
-    {
-        EXCEPTION("Fixed dimension must be at least 1 long");
-    }
+  if (!mIsInDefineMode) {
+    EXCEPTION("Cannot define variables when not in Define mode");
+  }
+  if (dimensionSize < 1) {
+    EXCEPTION("Fixed dimension must be at least 1 long");
+  }
 
-    CheckVariableName(rDimensionName);
-    CheckUnitsName(rDimensionUnits);
+  CheckVariableName(rDimensionName);
+  CheckUnitsName(rDimensionUnits);
 
-    mFixedDimensionName = rDimensionName;
-    mFixedDimensionUnits = rDimensionUnits;
-    mFixedDimensionSize = dimensionSize;
+  mFixedDimensionName = rDimensionName;
+  mFixedDimensionUnits = rDimensionUnits;
+  mFixedDimensionSize = dimensionSize;
 
-    mIsFixedDimensionSet = true;
+  mIsFixedDimensionSet = true;
 
-    mpFixedDimensionVariable = new DataWriterVariable;
-    mpFixedDimensionVariable->mVariableName = rDimensionName;
-    mpFixedDimensionVariable->mVariableUnits = rDimensionUnits;
-    return FIXED_DIMENSION_VAR_ID;
+  mpFixedDimensionVariable = new DataWriterVariable;
+  mpFixedDimensionVariable->mVariableName = rDimensionName;
+  mpFixedDimensionVariable->mVariableUnits = rDimensionUnits;
+  return FIXED_DIMENSION_VAR_ID;
 }
 
-int ColumnDataWriter::DefineVariable(const std::string& rVariableName,
-                                     const std::string& rVariableUnits)
+int ColumnDataWriter::DefineVariable(
+    const std::string& rVariableName
+  , const std::string& rVariableUnits)
 {
-    if (!mIsInDefineMode)
-    {
-        EXCEPTION("Cannot define variables when not in Define mode");
-    }
+  if (!mIsInDefineMode) {
+    EXCEPTION("Cannot define variables when not in Define mode");
+  }
 
-    CheckVariableName(rVariableName);
-    CheckUnitsName(rVariableUnits);
+  CheckVariableName(rVariableName);
+  CheckUnitsName(rVariableUnits);
 
-    int variable_id;
+  int variable_id;
 
-    if (rVariableName == mUnlimitedDimensionName)
-    {
-        EXCEPTION("Variable name: " + rVariableName + " already in use as unlimited dimension");
-    }
-    else if (rVariableName == mFixedDimensionName)
-    {
-        EXCEPTION("Variable name: " + rVariableName + " already in use as fixed dimension");
-    }
-    else // ordinary variable
-    {
-        // Add the variable to the variable vector
-        DataWriterVariable new_variable;
-        new_variable.mVariableName = rVariableName;
-        new_variable.mVariableUnits = rVariableUnits;
-        mVariables.push_back(new_variable);
+  if (rVariableName == mUnlimitedDimensionName) {
+    EXCEPTION("Variable name: " + rVariableName +
+        " already in use as unlimited dimension");
+  }
+  else if (rVariableName == mFixedDimensionName) {
+    EXCEPTION("Variable name: " + rVariableName +
+        " already in use as fixed dimension");
+  }
+  // ordinary variable
+  else {
+    // Add the variable to the variable vector
+    DataWriterVariable new_variable;
+    new_variable.mVariableName = rVariableName;
+    new_variable.mVariableUnits = rVariableUnits;
+    mVariables.push_back(new_variable);
 
-        // Use the index of the variable vector as the variable ID.
-        // This is ok since there is no way to remove variables.
-        variable_id = mVariables.size()-1;
-    }
+    // Use the index of the variable vector as the variable ID.
+    // This is ok since there is no way to remove variables.
+    variable_id = mVariables.size() - 1;
+  }
 
-    return variable_id;
+  return variable_id;
 }
 
 void ColumnDataWriter::EndDefineMode()
 {
-    // Check that a dimension has been defined
-    if (mIsFixedDimensionSet == false && mIsUnlimitedDimensionSet == false)
-    {
-        EXCEPTION("Cannot end define mode. No dimensions have been defined.");
-    }
-    // Check that at least one variable has been defined
-    if (mVariables.size() < 1)
-    {
-        EXCEPTION("Cannot end define mode. No variables have been defined.");
-    }
-    // Calculate the width of each row
-    int unlimited_dimension_variable = (mpUnlimitedDimensionVariable != nullptr);
-    int fixed_dimension_variable = (mpFixedDimensionVariable != nullptr);
-    if (mIsUnlimitedDimensionSet)
-    {
-        if (mIsFixedDimensionSet)
-        {
-            mRowWidth = (mVariables.size() + fixed_dimension_variable) * (mFieldWidth + SPACING);
-            mAncillaryRowWidth = mFieldWidth + SPACING;
+  // Check that a dimension has been defined
+  if (mIsFixedDimensionSet == false && mIsUnlimitedDimensionSet == false) {
+    EXCEPTION("Cannot end define mode. No dimensions have been defined.");
+  }
+  // Check that at least one variable has been defined
+  if (mVariables.size() < 1) {
+    EXCEPTION("Cannot end define mode. No variables have been defined.");
+  }
+  // Calculate the width of each row
+  int unlimited_dimension_variable = (mpUnlimitedDimensionVariable != nullptr);
+  int fixed_dimension_variable = (mpFixedDimensionVariable != nullptr);
+  if (mIsUnlimitedDimensionSet) {
+    if (mIsFixedDimensionSet) {
+      mRowWidth = (mVariables.size() + fixed_dimension_variable) *
+          (mFieldWidth + SPACING);
+      mAncillaryRowWidth = mFieldWidth + SPACING;
 
-            // Write out the headers for the first position along the unlimited dimension
-            std::stringstream suffix;
-            suffix << std::setfill('0') << std::setw(FILE_SUFFIX_WIDTH) << mUnlimitedDimensionPosition;
+      // Write out the headers for the first position along the
+      // unlimited dimension
+      std::stringstream suffix;
+      suffix << std::setfill('0') << std::setw(FILE_SUFFIX_WIDTH) <<
+          mUnlimitedDimensionPosition;
 
-            if (mpUnlimitedDimensionVariable != nullptr)
-            {
-                std::string ancillary_filename = mBaseName + "_unlimited.dat";
-                mpCurrentAncillaryFile = mOutputFileHandler.OpenOutputFile(ancillary_filename, std::ios::out | std::ios::binary);
-                (*mpCurrentAncillaryFile) << std::setiosflags(std::ios::scientific);
-                (*mpCurrentAncillaryFile) << std::setprecision(mPrecision);
-                if (mpUnlimitedDimensionVariable != nullptr)
-                {
-                    (*mpCurrentAncillaryFile) << mpUnlimitedDimensionVariable->mVariableName
-                                              << "(" << mpUnlimitedDimensionVariable->mVariableUnits << ") ";
-                }
-            }
-            mAncillaryRowStartPosition = mpCurrentAncillaryFile->tellp();
-            std::string filename = mBaseName + "_" + suffix.str() + ".dat";
-            this->CreateFixedDimensionFile(filename);
+      if (mpUnlimitedDimensionVariable != nullptr) {
+        std::string ancillary_filename = mBaseName + "_unlimited.dat";
+        mpCurrentAncillaryFile = mOutputFileHandler.OpenOutputFile(
+            ancillary_filename, std::ios::out | std::ios::binary);
+        (*mpCurrentAncillaryFile) << std::setiosflags(std::ios::scientific);
+        (*mpCurrentAncillaryFile) << std::setprecision(mPrecision);
+        if (mpUnlimitedDimensionVariable != nullptr) {
+          (*mpCurrentAncillaryFile) <<
+              mpUnlimitedDimensionVariable->mVariableName << "(" <<
+              mpUnlimitedDimensionVariable->mVariableUnits << ") ";
         }
-        else
-        {
-            mRowWidth = (mVariables.size() + unlimited_dimension_variable) * (mFieldWidth + SPACING);
-
-            // Write out the column headers
-            std::string filename = mBaseName + ".dat";
-            mpCurrentOutputFile = mOutputFileHandler.OpenOutputFile(filename, std::ios::out);
-            (*mpCurrentOutputFile) << std::setiosflags(std::ios::scientific);
-            (*mpCurrentOutputFile) << std::setprecision(mPrecision);
-            if (mpUnlimitedDimensionVariable != nullptr)
-            {
-                (*mpCurrentOutputFile) << mpUnlimitedDimensionVariable->mVariableName
-                                       << "(" << mpUnlimitedDimensionVariable->mVariableUnits << ") ";
-            }
-            /*
-             * Write out header(which may contain several variables) for output file.
-             * In this scope the method "CreateFixedDimensionFile" has not been invoked,
-             * because there is no mFixedDimensionSize available.
-             */
-            for (unsigned i=0; i<mVariables.size(); i++)
-            {
-                (*mpCurrentOutputFile) << mVariables[i].mVariableName << "(" << mVariables[i].mVariableUnits << ")";
-                if (i < mVariables.size()-1)
-                {
-                    (*mpCurrentOutputFile) << " ";
-                }
-            }
-            (*mpCurrentOutputFile) << std::endl;
-            mRowStartPosition = mpCurrentOutputFile->tellp();
-
-            // Write out a line of blank space which is #variables * (mFieldWidth + 1) -1
-            std::string blank_line(mRowWidth, ' ');
-            (*mpCurrentOutputFile) << blank_line;
-        }
+      }
+      mAncillaryRowStartPosition = mpCurrentAncillaryFile->tellp();
+      std::string filename = mBaseName + "_" + suffix.str() + ".dat";
+      this->CreateFixedDimensionFile(filename);
     }
-    else
-    {
-        // The fixed dimension must be set at this point or we wouldn't be here
-        mRowWidth = (mVariables.size() + fixed_dimension_variable) * (mFieldWidth + SPACING);
+    else {
+      mRowWidth = (mVariables.size() + unlimited_dimension_variable) *
+          (mFieldWidth + SPACING);
+
+      if (mIsStreamMode) {
+        // Write out the column headers
         std::string filename = mBaseName + ".dat";
-        this->CreateFixedDimensionFile(filename);
+        mpCurrentOutputFile = mOutputFileHandler.OpenOutputFile(filename,
+            std::ios::out);
+        *mpStream << std::setiosflags(std::ios::scientific);
+        *mpStream << std::setprecision(mPrecision);
+        if (mpUnlimitedDimensionVariable != nullptr) {
+          *mpStream << mpUnlimitedDimensionVariable->mVariableName << "(" <<
+              mpUnlimitedDimensionVariable->mVariableUnits << ") ";
+        }
+        /*
+        * Write out header(which may contain several variables) for
+        * output file. In this scope the method
+        * "CreateFixedDimensionFile" has not been invoked, because there
+        * is no mFixedDimensionSize available.
+        */
+        for (unsigned i = 0; i < mVariables.size(); i++) {
+          *mpStream << mVariables[i].mVariableName << "(" <<
+              mVariables[i].mVariableUnits << ")";
+          if (i < mVariables.size() - 1) *mpStream << " ";
+        }
+        *mpStream << std::endl;
+        mRowStartPosition = mpStream->tellp();
+
+        // Write out a line of blank space which is #variables *
+        // (mFieldWidth + 1) - 1
+        std::string blank_line(mRowWidth, ' ');
+        *mpStream << blank_line;
+      }
+      else {
+        // Write out the column headers
+        std::string filename = mBaseName + ".dat";
+        mpCurrentOutputFile = mOutputFileHandler.OpenOutputFile(filename,
+            std::ios::out);
+        (*mpCurrentOutputFile) << std::setiosflags(std::ios::scientific);
+        (*mpCurrentOutputFile) << std::setprecision(mPrecision);
+        if (mpUnlimitedDimensionVariable != nullptr) {
+          (*mpCurrentOutputFile) <<
+              mpUnlimitedDimensionVariable->mVariableName << "(" <<
+              mpUnlimitedDimensionVariable->mVariableUnits << ") ";
+        }
+        /*
+        * Write out header(which may contain several variables) for
+        * output file. In this scope the method
+        * "CreateFixedDimensionFile" has not been invoked, because there
+        * is no mFixedDimensionSize available.
+        */
+        for (unsigned i = 0; i < mVariables.size(); i++) {
+          (*mpCurrentOutputFile) << mVariables[i].mVariableName << "(" <<
+              mVariables[i].mVariableUnits << ")";
+          if (i < mVariables.size() - 1) {
+            (*mpCurrentOutputFile) << " ";
+          }
+        }
+        (*mpCurrentOutputFile) << std::endl;
+        mRowStartPosition = mpCurrentOutputFile->tellp();
+
+        // Write out a line of blank space which is #variables *
+        // (mFieldWidth + 1) - 1
+        std::string blank_line(mRowWidth, ' ');
+        (*mpCurrentOutputFile) << blank_line;
+      }
     }
+  }
+  else {
+    // The fixed dimension must be set at this point or we wouldn't be
+    // here
+    mRowWidth = (mVariables.size() + fixed_dimension_variable) *
+        (mFieldWidth + SPACING);
+    std::string filename = mBaseName + ".dat";
+    this->CreateFixedDimensionFile(filename);
+  }
 
-    // Write info file
-    std::string infoname = mBaseName + ".info";
-    this->CreateInfoFile(infoname);
+  // Write info file
+  std::string infoname = mBaseName + ".info";
+  this->CreateInfoFile(infoname);
 
-    mIsInDefineMode = false;
+  mIsInDefineMode = false;
 }
 
 void ColumnDataWriter::CreateFixedDimensionFile(const std::string& rFileName)
 {
-    // Create new data file
-    mpCurrentOutputFile = mOutputFileHandler.OpenOutputFile(rFileName, std::ios::out | std::ios::binary);
-    (*mpCurrentOutputFile) << std::setiosflags(std::ios::scientific);
-    (*mpCurrentOutputFile) << std::setprecision(mPrecision);
-    if (mpFixedDimensionVariable != nullptr)
-    {
-        (*mpCurrentOutputFile) << mpFixedDimensionVariable->mVariableName
-                               << "(" << mpFixedDimensionVariable->mVariableUnits << ") ";
+  // Create new data file
+  mpCurrentOutputFile = mOutputFileHandler.OpenOutputFile(rFileName,
+      std::ios::out | std::ios::binary);
+  (*mpCurrentOutputFile) << std::setiosflags(std::ios::scientific);
+  (*mpCurrentOutputFile) << std::setprecision(mPrecision);
+  if (mpFixedDimensionVariable != nullptr) {
+    (*mpCurrentOutputFile) << mpFixedDimensionVariable->mVariableName <<
+        "(" << mpFixedDimensionVariable->mVariableUnits << ") ";
+  }
+  // Write out the column headers and spaces for the rest of the file
+  for (unsigned i = 0; i < mVariables.size(); i++) {
+    (*mpCurrentOutputFile) << mVariables[i].mVariableName << "(" <<
+        mVariables[i].mVariableUnits << ")";
+    if (i < mVariables.size() - 1) {
+      (*mpCurrentOutputFile) << " ";
     }
-    // Write out the column headers and spaces for the rest of the file
-    for (unsigned i = 0; i < mVariables.size(); i++)
-    {
-        (*mpCurrentOutputFile) << mVariables[i].mVariableName << "(" << mVariables[i].mVariableUnits << ")";
-        if (i < mVariables.size()-1)
-        {
-            (*mpCurrentOutputFile) << " ";
-        }
-    }
-    (*mpCurrentOutputFile) << std::endl;
-    mRowStartPosition = mpCurrentOutputFile->tellp();
-    std::string blank_line(mRowWidth, ' ');
-    for (int i = 0; i < mFixedDimensionSize; i++)
-    {
-        (*mpCurrentOutputFile) << blank_line << std::endl;
-    }
+  }
+  (*mpCurrentOutputFile) << std::endl;
+  mRowStartPosition = mpCurrentOutputFile->tellp();
+  std::string blank_line(mRowWidth, ' ');
+  for (int i = 0; i < mFixedDimensionSize; i++) {
+    (*mpCurrentOutputFile) << blank_line << std::endl;
+  }
 }
 
 void ColumnDataWriter::CreateInfoFile(const std::string& rFileName)
 {
-    // Create new info file
-    out_stream p_info_file = mOutputFileHandler.OpenOutputFile(rFileName, std::ios::out | std::ios::binary);
-    (*p_info_file) << "FIXED " << mFixedDimensionSize << std::endl;
-    (*p_info_file) << "UNLIMITED " << mIsUnlimitedDimensionSet << std::endl;
-    (*p_info_file) << "VARIABLES " << mVariables.size() << std::endl;
-    if (mCommentForInfoFile != "")
-    {
-        *p_info_file << mCommentForInfoFile << std::endl;
-    }
-    *p_info_file << ChasteBuildInfo::GetProvenanceString();
-    p_info_file->close();
+  // Create new info file
+  out_stream p_info_file = mOutputFileHandler.OpenOutputFile(rFileName,
+      std::ios::out | std::ios::binary);
+  (*p_info_file) << "FIXED " << mFixedDimensionSize << std::endl;
+  (*p_info_file) << "UNLIMITED " << mIsUnlimitedDimensionSet << std::endl;
+  (*p_info_file) << "VARIABLES " << mVariables.size() << std::endl;
+  if (mCommentForInfoFile != "") {
+    *p_info_file << mCommentForInfoFile << std::endl;
+  }
+  *p_info_file << ChasteBuildInfo::GetProvenanceString();
+  p_info_file->close();
 }
 
 void ColumnDataWriter::DoAdvanceAlongUnlimitedDimension()
 {
-    mHasPutVariable = false;
-    mNeedAdvanceAlongUnlimitedDimension = false;
+  mHasPutVariable = false;
+  mNeedAdvanceAlongUnlimitedDimension = false;
 
-    if (mIsUnlimitedDimensionSet)
-    {
-        if (mIsFixedDimensionSet)
-        {
-            //first close the current file before creating another one
-            mpCurrentOutputFile->close();
-            std::stringstream suffix;
-            suffix << std::setfill('0') << std::setw(FILE_SUFFIX_WIDTH) << mUnlimitedDimensionPosition + 1;
+  if (mIsUnlimitedDimensionSet) {
+    if (mIsFixedDimensionSet) {
+      // first close the current file before creating another one
+      mpCurrentOutputFile->close();
+      std::stringstream suffix;
+      suffix << std::setfill('0') << std::setw(FILE_SUFFIX_WIDTH) <<
+          mUnlimitedDimensionPosition + 1;
 
-            std::string filename = mBaseName + "_" + suffix.str() + ".dat";
-            this->CreateFixedDimensionFile(filename);
-        }
-        else
-        {
-            //go to the end of the current line
-            mpCurrentOutputFile->seekp(mRowStartPosition+mRowWidth);
-            (*mpCurrentOutputFile) << std::endl;
-            mRowStartPosition = mpCurrentOutputFile->tellp();
-            std::string blank_line(mRowWidth,' ');
-            (*mpCurrentOutputFile) << blank_line;
-        }
+      std::string filename = mBaseName + "_" + suffix.str() + ".dat";
+      this->CreateFixedDimensionFile(filename);
     }
-    else
-    {
-        EXCEPTION("Cannot advance along unlimited dimension if it is not defined");
+    else {
+      if (mIsStreamMode) {
+        // go to the end of the current line
+        mpStream->seekp(mRowStartPosition + mRowWidth);
+        *mpStream << std::endl;
+        mRowStartPosition = mpStream->tellp();
+        std::string blank_line(mRowWidth, ' ');
+        *mpStream << blank_line;
+      }
+      else {
+        // go to the end of the current line
+        mpCurrentOutputFile->seekp(mRowStartPosition + mRowWidth);
+        (*mpCurrentOutputFile) << std::endl;
+        mRowStartPosition = mpCurrentOutputFile->tellp();
+        std::string blank_line(mRowWidth, ' ');
+        (*mpCurrentOutputFile) << blank_line;
+      }
     }
-    mUnlimitedDimensionPosition++;
+  }
+  else {
+    EXCEPTION("Cannot advance along unlimited dimension if it is not "
+        "defined");
+  }
+  mUnlimitedDimensionPosition++;
 }
 
 void ColumnDataWriter::AdvanceAlongUnlimitedDimension()
 {
-    if (mHasPutVariable)
-    {
-        mNeedAdvanceAlongUnlimitedDimension = true;
-    }
+  if (mHasPutVariable) {
+    mNeedAdvanceAlongUnlimitedDimension = true;
+  }
 }
 
-void ColumnDataWriter::PutVariable(int variableID, double variableValue, long dimensionPosition)
+void ColumnDataWriter::PutVariable(
+    int variableID
+  , double variableValue
+  , long dimensionPosition)
 {
+  if (mNeedAdvanceAlongUnlimitedDimension) {
+    DoAdvanceAlongUnlimitedDimension();
+  }
 
-    if (mNeedAdvanceAlongUnlimitedDimension)
-    {
-        DoAdvanceAlongUnlimitedDimension();
+  // Check that we are not in define mode
+  if (mIsInDefineMode) {
+    EXCEPTION("Cannot put variables when in Define mode");
+  }
+  // Check that variableID is in range (exception)
+  if (variableID > (int) mVariables.size() ||
+      (variableID != UNLIMITED_DIMENSION_VAR_ID &&
+          variableID != FIXED_DIMENSION_VAR_ID && variableID < 0)) {
+    EXCEPTION("variableID unknown");
+  }
+
+  if (mIsFixedDimensionSet) {
+    if (dimensionPosition == -1 && variableID != UNLIMITED_DIMENSION_VAR_ID) {
+      EXCEPTION("Dimension position not supplied");
     }
-
-    // Check that we are not in define mode
-    if (mIsInDefineMode)
-    {
-        EXCEPTION("Cannot put variables when in Define mode");
+    if (dimensionPosition < -1 || dimensionPosition >= mFixedDimensionSize) {
+      EXCEPTION("Dimension position out of range");
     }
-    // Check that variableID is in range (exception)
-    if (variableID > (int)mVariables.size() ||
-        (variableID != UNLIMITED_DIMENSION_VAR_ID &&
-         variableID != FIXED_DIMENSION_VAR_ID &&
-         variableID < 0))
-    {
-        EXCEPTION("variableID unknown");
+    if (dimensionPosition != -1 && variableID == UNLIMITED_DIMENSION_VAR_ID) {
+        EXCEPTION("Dimension position supplied, but not required");
     }
+  }
 
-    if (mIsFixedDimensionSet)
-    {
-        if (dimensionPosition == -1 && variableID != UNLIMITED_DIMENSION_VAR_ID)
-        {
-            EXCEPTION("Dimension position not supplied");
-        }
-        if (dimensionPosition < -1 || dimensionPosition >= mFixedDimensionSize)
-        {
-            EXCEPTION("Dimension position out of range");
-        }
-        if (dimensionPosition != -1 && variableID == UNLIMITED_DIMENSION_VAR_ID)
-        {
-            EXCEPTION("Dimension position supplied, but not required");
-        }
-    }
-
-    if (mIsUnlimitedDimensionSet)
-    {
-        if (mIsFixedDimensionSet)
-        {
-            // Go to the correct position in the file
-            if (variableID == UNLIMITED_DIMENSION_VAR_ID)
-            {
-                (*mpCurrentAncillaryFile) << std::endl << " ";
-                mpCurrentAncillaryFile->width(mFieldWidth);
-                (*mpCurrentAncillaryFile) << variableValue;
-            }
-            else
-            {
-                int position;
-                if (variableID == FIXED_DIMENSION_VAR_ID)
-                {
-                    position = mRowStartPosition + (mRowWidth+SPACING) * dimensionPosition;
-                }
-                else
-                {
-                    // ordinary variables
-                    position = mRowStartPosition + (mRowWidth+SPACING) * dimensionPosition +
-                               ((variableID + (mpFixedDimensionVariable != nullptr)) * (mFieldWidth + SPACING));
-                }
-
-                mpCurrentOutputFile->seekp(position);
-                mpCurrentOutputFile->width(mFieldWidth);
-                (*mpCurrentOutputFile) << variableValue;
-            }
-        }
-        else
-        {
-            // Go to the correct position in the file
-            int position;
-            if (variableID == UNLIMITED_DIMENSION_VAR_ID)
-            {
-                position = mRowStartPosition;
-            }
-            else
-            {
-                position = (variableID + (mpUnlimitedDimensionVariable != nullptr)) * (mFieldWidth + SPACING) +
-                           mRowStartPosition;
-            }
-
-            mpCurrentOutputFile->seekp(position);
-            mpCurrentOutputFile->width(mFieldWidth);
-            (*mpCurrentOutputFile) << variableValue;
-
-        }
-    }
-    else
-    {
-        // Go to the correct position in the file
+  if (mIsUnlimitedDimensionSet) {
+    if (mIsFixedDimensionSet) {
+      // Go to the correct position in the file
+      if (variableID == UNLIMITED_DIMENSION_VAR_ID) {
+        (*mpCurrentAncillaryFile) << std::endl << " ";
+        mpCurrentAncillaryFile->width(mFieldWidth);
+        (*mpCurrentAncillaryFile) << variableValue;
+      }
+      else {
         int position;
-        if (variableID == FIXED_DIMENSION_VAR_ID)
-        {
-            position = mRowStartPosition + (mRowWidth+SPACING) * dimensionPosition;
+        if (variableID == FIXED_DIMENSION_VAR_ID) {
+          position = mRowStartPosition + (mRowWidth + SPACING) *
+              dimensionPosition;
         }
-        else
-        {
-            position = mRowStartPosition + (mRowWidth+SPACING) * dimensionPosition +
-                       ((variableID + (mpFixedDimensionVariable != nullptr)) * (mFieldWidth + SPACING));
+        else {
+          // ordinary variables
+          position = mRowStartPosition + (mRowWidth+SPACING) *
+              dimensionPosition + ((variableID +
+                  (mpFixedDimensionVariable != nullptr)) *
+                  (mFieldWidth + SPACING));
         }
+
         mpCurrentOutputFile->seekp(position);
         mpCurrentOutputFile->width(mFieldWidth);
         (*mpCurrentOutputFile) << variableValue;
+      }
     }
+    else {
+      // Go to the correct position in the file
+      int position;
+      if (variableID == UNLIMITED_DIMENSION_VAR_ID) {
+        position = mRowStartPosition;
+      }
+      else {
+        position = (variableID + (mpUnlimitedDimensionVariable != nullptr)) *
+            (mFieldWidth + SPACING) + mRowStartPosition;
+      }
 
-    mHasPutVariable = true;
+      if (mIsStreamMode) {
+        mpStream->seekp(position);
+        mpStream->width(mFieldWidth);
+        *mpStream << variableValue;
+      }
+      else {
+        mpCurrentOutputFile->seekp(position);
+        mpCurrentOutputFile->width(mFieldWidth);
+        (*mpCurrentOutputFile) << variableValue;
+      }
+    }
+  }
+  else {
+    // Go to the correct position in the file
+    int position;
+    if (variableID == FIXED_DIMENSION_VAR_ID) {
+      position = mRowStartPosition + (mRowWidth + SPACING) *
+          dimensionPosition;
+    }
+    else {
+      position = mRowStartPosition + (mRowWidth + SPACING) *
+          dimensionPosition + ((variableID +
+              (mpFixedDimensionVariable != nullptr)) *
+              (mFieldWidth + SPACING));
+    }
+    mpCurrentOutputFile->seekp(position);
+    mpCurrentOutputFile->width(mFieldWidth);
+    (*mpCurrentOutputFile) << variableValue;
+  }
+
+  mHasPutVariable = true;
 }

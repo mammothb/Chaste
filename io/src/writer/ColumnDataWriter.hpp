@@ -39,6 +39,8 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include <string>
 #include <vector>
 
+#include <boost/shared_ptr.hpp>
+
 #include "AbstractDataWriter.hpp"
 #include "DataWriterVariable.hpp"
 #include "OutputFileHandler.hpp"
@@ -50,184 +52,262 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 class ColumnDataWriter : public AbstractDataWriter
 {
-protected:
+ protected:
+  /** For opening data files. */
+  OutputFileHandler mOutputFileHandler;
 
-    OutputFileHandler mOutputFileHandler; /**< For opening data files. */
+  /** Directory output files will be stored in. */
+  std::string mDirectory;
+  /** The base name for the output data files. */
+  std::string mBaseName;
+  /** Is the DataWriter writing to stream mode or not */
+  bool mIsStreamMode;
+  /** Is the DataWriter in define mode or not */
+  bool mIsInDefineMode;
+  /** Is the fixed dimension set */
+  bool mIsFixedDimensionSet;
+  /** Is the unlimited dimension set */
+  bool mIsUnlimitedDimensionSet;
+  /**
+   * The position along the unlimited dimension that writing of
+   * variables will take place
+   */
+  long mUnlimitedDimensionPosition;
+  /** The size of the fixed dimension */
+  long mFixedDimensionSize;
+  /** Filestream currently being addressed */
+  out_stream mpCurrentOutputFile;
+  /**
+   * Ancillary filestream currently being addressed (required for two
+   * dimensional output) eg. time file
+   */
+  out_stream mpCurrentAncillaryFile;
+  /** Stringstream to store data in memory before dumping into file */
+  boost::shared_ptr<std::stringstream> mpStream;
+  /** The variable corresponding to the unlimited dimension */
+  DataWriterVariable* mpUnlimitedDimensionVariable;
+  /** The variable corresponding to the fixed dimension */
+  DataWriterVariable* mpFixedDimensionVariable;
 
-    std::string mDirectory; /**< Directory output files will be stored in. */
-    std::string mBaseName; /**< The base name for the output data files. */
-    bool mIsInDefineMode; /**< Is the DataWriter in define mode or not */
-    bool mIsFixedDimensionSet; /**< Is the fixed dimension set */
-    bool mIsUnlimitedDimensionSet; /**< Is the unlimited dimension set */
-    long mUnlimitedDimensionPosition; /**< The position along the unlimited dimension that writing of variables will take place */
-    long mFixedDimensionSize; /**< The size of the fixed dimension */
-    out_stream mpCurrentOutputFile; /**< Filestream currently being addressed */
-    out_stream mpCurrentAncillaryFile; /**< Ancillary filestream currently being addressed (required for two dimensional output) eg. time file*/
-    DataWriterVariable* mpUnlimitedDimensionVariable; /**< The variable corresponding to the unlimited dimension */
-    DataWriterVariable* mpFixedDimensionVariable; /**< The variable corresponding to the fixed dimension */
+  /** The name of the unlimited dimension. */
+  std::string mUnlimitedDimensionName;
+  /** The physical units of the unlimited dimension. */
+  std::string mUnlimitedDimensionUnits;
 
-    std::string mUnlimitedDimensionName; /**< The name of the unlimited dimension. */
-    std::string mUnlimitedDimensionUnits; /**< The physical units of the unlimited dimension. */
+  /** The name of the fixed dimension */
+  std::string mFixedDimensionName;
+  /** The units of the fixed dimension */
+  std::string mFixedDimensionUnits;
 
-    std::string mFixedDimensionName; /**< The name of the fixed dimension */
-    std::string mFixedDimensionUnits; /**< The units of the fixed dimension */
+  /** The data variables */
+  std::vector<DataWriterVariable> mVariables;
 
-    std::vector<DataWriterVariable> mVariables; /**< The data variables */
+  /**
+   * Width of each column in the text file (excludes column headers)
+   */
+  const unsigned mFieldWidth;
+  /** Precision used in writing the data */
+  const unsigned mPrecision;
+  /** Space between columns (includes minus sign) */
+  static const int SPACING = 1;
+  /** id of fixed dimension variable */
+  static const int FIXED_DIMENSION_VAR_ID = -1;
+  /** id of unlimited dimension variable */
+  static const int UNLIMITED_DIMENSION_VAR_ID = -2;
 
-    const unsigned mFieldWidth; /**< Width of each column in the text file (excludes column headers) */
-    const unsigned mPrecision; /**< Precision used in writing the data */
-    static const int SPACING = 1; /**< Space between columns (includes minus sign) */
-    static const int FIXED_DIMENSION_VAR_ID = -1; /**< id of fixed dimension variable */
-    static const int UNLIMITED_DIMENSION_VAR_ID = -2; /**< id of unlimited dimension variable */
+  /** Extension of output files */
+  std::string mFileExtension;
 
-    std::string mFileExtension; /**< Extension of output files */
+  /**
+   * The position of the file pointer when it's at the beginning of the
+   * current row
+   */
+  int mRowStartPosition;
+  /** The width in characters of a row in the file */
+  int mRowWidth;
 
-    int mRowStartPosition; /**< The position of the file pointer when it's at the beginning of the current row */
-    int mRowWidth; /**< The width in characters of a row in the file */
+  /**
+   * The position of the ancillary file pointer when it's at the
+   * beginning of the current row
+   */
+  int mAncillaryRowStartPosition;
+  /** The width in characters of a row in the ancillary file */
+  int mAncillaryRowWidth;
 
-    int mAncillaryRowStartPosition; /**< The position of the ancillary file pointer when it's at the beginning of the current row */
-    int mAncillaryRowWidth; /**< The width in characters of a row in the ancillary file */
+  /** Whether a variable value has been output to a file. */
+  bool mHasPutVariable;
+  /** Whether we need to advance along the unlimited dimension. */
+  bool mNeedAdvanceAlongUnlimitedDimension;
 
-    bool mHasPutVariable; /**< Whether a variable value has been output to a file. */
-    bool mNeedAdvanceAlongUnlimitedDimension; /**< Whether we need to advance along the unlimited dimension. */
+  /**
+   * (Optional) comment that can be set and will be written to the
+   * info file when CreateInfoFile() is called in EndDefineMode()
+   */
+  std::string mCommentForInfoFile;
 
-    /**
-     *  (Optional) comment that can be set and will be written to the info file
-     *  when CreateInfoFile() is called in EndDefineMode()
-     */
-    std::string mCommentForInfoFile;
+  /**
+   * Create the output file and write out the header for it.
+   *
+   * @param rFileName  the name of the file to write to, relative to
+   *        the output directory
+   */
+  void CreateFixedDimensionFile(const std::string& rFileName);
 
-    /**
-     * Create the output file and write out the header for it.
-     *
-     * @param rFileName  the name of the file to write to, relative to the output directory
-     */
-    void CreateFixedDimensionFile(const std::string& rFileName);
+  /**
+   * Create the info file.
+   *
+   * @param rFileName  the name of the file to create, relative to the
+   *        output directory
+   */
+  void CreateInfoFile(const std::string& rFileName);
 
-    /**
-     * Create the info file.
-     *
-     * @param rFileName  the name of the file to create, relative to the output directory
-     */
-    void CreateInfoFile(const std::string& rFileName);
+  /**
+   * Check name of variable is allowed, i.e. contains only
+   * alphanumeric & _, and isn't blank.
+   *
+   * @param rName variable name
+   */
+  void CheckVariableName(const std::string& rName);
 
-    /**
-     * Check name of variable is allowed, i.e. contains only alphanumeric & _, and isn't blank.
-     *
-     * @param rName variable name
-     */
-    void CheckVariableName(const std::string& rName);
+  /**
+   * Check name of unit is allowed, i.e. contains only
+   * alphanumeric & _, and isn't blank.
+   *
+   * @param rName unit name
+   */
+  void CheckUnitsName(const std::string& rName);
 
-    /**
-     * Check name of unit is allowed, i.e. contains only alphanumeric & _, and isn't blank.
-     *
-     * @param rName unit name
-     */
-    void CheckUnitsName(const std::string& rName);
+  /**
+   * Advance along the unlimited dimension. Normally this will be
+   * called when all variables in a row have been input.
+   */
+  void DoAdvanceAlongUnlimitedDimension();
 
-    /**
-     * Advance along the unlimited dimension. Normally this will be called
-     * when all variables in a row have been input.
-     */
-    void DoAdvanceAlongUnlimitedDimension();
+ public:
+  /**
+   * Constructor.
+   *
+   * @param rDirectory  the directory in which to write the data to
+   *        file
+   * @param rBaseName  the name of the file in which to write the data
+   * @param cleanDirectory  whether to clean the directory (defaults to
+   *        true)
+   * @param precision the precision with which to write the data (i.e.
+   *        exactly how many digits to display after the decimal
+   *        point). Defaults to 8. Must be between 2 and 20
+   *        (inclusive).
+   */
+  ColumnDataWriter(
+      const std::string& rDirectory
+    , const std::string& rBaseName
+    , bool cleanDirectory = true
+    , unsigned precision = 8);
 
-public:
+  /**
+   * Constructor.
+   *
+   * @param cleanDirectory  whether to clean the directory (defaults to
+   *        true)
+   * @param precision the precision with which to write the data (i.e.
+   *        exactly how many digits to display after the decimal
+   *        point). Defaults to 8. Must be between 2 and 20
+   *        (inclusive).
+   */
+  ColumnDataWriter(
+      boost::shared_ptr<std::stringstream> pStream
+    , bool cleanDirectory = true
+    , unsigned precision = 8);
 
-    /**
-     * Constructor.
-     *
-     * @param rDirectory  the directory in which to write the data to file
-     * @param rBaseName  the name of the file in which to write the data
-     * @param cleanDirectory  whether to clean the directory (defaults to true)
-     * @param precision the precision with which to write the data (i.e. exactly
-     *    how many digits to display after the decimal point).  Defaults to 8.
-     *    Must be between 2 and 20 (inclusive).
-     */
-    ColumnDataWriter(const std::string& rDirectory,
-                     const std::string& rBaseName,
-                     bool cleanDirectory=true,
-                     unsigned precision=8);
+  /**
+   * Destructor. Closes any open files.
+   */
+  virtual ~ColumnDataWriter();
 
-    /**
-     * Destructor. Closes any open files.
-     */
-    virtual ~ColumnDataWriter();
+  /**
+   * Define the unlimited dimension, i.e. the dimension that increases
+   * as the simulation progresses.
+   *
+   * @param rDimensionName The name of the unlimited dimension
+   * @param rDimensionUnits The physical units of the unlimited
+   *        dimension
+   *
+   * @return The identifier of the variable
+   */
+  int DefineUnlimitedDimension(
+      const std::string& rDimensionName
+    , const std::string& rDimensionUnits);
 
-    /**
-     * Define the unlimited dimension, i.e. the dimension that increases as the simulation progresses.
-     *
-     * @param rDimensionName The name of the unlimited dimension
-     * @param rDimensionUnits The physical units of the unlimited dimension
-     *
-     * @return The identifier of the variable
-     */
-    int DefineUnlimitedDimension(const std::string& rDimensionName,
-                                 const std::string& rDimensionUnits);
+  /**
+   * Define the fixed dimension.
+   *
+   * @param rDimensionName The name of the dimension
+   * @param rDimensionUnits The physical units of the dimension
+   * @param dimensionSize The size of the dimension
+   *
+   * @return The identifier of the variable
+   */
+  int DefineFixedDimension(
+      const std::string& rDimensionName
+    , const std::string& rDimensionUnits
+    , long dimensionSize);
 
-    /**
-     * Define the fixed dimension.
-     *
-     * @param rDimensionName The name of the dimension
-     * @param rDimensionUnits The physical units of the dimension
-     * @param dimensionSize The size of the dimension
-     *
-     * @return The identifier of the variable
-     */
-    int DefineFixedDimension(const std::string& rDimensionName,
-                             const std::string& rDimensionUnits,
-                             long dimensionSize);
+  /**
+   * Define a variable.
+   *
+   * @param rVariableName The name of the variable
+   * @param rVariableUnits The physical units of the variable
+   *
+   * @return The identifier of the variable
+   */
+  int DefineVariable(
+      const std::string& rVariableName
+    , const std::string& rVariableUnits);
 
-    /**
-     * Define a variable.
-     *
-     * @param rVariableName The name of the variable
-     * @param rVariableUnits The physical units of the variable
-     *
-     * @return The identifier of the variable
-     */
-    int DefineVariable(const std::string& rVariableName,
-                       const std::string& rVariableUnits);
+  /**
+   * Set a comment to be written in the info file (optional).
+   * This needs to be called before EndDefineMode().
+   *
+   * @param comment  the comment
+   */
+  void SetCommentForInfoFile(std::string comment)
+  {
+    mCommentForInfoFile = comment;
+  }
 
-    /**
-     * Set a comment to be written in the info file (optional).
-     * This needs to be called before EndDefineMode().
-     *
-     * @param comment  the comment
-     */
-    void SetCommentForInfoFile(std::string comment)
-    {
-        mCommentForInfoFile = comment;
-    }
+  /**
+   * End the define mode of the DataWriter.
+   */
+  virtual void EndDefineMode();
 
-    /**
-     * End the define mode of the DataWriter.
-     */
-    virtual void EndDefineMode();
+  /**
+   *  Dummy function for DoAdvanceAlongUnlimitedDimension.
+   */
+  virtual void AdvanceAlongUnlimitedDimension();
 
-    /**
-     *  Dummy function for DoAdvanceAlongUnlimitedDimension.
-     */
-    virtual void AdvanceAlongUnlimitedDimension();
+  /**
+   * Input the variable value to the output file or ancillary file.
+   *
+   * @param variableID
+   * @param variableValue
+   * @param dimensionPosition  The position in column (defaults to -1).
+   *        This is required if there is a fixed dimension, and will be
+   *        the position along that dimension
+   */
+  virtual void PutVariable(
+      int variableID
+    , double variableValue
+    , long dimensionPosition = -1);
 
-    /**
-     * Input the variable value to the output file or ancillary file.
-     *
-     * @param variableID
-     * @param variableValue
-     * @param dimensionPosition  The position in column (defaults to -1). This is required if
-     *      there is a fixed dimension, and will be the position along that dimension
-     */
-    virtual void PutVariable(int variableID, double variableValue, long dimensionPosition = -1);
+  /**
+   * Close any open files.
+   */
+  virtual void Close();
 
-    /**
-     * Close any open files.
-     */
-    virtual void Close();
-
-    /**
-     * @return the full pathname of the directory where we're writing files.
-     */
-    std::string GetOutputDirectory();
+  /**
+   * @return the full pathname of the directory where we're writing
+   *         files.
+   */
+  std::string GetOutputDirectory();
 };
 
 #endif //COLUMNDATAWRITER_HPP_
