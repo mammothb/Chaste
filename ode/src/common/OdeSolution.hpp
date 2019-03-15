@@ -171,8 +171,9 @@ class OdeSolution
   const std::vector<std::vector<double> >& rGetSolutions() const;
 
 
-  /** Set the ODE solver used to create these results
-   *  @param solverName solver used
+  /**
+   * Set the ODE solver used to create these results
+   * @param solverName solver used
    */
   void SetSolverName(std::string solverName)
   {

@@ -34,10 +34,9 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
 /**
-* Implementation file for ColumnDataWriter class.
-*
-*/
-
+ * Implementation file for ColumnDataWriter class.
+ *
+ */
 #include <ctype.h>
 #include <sstream>
 #include <iomanip>
@@ -310,11 +309,11 @@ void ColumnDataWriter::EndDefineMode()
               mpUnlimitedDimensionVariable->mVariableUnits << ") ";
         }
         /*
-        * Write out header(which may contain several variables) for
-        * output file. In this scope the method
-        * "CreateFixedDimensionFile" has not been invoked, because there
-        * is no mFixedDimensionSize available.
-        */
+         * Write out header(which may contain several variables) for
+         * output file. In this scope the method
+         * "CreateFixedDimensionFile" has not been invoked, because there
+         * is no mFixedDimensionSize available.
+         */
         for (unsigned i = 0; i < mVariables.size(); i++) {
           *mpStream << mVariables[i].mVariableName << "(" <<
               mVariables[i].mVariableUnits << ")";
@@ -341,11 +340,11 @@ void ColumnDataWriter::EndDefineMode()
               mpUnlimitedDimensionVariable->mVariableUnits << ") ";
         }
         /*
-        * Write out header(which may contain several variables) for
-        * output file. In this scope the method
-        * "CreateFixedDimensionFile" has not been invoked, because there
-        * is no mFixedDimensionSize available.
-        */
+         * Write out header(which may contain several variables) for
+         * output file. In this scope the method
+         * "CreateFixedDimensionFile" has not been invoked, because there
+         * is no mFixedDimensionSize available.
+         */
         for (unsigned i = 0; i < mVariables.size(); i++) {
           (*mpCurrentOutputFile) << mVariables[i].mVariableName << "(" <<
               mVariables[i].mVariableUnits << ")";
