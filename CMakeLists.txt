@@ -332,7 +332,7 @@ if(BUILD_SHARED_LIBS)
 else()
 	set( Boost_USE_STATIC_LIBS ON)
 endif()
-find_package(Boost COMPONENTS filesystem system serialization program_options iostreams regex REQUIRED)
+find_package(Boost COMPONENTS filesystem system serialization program_options iostreams REQUIRED)
 list(APPEND Chaste_INCLUDES "${Boost_INCLUDE_DIR}")
 list(APPEND Chaste_LINK_LIBRARIES "${Boost_LIBRARIES}")
 
