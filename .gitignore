@@ -31,6 +31,7 @@ _local/
 
 # Test summary results
 /test_summary/*
+/htmlcov/*
 
 # Misc. in /
 /.settings

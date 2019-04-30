@@ -3,7 +3,7 @@ message(STATUS "Adding compiler flags...")
 # default flags added to all compilers except MSVC
 set(default_flags "-Wall -Wno-deprecated-declarations")
 if(Chaste_ERROR_ON_WARNING)
-    set(default_flags "${default_flags} -Werror")
+    set(default_flags "${default_flags}")
 endif()
 
 # Set the C++ Standard
