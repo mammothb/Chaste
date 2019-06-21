@@ -85,7 +85,7 @@ genhtml_function_coverage = 1
 genhtml_branch_coverage = 1
 
 # Location of the gcov tool (same as --gcov-info option of geninfo)
-#geninfo_gcov_tool = gcov
+#geninfo_gcov_tool = gcov-5
 
 # Adjust test names to include operating system information if non-zero
 #geninfo_adjust_testname = 0
