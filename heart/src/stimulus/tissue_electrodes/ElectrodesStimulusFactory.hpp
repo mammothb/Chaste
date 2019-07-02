@@ -70,6 +70,7 @@ protected:
 
     friend class TestStimulusFactory;//for testing
     friend class TestStimulusFactoryModified;//for testing
+    friend class TestStimulusFactoryTetradomain;//for testing
     friend class TestGeneralizedStimulusFactory;//for testing
 
     /**

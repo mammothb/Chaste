@@ -1,7 +1,7 @@
 message(STATUS "Adding compiler flags...")
 
 # default flags added to all compilers except MSVC
-set(default_flags "-Wall -Wno-deprecated-declarations")
+set(default_flags "-Wall -Wno-deprecated")
 if(Chaste_ERROR_ON_WARNING)
     set(default_flags "${default_flags}")
 endif()

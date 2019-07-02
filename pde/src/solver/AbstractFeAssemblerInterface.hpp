@@ -41,146 +41,177 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "PetscTools.hpp"
 
 /**
- *   A common bass class for AbstractFeVolumeIntegralAssembler (the main abstract assembler class), and other assembler classes
- *   (including continuum mechanics assemblers, which is why this class is separate to AbstractFeAssemblerInterface).
+ * A common bass class for AbstractFeVolumeIntegralAssembler (the main
+ * abstract assembler class), and other assembler classes (including
+ * continuum mechanics assemblers, which is why this class is separate
+ * to AbstractFeAssemblerInterface).
  *
- *   See AbstractFeVolumeIntegralAssembler documentation for info on these assembler classes.
+ * See AbstractFeVolumeIntegralAssembler documentation for info on
+ * these assembler classes.
  */
 
 template <bool CAN_ASSEMBLE_VECTOR, bool CAN_ASSEMBLE_MATRIX>
-class AbstractFeAssemblerInterface  : private boost::noncopyable
+class AbstractFeAssemblerInterface : private boost::noncopyable
 {
-protected:
-    /** The vector to be assembled (only used if CAN_ASSEMBLE_VECTOR == true). */
-    Vec mVectorToAssemble;
+ protected:
+  /**
+   * The vector to be assembled (only used if
+   * CAN_ASSEMBLE_VECTOR == true).
+   */
+  Vec mVectorToAssemble;
 
-    /** The matrix to be assembled (only used if CAN_ASSEMBLE_MATRIX == true). */
-    Mat mMatrixToAssemble;
+  /**
+   * The matrix to be assembled (only used if
+   * CAN_ASSEMBLE_MATRIX == true).
+   */
+  Mat mMatrixToAssemble;
 
-    /**
-     * Whether to assemble the matrix (an assembler may be able to assemble matrices
-     * (CAN_ASSEMBLE_MATRIX==true), but may not want to do so each timestep, hence
-     * this second boolean.
-     */
-    bool mAssembleMatrix;
+  /**
+   * Whether to assemble the matrix (an assembler may be able to
+   * assemble matrices (CAN_ASSEMBLE_MATRIX==true), but may not want to
+   * do so each timestep, hence this second boolean.
+   */
+  bool mAssembleMatrix;
 
-    /** Whether to assemble the vector. */
-    bool mAssembleVector;
+  /** Whether to assemble the vector. */
+  bool mAssembleVector;
 
-    /** Whether to zero the given matrix before assembly, or just add to it. */
-    bool mZeroMatrixBeforeAssembly;
+  /**
+   * Whether to zero the given matrix before assembly, or just add to
+   * it.
+   */
+  bool mZeroMatrixBeforeAssembly;
 
-    /** Whether to zero the given vector before assembly, or just add to it. */
-    bool mZeroVectorBeforeAssembly;
+  /**
+   * Whether to zero the given vector before assembly, or just add to
+   * it.
+   */
+  bool mZeroVectorBeforeAssembly;
 
-    /** Ownership range of the vector/matrix - lowest component owned. */
-    PetscInt mOwnershipRangeLo;
+  /** Ownership range of the vector/matrix - lowest component owned. */
+  PetscInt mOwnershipRangeLo;
 
-    /** Ownership range of the vector/matrix - highest component owned +1. */
-    PetscInt mOwnershipRangeHi;
+  /**
+   * Ownership range of the vector/matrix - highest component owned +1.
+   */
+  PetscInt mOwnershipRangeHi;
 
-    /**
-     * The main assembly method. Protected, should only be called through Assemble(),
-     * AssembleMatrix() or AssembleVector() which set mAssembleMatrix, mAssembleVector
-     * accordingly. Pure and therefore is implemented in child classes. Will involve looping
-     * over elements (which may be volume, surface or cable elements), and computing
-     * integrals and adding them to the vector or matrix
-     */
-    virtual void DoAssemble()=0;
+  /**
+   * The main assembly method. Protected, should only be called through
+   * Assemble(), AssembleMatrix() or AssembleVector() which set
+   * mAssembleMatrix, mAssembleVector accordingly. Pure and therefore
+   * is implemented in child classes. Will involve looping over
+   * elements (which may be volume, surface or cable elements), and
+   * computing integrals and adding them to the vector or matrix
+   */
+  virtual void DoAssemble() = 0;
 
-public:
+ public:
+  /**
+   * Constructor.
+   */
+  AbstractFeAssemblerInterface();
 
-    /**
-     * Constructor.
-     */
-    AbstractFeAssemblerInterface();
+  /**
+   * Set the matrix that needs to be assembled. Requires
+   * CAN_ASSEMBLE_MATRIX == true.
+   *
+   * @param rMatToAssemble Reference to the matrix
+   * @param zeroMatrixBeforeAssembly Whether to zero the matrix before
+   *        assembling (otherwise it is just added to)
+   */
+  void SetMatrixToAssemble(
+      Mat& rMatToAssemble
+    , bool zeroMatrixBeforeAssembly = true);
 
-    /**
-     * Set the matrix that needs to be assembled. Requires CAN_ASSEMBLE_MATRIX==true.
-     *
-     * @param rMatToAssemble Reference to the matrix
-     * @param zeroMatrixBeforeAssembly Whether to zero the matrix before assembling
-     *  (otherwise it is just added to)
-     */
-    void SetMatrixToAssemble(Mat& rMatToAssemble, bool zeroMatrixBeforeAssembly=true);
+  /**
+   * Set the vector that needs to be assembled. Requires
+   * CAN_ASSEMBLE_VECTOR==true.
+   *
+   * @param rVecToAssemble Reference to the vector
+   * @param zeroVectorBeforeAssembly Whether to zero the vector before
+   *        assembling (otherwise it is just added to)
+   */
+  void SetVectorToAssemble(
+      Vec& rVecToAssemble
+    , bool zeroVectorBeforeAssembly);
 
-    /**
-     * Set the vector that needs to be assembled. Requires CAN_ASSEMBLE_VECTOR==true.
-     *
-     * @param rVecToAssemble Reference to the vector
-     * @param zeroVectorBeforeAssembly Whether to zero the vector before assembling
-     *  (otherwise it is just added to)
-     */
-    void SetVectorToAssemble(Vec& rVecToAssemble, bool zeroVectorBeforeAssembly);
+  /**
+   * Assemble everything that the class can assemble.
+   */
+  void Assemble()
+  {
+    mAssembleMatrix = CAN_ASSEMBLE_MATRIX;
+    mAssembleVector = CAN_ASSEMBLE_VECTOR;
+    DoAssemble();
+  }
 
-    /**
-     * Assemble everything that the class can assemble.
-     */
-    void Assemble()
-    {
-        mAssembleMatrix = CAN_ASSEMBLE_MATRIX;
-        mAssembleVector = CAN_ASSEMBLE_VECTOR;
-        DoAssemble();
-    }
+  /**
+   * Assemble the matrix. Requires CAN_ASSEMBLE_MATRIX==true
+   */
+  void AssembleMatrix()
+  {
+    assert(CAN_ASSEMBLE_MATRIX);
+    mAssembleMatrix = true;
+    mAssembleVector = false;
+    DoAssemble();
+  }
 
-    /**
-     * Assemble the matrix. Requires CAN_ASSEMBLE_MATRIX==true
-     */
-    void AssembleMatrix()
-    {
-        assert(CAN_ASSEMBLE_MATRIX);
-        mAssembleMatrix = true;
-        mAssembleVector = false;
-        DoAssemble();
-    }
+  /**
+   * Assemble the vector. Requires CAN_ASSEMBLE_VECTOR==true
+   */
+  void AssembleVector()
+  {
+    assert(CAN_ASSEMBLE_VECTOR);
+    mAssembleMatrix = false;
+    mAssembleVector = true;
+    DoAssemble();
+  }
 
-    /**
-     * Assemble the vector. Requires CAN_ASSEMBLE_VECTOR==true
-     */
-    void AssembleVector()
-    {
-        assert(CAN_ASSEMBLE_VECTOR);
-        mAssembleMatrix = false;
-        mAssembleVector = true;
-        DoAssemble();
-    }
-
-    /**
-     * Destructor.
-     */
-    virtual ~AbstractFeAssemblerInterface()
-    {
-    }
+  /**
+   * Destructor.
+   */
+  virtual ~AbstractFeAssemblerInterface()
+  {}
 };
 
 template <bool CAN_ASSEMBLE_VECTOR, bool CAN_ASSEMBLE_MATRIX>
-AbstractFeAssemblerInterface<CAN_ASSEMBLE_VECTOR, CAN_ASSEMBLE_MATRIX>::AbstractFeAssemblerInterface()
-    : mVectorToAssemble(nullptr),
-      mMatrixToAssemble(nullptr),
-      mZeroMatrixBeforeAssembly(true),
-      mZeroVectorBeforeAssembly(true)
+AbstractFeAssemblerInterface<CAN_ASSEMBLE_VECTOR, CAN_ASSEMBLE_MATRIX>::
+    AbstractFeAssemblerInterface()
+      : mVectorToAssemble(nullptr),
+        mMatrixToAssemble(nullptr),
+        mZeroMatrixBeforeAssembly(true),
+        mZeroVectorBeforeAssembly(true)
 {
-    assert(CAN_ASSEMBLE_VECTOR || CAN_ASSEMBLE_MATRIX);
+  assert(CAN_ASSEMBLE_VECTOR || CAN_ASSEMBLE_MATRIX);
 }
 
 template <bool CAN_ASSEMBLE_VECTOR, bool CAN_ASSEMBLE_MATRIX>
-void AbstractFeAssemblerInterface<CAN_ASSEMBLE_VECTOR, CAN_ASSEMBLE_MATRIX>::SetMatrixToAssemble(Mat& rMatToAssemble, bool zeroMatrixBeforeAssembly)
+void AbstractFeAssemblerInterface<CAN_ASSEMBLE_VECTOR, CAN_ASSEMBLE_MATRIX>::
+    SetMatrixToAssemble(
+        Mat& rMatToAssemble
+      , bool zeroMatrixBeforeAssembly)
 {
-    assert(rMatToAssemble);
-    MatGetOwnershipRange(rMatToAssemble, &mOwnershipRangeLo, &mOwnershipRangeHi);
+  assert(rMatToAssemble);
+  MatGetOwnershipRange(rMatToAssemble, &mOwnershipRangeLo,
+      &mOwnershipRangeHi);
 
-    mMatrixToAssemble = rMatToAssemble;
-    mZeroMatrixBeforeAssembly = zeroMatrixBeforeAssembly;
+  mMatrixToAssemble = rMatToAssemble;
+  mZeroMatrixBeforeAssembly = zeroMatrixBeforeAssembly;
 }
 
 template <bool CAN_ASSEMBLE_VECTOR, bool CAN_ASSEMBLE_MATRIX>
-void AbstractFeAssemblerInterface<CAN_ASSEMBLE_VECTOR, CAN_ASSEMBLE_MATRIX>::SetVectorToAssemble(Vec& rVecToAssemble, bool zeroVectorBeforeAssembly)
+void AbstractFeAssemblerInterface<CAN_ASSEMBLE_VECTOR, CAN_ASSEMBLE_MATRIX>::
+    SetVectorToAssemble(
+        Vec& rVecToAssemble
+      , bool zeroVectorBeforeAssembly)
 {
-    assert(rVecToAssemble);
-    VecGetOwnershipRange(rVecToAssemble, &mOwnershipRangeLo, &mOwnershipRangeHi);
+  assert(rVecToAssemble);
+  VecGetOwnershipRange(rVecToAssemble, &mOwnershipRangeLo,
+      &mOwnershipRangeHi);
 
-    mVectorToAssemble = rVecToAssemble;
-    mZeroVectorBeforeAssembly = zeroVectorBeforeAssembly;
+  mVectorToAssemble = rVecToAssemble;
+  mZeroVectorBeforeAssembly = zeroVectorBeforeAssembly;
 }
 
 #endif // ABSTRACTFEASSEMBLERINTERFACE_HPP_
