@@ -321,8 +321,7 @@ void AbstractFeVolumeIntegralAssembler<ELEMENT_DIM, SPACE_DIM, PROBLEM_DIM,
   c_vector<double, STENCIL_SIZE> b_elem;
 
   // Loop over elements
-  for (typename AbstractTetrahedralMesh<ELEMENT_DIM, SPACE_DIM>::
-      ElementIterator iter = mpMesh->GetElementIteratorBegin();
+  for (auto iter = mpMesh->GetElementIteratorBegin();
       iter != mpMesh->GetElementIteratorEnd(); ++iter) {
     Element<ELEMENT_DIM, SPACE_DIM>& r_element = *iter;
 
@@ -350,139 +349,144 @@ void AbstractFeVolumeIntegralAssembler<ELEMENT_DIM, SPACE_DIM, PROBLEM_DIM,
 }
 
 
-///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////
 // Implementation - AssembleOnElement and smaller
-///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////
 
-template <unsigned ELEMENT_DIM, unsigned SPACE_DIM, unsigned PROBLEM_DIM, bool CAN_ASSEMBLE_VECTOR, bool CAN_ASSEMBLE_MATRIX, InterpolationLevel INTERPOLATION_LEVEL>
-void AbstractFeVolumeIntegralAssembler<ELEMENT_DIM, SPACE_DIM, PROBLEM_DIM, CAN_ASSEMBLE_VECTOR, CAN_ASSEMBLE_MATRIX, INTERPOLATION_LEVEL>::ComputeTransformedBasisFunctionDerivatives(
-        const ChastePoint<ELEMENT_DIM>& rPoint,
-        const c_matrix<double, ELEMENT_DIM, SPACE_DIM>& rInverseJacobian,
-        c_matrix<double, SPACE_DIM, ELEMENT_DIM+1>& rReturnValue)
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM, unsigned PROBLEM_DIM,
+    bool CAN_ASSEMBLE_VECTOR, bool CAN_ASSEMBLE_MATRIX,
+    InterpolationLevel INTERPOLATION_LEVEL>
+void AbstractFeVolumeIntegralAssembler<ELEMENT_DIM, SPACE_DIM, PROBLEM_DIM,
+    CAN_ASSEMBLE_VECTOR, CAN_ASSEMBLE_MATRIX, INTERPOLATION_LEVEL>::
+    ComputeTransformedBasisFunctionDerivatives(
+        const ChastePoint<ELEMENT_DIM>& rPoint
+      , const c_matrix<double, ELEMENT_DIM, SPACE_DIM>& rInverseJacobian
+      , c_matrix<double, SPACE_DIM, ELEMENT_DIM + 1>& rReturnValue)
 {
-    assert(ELEMENT_DIM < 4 && ELEMENT_DIM > 0);
-    static c_matrix<double, ELEMENT_DIM, ELEMENT_DIM+1> grad_phi;
+  assert(ELEMENT_DIM < 4 && ELEMENT_DIM > 0);
+  static c_matrix<double, ELEMENT_DIM, ELEMENT_DIM + 1> grad_phi;
 
-    LinearBasisFunction<ELEMENT_DIM>::ComputeBasisFunctionDerivatives(rPoint, grad_phi);
-    rReturnValue = prod(trans(rInverseJacobian), grad_phi);
+  LinearBasisFunction<ELEMENT_DIM>::ComputeBasisFunctionDerivatives(rPoint,
+      grad_phi);
+  rReturnValue = prod(trans(rInverseJacobian), grad_phi);
 }
 
-template <unsigned ELEMENT_DIM, unsigned SPACE_DIM, unsigned PROBLEM_DIM, bool CAN_ASSEMBLE_VECTOR, bool CAN_ASSEMBLE_MATRIX, InterpolationLevel INTERPOLATION_LEVEL>
-void AbstractFeVolumeIntegralAssembler<ELEMENT_DIM, SPACE_DIM, PROBLEM_DIM, CAN_ASSEMBLE_VECTOR, CAN_ASSEMBLE_MATRIX, INTERPOLATION_LEVEL>::AssembleOnElement(
-    Element<ELEMENT_DIM,SPACE_DIM>& rElement,
-    c_matrix<double, PROBLEM_DIM*(ELEMENT_DIM+1), PROBLEM_DIM*(ELEMENT_DIM+1) >& rAElem,
-    c_vector<double, PROBLEM_DIM*(ELEMENT_DIM+1)>& rBElem)
+template <unsigned ELEMENT_DIM, unsigned SPACE_DIM, unsigned PROBLEM_DIM,
+    bool CAN_ASSEMBLE_VECTOR, bool CAN_ASSEMBLE_MATRIX,
+    InterpolationLevel INTERPOLATION_LEVEL>
+void AbstractFeVolumeIntegralAssembler<ELEMENT_DIM, SPACE_DIM, PROBLEM_DIM,
+    CAN_ASSEMBLE_VECTOR, CAN_ASSEMBLE_MATRIX, INTERPOLATION_LEVEL>::
+    AssembleOnElement(
+        Element<ELEMENT_DIM, SPACE_DIM>& rElement
+      , c_matrix<double, PROBLEM_DIM * (ELEMENT_DIM + 1),
+            PROBLEM_DIM * (ELEMENT_DIM + 1)>& rAElem
+      , c_vector<double, PROBLEM_DIM * (ELEMENT_DIM + 1)>& rBElem)
 {
-    /**
-     * \todo #1320 This assumes that the Jacobian is constant on an element.
-     * This is true for linear basis functions, but not for any other type of
-     * basis function.
-     */
-    c_matrix<double, SPACE_DIM, ELEMENT_DIM> jacobian;
-    c_matrix<double, ELEMENT_DIM, SPACE_DIM> inverse_jacobian;
-    double jacobian_determinant;
+  /**
+   * \todo #1320 This assumes that the Jacobian is constant on an
+   * element. This is true for linear basis functions, but not for any
+   * other type of basis function.
+   */
+  c_matrix<double, SPACE_DIM, ELEMENT_DIM> jacobian;
+  c_matrix<double, ELEMENT_DIM, SPACE_DIM> inverse_jacobian;
+  double jacobian_determinant;
 
-    mpMesh->GetInverseJacobianForElement(rElement.GetIndex(), jacobian, jacobian_determinant, inverse_jacobian);
+  mpMesh->GetInverseJacobianForElement(rElement.GetIndex(), jacobian,
+      jacobian_determinant, inverse_jacobian);
 
-    if (this->mAssembleMatrix)
-    {
-        rAElem.clear();
+  if (this->mAssembleMatrix) rAElem.clear();
+
+  if (this->mAssembleVector) rBElem.clear();
+
+  const auto num_nodes = rElement.GetNumNodes();
+
+  // Allocate memory for the basis functions values and derivative
+  // values
+  c_vector<double, ELEMENT_DIM + 1> phi;
+  c_matrix<double, SPACE_DIM, ELEMENT_DIM + 1> grad_phi;
+
+  // Loop over Gauss points
+  for (auto quad_index = 0u; quad_index < mpQuadRule->GetNumQuadPoints();
+      ++quad_index) {
+    const auto& quad_point = mpQuadRule->rGetQuadPoint(quad_index);
+
+    BasisFunction::ComputeBasisFunctions(quad_point, phi);
+
+    if (this->mAssembleMatrix || INTERPOLATION_LEVEL == NONLINEAR) {
+      ComputeTransformedBasisFunctionDerivatives(quad_point,
+          inverse_jacobian, grad_phi);
     }
 
-    if (this->mAssembleVector)
-    {
-        rBElem.clear();
+    // Location of the Gauss point in the original element will be
+    // stored in x. Where applicable, u will be set to the value of the
+    // current solution at x
+    ChastePoint<SPACE_DIM> x(0, 0, 0);
+
+    c_vector<double, PROBLEM_DIM> u = zero_vector<double>(PROBLEM_DIM);
+    c_matrix<double, PROBLEM_DIM, SPACE_DIM> grad_u = zero_matrix<double>(
+        PROBLEM_DIM, SPACE_DIM);
+
+    // Allow the concrete version of the assembler to interpolate any
+    // desired quantities
+    this->ResetInterpolatedQuantities();
+
+    // Interpolation
+    for (auto i = 0u; i < num_nodes; ++i) {
+      const Node<SPACE_DIM>* p_node = rElement.GetNode(i);
+
+      // don't even interpolate X if cardiac problem
+      if (INTERPOLATION_LEVEL != CARDIAC) {
+        const auto& r_node_loc = p_node->rGetLocation();
+        // interpolate x
+        x.rGetLocation() += phi(i) * r_node_loc;
+      }
+
+      // Interpolate u and grad u if a current solution or guess exists
+      auto node_global_index = rElement.GetNodeGlobalIndex(i);
+      if (this->mCurrentSolutionOrGuessReplicated.GetSize() > 0) {
+        for (auto index_of_unknown = 0u;
+            index_of_unknown < (INTERPOLATION_LEVEL != CARDIAC ?
+                PROBLEM_DIM : 1); index_of_unknown++) {
+          /*
+            * If we have a solution (e.g. this is a dynamic problem)
+            * then interpolate the value at this quadrature point.
+            *
+            * NOTE: the following assumes that if, say, there are two
+            *       unknowns u and v, they are stored in the current
+            *       solution vector as [U1 V1 U2 V2 ... U_n V_n].
+            */
+          auto u_at_node = this->GetCurrentSolutionOrGuessValue(
+              node_global_index, index_of_unknown);
+          u(index_of_unknown) += phi(i) * u_at_node;
+
+          // don't need to construct grad_phi or grad_u in other cases
+          if (INTERPOLATION_LEVEL == NONLINEAR) {
+              for (auto j = 0u; j < SPACE_DIM; ++j)
+                  grad_u(index_of_unknown, j) += grad_phi(j, i) * u_at_node;
+          }
+        }
+      }
+
+      // Allow the concrete version of the assembler to interpolate any
+      // desired quantities
+      this->IncrementInterpolatedQuantities(phi(i), p_node);
+      if (this->mAssembleMatrix || INTERPOLATION_LEVEL == NONLINEAR)
+          this->IncrementInterpolatedGradientQuantities(grad_phi, i, p_node);
     }
 
-    const unsigned num_nodes = rElement.GetNumNodes();
+    auto wJ = jacobian_determinant * mpQuadRule->GetWeight(quad_index);
 
-    // Allocate memory for the basis functions values and derivative values
-    c_vector<double, ELEMENT_DIM+1> phi;
-    c_matrix<double, SPACE_DIM, ELEMENT_DIM+1> grad_phi;
-
-    // Loop over Gauss points
-    for (unsigned quad_index=0; quad_index < mpQuadRule->GetNumQuadPoints(); quad_index++)
-    {
-        const ChastePoint<ELEMENT_DIM>& quad_point = mpQuadRule->rGetQuadPoint(quad_index);
-
-        BasisFunction::ComputeBasisFunctions(quad_point, phi);
-
-        if (this->mAssembleMatrix || INTERPOLATION_LEVEL==NONLINEAR)
-        {
-            ComputeTransformedBasisFunctionDerivatives(quad_point, inverse_jacobian, grad_phi);
-        }
-
-        // Location of the Gauss point in the original element will be stored in x
-        // Where applicable, u will be set to the value of the current solution at x
-        ChastePoint<SPACE_DIM> x(0,0,0);
-
-        c_vector<double,PROBLEM_DIM> u = zero_vector<double>(PROBLEM_DIM);
-        c_matrix<double,PROBLEM_DIM,SPACE_DIM> grad_u = zero_matrix<double>(PROBLEM_DIM,SPACE_DIM);
-
-        // Allow the concrete version of the assembler to interpolate any desired quantities
-        this->ResetInterpolatedQuantities();
-
-        // Interpolation
-        for (unsigned i=0; i<num_nodes; i++)
-        {
-            const Node<SPACE_DIM>* p_node = rElement.GetNode(i);
-
-            if (INTERPOLATION_LEVEL != CARDIAC) // don't even interpolate X if cardiac problem
-            {
-                const c_vector<double, SPACE_DIM>& r_node_loc = p_node->rGetLocation();
-                // interpolate x
-                x.rGetLocation() += phi(i)*r_node_loc;
-            }
-
-            // Interpolate u and grad u if a current solution or guess exists
-            unsigned node_global_index = rElement.GetNodeGlobalIndex(i);
-            if (this->mCurrentSolutionOrGuessReplicated.GetSize() > 0)
-            {
-                for (unsigned index_of_unknown=0; index_of_unknown<(INTERPOLATION_LEVEL!=CARDIAC ? PROBLEM_DIM : 1); index_of_unknown++)
-                {
-                    /*
-                     * If we have a solution (e.g. this is a dynamic problem) then
-                     * interpolate the value at this quadrature point.
-                     *
-                     * NOTE: the following assumes that if, say, there are two unknowns
-                     * u and v, they are stored in the current solution vector as
-                     * [U1 V1 U2 V2 ... U_n V_n].
-                     */
-                    double u_at_node = this->GetCurrentSolutionOrGuessValue(node_global_index, index_of_unknown);
-                    u(index_of_unknown) += phi(i)*u_at_node;
-
-                    if (INTERPOLATION_LEVEL==NONLINEAR) // don't need to construct grad_phi or grad_u in other cases
-                    {
-                        for (unsigned j=0; j<SPACE_DIM; j++)
-                        {
-                            grad_u(index_of_unknown,j) += grad_phi(j,i)*u_at_node;
-                        }
-                    }
-                }
-            }
-
-            // Allow the concrete version of the assembler to interpolate any desired quantities
-            this->IncrementInterpolatedQuantities(phi(i), p_node);
-            if (this->mAssembleMatrix || INTERPOLATION_LEVEL==NONLINEAR)
-            {
-                this->IncrementInterpolatedGradientQuantities(grad_phi, i, p_node);
-            }
-        }
-
-        double wJ = jacobian_determinant * mpQuadRule->GetWeight(quad_index);
-
-        // Create rAElem and rBElem
-        if (this->mAssembleMatrix)
-        {
-            noalias(rAElem) += ComputeMatrixTerm(phi, grad_phi, x, u, grad_u, &rElement) * wJ;
-        }
-
-        if (this->mAssembleVector)
-        {
-            noalias(rBElem) += ComputeVectorTerm(phi, grad_phi, x, u, grad_u, &rElement) * wJ;
-        }
+    // Create rAElem and rBElem
+    if (this->mAssembleMatrix) {
+      noalias(rAElem) += ComputeMatrixTerm(phi, grad_phi, x, u, grad_u,
+          &rElement) * wJ;
     }
+
+    if (this->mAssembleVector) {
+      noalias(rBElem) += ComputeVectorTerm(phi, grad_phi, x, u, grad_u,
+          &rElement) * wJ;
+    }
+  }
 }
-
 
 #endif /*ABSTRACTFEVOLUMEINTEGRALASSEMBLER_HPP_*/
