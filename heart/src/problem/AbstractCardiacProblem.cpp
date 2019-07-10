@@ -958,3 +958,8 @@ template class AbstractCardiacProblem<3, 3, 2>;
 template class AbstractCardiacProblem<1, 1, 3>;
 template class AbstractCardiacProblem<2, 2, 3>;
 template class AbstractCardiacProblem<3, 3, 3>;
+
+// Tetradomain
+template class AbstractCardiacProblem<1, 1, 4>;
+template class AbstractCardiacProblem<2, 2, 4>;
+template class AbstractCardiacProblem<3, 3, 4>;

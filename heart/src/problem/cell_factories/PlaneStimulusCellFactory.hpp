@@ -44,46 +44,54 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "SimpleStimulus.hpp"
 
 /**
- * PlaneStimulusCellFactory provides cells within 1e-5 of x=0 with a SimpleStimulus.
+ * PlaneStimulusCellFactory provides cells within 1e-5 of x=0 with a
+ * SimpleStimulus.
  */
 template <class CELL, unsigned ELEMENT_DIM, unsigned SPACE_DIM = ELEMENT_DIM>
-class PlaneStimulusCellFactory : public AbstractCardiacCellFactory<ELEMENT_DIM,SPACE_DIM>
+class PlaneStimulusCellFactory :
+    public AbstractCardiacCellFactory<ELEMENT_DIM, SPACE_DIM>
 {
-protected:
-    /** The stimulus to apply at stimulated nodes */
-    boost::shared_ptr<SimpleStimulus> mpStimulus;
+ protected:
+  /** The stimulus to apply at stimulated nodes */
+  boost::shared_ptr<SimpleStimulus> mpStimulus;
 
-public:
-    /**
-     * Constructor
-     * @param stimulusMagnitude  The magnitude of the simple stimulus to be applied (defaults to -600).
-     * @param stimulusDuration  The duration of the simple stimulus to be applied (defaults to 0.5ms).
-     */
-    PlaneStimulusCellFactory(double stimulusMagnitude=-600, double stimulusDuration=0.5)
-        : AbstractCardiacCellFactory<ELEMENT_DIM,SPACE_DIM>()
-    {
-        mpStimulus.reset(new SimpleStimulus(stimulusMagnitude, stimulusDuration));
-        LOG(1, "Defined a PlaneStimulusCellFactory<"<<SPACE_DIM<<"> with SimpleStimulus("<<stimulusMagnitude<<","<< stimulusDuration<< ")\n");
+ public:
+  /**
+   * Constructor
+   * @param stimulusMagnitude  The magnitude of the simple stimulus to
+   *        be applied (defaults to -600).
+   * @param stimulusDuration  The duration of the simple stimulus to be
+   *        applied (defaults to 0.5ms).
+   */
+  PlaneStimulusCellFactory(
+      double stimulusMagnitude = -600
+    , double stimulusDuration = 0.5)
+    : AbstractCardiacCellFactory<ELEMENT_DIM, SPACE_DIM>()
+  {
+    mpStimulus.reset(new SimpleStimulus(stimulusMagnitude,
+        stimulusDuration));
+    LOG(1, "Defined a PlaneStimulusCellFactory<" << SPACE_DIM <<
+        "> with SimpleStimulus(" << stimulusMagnitude << "," <<
+        stimulusDuration << ")\n");
+  }
+
+  /**
+   * @param pNode  Pointer to the node.
+   * @return  A cardiac cell which corresponds to this node.
+   */
+  AbstractCardiacCellInterface* CreateCardiacCellForTissueNode(
+      Node<SPACE_DIM>* pNode)
+  {
+    double x = pNode->GetPoint()[0];
+
+    // \todo remove magic number? (#1884)
+    if (x * x <= 1e-10) {
+      return new CELL(this->mpSolver, mpStimulus);
     }
-
-    /**
-     * @param pNode  Pointer to the node.
-     * @return  A cardiac cell which corresponds to this node.
-     */
-    AbstractCardiacCellInterface* CreateCardiacCellForTissueNode(Node<SPACE_DIM>* pNode)
-    {
-        double x = pNode->GetPoint()[0];
-
-        ///\todo remove magic number? (#1884)
-        if (x*x<=1e-10)
-        {
-            return new CELL(this->mpSolver, mpStimulus);
-        }
-        else
-        {
-            return new CELL(this->mpSolver, this->mpZeroStimulus);
-        }
+    else {
+      return new CELL(this->mpSolver, this->mpZeroStimulus);
     }
+  }
 };
 
 
