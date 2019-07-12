@@ -48,138 +48,142 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 template <unsigned ELEMENT_DIM, unsigned SPACE_DIM, unsigned PROBLEM_DIM>
 class AbstractLinearPdeSolver : private boost::noncopyable
 {
-protected:
+ protected:
+  /**
+   * The linear system that will be set up and solved as part of the
+   * PDE solve.
+   */
+  LinearSystem* mpLinearSystem;
 
-    /** The linear system that will be set up and solved as part of the PDE solve. */
-    LinearSystem* mpLinearSystem;
+  /** Pointer to the mesh. */
+  AbstractTetrahedralMesh<ELEMENT_DIM, SPACE_DIM>* mpMesh;
 
-    /** Pointer to the mesh. */
-    AbstractTetrahedralMesh<ELEMENT_DIM,SPACE_DIM>* mpMesh;
+ public:
+  /**
+   * Constructor.
+   *
+   * @param pMesh the mesh
+   */
+  AbstractLinearPdeSolver(
+      AbstractTetrahedralMesh<ELEMENT_DIM, SPACE_DIM>* pMesh)
+    : mpLinearSystem(nullptr),
+      mpMesh(pMesh)
+  {
+    assert(pMesh !=nullptr);
+  }
 
-public:
+  /**
+   * Destructor.
+   */
+  virtual ~AbstractLinearPdeSolver()
+  {
+    if (mpLinearSystem) delete mpLinearSystem;
+  }
 
-    /**
-     * Constructor.
-     *
-     * @param pMesh the mesh
-     */
-    AbstractLinearPdeSolver(AbstractTetrahedralMesh<ELEMENT_DIM,SPACE_DIM>* pMesh)
-        : mpLinearSystem(nullptr),
-          mpMesh(pMesh)
-    {
-        assert(pMesh!=nullptr);
-    }
+  /**
+   * Initialise method: sets up the linear system (using the mesh to
+   * determine the number of unknowns per row to preallocate) if it
+   * is not already set up. Can use an initial solution as PETSc
+   * template, or base it on the mesh size.
+   *
+   * @param initialSolution Initial solution (defaults to NULL) for
+   *        PETSc to use as a template.
+   */
+  virtual void InitialiseForSolve(Vec initialSolution = nullptr);
 
-    /**
-     * Destructor.
-     */
-    virtual ~AbstractLinearPdeSolver()
-    {
-        if (mpLinearSystem)
-        {
-            delete mpLinearSystem;
-        }
-    }
+  /**
+   * The static and dynamic Solve() implementations both call this
+   * before after SetupLinearSystem(). It can be overloaded if needed.
+   *
+   * @param currentSolution The current solution
+   */
+  virtual void PrepareForSetupLinearSystem(Vec currentSolution)
+  {}
 
-    /**
-     * Initialise method: sets up the linear system (using the mesh to
-     * determine the number of unknowns per row to preallocate) if it
-     * is not already set up. Can use an initial solution as PETSc template,
-     * or base it on the mesh size.
-     *
-     * @param initialSolution Initial solution (defaults to NULL) for PETSc
-     *  to use as a template.
-     */
-    virtual void InitialiseForSolve(Vec initialSolution = nullptr);
+  /**
+   * The static and dynamic Solve() implementations both call this
+   * immediately after SetupLinearSystem(). It can be overloaded if
+   * further work needs to be done.
+   *
+   * @param currentSolution The current solution
+   */
+  virtual void FinaliseLinearSystem(Vec currentSolution)
+  {}
 
-    /**
-     * The static and dynamic Solve() implementations both call this
-     * before after SetupLinearSystem(). It can be overloaded if needed.
-     *
-     * @param currentSolution The current solution
-     */
-    virtual void PrepareForSetupLinearSystem(Vec currentSolution)
-    {
-    }
+  /**
+   * The static and dynamic Solve() implementations both call this
+   * immediately after the linear solve is carried out (but before the
+   * timestep counter is incremented. This can be overloaded if further
+   * work on the solution vector needs to be done (for example, in
+   * operator splitting of the diffusion and reaction terms in the
+   * OperatorSplittingMonodomainSolver.
+   *
+   * @param currentSolution The current solution (solution of the
+   *        linear system solve)
+   */
+  virtual void FollowingSolveLinearSystem(Vec currentSolution)
+  {}
 
-    /**
-     * The static and dynamic Solve() implementations both call this
-     * immediately after SetupLinearSystem(). It can be overloaded if
-     * further work needs to be done.
-     *
-     * @param currentSolution The current solution
-     */
-    virtual void FinaliseLinearSystem(Vec currentSolution)
-    {
-    }
+  /**
+   * The main Solve() methods in the child classes use this method. The
+   * concrete solver classes must implement it, depending on the the
+   * choice of numerical approach. The method should completely set up
+   * the linear system that has to be solved (that timestep, if dynamic
+   * PDEs).
+   *
+   * @param currentSolution The current solution which can be used in
+   *        setting up the linear system if needed (NULL if there isn't
+   *        a current solution)
+   * @param computeMatrix Whether to compute the LHS matrix of the
+   *        linear system (mainly for dynamic solves).
+   */
+  virtual void SetupLinearSystem(
+      Vec currentSolution
+    , bool computeMatrix) = 0;
 
-    /**
-     * The static and dynamic Solve() implementations both call this immediately after
-     * the linear solve is carried out (but before the timestep counter is incremented.
-     * This can be overloaded if further work on the solution vector needs to be done
-     * (for example, in operator splitting of the diffusion and reaction terms in the
-     * OperatorSplittingMonodomainSolver.
-     *
-     * @param currentSolution The current solution (solution of the linear system solve)
-     */
-    virtual void FollowingSolveLinearSystem(Vec currentSolution)
-    {
-    }
-
-    /**
-     * The main Solve() methods in the child classes use this method. The concrete
-     * solver classes must implement it, depending on the the choice of numerical
-     * approach. The method should completely set up the linear system that has to
-     * be solved (that timestep, if dynamic PDEs).
-     *
-     * @param currentSolution The current solution which can be used in setting up
-     *  the linear system if needed (NULL if there isn't a current solution)
-     * @param computeMatrix Whether to compute the LHS matrix of the linear system
-     *  (mainly for dynamic solves).
-     */
-    virtual void SetupLinearSystem(Vec currentSolution, bool computeMatrix)=0;
-
-    /**
-     * @return a pointer to the linear system.
-     */
-    LinearSystem* GetLinearSystem()
-    {
-        return mpLinearSystem;
-    }
+  /**
+   * @return a pointer to the linear system.
+   */
+  LinearSystem* GetLinearSystem()
+  {
+    return mpLinearSystem;
+  }
 };
 
 template <unsigned ELEMENT_DIM, unsigned SPACE_DIM, unsigned PROBLEM_DIM>
-void AbstractLinearPdeSolver<ELEMENT_DIM, SPACE_DIM, PROBLEM_DIM>::InitialiseForSolve(Vec initialSolution)
+void AbstractLinearPdeSolver<ELEMENT_DIM, SPACE_DIM, PROBLEM_DIM>::
+    InitialiseForSolve(Vec initialSolution)
 {
-    if (this->mpLinearSystem == nullptr)
-    {
-        unsigned preallocation = PROBLEM_DIM * mpMesh->CalculateMaximumNodeConnectivityPerProcess();
+  if (this->mpLinearSystem == nullptr) {
+    unsigned preallocation = PROBLEM_DIM *
+        mpMesh->CalculateMaximumNodeConnectivityPerProcess();
 
-        HeartEventHandler::BeginEvent(HeartEventHandler::COMMUNICATION);
-        if (initialSolution == nullptr)
-        {
-            /*
-             * Static problem, create linear system. The following ensures
-             * all the unknowns for a particular node are on the same processor.
-             */
-            Vec template_vec = mpMesh->GetDistributedVectorFactory()->CreateVec(PROBLEM_DIM);
+    HeartEventHandler::BeginEvent(HeartEventHandler::COMMUNICATION);
+    if (initialSolution == nullptr) {
+      /*
+       * Static problem, create linear system. The following ensures
+       * all the unknowns for a particular node are on the same
+       * processor.
+       */
+      Vec template_vec = mpMesh->GetDistributedVectorFactory()->CreateVec(
+          PROBLEM_DIM);
 
-            this->mpLinearSystem = new LinearSystem(template_vec, preallocation);
+      this->mpLinearSystem = new LinearSystem(template_vec, preallocation);
 
-            PetscTools::Destroy(template_vec);
-        }
-        else
-        {
-            /*
-             * Use the current solution (ie the initial solution)
-             * as the template in the alternative constructor of
-             * LinearSystem. This is to avoid problems with VecScatter.
-             */
-            this->mpLinearSystem = new LinearSystem(initialSolution, preallocation);
-        }
-
-        HeartEventHandler::EndEvent(HeartEventHandler::COMMUNICATION);
+      PetscTools::Destroy(template_vec);
     }
+    else {
+      /*
+       * Use the current solution (ie the initial solution)
+       * as the template in the alternative constructor of
+       * LinearSystem. This is to avoid problems with VecScatter.
+       */
+      this->mpLinearSystem = new LinearSystem(initialSolution,
+          preallocation);
+    }
+
+    HeartEventHandler::EndEvent(HeartEventHandler::COMMUNICATION);
+  }
 }
 
 #endif /*ABSTRACTLINEARPDESOLVER_HPP_*/
