@@ -785,6 +785,16 @@ void AbstractCardiacProblem<ELEMENT_DIM, SPACE_DIM, PROBLEM_DIM>::
     DistributedVector distributed_var_data =
         this->mpMesh->GetDistributedVectorFactory()->CreateDistributedVector(
             variable_data);
+    auto cell_idx = output_variables[var_idx].find("__IDX__");
+    auto var_name = output_variables[var_idx];
+    if (cell_idx == std::string::npos) {
+      cell_idx = 0;
+    }
+    else {
+      var_name = output_variables[var_idx].substr(0, cell_idx);
+      cell_idx = std::stoi(output_variables[var_idx].substr(cell_idx + 7),
+          nullptr);
+    }
 
     // Loop over the local nodes and gather the data
     for (DistributedVector::Iterator idx = distributed_var_data.Begin();
@@ -799,9 +809,22 @@ void AbstractCardiacProblem<ELEMENT_DIM, SPACE_DIM, PROBLEM_DIM>::
       }
       else {
         // Find the variable in the cell model and store its value
-        distributed_var_data[idx] = this->mpCardiacTissue->GetCardiacCell(
-            idx.Global)->GetAnyVariable(output_variables[var_idx],
-                mCurrentTime);
+        switch (cell_idx) {
+        case 0:
+          distributed_var_data[idx] = this->mpCardiacTissue->GetCardiacCell(
+              idx.Global)->GetAnyVariable(var_name, mCurrentTime);
+          break;
+        case 1:
+          distributed_var_data[idx] = this->mpCardiacTissue->GetCardiacCell2(
+              idx.Global)->GetAnyVariable(var_name, mCurrentTime);
+          break;
+        case 2:
+          distributed_var_data[idx] = this->mpCardiacTissue->GetCardiacCell3(
+              idx.Global)->GetAnyVariable(var_name, mCurrentTime);
+          break;
+        default:
+          NEVER_REACHED;
+        }
       }
     }
     distributed_var_data.Restore();

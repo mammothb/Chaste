@@ -453,6 +453,10 @@ class AbstractCardiacTissue : private boost::noncopyable
    * @param globalIndex  global node index for which to retrieve a cell
    */
   AbstractCardiacCellInterface* GetCardiacCell(unsigned globalIndex);
+  virtual AbstractCardiacCellInterface* GetCardiacCell2(
+      unsigned globalIndex);
+  virtual AbstractCardiacCellInterface* GetCardiacCell3(
+      unsigned globalIndex);
 
   /**
    * @return a pointer to a Purkinje cell, indexed by the global node

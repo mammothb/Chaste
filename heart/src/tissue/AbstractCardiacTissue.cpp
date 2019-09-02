@@ -390,6 +390,18 @@ AbstractCardiacCellInterface* AbstractCardiacTissue<ELEMENT_DIM,SPACE_DIM>::GetC
 }
 
 template <unsigned ELEMENT_DIM,unsigned SPACE_DIM>
+AbstractCardiacCellInterface* AbstractCardiacTissue<ELEMENT_DIM,SPACE_DIM>::GetCardiacCell2( unsigned globalIndex )
+{
+    return nullptr;
+}
+
+template <unsigned ELEMENT_DIM,unsigned SPACE_DIM>
+AbstractCardiacCellInterface* AbstractCardiacTissue<ELEMENT_DIM,SPACE_DIM>::GetCardiacCell3( unsigned globalIndex )
+{
+    return nullptr;
+}
+
+template <unsigned ELEMENT_DIM,unsigned SPACE_DIM>
 AbstractCardiacCellInterface* AbstractCardiacTissue<ELEMENT_DIM,SPACE_DIM>::GetPurkinjeCell( unsigned globalIndex )
 {
     assert(mpDistributedVectorFactory->GetLow() <= globalIndex &&

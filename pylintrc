@@ -3,4 +3,4 @@ init-hook='import sys; sys.path.append("./projects/compbiolab_chaste/python")'
 
 [FORMAT]
 # Good variable names which should always be accepted, separated by a comma
-good-names=d,i,j,k,t,x,y,z
+good-names=d,i,j,k,m,n,t,x,y,z
