@@ -1,6 +1,6 @@
 /*
 
-Copyright (c) 2005-2017, University of Oxford.
+Copyright (c) 2005-2018, University of Oxford.
 All rights reserved.
 
 University of Oxford means the Chancellor, Masters and Scholars of the
@@ -36,10 +36,10 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #ifndef OUTPUTFILEHANDLER_HPP_
 #define OUTPUTFILEHANDLER_HPP_
 
-#include <string>
 #include <fstream>
 #include <ios>
 #include <memory>
+#include <string>
 
 class FileFinder;  // Avoid circular includes
 

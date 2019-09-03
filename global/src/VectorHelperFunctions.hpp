@@ -1,6 +1,6 @@
 /*
 
-Copyright (c) 2005-2017, University of Oxford.
+Copyright (c) 2005-2018, University of Oxford.
 All rights reserved.
 
 University of Oxford means the Chancellor, Masters and Scholars of the
@@ -50,6 +50,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #ifdef CHASTE_CVODE
 // CVODE headers
 #include <nvector/nvector_serial.h>
+
 #endif
 
 /**
@@ -417,7 +418,7 @@ inline N_Vector CopyVector(N_Vector& rVec)
     {
         copy = N_VClone(rVec);
         unsigned size = NV_LENGTH_S(rVec);
-        for (unsigned i=0; i<size; i++)
+        for (unsigned i = 0; i < size; i++)
         {
             NV_Ith_S(copy, i) = NV_Ith_S(rVec, i);
         }
@@ -436,12 +437,13 @@ inline void CopyToStdVector(const N_Vector& rSrc, std::vector<double>& rDest)
 {
     // Check for no-op
     realtype* p_src = NV_DATA_S(rSrc);
-    if (!rDest.empty() && p_src == &(rDest[0])) return;
+    if (!rDest.empty() && p_src == &(rDest[0]))
+        return;
     // Set dest size
     long size = NV_LENGTH_S(rSrc);
     rDest.resize(size);
     // Copy data
-    for (long i=0; i<size; i++)
+    for (long i = 0; i < size; i++)
     {
         rDest[i] = p_src[i];
     }
@@ -465,7 +467,7 @@ inline void CopyFromStdVector(const std::vector<double>& rSrc, N_Vector& rDest)
     assert(size == (long)rSrc.size());
 
     // Copy data
-    for (long i=0; i<size; i++)
+    for (long i = 0; i < size; i++)
     {
         p_dest[i] = rSrc[i];
     }
@@ -494,7 +496,7 @@ inline N_Vector MakeNVector(const std::vector<double>& rSrc)
 {
     N_Vector nv = nullptr;
     CreateVectorIfEmpty(nv, rSrc.size());
-    CopyFromStdVector(rSrc,nv);
+    CopyFromStdVector(rSrc, nv);
     return nv;
 }
 
