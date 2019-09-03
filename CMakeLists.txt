@@ -147,17 +147,15 @@ if (RUN_TESTS)
     else (found EQUAL -1)
         #get date and time, to append to test result filename
         execute_process (COMMAND cmd /c echo %DATE% %TIME%
-                         WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
-                         OUTPUT_VARIABLE date_time
-                         )
+                WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+                OUTPUT_VARIABLE date_time)
         string (REGEX REPLACE "[:/. \n]" "_" date_time "${date_time}")
         # Note: set 6 minute (360s) timeout for each test
         execute_process (COMMAND ctest -C Debug --output-on-failure -O ${TEST_FAMILY}TestOutputs_${date_time}.txt --timeout 360 -L ${TEST_FAMILY}
-                         WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
-                         OUTPUT_VARIABLE t_out
-                         RESULT_VARIABLE t_res
-                         ERROR_VARIABLE t_err
-                         )
+                WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+                OUTPUT_VARIABLE t_out
+                RESULT_VARIABLE t_res
+                ERROR_VARIABLE t_err)
         message ("STDOUT______________\n${t_out}")
         message ("STDERR______________\n${t_err}")
     endif (found EQUAL -1)
@@ -306,16 +304,16 @@ if (Chaste_USE_VTK)
     # Depending on the VTK version, we need different components. 5.x require the following
     if (VTK_MAJOR_VERSION EQUAL 5)
         find_package (VTK COMPONENTS vtkIO vtkCommon vtkGraphics z REQUIRED)
-        # 6.0 and 6.1 require the following
+    # 6.0 and 6.1 require the following
     elseif ((VTK_MAJOR_VERSION EQUAL 6) AND (VTK_MINOR_VERSION LESS 2))
         find_package (VTK COMPONENTS vtkCommonCore vtkCommonDataModel vtkFiltersCore vtkFiltersGeneral vtkFiltersGeneric
-                      vtkFiltersGeometry vtkFiltersModeling vtkFiltersSources vtkIOCore vtkIOGeometry
-                      vtkIOLegacy vtkIOXML REQUIRED)
-        # 6.2 and up, up to and including 7.1, require the following
+                vtkFiltersGeometry vtkFiltersModeling vtkFiltersSources vtkIOCore vtkIOGeometry
+                vtkIOLegacy vtkIOXML REQUIRED)
+    # 6.2 and up, up to and including 7.1, require the following
     else ()
         find_package (VTK COMPONENTS vtkCommonCore vtkCommonDataModel vtkFiltersCore vtkFiltersGeneral vtkFiltersGeneric
-                      vtkFiltersGeometry vtkFiltersModeling vtkFiltersSources vtkIOCore vtkIOGeometry
-                      vtkIOLegacy vtkIOParallelXML vtkIOXML REQUIRED)
+                vtkFiltersGeometry vtkFiltersModeling vtkFiltersSources vtkIOCore vtkIOGeometry
+                vtkIOLegacy vtkIOParallelXML vtkIOXML REQUIRED)
     endif ()
 
     add_definitions (-DCHASTE_VTK)
@@ -326,15 +324,15 @@ endif ()
 ####  Find Boost
 ################################
 add_definitions (-DBOOST_ALL_NO_LIB)
-set( Boost_USE_STATIC_RUNTIME ON)
-if(BUILD_SHARED_LIBS)
-	set( Boost_USE_STATIC_LIBS OFF)
-else()
-	set( Boost_USE_STATIC_LIBS ON)
-endif()
-find_package(Boost COMPONENTS filesystem system serialization program_options iostreams REQUIRED)
-list(APPEND Chaste_INCLUDES "${Boost_INCLUDE_DIR}")
-list(APPEND Chaste_LINK_LIBRARIES "${Boost_LIBRARIES}")
+set (Boost_USE_STATIC_RUNTIME ON)
+if (BUILD_SHARED_LIBS)
+	  set (Boost_USE_STATIC_LIBS OFF)
+else ()
+	  set (Boost_USE_STATIC_LIBS ON)
+endif ()
+find_package (Boost COMPONENTS filesystem system serialization program_options iostreams REQUIRED)
+list (APPEND Chaste_INCLUDES "${Boost_INCLUDE_DIR}")
+list (APPEND Chaste_LINK_LIBRARIES "${Boost_LIBRARIES}")
 
 
 ################################
@@ -347,15 +345,15 @@ list (APPEND Chaste_LINK_LIBRARIES "${PETSC_LIBRARIES}")
 ################################
 ####  Find BZip2
 ################################
-find_package(BZip2 REQUIRED)
-list(APPEND Chaste_LINK_LIBRARIES "${BZIP2_LIBRARIES}")
+find_package (BZip2 REQUIRED)
+list (APPEND Chaste_LINK_LIBRARIES "${BZIP2_LIBRARIES}")
 
 
 ###############################
 ###  Find Unfit
 ###############################
-list(APPEND Chaste_INCLUDES "${Chaste_SOURCE_DIR}/unfit/include")
-list(APPEND Chaste_LINK_LIBRARIES "${Chaste_SOURCE_DIR}/unfit/libUnfit.a")
+list (APPEND Chaste_INCLUDES "${Chaste_SOURCE_DIR}/unfit/include")
+list (APPEND Chaste_LINK_LIBRARIES "${Chaste_SOURCE_DIR}/unfit/libUnfit.a")
 
 
 ################################
@@ -376,10 +374,10 @@ endif ()
 
 # Find the HDF5_C_COMPILER_EXECUTABLE to help the find_package call (else the system HDF5 will always be found)
 find_program (HDF5_C_COMPILER_EXECUTABLE
-              NAMES h5pcc h5cc
-              HINTS ENV HDF5_ROOT
-              PATH_SUFFIXES bin Bin
-              DOC "HDF5 Wrapper compiler.  Used only to detect HDF5 compile flags.")
+        NAMES h5pcc h5cc
+        HINTS ENV HDF5_ROOT
+        PATH_SUFFIXES bin Bin
+        DOC "HDF5 Wrapper compiler.  Used only to detect HDF5 compile flags.")
 find_package (HDF5 REQUIRED)
 
 # Chaste requires a parallel HDF5 library
@@ -743,7 +741,7 @@ foreach (project ${Chaste_PROJECTS})
 endforeach ()
 
 configure_file (${Chaste_SOURCE_DIR}/cmake/Config/ChasteConfig.cmake.in
-                "${Chaste_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/ChasteConfig.cmake" @ONLY)
+        "${Chaste_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/ChasteConfig.cmake" @ONLY)
 
 # Configure file for build dir
 set (EXPORT_Chaste_PYTHON_DIR "${Chaste_PYTHON_DIR}")
@@ -752,52 +750,51 @@ foreach (component ${Chaste_COMPONENTS})
 endforeach (component)
 
 configure_file (${Chaste_SOURCE_DIR}/cmake/Config/ChasteConfig.cmake.in
-                "${Chaste_BINARY_DIR}/ChasteConfig.cmake" @ONLY)
+        "${Chaste_BINARY_DIR}/ChasteConfig.cmake" @ONLY)
 
 file (COPY ${Chaste_SOURCE_DIR}/cmake/Modules/ChasteMacros.cmake
-      DESTINATION ${Chaste_BINARY_DIR}/cmake/Modules)
+        DESTINATION ${Chaste_BINARY_DIR}/cmake/Modules)
 
 file (COPY ${Chaste_SOURCE_DIR}/cmake/Modules/ChasteRunTestAndPostProcess.cmake
-      DESTINATION ${Chaste_BINARY_DIR}/cmake/Modules)
+        DESTINATION ${Chaste_BINARY_DIR}/cmake/Modules)
 
 file (COPY ${Chaste_SOURCE_DIR}/python
-      DESTINATION ${Chaste_BINARY_DIR})
+        DESTINATION ${Chaste_BINARY_DIR})
 
 file (COPY ${Chaste_SOURCE_DIR}/cxxtest
-      DESTINATION ${Chaste_BINARY_DIR})
+        DESTINATION ${Chaste_BINARY_DIR})
 
 
 install (FILES
-         "${Chaste_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/ChasteConfig.cmake"
-         #    "${Chaste_BINARY_DIR}/ChasteTargets.cmake"
-         DESTINATION lib/chaste
-         COMPONENT Config)
+        "${Chaste_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/ChasteConfig.cmake"
+        #    "${Chaste_BINARY_DIR}/ChasteTargets.cmake"
+        DESTINATION lib/chaste
+        COMPONENT Config)
 
 install (FILES
-         "${Chaste_BINARY_DIR}/cmake/Modules/ChasteMacros.cmake"
-         "${Chaste_BINARY_DIR}/cmake/Modules/ChasteRunTestAndPostProcess.cmake"
-         DESTINATION lib/chaste/cmake/Modules
-         COMPONENT Config)
+        "${Chaste_BINARY_DIR}/cmake/Modules/ChasteMacros.cmake"
+        "${Chaste_BINARY_DIR}/cmake/Modules/ChasteRunTestAndPostProcess.cmake"
+        DESTINATION lib/chaste/cmake/Modules
+        COMPONENT Config)
 
 # CxxTest folder
 install (DIRECTORY ${Chaste_BINARY_DIR}/cxxtest
-         DESTINATION lib/chaste
-         USE_SOURCE_PERMISSIONS
-         COMPONENT CxxTest)
+        DESTINATION lib/chaste
+        USE_SOURCE_PERMISSIONS
+        COMPONENT CxxTest)
 
 # Python folder
 install (DIRECTORY ${Chaste_BINARY_DIR}/python
-         DESTINATION lib/chaste
-         USE_SOURCE_PERMISSIONS
-         COMPONENT Python)
+        DESTINATION lib/chaste
+        USE_SOURCE_PERMISSIONS
+        COMPONENT Python)
 
 # libraries
 install (EXPORT chaste-targets
-         DESTINATION lib/chaste
-         FILE ChasteTargets.cmake
-         #EXPORT_LINK_INTERFACE_LIBRARIES
-         COMPONENT ChasteTargets
-         )
+        DESTINATION lib/chaste
+        FILE ChasteTargets.cmake
+        #EXPORT_LINK_INTERFACE_LIBRARIES
+        COMPONENT ChasteTargets)
 
 
 ####################
@@ -807,70 +804,64 @@ install (EXPORT chaste-targets
 if (Chaste_COVERAGE)
 
     # Run ctest with a low priority (+15)
-    set(NICE_COMMAND nice)
-    set(NICENESS -n15)
-    set(CTEST_COMMAND ctest)
-    set(CTEST_COMMAND ctest)
-    set(_outputname coverage)
-	ADD_CUSTOM_TARGET(coverage
+    set (NICE_COMMAND nice)
+    set (NICENESS -n15)
+    set (CTEST_COMMAND ctest)
+    set (CTEST_COMMAND ctest)
+    set (_outputname coverage)
+    add_custom_target (coverage
+            # Cleanup lcov
+            ${LCOV_PATH} --directory . --zerocounters
 
-		# Cleanup lcov
-		${LCOV_PATH} --directory . --zerocounters
+            # Run tests
+            COMMAND ${NICE_COMMAND} ${NICENESS} ${CTEST_COMMAND} "-j${Chaste_COVERAGE_CPUS}" "-L" "Continuous" "--output-on-failure"
+            COMMAND ${NICE_COMMAND} ${NICENESS} ${CTEST_COMMAND} "-L" "Parallel" "--output-on-failure"
 
-    # Run tests
-        COMMAND ${NICE_COMMAND} ${NICENESS} ${CTEST_COMMAND} "-j${Chaste_COVERAGE_CPUS}" "-L" "Continuous" "--output-on-failure"
-        COMMAND ${NICE_COMMAND} ${NICENESS} ${CTEST_COMMAND} "-L" "Parallel" "--output-on-failure"
+            # Capturing lcov counters and generating report
+            COMMAND ${LCOV_PATH} --config-file ${Chaste_SOURCE_DIR}/cmake/Config/lcovrc --directory . --capture --output-file ${_outputname}.info
+            COMMAND ${LCOV_PATH} --config-file ${Chaste_SOURCE_DIR}/cmake/Config/lcovrc --remove ${_outputname}.info /home/bob/petsc* /usr/* */fortests/* */test/* */3rdparty/* */global/src/random/* Debug/* cxxtest/* --output-file ${_outputname}.info.cleaned
+            set (_page_title "\"Chaste Coverage Results for commit ${Chaste_REVISION}\"")
+            COMMAND ${GENHTML_PATH} --title "${_page_title}" --config-file ${Chaste_SOURCE_DIR}/cmake/Config/lcovrc --no-function-coverage -o ${_outputname} ${_outputname}.info.cleaned
+            COMMAND ${CMAKE_COMMAND} -E remove ${_outputname}.info ${_outputname}.info.cleaned
+            COMMAND ${PYTHON_EXECUTABLE} "${Chaste_SOURCE_DIR}/cmake/process_coverage_output.py" "${_outputname}"
 
-        # Capturing lcov counters and generating report
-        COMMAND ${LCOV_PATH} --config-file ${Chaste_SOURCE_DIR}/cmake/Config/lcovrc --directory . --capture --output-file ${_outputname}.info
-        COMMAND ${LCOV_PATH} --config-file ${Chaste_SOURCE_DIR}/cmake/Config/lcovrc --remove ${_outputname}.info /home/bob/petsc* /usr/* */fortests/* */test/* */3rdparty/* */global/src/random/* Debug/* cxxtest/* --output-file ${_outputname}.info.cleaned
-        set(_page_title "\"Chaste Coverage Results for commit ${Chaste_REVISION}\"")
-        COMMAND ${GENHTML_PATH} --title "${_page_title}" --config-file ${Chaste_SOURCE_DIR}/cmake/Config/lcovrc --no-function-coverage -o ${_outputname} ${_outputname}.info.cleaned
-        COMMAND ${CMAKE_COMMAND} -E remove ${_outputname}.info ${_outputname}.info.cleaned
-        COMMAND ${PYTHON_EXECUTABLE} "${Chaste_SOURCE_DIR}/cmake/process_coverage_output.py" "${_outputname}"
+            DEPENDS Continuous Parallel
+            WORKING_DIRECTORY ${Chaste_BINARY_DIR}
+		        COMMENT "Resetting code coverage counters to zero.\nProcessing code coverage counters and generating report."
+            VERBATIM)
 
-        DEPENDS Continuous Parallel
-        WORKING_DIRECTORY ${Chaste_BINARY_DIR}
-		COMMENT "Resetting code coverage counters to zero.\nProcessing code coverage counters and generating report."
-        VERBATIM
-  )
+    # Show info where to find the report
+    add_custom_command (TARGET coverage POST_BUILD
+            COMMAND ;
+            COMMENT "Open ./${_outputname}/index.html in your browser to view the coverage report.")
 
-  # Show info where to find the report
-	ADD_CUSTOM_COMMAND(TARGET coverage POST_BUILD
-		COMMAND ;
-		COMMENT "Open ./${_outputname}/index.html in your browser to view the coverage report."
-  )
+    set (_outputname sip_coverage)
+    add_custom_target (sip_coverage
+            # Cleanup lcov
+            ${LCOV_PATH} --directory . --zerocounters
 
-    set(_outputname sip_coverage)
-  ADD_CUSTOM_TARGET(sip_coverage
+            # Run tests
+            COMMAND ${NICE_COMMAND} ${NICENESS} ${CTEST_COMMAND} "-j${Chaste_COVERAGE_CPUS}" "-L" "SipContinuous" "--output-on-failure"
+            COMMAND ${NICE_COMMAND} ${NICENESS} ${CTEST_COMMAND} "-L" "SipParallel" "--output-on-failure"
 
-		# Cleanup lcov
-		${LCOV_PATH} --directory . --zerocounters
+            # Capturing lcov counters and generating report
+            COMMAND ${LCOV_PATH} --config-file ${Chaste_SOURCE_DIR}/cmake/Config/lcovrc --directory ./projects --capture --output-file ${_outputname}.info
+            COMMAND ${LCOV_PATH} --config-file ${Chaste_SOURCE_DIR}/cmake/Config/lcovrc --remove ${_outputname}.info "/usr/*" "*/fortests/*" "*/test/*" "*/3rdparty/*" "*/global/src/random/*" "*/Debug/*" "cxxtest/*" "*/*_build/*" "*/continuum_mechanics/*" "*/global/*" "*/heart/*" "*/io/*" "*/linalg/*" "*/mesh/*" "*/ode/*" "*/pde/*" "*/tutorial/*" "*/unused/*" --output-file ${_outputname}.info.cleaned
+            set (_page_title "\"Chaste Coverage Results for commit ${Chaste_REVISION}\"")
+            COMMAND ${GENHTML_PATH} --title "${_page_title}" --config-file ${Chaste_SOURCE_DIR}/cmake/Config/lcovrc --no-function-coverage -o ${_outputname} ${_outputname}.info.cleaned
+            COMMAND ${CMAKE_COMMAND} -E remove ${_outputname}.info ${_outputname}.info.cleaned
+            COMMAND ${PYTHON_EXECUTABLE} "${Chaste_SOURCE_DIR}/cmake/process_coverage_output.py" "${_outputname}"
 
-    # Run tests
-        COMMAND ${NICE_COMMAND} ${NICENESS} ${CTEST_COMMAND} "-j${Chaste_COVERAGE_CPUS}" "-L" "SipContinuous" "--output-on-failure"
-        COMMAND ${NICE_COMMAND} ${NICENESS} ${CTEST_COMMAND} "-L" "SipParallel" "--output-on-failure"
+            DEPENDS SipContinuous SipParallel
+            WORKING_DIRECTORY ${Chaste_BINARY_DIR}
+		        COMMENT "Resetting code coverage counters to zero.\nProcessing code coverage counters and generating report."
+            VERBATIM)
 
-        # Capturing lcov counters and generating report
-        COMMAND ${LCOV_PATH} --config-file ${Chaste_SOURCE_DIR}/cmake/Config/lcovrc --directory ./projects --capture --output-file ${_outputname}.info
-        COMMAND ${LCOV_PATH} --config-file ${Chaste_SOURCE_DIR}/cmake/Config/lcovrc --remove ${_outputname}.info "/usr/*" "*/fortests/*" "*/test/*" "*/3rdparty/*" "*/global/src/random/*" "*/Debug/*" "cxxtest/*" "*/*_build/*" "*/continuum_mechanics/*" "*/global/*" "*/heart/*" "*/io/*" "*/linalg/*" "*/mesh/*" "*/ode/*" "*/pde/*" "*/tutorial/*" "*/unused/*" --output-file ${_outputname}.info.cleaned
-        set(_page_title "\"Chaste Coverage Results for commit ${Chaste_REVISION}\"")
-        COMMAND ${GENHTML_PATH} --title "${_page_title}" --config-file ${Chaste_SOURCE_DIR}/cmake/Config/lcovrc --no-function-coverage -o ${_outputname} ${_outputname}.info.cleaned
-        COMMAND ${CMAKE_COMMAND} -E remove ${_outputname}.info ${_outputname}.info.cleaned
-        COMMAND ${PYTHON_EXECUTABLE} "${Chaste_SOURCE_DIR}/cmake/process_coverage_output.py" "${_outputname}"
-
-        DEPENDS SipContinuous SipParallel
-        WORKING_DIRECTORY ${Chaste_BINARY_DIR}
-		COMMENT "Resetting code coverage counters to zero.\nProcessing code coverage counters and generating report."
-        VERBATIM
-	)
-
-	# Show info where to find the report
-  ADD_CUSTOM_COMMAND(TARGET sip_coverage POST_BUILD
-		COMMAND ;
-		COMMENT "Open ./${_outputname}/index.html in your browser to view the coverage report."
-	)
-endif()
+    # Show info where to find the report
+    add_custom_command (TARGET sip_coverage POST_BUILD
+            COMMAND ;
+            COMMENT "Open ./${_outputname}/index.html in your browser to view the coverage report.")
+endif ()
 
 
 ####################
@@ -884,8 +875,7 @@ if (Chaste_CLANG_TIDY)
             CLANG_TIDY
             NAMES clang-tidy-5.0 clang-tidy-4.0 clang-tidy-3.9 clang-tidy-3.8
             HINTS $ENV{CLANG_TIDY_DIR} /usr/bin
-            DOC "Clang tidy executable."
-    )
+            DOC "Clang tidy executable.")
 
     # Get a list of all source files we wish to process with clang_tidy
     set (LIST_OF_TRANSLATION_UNITS "")
@@ -917,8 +907,7 @@ if (Chaste_CLANG_TIDY)
         add_custom_command (
                 OUTPUT "${out_file}"
                 COMMAND ${CLANG_TIDY} -p=${Chaste_BINARY_DIR} ${Chaste_SOURCE_DIR}/${src_file} > ${out_file}
-                COMMENT "Producing clang_tidy report: ${out_file}"
-        )
+                COMMENT "Producing clang_tidy report: ${out_file}")
 
         # Finally set out_files for dependencies
         set (out_files ${out_files} "${out_file}")
@@ -933,18 +922,18 @@ endif ()
 ####################
 
 add_custom_target (doxygen
-                   COMMAND ${PYTHON_EXECUTABLE} "${Chaste_SOURCE_DIR}/cmake/run-doxygen.py" "${Chaste_SOURCE_DIR}"
-                   "${Chaste_BINARY_DIR}/doxygen" "${Chaste_REVISION}"
-                   WORKING_DIRECTORY ${Chaste_BINARY_DIR}
-                   COMMENT "Generating Doxygen documentation"
-                   VERBATIM)
+        COMMAND ${PYTHON_EXECUTABLE} "${Chaste_SOURCE_DIR}/cmake/run-doxygen.py" "${Chaste_SOURCE_DIR}"
+        "${Chaste_BINARY_DIR}/doxygen" "${Chaste_REVISION}"
+        WORKING_DIRECTORY ${Chaste_BINARY_DIR}
+        COMMENT "Generating Doxygen documentation"
+        VERBATIM)
 
 add_custom_target (doxygen_coverage
-                   COMMAND ${PYTHON_EXECUTABLE} "${Chaste_SOURCE_DIR}/cmake/run-doxygen.py" "${Chaste_SOURCE_DIR}"
-                   "${Chaste_BINARY_DIR}/doxygen_coverage" "${Chaste_REVISION}" "True"
-                   WORKING_DIRECTORY ${Chaste_BINARY_DIR}
-                   COMMENT "Checking Doxygen coverage"
-                   VERBATIM)
+        COMMAND ${PYTHON_EXECUTABLE} "${Chaste_SOURCE_DIR}/cmake/run-doxygen.py" "${Chaste_SOURCE_DIR}"
+        "${Chaste_BINARY_DIR}/doxygen_coverage" "${Chaste_REVISION}" "True"
+        WORKING_DIRECTORY ${Chaste_BINARY_DIR}
+        COMMENT "Checking Doxygen coverage"
+        VERBATIM)
 
 ####################
 #  MEMORY TESTING  #
@@ -952,22 +941,23 @@ add_custom_target (doxygen_coverage
 
 if (Chaste_MEMORY_TESTING)
     # Run ctest with a low priority (+15)
-    set(NICE_COMMAND nice)
-    set(NICENESS -n15)
-    set(CTEST_COMMAND ctest)
-    add_custom_target(memtest
-        COMMAND ${NICE_COMMAND} ${NICENESS} ${CTEST_COMMAND} "-j${Chaste_MEMORY_TESTING_CPUS}" "-L" Continuous "--output-on-failure"
-        COMMAND ${PYTHON_EXECUTABLE} "${Chaste_SOURCE_DIR}/cmake/process_valgrind_output.py" "${Chaste_MEMORY_TESTING_OUTPUT_DIR}"
-        DEPENDS Continuous
-        WORKING_DIRECTORY ${Chaste_BINARY_DIR}
-        VERBATIM)
-    add_custom_target(sip_memtest
-        COMMAND ${NICE_COMMAND} ${NICENESS} ${CTEST_COMMAND} "-j${Chaste_MEMORY_TESTING_CPUS}" "-L" SipContinuous "--output-on-failure"
-        COMMAND ${PYTHON_EXECUTABLE} "${Chaste_SOURCE_DIR}/cmake/process_valgrind_output.py" "${Chaste_MEMORY_TESTING_OUTPUT_DIR}"
-        DEPENDS SipContinuous
-        WORKING_DIRECTORY ${Chaste_BINARY_DIR}
-        VERBATIM)
-endif()
+    set (NICE_COMMAND nice)
+    set (NICENESS -n15)
+    set (CTEST_COMMAND ctest)
+    add_custom_target (memtest
+            COMMAND ${NICE_COMMAND} ${NICENESS} ${CTEST_COMMAND} "-j${Chaste_MEMORY_TESTING_CPUS}" "-L" Continuous "--output-on-failure"
+            COMMAND ${PYTHON_EXECUTABLE} "${Chaste_SOURCE_DIR}/cmake/process_valgrind_output.py" "${Chaste_MEMORY_TESTING_OUTPUT_DIR}"
+            DEPENDS Continuous
+            WORKING_DIRECTORY ${Chaste_BINARY_DIR}
+            VERBATIM)
+
+    add_custom_target (sip_memtest
+            COMMAND ${NICE_COMMAND} ${NICENESS} ${CTEST_COMMAND} "-j${Chaste_MEMORY_TESTING_CPUS}" "-L" SipContinuous "--output-on-failure"
+            COMMAND ${PYTHON_EXECUTABLE} "${Chaste_SOURCE_DIR}/cmake/process_valgrind_output.py" "${Chaste_MEMORY_TESTING_OUTPUT_DIR}"
+            DEPENDS SipContinuous
+            WORKING_DIRECTORY ${Chaste_BINARY_DIR}
+            VERBATIM)
+endif ()
 
 ####################
 #     Profiling    #
@@ -987,26 +977,25 @@ if (Chaste_PROFILE_GPROF OR Chaste_PROFILE_GPERFTOOLS)
     set (NICENESS -n0)
     set (CTEST_COMMAND ctest)
     add_custom_target (profile
-                       COMMAND ${NICE_COMMAND} ${NICENESS} ${CTEST_COMMAND} "-j${NUM_CPUS}" "-L" "^Profile_" "--output-on-failure"
-                       COMMAND ${PYTHON_EXECUTABLE} "${Chaste_SOURCE_DIR}/cmake/process_profile.py" "${Chaste_PROFILE_OUTPUT_DIR}" ${extension}
-                       DEPENDS Profile
-                       WORKING_DIRECTORY ${Chaste_BINARY_DIR}
-                       VERBATIM)
+            COMMAND ${NICE_COMMAND} ${NICENESS} ${CTEST_COMMAND} "-j${NUM_CPUS}" "-L" "^Profile_" "--output-on-failure"
+            COMMAND ${PYTHON_EXECUTABLE} "${Chaste_SOURCE_DIR}/cmake/process_profile.py" "${Chaste_PROFILE_OUTPUT_DIR}" ${extension}
+            DEPENDS Profile
+            WORKING_DIRECTORY ${Chaste_BINARY_DIR}
+            VERBATIM)
 endif ()
+
 
 ##############################
 #     Infrastructure Tests   #
 ##############################
 
-
 add_custom_target (infrastructure
-                   COMMAND ${PYTHON_EXECUTABLE} ${Chaste_SOURCE_DIR}/python/infra/CheckForCopyrights.py
-                   COMMAND ${PYTHON_EXECUTABLE} ${Chaste_SOURCE_DIR}/python/infra/CheckForDuplicateFileNames.py
-                   COMMAND ${PYTHON_EXECUTABLE} ${Chaste_SOURCE_DIR}/python/infra/CheckForOrphanedTests.py
-                   COMMAND ${PYTHON_EXECUTABLE} ${Chaste_SOURCE_DIR}/python/infra/CheckSchemas.py
-
-                   WORKING_DIRECTORY ${Chaste_SOURCE_DIR}
-                   VERBATIM)
+        COMMAND ${PYTHON_EXECUTABLE} ${Chaste_SOURCE_DIR}/python/infra/CheckForCopyrights.py
+        COMMAND ${PYTHON_EXECUTABLE} ${Chaste_SOURCE_DIR}/python/infra/CheckForDuplicateFileNames.py
+        COMMAND ${PYTHON_EXECUTABLE} ${Chaste_SOURCE_DIR}/python/infra/CheckForOrphanedTests.py
+        COMMAND ${PYTHON_EXECUTABLE} ${Chaste_SOURCE_DIR}/python/infra/CheckSchemas.py
+        WORKING_DIRECTORY ${Chaste_SOURCE_DIR}
+        VERBATIM)
 
 
 ####################
