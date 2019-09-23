@@ -33,7 +33,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 */
 
-#include "HeartConfig.hpp" // First for Boost 1.33/PETSc 2.2
+#include "HeartConfig.hpp"  // First for Boost 1.33/PETSc 2.2
 #include "AbstractCardiacCellInterface.hpp"
 #include "Exception.hpp"
 
@@ -51,129 +51,137 @@ const char CardiacCellChasteCitation[] = "@article{cooper2015cce,\n"
 "}\n";
 
 AbstractCardiacCellInterface::AbstractCardiacCellInterface(
-            boost::shared_ptr<AbstractIvpOdeSolver> pOdeSolver,
-            unsigned voltageIndex,
-            boost::shared_ptr<AbstractStimulusFunction> pIntracellularStimulus)
-    : mVoltageIndex(voltageIndex),
-      mpOdeSolver(pOdeSolver),
-      mpIntracellularStimulus(pIntracellularStimulus),
-      mSetVoltageDerivativeToZero(false),
-      mIsUsedInTissue(false),
-      mHasDefaultStimulusFromCellML(false),
-      mFixedVoltage(DOUBLE_UNSET)
+    boost::shared_ptr<AbstractIvpOdeSolver> pOdeSolver
+  , unsigned voltageIndex
+  , boost::shared_ptr<AbstractStimulusFunction> pIntracellularStimulus)
+  : mVoltageIndex(voltageIndex),
+    mpOdeSolver(pOdeSolver),
+    mpIntracellularStimulus(pIntracellularStimulus),
+    mSetVoltageDerivativeToZero(false),
+    mIsUsedInTissue(false),
+    mHasDefaultStimulusFromCellML(false),
+    mFixedVoltage(DOUBLE_UNSET)
 {
-    // Record a reference for the calculations performed using this class,
-    // can be extracted with the '-citations' flag as an argument to any executable.
-    Citations::Register(CardiacCellChasteCitation, &CardiacCellChasteCite);
+  // Record a reference for the calculations performed using this
+  // class, can be extracted with the '-citations' flag as an argument
+  // to any executable.
+  Citations::Register(CardiacCellChasteCitation, &CardiacCellChasteCite);
 }
 
 
 AbstractCardiacCellInterface::~AbstractCardiacCellInterface()
-{
-}
+{}
 
 
 unsigned AbstractCardiacCellInterface::GetVoltageIndex()
 {
-    return mVoltageIndex;
+  return mVoltageIndex;
 }
 
 
-void AbstractCardiacCellInterface::SetStimulusFunction(boost::shared_ptr<AbstractStimulusFunction> pStimulus)
+void AbstractCardiacCellInterface::SetStimulusFunction(
+    boost::shared_ptr<AbstractStimulusFunction> pStimulus)
 {
-    SetIntracellularStimulusFunction(pStimulus);
+  SetIntracellularStimulusFunction(pStimulus);
 }
 
 
 double AbstractCardiacCellInterface::GetStimulus(double time)
 {
-    return GetIntracellularStimulus(time);
+  return GetIntracellularStimulus(time);
 }
 
 
-void AbstractCardiacCellInterface::SetIntracellularStimulusFunction(boost::shared_ptr<AbstractStimulusFunction> pStimulus)
+void AbstractCardiacCellInterface::SetIntracellularStimulusFunction(
+    boost::shared_ptr<AbstractStimulusFunction> pStimulus)
 {
-    mpIntracellularStimulus = pStimulus;
+  mpIntracellularStimulus = pStimulus;
 }
 
 
 double AbstractCardiacCellInterface::GetIntracellularStimulus(double time)
 {
-    return mpIntracellularStimulus->GetStimulus(time);
+  return mpIntracellularStimulus->GetStimulus(time);
 }
 
 
-double AbstractCardiacCellInterface::GetIntracellularAreaStimulus(double time)
+double AbstractCardiacCellInterface::GetIntracellularAreaStimulus(
+    double time)
 {
-    double stim;
-    if (mIsUsedInTissue)
-    {
-        // Convert from uA/cm^3 to uA/cm^2 by dividing by Am
-        stim = GetIntracellularStimulus(time) / HeartConfig::Instance()->GetSurfaceAreaToVolumeRatio();
-    }
-    else
-    {
-        stim = GetIntracellularStimulus(time);
-    }
-    return stim;
+  double stim;
+  if (mIsUsedInTissue) {
+    // Convert from uA/cm^3 to uA/cm^2 by dividing by Am
+    stim = GetIntracellularStimulus(time) /
+        HeartConfig::Instance()->GetSurfaceAreaToVolumeRatio();
+  }
+  else {
+    stim = GetIntracellularStimulus(time);
+  }
+  return stim;
 }
 
 void AbstractCardiacCellInterface::SetUsedInTissueSimulation(bool tissue)
 {
-    mIsUsedInTissue = tissue;
+  mIsUsedInTissue = tissue;
 }
 
-boost::shared_ptr<RegularStimulus> AbstractCardiacCellInterface::UseCellMLDefaultStimulus()
+boost::shared_ptr<RegularStimulus>
+    AbstractCardiacCellInterface::UseCellMLDefaultStimulus()
 {
-    assert(!mHasDefaultStimulusFromCellML);
-    EXCEPTION("This class has no default stimulus from CellML metadata.");
-    return boost::shared_ptr<RegularStimulus>();
+  assert(!mHasDefaultStimulusFromCellML);
+  EXCEPTION("This class has no default stimulus from CellML metadata.");
+  return boost::shared_ptr<RegularStimulus>();
 }
 
 bool AbstractCardiacCellInterface::HasCellMLDefaultStimulus()
 {
-    return mHasDefaultStimulusFromCellML;
+  return mHasDefaultStimulusFromCellML;
 }
 
-boost::shared_ptr<AbstractStimulusFunction> AbstractCardiacCellInterface::GetStimulusFunction()
+boost::shared_ptr<AbstractStimulusFunction>
+    AbstractCardiacCellInterface::GetStimulusFunction()
 {
-    return mpIntracellularStimulus;
+  return mpIntracellularStimulus;
 }
 
 // Methods needed by boost serialization.
-const boost::shared_ptr<AbstractStimulusFunction> AbstractCardiacCellInterface::GetStimulusFunction() const
+const boost::shared_ptr<AbstractStimulusFunction>
+    AbstractCardiacCellInterface::GetStimulusFunction() const
 {
-    return mpIntracellularStimulus;
+  return mpIntracellularStimulus;
 }
 
-const boost::shared_ptr<AbstractIvpOdeSolver> AbstractCardiacCellInterface::GetSolver() const
+const boost::shared_ptr<AbstractIvpOdeSolver>
+    AbstractCardiacCellInterface::GetSolver() const
 {
-    return mpOdeSolver;
+  return mpOdeSolver;
 }
 
-void AbstractCardiacCellInterface::SetSolver(boost::shared_ptr<AbstractIvpOdeSolver> pSolver)
+void AbstractCardiacCellInterface::SetSolver(
+    boost::shared_ptr<AbstractIvpOdeSolver> pSolver)
 {
-    mpOdeSolver = pSolver;
+  mpOdeSolver = pSolver;
 }
 
 void AbstractCardiacCellInterface::SetVoltageDerivativeToZero(bool clamp)
 {
-    mSetVoltageDerivativeToZero = clamp;
-    if (clamp)
-    {
-        mFixedVoltage = GetVoltage();
-    }
+  mSetVoltageDerivativeToZero = clamp;
+  if (clamp) {
+    mFixedVoltage = GetVoltage();
+  }
 }
 
 void AbstractCardiacCellInterface::SetFixedVoltage(double voltage)
 {
-    mFixedVoltage = voltage;
+  mFixedVoltage = voltage;
 }
 
 double AbstractCardiacCellInterface::GetIntracellularCalciumConcentration()
 {
-    EXCEPTION("AbstractCardiacCellInterface::GetIntracellularCalciumConcentration() called. "
-              "Either model has no [Ca_i] or method has not been implemented yet");
+  EXCEPTION(
+      "AbstractCardiacCellInterface::GetIntracellularCalciumConcentration() "
+      "called. Either model has no [Ca_i] or method has not been "
+      "implemented yet");
 }
 
 

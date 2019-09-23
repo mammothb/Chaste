@@ -509,7 +509,6 @@ class AbstractCardiacTissue : private boost::noncopyable
   /** @return the entire Purkinje stimulus current cache */
   ReplicatableVector& rGetPurkinjeIntracellularStimulusCacheReplicated();
 
-
   /**
    * Update the Iionic and intracellular stimulus caches.
    *
@@ -518,7 +517,7 @@ class AbstractCardiacTissue : private boost::noncopyable
    * @param nextTime  the next PDE time point, at which to evaluate the
    *        stimulus current
    */
-  void UpdateCaches(
+  virtual void UpdateCaches(
       unsigned globalIndex
     , unsigned localIndex
     , double nextTime);

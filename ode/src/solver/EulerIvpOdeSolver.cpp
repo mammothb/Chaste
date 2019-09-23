@@ -35,27 +35,29 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include "EulerIvpOdeSolver.hpp"
 
-void EulerIvpOdeSolver::CalculateNextYValue(AbstractOdeSystem* pAbstractOdeSystem,
-                                            double timeStep,
-                                            double time,
-                                            std::vector<double>& rCurrentYValues,
-                                            std::vector<double>& rNextYValues)
+void EulerIvpOdeSolver::CalculateNextYValue(
+    AbstractOdeSystem* pAbstractOdeSystem
+  , double timeStep
+  , double time
+  , std::vector<double>& rCurrentYValues
+  , std::vector<double>& rNextYValues)
 {
-    // For each timestep in AbstractOneStepIvpSolver calculates a vector containing
-    // the next Y value from the current one for each equation in the system.
+  // For each timestep in AbstractOneStepIvpSolver calculates a vector
+  // containing the next Y value from the current one for each equation
+  // in the system.
 
-    const unsigned num_equations = pAbstractOdeSystem->GetNumberOfStateVariables();
+  const unsigned num_equations =
+      pAbstractOdeSystem->GetNumberOfStateVariables();
 
-    // Yes, this looks weird, but it makes good use of memory!
-    pAbstractOdeSystem->EvaluateYDerivatives(time, rCurrentYValues, rNextYValues /*dydt is stored here*/);
+  // Yes, this looks weird, but it makes good use of memory!
+  pAbstractOdeSystem->EvaluateYDerivatives(time, rCurrentYValues,
+      rNextYValues /*dydt is stored here*/);
 
-    for (unsigned i=0; i<num_equations; i++)
-    {
-        // rNextYValues contains dY/dt until here
-        rNextYValues[i] = rCurrentYValues[i] + timeStep*rNextYValues[i];
-    }
+  for (unsigned i = 0; i < num_equations; i++) {
+    // rNextYValues contains dY/dt until here
+    rNextYValues[i] = rCurrentYValues[i] + timeStep * rNextYValues[i];
+  }
 }
-
 
 // Serialization for Boost >= 1.36
 #include "SerializationExportWrapperForCpp.hpp"

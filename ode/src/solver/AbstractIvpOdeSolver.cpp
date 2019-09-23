@@ -40,34 +40,35 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "Exception.hpp"
 
 AbstractIvpOdeSolver::AbstractIvpOdeSolver()
-    : mStoppingEventOccurred(false),
-      mStoppingTime(DBL_MAX)
-{
-}
+  : mStoppingEventOccurred(false),
+    mStoppingTime(DBL_MAX)
+{}
 
 AbstractIvpOdeSolver::~AbstractIvpOdeSolver()
-{
-}
+{}
 
-void AbstractIvpOdeSolver::SolveAndUpdateStateVariable(AbstractOdeSystem* pAbstractOdeSystem,
-                                                       double startTime,
-                                                       double endTime,
-                                                       double timeStep)
+void AbstractIvpOdeSolver::SolveAndUpdateStateVariable(
+    AbstractOdeSystem* pAbstractOdeSystem
+  , double startTime
+  , double endTime
+  , double timeStep)
 {
-    if ((pAbstractOdeSystem->rGetStateVariables().size()!=pAbstractOdeSystem->GetNumberOfStateVariables())
-        || (pAbstractOdeSystem->rGetStateVariables().size()==0) )
-    {
-        EXCEPTION("SolveAndUpdateStateVariable() called but the state variable vector in the ODE system is not set up");
-    }
-    Solve(pAbstractOdeSystem, pAbstractOdeSystem->rGetStateVariables(), startTime, endTime, timeStep);
+  if (pAbstractOdeSystem->rGetStateVariables().size() !=
+      pAbstractOdeSystem->GetNumberOfStateVariables() ||
+      pAbstractOdeSystem->rGetStateVariables().size() == 0) {
+    EXCEPTION("SolveAndUpdateStateVariable() called but the state variable "
+        "vector in the ODE system is not set up");
+  }
+  Solve(pAbstractOdeSystem, pAbstractOdeSystem->rGetStateVariables(),
+      startTime, endTime, timeStep);
 }
 
 bool AbstractIvpOdeSolver::StoppingEventOccurred()
 {
-    return mStoppingEventOccurred;
+  return mStoppingEventOccurred;
 }
 
 double AbstractIvpOdeSolver::GetStoppingTime()
 {
-    return mStoppingTime;
+  return mStoppingTime;
 }
